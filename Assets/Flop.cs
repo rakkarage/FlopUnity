@@ -27,7 +27,6 @@ public class Flop : UIBehaviour, IDragHandler
 			Vector3 p = new Vector3(i * Offset, transform.localPosition.y, i * Offset);
 			o.transform.localPosition = p;
 			Text[] texts = o.GetComponentsInChildren<Text>(true);
-			Debug.Log(texts.Length);
 			texts[0].text = data;
 			texts[1].text = viewIndex.ToString();
 			o.GetComponent<LookAt>().Target = LookAt;
