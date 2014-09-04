@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 943174b1dbd589642845a5f147c96cf4
+labels:
+- Sprite
 TextureImporter:
   fileIDToRecycleName:
     21300000: InterfaceButtonDown

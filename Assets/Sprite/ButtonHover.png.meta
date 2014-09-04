@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: a48fb14f16edfd84ba2ce52904350c91
+labels:
+- Sprite
 TextureImporter:
   fileIDToRecycleName:
     21300000: InterfaceButtonHover

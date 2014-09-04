@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 36afd6e59d0dc3f47a5b4364ce7d6c8f
+labels:
+- Sprite
 TextureImporter:
   fileIDToRecycleName:
     21300000: InterfaceTooltip

@@ -49,6 +49,7 @@ public class Flop : UIBehaviour, IDragHandler
 		var children = GetComponentsInChildren<Transform>(true);
 		var sorted = from child in children
 					 orderby child.gameObject.activeInHierarchy descending, child.localPosition.z descending
+					 where child != transform
 					 select child;
 		for (int i = 0; i < sorted.Count(); i++)
 		{

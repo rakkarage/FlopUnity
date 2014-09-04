@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 public class Pool : Singleton<Pool>
 {
 	public int Count = 7;
@@ -18,7 +17,7 @@ public class Pool : Singleton<Pool>
 	private GameObject New()
 	{
 		GameObject o = Instantiate(Prefab) as GameObject;
-		o.transform.parent = gameObject.transform;
+		o.transform.SetParent(gameObject.transform, false);
 		o.transform.position = Vector3.zero;
 		o.SetActive(false);
 		return o;

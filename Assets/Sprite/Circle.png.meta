@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 95e235b6a5b446f4980c961e621e2eda
+labels:
+- Sprite
 TextureImporter:
   fileIDToRecycleName:
     21300000: InterfaceCircle

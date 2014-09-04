@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: c21b8804d63193d4eab0c41a44a1fb4e
+labels:
+- Sprite
 TextureImporter:
   fileIDToRecycleName:
     21300000: InterfaceNo

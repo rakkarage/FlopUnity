@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 17296b8143ea2c445b79ab0fa710ba2f
+labels:
+- Sprite
 TextureImporter:
   fileIDToRecycleName:
     21300000: InterfacePanel
