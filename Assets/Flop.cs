@@ -47,7 +47,7 @@ public class Flop : UIBehaviour, IDragHandler
 	private void Order()
 	{
 		var children = GetComponentsInChildren<Transform>(true);
-		var sorted = from child in children orderby child.gameObject.activeInHierarchy descending, child.localPosition.z descending select child;
+		var sorted = from child in children orderby child.localPosition.z descending select child;
 		for (int i = 0; i < sorted.Count(); i++)
 		{
 			sorted.ElementAt(i).SetSiblingIndex(i);
