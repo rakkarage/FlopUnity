@@ -1,8 +1,9 @@
 fileFormatVersion: 2
-guid: 129f666a221ca2947885fffaf4dcf686
+guid: 7eb7847425e872246aacc56df4e1373b
 TextureImporter:
   fileIDToRecycleName:
-    21300000: InterfacePanelStone
+    21300000: InterfacePanelPaper
+    21300002: PanelPaper
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
