@@ -233,7 +233,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Offset: 32
-  LookAt: {fileID: 1894599102}
 --- !u!114 &317071234
 MonoBehaviour:
   m_ObjectHideFlags: 0

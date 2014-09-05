@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Flop : UIBehaviour, IDragHandler
 {
 	public float Offset = 64f;
-	public Transform LookAt;
 	private float _current = 0;
 	private const int _limitSide = 4;
 	private const int _limit = (_limitSide * 2) + 1;
@@ -29,11 +28,10 @@ public class Flop : UIBehaviour, IDragHandler
 			Text[] texts = o.GetComponentsInChildren<Text>(true);
 			texts[0].text = data;
 			texts[1].text = viewIndex.ToString();
-			o.GetComponent<LookAt>().Target = LookAt;
 			o.SetActive(true);
 			_views[viewIndex] = o;
 		}
-		Order();
+		gameObject.SortChildren();
 	}
 	public void Drag(PointerEventData e)
 	{
@@ -42,19 +40,7 @@ public class Flop : UIBehaviour, IDragHandler
 			var x = i.localPosition.x + e.delta.x;
 			Drag(x, i);
 		}
-		Order();
-	}
-	private void Order()
-	{
-		var children = GetComponentsInChildren<Transform>(true);
-		var sorted = from child in children
-					 orderby child.gameObject.activeInHierarchy descending, child.localPosition.z descending
-					 where child != transform
-					 select child;
-		for (int i = 0; i < sorted.Count(); i++)
-		{
-			sorted.ElementAt(i).SetSiblingIndex(i);
-		}
+		gameObject.SortChildren();
 	}
 	private void Drag(float x, Transform t)
 	{
