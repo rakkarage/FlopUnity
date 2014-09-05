@@ -62,7 +62,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300004, guid: a48fb14f16edfd84ba2ce52904350c91, type: 3}
+      value: {fileID: 21300000, guid: c48322f98f6eeef41b5895195794ab0c, type: 3}
     attribute: m_Sprite
     path: 
     classID: 114
@@ -81,7 +81,7 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300004, guid: a48fb14f16edfd84ba2ce52904350c91, type: 3}
+    - {fileID: 21300000, guid: c48322f98f6eeef41b5895195794ab0c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
@@ -134,7 +134,7 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300004, guid: 943174b1dbd589642845a5f147c96cf4, type: 3}
+      value: {fileID: 21300000, guid: a83ff94959e207641bd26f244d6f9c6c, type: 3}
     attribute: m_Sprite
     path: 
     classID: 114
@@ -159,7 +159,7 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300004, guid: 943174b1dbd589642845a5f147c96cf4, type: 3}
+    - {fileID: 21300000, guid: a83ff94959e207641bd26f244d6f9c6c, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
@@ -711,24 +711,24 @@ StateMachine:
   m_ChildStateMachinePosition: []
   m_OrderedTransitions:
     data:
-      first: {fileID: 110245473}
-      second: []
-    data:
-      first: {fileID: 110292279}
-      second: []
-    data:
-      first: {fileID: 110250509}
-      second: []
-    data:
-      first: {fileID: 110200000}
-      second: []
-    data:
       first: {fileID: 0}
       second:
       - {fileID: 110100000}
       - {fileID: 110150509}
       - {fileID: 110192279}
       - {fileID: 110145473}
+    data:
+      first: {fileID: 110200000}
+      second: []
+    data:
+      first: {fileID: 110245473}
+      second: []
+    data:
+      first: {fileID: 110250509}
+      second: []
+    data:
+      first: {fileID: 110292279}
+      second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 0, y: 0, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}

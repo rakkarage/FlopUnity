@@ -1,11 +1,10 @@
 fileFormatVersion: 2
-guid: 17296b8143ea2c445b79ab0fa710ba2f
+guid: bca7e6cc1e8cb934f98bce554803abce
 labels:
 - Sprite
 TextureImporter:
   fileIDToRecycleName:
-    21300000: InterfacePanel
-    21300002: Panel
+    21300000: Panel
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

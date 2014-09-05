@@ -1,12 +1,10 @@
 fileFormatVersion: 2
-guid: a48fb14f16edfd84ba2ce52904350c91
+guid: c48322f98f6eeef41b5895195794ab0c
 labels:
 - Sprite
 TextureImporter:
   fileIDToRecycleName:
-    21300000: InterfaceButtonHover
-    21300002: ButtonHover
-    21300004: Button1
+    21300000: Button1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0

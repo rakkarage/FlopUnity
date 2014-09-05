@@ -1,11 +1,10 @@
 fileFormatVersion: 2
-guid: 95e235b6a5b446f4980c961e621e2eda
+guid: ecb025ae15905664fb542595fcfe8524
 labels:
 - Sprite
 TextureImporter:
   fileIDToRecycleName:
-    21300000: InterfaceCircle
-    21300002: Circle
+    21300000: Circle
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
