@@ -33,22 +33,15 @@ public class Flop : UIBehaviour, IDragHandler
 		}
 		gameObject.SortChildren();
 	}
-	public void Drag(PointerEventData e)
+	public void OnDrag(PointerEventData e)
 	{
 		foreach (Transform i in transform)
 		{
 			var x = i.localPosition.x + e.delta.x;
-			Drag(x, i);
+			i.localPosition = new Vector3(x, transform.localPosition.y, x < 0 ? -x : x);
 		}
 		gameObject.SortChildren();
-	}
-	private void Drag(float x, Transform t)
-	{
-		t.localPosition = new Vector3(x, transform.localPosition.y, x < 0 ? -x : x);
-	}
-	public void OnDrag(PointerEventData e)
-	{
-		Drag(e);
+		Debug.Log(GetClosestViewIndex());
 	}
 	private bool IsVisible(float delta)
 	{
