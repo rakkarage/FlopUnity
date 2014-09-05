@@ -25,7 +25,7 @@ public class Flop : UIBehaviour, IDragHandler
 			o.transform.localPosition = new Vector3(offset, _t.localPosition.y, offset);
 			int viewIndex = GetViewIndex(GetDelta(_current, i));
 			_views[viewIndex] = o;
-			UpdateName(o, viewIndex, i);
+			UpdateName(_views[viewIndex], viewIndex, i);
 		}
 		gameObject.SortChildren();
 	}
@@ -52,13 +52,13 @@ public class Flop : UIBehaviour, IDragHandler
 			else if (isVisible && !wasVisible)
 			{
 				newViews[viewIndex] = Pool.Instance.Enter();
-				//newViews[viewIndex].transform.localPosition = FlowPanItem(i, delta);
+				newViews[viewIndex].transform.localPosition = DragItem(i, delta);
 			}
 			else if (isVisible)
 			{
 				//FlowSnapItemCancel(viewIndex);
 				newViews[viewIndex] = _views[oldViewIndex];
-				//newViews[viewIndex].transform.localPosition = FlowPanItem(i, delta);
+				newViews[viewIndex].transform.localPosition = DragItem(i, delta);
 			}
 			if (isVisible)
 				UpdateName(newViews[viewIndex], viewIndex, i);
@@ -70,7 +70,24 @@ public class Flop : UIBehaviour, IDragHandler
 		//	var x = i.localPosition.x + delta;
 		//	i.localPosition = new Vector3(x, transform.localPosition.y, x < 0 ? -x : x);
 		//}
-		//gameObject.SortChildren();
+		gameObject.SortChildren();
+	}
+	private float ClampX(int dataIndex, bool negative)
+	{
+		var newIndex = negative ? dataIndex : _data.Count - dataIndex - 1;
+		var clamp = _data.Count * Offset + 1f;
+		clamp -= (Offset * newIndex);
+		Debug.Log(dataIndex + ":" + clamp);
+		return clamp;
+	}
+	private Vector3 DragItem(int dataIndex, float delta)
+	{
+		var negative = delta < 0;
+		var clampX = Mathf.Clamp(delta, -ClampX(dataIndex, negative), ClampX(dataIndex, negative));
+		var clampZ = Mathf.Clamp(Mathf.Abs(delta), 0f, ClampX(dataIndex, negative));
+		var p = new Vector3(clampX, transform.position.y, clampZ);
+		Debug.Log(dataIndex + ":" + p);
+		return p;
 	}
 	private void Snap()
 	{

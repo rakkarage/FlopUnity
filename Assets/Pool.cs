@@ -5,6 +5,7 @@ public class Pool : Singleton<Pool>
 	public int Count = 7;
 	public GameObject Prefab;
 	private List<GameObject> _pool;
+	private const string _name = "Pool";
 	private void Awake()
 	{
 		_pool = new List<GameObject>(Count);
@@ -18,6 +19,7 @@ public class Pool : Singleton<Pool>
 		GameObject o = Instantiate(Prefab) as GameObject;
 		o.transform.SetParent(gameObject.transform, false);
 		o.transform.position = Vector3.zero;
+		o.name = _name;
 		o.SetActive(false);
 		return o;
 	}
@@ -39,7 +41,7 @@ public class Pool : Singleton<Pool>
 	{
 		if (o != null)
 		{
-			o.name = string.Empty;
+			o.name = _name;
 			o.SetActive(false);
 		}
 	}
