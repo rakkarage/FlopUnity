@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Flop : UIBehaviour, IDragHandler
 {
 	public float Offset = 64f;
+	private Transform _t;
 	private float _current = 0;
 	private const int _limitSide = 4;
 	private const int _limit = (_limitSide * 2) + 1;
@@ -16,32 +17,63 @@ public class Flop : UIBehaviour, IDragHandler
 	protected override void Start()
 	{
 		base.Start();
+		_t = transform;
 		for (int i = 0; (i < _data.Count) && (i < _limitSide); i++)
 		{
-			int viewIndex = GetViewIndex(GetDelta(_current, i));
-			string data = string.Format("{0:X}", _data[i]);
-			string text = string.Format("{0}[{1}]", viewIndex, data);
 			GameObject o = Pool.Instance.Enter();
-			o.name = text;
-			Vector3 p = new Vector3(i * Offset, transform.localPosition.y, i * Offset);
-			o.transform.localPosition = p;
-			Text[] texts = o.GetComponentsInChildren<Text>(true);
-			texts[0].text = data;
-			texts[1].text = viewIndex.ToString();
-			o.SetActive(true);
+			var offset = i * Offset;
+			o.transform.localPosition = new Vector3(offset, _t.localPosition.y, offset);
+			int viewIndex = GetViewIndex(GetDelta(_current, i));
 			_views[viewIndex] = o;
+			UpdateName(o, viewIndex, i);
 		}
 		gameObject.SortChildren();
 	}
 	public void OnDrag(PointerEventData e)
 	{
-		foreach (Transform i in transform)
+		Drag(e.delta.x);
+	}
+	private void Drag(float offset)
+	{
+		float target = _current - offset;
+		List<GameObject> newViews = Enumerable.Repeat((GameObject)null, _limit).ToList();
+		for (int i = 0; i < _data.Count; i++)
 		{
-			var x = i.localPosition.x + e.delta.x;
-			i.localPosition = new Vector3(x, transform.localPosition.y, x < 0 ? -x : x);
+			float delta = GetDelta(target, i);
+			int viewIndex = GetViewIndex(delta);
+			float oldDelta = GetDelta(_current, i);
+			int oldViewIndex = GetViewIndex(oldDelta);
+			bool isVisible = IsVisible(delta);
+			bool wasVisible = IsVisible(oldDelta);
+			if (wasVisible && !isVisible)
+			{
+				Pool.Instance.Exit(_views[viewIndex]);
+			}
+			else if (isVisible && !wasVisible)
+			{
+				newViews[viewIndex] = Pool.Instance.Enter();
+				//newViews[viewIndex].transform.localPosition = FlowPanItem(i, delta);
+			}
+			else if (isVisible)
+			{
+				//FlowSnapItemCancel(viewIndex);
+				newViews[viewIndex] = _views[oldViewIndex];
+				//newViews[viewIndex].transform.localPosition = FlowPanItem(i, delta);
+			}
+			if (isVisible)
+				UpdateName(newViews[viewIndex], viewIndex, i);
 		}
-		gameObject.SortChildren();
-		Debug.Log(GetClosestViewIndex());
+		_views = newViews;
+		_current = target;
+		//foreach (Transform i in transform)
+		//{
+		//	var x = i.localPosition.x + delta;
+		//	i.localPosition = new Vector3(x, transform.localPosition.y, x < 0 ? -x : x);
+		//}
+		//gameObject.SortChildren();
+	}
+	private void Snap()
+	{
 	}
 	private bool IsVisible(float delta)
 	{
@@ -91,5 +123,28 @@ public class Flop : UIBehaviour, IDragHandler
 			}
 		}
 		return GetDataIndex(found);
+	}
+	private void UpdateName(GameObject view, int viewIndex, int dataIndex)
+	{
+		string data = string.Format("{0:X}", _data[dataIndex]);
+		string text = string.Format("{0}[{1}]", viewIndex, data);
+		view.name = text;
+		Text[] texts = view.GetComponentsInChildren<Text>(true);
+		texts[0].text = data;
+		texts[1].text = viewIndex.ToString();
+	}
+	public void Prev()
+	{
+		if (_current > 0)
+		{
+			//FlowSnap(Mathf.RoundToInt(_current) - 1);
+		}
+	}
+	public void Next()
+	{
+		if (_current < _data.Count - 1)
+		{
+			//FlowSnap(Mathf.RoundToInt(_current) + 1);
+		}
 	}
 }

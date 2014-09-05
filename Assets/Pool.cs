@@ -3,7 +3,6 @@ using UnityEngine;
 public class Pool : Singleton<Pool>
 {
 	public int Count = 7;
-	public bool Grow = false;
 	public GameObject Prefab;
 	private List<GameObject> _pool;
 	private void Awake()
@@ -24,21 +23,24 @@ public class Pool : Singleton<Pool>
 	}
 	public GameObject Enter()
 	{
+		GameObject o = null;
 		for (int i = 0; i < _pool.Count; i++)
 		{
 			if (!_pool[i].activeInHierarchy)
 			{
-				return _pool[i];
-			}
-			if (Grow)
-			{
-				_pool.Add(New());
+				o = _pool[i];
 			}
 		}
-		return null;
+		if (o != null)
+			o.SetActive(true);
+		return o;
 	}
 	public void Exit(GameObject o)
 	{
-		o.SetActive(false);
+		if (o != null)
+		{
+			o.name = string.Empty;
+			o.SetActive(false);
+		}
 	}
 }
