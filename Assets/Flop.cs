@@ -3,14 +3,15 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-public class Flop : UIBehaviour, IDragHandler
+public class Flop : UIBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
 	public float Offset = 64f;
 	private Transform _t;
+	private float _time = .333f;
 	private float _current = 0;
 	private const int _limitSide = 4;
 	private const int _limit = (_limitSide * 2) + 1;
-	private List<int> _data = Enumerable.Range(111, 1).ToList();
+	private List<int> _data = Enumerable.Range(111, 3).ToList();
 	private List<GameObject> _views = Enumerable.Repeat((GameObject)null, _limit).ToList();
 	private List<int> _tweens = Enumerable.Repeat(0, _limit).ToList();
 	private int _tweenInertia;
@@ -29,9 +30,24 @@ public class Flop : UIBehaviour, IDragHandler
 		}
 		gameObject.SortChildren();
 	}
+	public void OnBeginDrag(PointerEventData e)
+	{
+		Drag(e.delta.x);
+	}
 	public void OnDrag(PointerEventData e)
 	{
 		Drag(e.delta.x);
+	}
+	public void OnEndDrag(PointerEventData e)
+	{
+		Drag(e.delta.x);
+		// todo: inertia
+		//float velocity = target.LocalTransformCenter.x - target.PreviousLocalTransformCenter.x;
+		//if (Mathf.Abs(velocity) > Threshold)
+		//	Inertia(velocity);
+		//else
+		//	Go();
+		Go();
 	}
 	private void Drag(float offset)
 	{
@@ -45,9 +61,10 @@ public class Flop : UIBehaviour, IDragHandler
 			int oldViewIndex = GetViewIndex(oldDelta);
 			bool isVisible = IsVisible(delta);
 			bool wasVisible = IsVisible(oldDelta);
+			if (viewIndex == -1) Debug.Log("!!!ERROR!!!");
 			if (wasVisible && !isVisible)
 			{
-				Pool.Instance.Exit(_views[viewIndex]);
+				Pool.Instance.Exit(_views[viewIndex]); // todo: old?
 			}
 			else if (isVisible && !wasVisible)
 			{
@@ -65,12 +82,60 @@ public class Flop : UIBehaviour, IDragHandler
 		}
 		_views = newViews;
 		_current = target;
-		//foreach (Transform i in transform)
-		//{
-		//	var x = i.localPosition.x + delta;
-		//	i.localPosition = new Vector3(x, transform.localPosition.y, x < 0 ? -x : x);
-		//}
 		gameObject.SortChildren();
+	}
+	public void Go()
+	{
+		Snap(GetClosestViewIndex());
+	}
+	public void GoTo(GameObject o)
+	{
+		Snap(GetViewIndex(o));
+	}
+	private void SnapCancel(int viewIndex)
+	{
+		LeanTween.cancel(_views[viewIndex], _tweens[viewIndex]);
+	}
+	private void SnapTo(GameObject o, float delta, bool instant)
+	{
+		Vector3 to = new Vector3(delta * Offset, 0f, Mathf.Abs(delta) * Offset);
+		if (instant)
+			o.transform.position = to;
+		else
+			LeanTween.moveLocal(o, to, _time).setEase(LeanTweenType.easeSpring);
+	}
+	public void Snap(int target)
+	{
+		// Debug.Log(target);
+		List<GameObject> newViews = Enumerable.Repeat((GameObject)null, _limit).ToList();
+		for (int i = 0; i < _data.Count; i++)
+		{
+			float delta = GetDelta(target, i);
+			int viewIndex = GetViewIndex(delta);
+			float oldDelta = GetDelta(_current, i);
+			int oldViewIndex = GetViewIndex(oldDelta);
+			bool isVisible = IsVisible(delta);
+			bool wasVisible = IsVisible(oldDelta);
+			if (wasVisible && !isVisible)
+			{
+				Pool.Instance.Exit(_views[oldViewIndex]); // todo: old?
+			}
+			else if (isVisible && !wasVisible)
+			{
+				newViews[viewIndex] = Pool.Instance.Enter();
+				SnapTo(newViews[viewIndex], delta, true);
+			}
+			else if (isVisible)
+			{
+				SnapCancel(oldViewIndex);
+				newViews[viewIndex] = _views[oldViewIndex];
+				SnapTo(newViews[viewIndex], delta, false);
+			}
+			if (isVisible)
+				UpdateName(newViews[viewIndex], viewIndex, i);
+		}
+		_views = newViews;
+		_current = target;
 	}
 	private float ClampX(int dataIndex, bool negative)
 	{
@@ -87,16 +152,15 @@ public class Flop : UIBehaviour, IDragHandler
 		var p = new Vector3(clampX, transform.position.y, clampZ);
 		return p;
 	}
-	private void Snap()
-	{
-	}
 	private bool IsVisible(float delta)
 	{
 		return Mathf.Abs(delta) < _limitSide;
 	}
 	private int GetDataIndex(int viewIndex)
 	{
-		return Mathf.RoundToInt(viewIndex - _limitSide + _current);
+		float temp = (_current / Offset);
+		Debug.Log("+++temp: " + temp);
+		return Mathf.RoundToInt(viewIndex - _limitSide + temp);
 	}
 	private int GetViewIndex(float delta)
 	{
@@ -122,7 +186,10 @@ public class Flop : UIBehaviour, IDragHandler
 				}
 			}
 		}
-		return GetDataIndex(closestIndex);
+		var temp = GetDataIndex(closestIndex);
+		Debug.Log(closestIndex);
+		Debug.Log(temp);
+		return temp;
 	}
 	private int GetViewIndex(GameObject view)
 	{
@@ -152,14 +219,14 @@ public class Flop : UIBehaviour, IDragHandler
 	{
 		if (_current > 0)
 		{
-			//FlowSnap(Mathf.RoundToInt(_current) - 1);
+			Snap(Mathf.RoundToInt(_current) - 1);
 		}
 	}
 	public void Next()
 	{
 		if (_current < _data.Count - 1)
 		{
-			//FlowSnap(Mathf.RoundToInt(_current) + 1);
+			Snap(Mathf.RoundToInt(_current) + 1);
 		}
 	}
 }
