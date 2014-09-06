@@ -10,7 +10,7 @@ public class Flop : UIBehaviour, IDragHandler
 	private float _current = 0;
 	private const int _limitSide = 4;
 	private const int _limit = (_limitSide * 2) + 1;
-	private List<int> _data = Enumerable.Range(111, 100).ToList();
+	private List<int> _data = Enumerable.Range(111, 1).ToList();
 	private List<GameObject> _views = Enumerable.Repeat((GameObject)null, _limit).ToList();
 	private List<int> _tweens = Enumerable.Repeat(0, _limit).ToList();
 	private int _tweenInertia;
@@ -52,13 +52,13 @@ public class Flop : UIBehaviour, IDragHandler
 			else if (isVisible && !wasVisible)
 			{
 				newViews[viewIndex] = Pool.Instance.Enter();
-				newViews[viewIndex].transform.localPosition = DragItem(i, delta);
+				newViews[viewIndex].transform.localPosition = DragItem(i, delta) * Offset;
 			}
 			else if (isVisible)
 			{
 				//FlowSnapItemCancel(viewIndex);
 				newViews[viewIndex] = _views[oldViewIndex];
-				newViews[viewIndex].transform.localPosition = DragItem(i, delta);
+				newViews[viewIndex].transform.localPosition = DragItem(i, delta) * Offset;
 			}
 			if (isVisible)
 				UpdateName(newViews[viewIndex], viewIndex, i);
@@ -77,7 +77,6 @@ public class Flop : UIBehaviour, IDragHandler
 		var newIndex = negative ? dataIndex : _data.Count - dataIndex - 1;
 		var clamp = _data.Count * Offset + 1f;
 		clamp -= (Offset * newIndex);
-		Debug.Log(dataIndex + ":" + clamp);
 		return clamp;
 	}
 	private Vector3 DragItem(int dataIndex, float delta)
@@ -86,7 +85,6 @@ public class Flop : UIBehaviour, IDragHandler
 		var clampX = Mathf.Clamp(delta, -ClampX(dataIndex, negative), ClampX(dataIndex, negative));
 		var clampZ = Mathf.Clamp(Mathf.Abs(delta), 0f, ClampX(dataIndex, negative));
 		var p = new Vector3(clampX, transform.position.y, clampZ);
-		Debug.Log(dataIndex + ":" + p);
 		return p;
 	}
 	private void Snap()
@@ -106,7 +104,7 @@ public class Flop : UIBehaviour, IDragHandler
 	}
 	private float GetDelta(float target, int dataIndex)
 	{
-		return (target - dataIndex) * -1;
+		return ((target / Offset) - dataIndex) * -1;
 	}
 	public int GetClosestViewIndex()
 	{
