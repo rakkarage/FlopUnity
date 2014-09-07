@@ -34,14 +34,6 @@ public class Flop : UIBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandle
 	{
 		Drag(e.delta.x);
 	}
-	private int GetViewIndex(float delta)
-	{
-		return Mathf.RoundToInt(delta + _limitSide);
-	}
-	private float GetDelta(float target, int dataIndex)
-	{
-		return (target - dataIndex) * -1;
-	}
 	private void Drag(float offset)
 	{
 		_current += offset;
