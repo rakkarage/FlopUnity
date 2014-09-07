@@ -7,9 +7,11 @@ public class Flop : UIBehaviour, IEndDragHandler, IDragHandler
 {
 	public float Offset = 32f;
 	public int Limit = 4;
+	public Button PrevButton;
+	public Button NextButton;
 	private Transform _t;
 	private float _current = 0f;
-	private static List<int> _data = Enumerable.Range(111, 100).ToList();
+	private static List<int> _data = Enumerable.Range(111, 33).ToList();
 	private Dictionary<int, Transform> _views = new Dictionary<int, Transform>();
 	protected override void Start()
 	{
@@ -20,6 +22,7 @@ public class Flop : UIBehaviour, IEndDragHandler, IDragHandler
 			Add(i);
 		}
 		gameObject.SortChildren();
+		UpdateButtons();
 	}
 	private void Add(int i)
 	{
@@ -36,15 +39,28 @@ public class Flop : UIBehaviour, IEndDragHandler, IDragHandler
 	}
 	private void UpdateName(GameObject o, int i)
 	{
-		var text = i.ToString();
-		o.name = text;
+		var text0 = i.ToString();
+		var text1 = string.Format("{0:X}", _data[i]);
+		o.name = text0;
 		Text[] texts = o.GetComponentsInChildren<Text>(true);
-		texts[0].text = string.Format("{0:X}", _data[i]);
-		texts[1].text = text;
+		texts[0].text = text1;
+		texts[1].text = text0;
 	}
 	private void Drag(float delta)
 	{
 		_current += delta;
+		var max = (Offset * (Limit - .5f));
+		var min = (_data.Count - 1) * Offset + max;
+		if (_current > max)
+		{
+			_current = max;
+			return;
+		}
+		else if (_current < -min)
+		{
+			_current = -min;
+			return;
+		}
 		for (int i = 0; i < _data.Count; i++)
 		{
 			var x = _current + (i * Offset);
@@ -67,13 +83,26 @@ public class Flop : UIBehaviour, IEndDragHandler, IDragHandler
 				t.localPosition = new Vector3(x, transform.localPosition.y, negative ? -x : x);
 		}
 		gameObject.SortChildren();
+		UpdateButtons();
 	}
 	private void Snap()
 	{
-		var selected = Mathf.RoundToInt(_current / Offset);
-		var delta = selected * Offset;
+		var i = Mathf.Clamp(Mathf.RoundToInt(_current / Offset), -(_data.Count - 1), 0);
+		var delta = i * Offset;
 		_current = 0f;
 		Drag(delta);
+		UpdateButtons();
+	}
+	private void UpdateButtons()
+	{
+		if (_current >= 0)
+			PrevButton.interactable = false;
+		else
+			PrevButton.interactable = true;
+		if (_current <= -(_data.Count - 1) * Offset)
+			NextButton.interactable = false;
+		else
+			NextButton.interactable = true;
 	}
 	public void OnDrag(PointerEventData e)
 	{
@@ -86,9 +115,11 @@ public class Flop : UIBehaviour, IEndDragHandler, IDragHandler
 	public void Prev()
 	{
 		Drag(Offset);
+		UpdateButtons();
 	}
 	public void Next()
 	{
 		Drag(-Offset);
+		UpdateButtons();
 	}
 }
