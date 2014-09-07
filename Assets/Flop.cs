@@ -9,7 +9,7 @@ public class Flop : UIBehaviour, IEndDragHandler, IDragHandler
 	public int Limit = 4;
 	private Transform _t;
 	private float _current = 0f;
-	private static List<int> _data = Enumerable.Range(111, 8).ToList();
+	private static List<int> _data = Enumerable.Range(111, 100).ToList();
 	private Dictionary<int, Transform> _views = new Dictionary<int, Transform>();
 	protected override void Start()
 	{
@@ -36,12 +36,11 @@ public class Flop : UIBehaviour, IEndDragHandler, IDragHandler
 	}
 	private void UpdateName(GameObject o, int i)
 	{
-		var data = string.Format("{0:X}", _data[i]);
-		var text = string.Format("{0}[{1}]", i, data);
+		var text = i.ToString();
 		o.name = text;
 		Text[] texts = o.GetComponentsInChildren<Text>(true);
-		texts[0].text = data;
-		texts[1].text = i.ToString();
+		texts[0].text = string.Format("{0:X}", _data[i]);
+		texts[1].text = text;
 	}
 	private void Drag(float delta)
 	{

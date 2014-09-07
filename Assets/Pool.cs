@@ -2,7 +2,7 @@
 using UnityEngine;
 public class Pool : Singleton<Pool>
 {
-	public int Count = 7;
+	public int Count = 10;
 	public GameObject Prefab;
 	private List<GameObject> _pool;
 	private const string _name = "Pool";
@@ -26,15 +26,19 @@ public class Pool : Singleton<Pool>
 	public GameObject Enter()
 	{
 		GameObject o = null;
-		for (int i = 0; i < _pool.Count; i++)
+		for (int i = 0; (i < _pool.Count) && (o == null); i++)
 		{
 			if (!_pool[i].activeInHierarchy)
 			{
 				o = _pool[i];
 			}
 		}
-		if (o != null)
-			o.SetActive(true);
+		if (o == null)
+		{
+			o = New();
+			_pool.Add(o);
+		}
+		o.SetActive(true);
 		return o;
 	}
 	public void Exit(GameObject o)
