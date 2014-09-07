@@ -9,6 +9,7 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	public int Limit = 4;
 	public Button PrevButton;
 	public Button NextButton;
+	public Scrollbar Scrollbar;
 	private Transform _t;
 	private float _current = 0f;
 	private static List<int> _data = Enumerable.Range(111, 33).ToList();
@@ -96,6 +97,12 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	public void OnEndDrag(PointerEventData e)
 	{
 		Snap();
+	}
+	public void OnScrollChanged(float scroll)
+	{
+		var temp = (_data.Count * Offset) * scroll;
+		Debug.Log(temp);
+		Drag(temp);
 	}
 	public void Prev()
 	{
