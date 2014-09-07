@@ -22,18 +22,6 @@ public class Flop : UIBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandle
 		}
 		gameObject.SortChildren();
 	}
-	private void Add(int i)
-	{
-		GameObject o = Pool.Instance.Enter();
-		var offset = i * Offset;
-		o.transform.localPosition = new Vector3(offset, _t.localPosition.y, offset);
-		UpdateName(o, i);
-		_views.Add(i, o.transform);
-	}
-	private void Remove(GameObject o)
-	{
-		Pool.Instance.Exit(o);
-	}
 	public void OnBeginDrag(PointerEventData e)
 	{
 		Drag(e.delta.x);
@@ -62,7 +50,6 @@ public class Flop : UIBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandle
 			var x = _current + (i * Offset);
 			var visible = Mathf.Abs(x) < (_limitSide * Offset);
 			var negative = x < transform.localPosition.x;
-
 			Transform t;
 			_views.TryGetValue(i, out t);
 			if (t == null)
@@ -73,7 +60,7 @@ public class Flop : UIBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandle
 			else
 			{
 				if (!visible)
-					Remove(t.gameObject);
+					Remove(i, t);
 				else
 					t.localPosition = new Vector3(x, transform.localPosition.y, negative ? -x : x);
 			}
@@ -88,6 +75,19 @@ public class Flop : UIBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandle
 		Text[] texts = view.GetComponentsInChildren<Text>(true);
 		texts[0].text = data;
 		texts[1].text = index.ToString();
+	}
+	private void Add(int i)
+	{
+		GameObject o = Pool.Instance.Enter();
+		var offset = i * Offset;
+		o.transform.localPosition = new Vector3(offset, _t.localPosition.y, offset);
+		UpdateName(o, i);
+		_views.Add(i, o.transform);
+	}
+	private void Remove(int i, Transform t)
+	{
+		_views.Remove(i);
+		Pool.Instance.Exit(t.gameObject);
 	}
 	public void Prev()
 	{
