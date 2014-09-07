@@ -48,19 +48,9 @@ public class Flop : UIBehaviour, IEndDragHandler, IDragHandler
 	}
 	private void Drag(float delta)
 	{
-		_current += delta;
 		var max = (Offset * (Limit - .5f));
-		var min = (_data.Count - 1) * Offset + max;
-		if (_current > max)
-		{
-			_current = max;
-			return;
-		}
-		else if (_current < -min)
-		{
-			_current = -min;
-			return;
-		}
+		var min = -((_data.Count - 1) * Offset + max);
+		_current = Mathf.Clamp(_current + delta, min, max);
 		for (int i = 0; i < _data.Count; i++)
 		{
 			var x = _current + (i * Offset);
@@ -95,14 +85,9 @@ public class Flop : UIBehaviour, IEndDragHandler, IDragHandler
 	}
 	private void UpdateButtons()
 	{
-		if (_current >= 0)
-			PrevButton.interactable = false;
-		else
-			PrevButton.interactable = true;
-		if (_current <= -(_data.Count - 1) * Offset)
-			NextButton.interactable = false;
-		else
-			NextButton.interactable = true;
+		var half = Offset * .5f;
+		PrevButton.interactable = (_current <= 0 - half);
+		NextButton.interactable = (_current >= -(_data.Count - 1) * Offset + half);
 	}
 	public void OnDrag(PointerEventData e)
 	{
