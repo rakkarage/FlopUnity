@@ -3,9 +3,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-public class Flop : UIBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class Flop : UIBehaviour, IEndDragHandler, IDragHandler
 {
-	public float Offset = 64f;
+	public float Offset = 32f;
 	private Transform _t;
 	private float _current = 0f;
 	private const int _limitSide = 4;
@@ -72,14 +72,10 @@ public class Flop : UIBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandle
 	}
 	private void Snap()
 	{
-		var x = (int)(_current/Offset) * Offset;
-		Debug.Log(x);
-		_current = 0;
-		Drag(x);
-	}
-	public void OnBeginDrag(PointerEventData e)
-	{
-		Drag(e.delta.x);
+		var selected = Mathf.RoundToInt(_current / Offset);
+		var delta = selected * Offset;
+		_current = 0f;
+		Drag(delta);
 	}
 	public void OnDrag(PointerEventData e)
 	{
@@ -87,7 +83,6 @@ public class Flop : UIBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandle
 	}
 	public void OnEndDrag(PointerEventData e)
 	{
-		Drag(e.delta.x);
 		Snap();
 	}
 	public void Prev()
