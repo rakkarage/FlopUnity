@@ -22,21 +22,31 @@ public class Flop : UIBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandle
 		}
 		gameObject.SortChildren();
 	}
-	public void OnBeginDrag(PointerEventData e)
+	private void Add(int i)
 	{
-		Drag(e.delta.x);
+		GameObject o = Pool.Instance.Enter();
+		var offset = i * Offset;
+		o.transform.localPosition = new Vector3(offset, _t.localPosition.y, offset);
+		UpdateName(o, i);
+		_views.Add(i, o.transform);
 	}
-	public void OnDrag(PointerEventData e)
+	private void Remove(int i, Transform t)
 	{
-		Drag(e.delta.x);
+		_views.Remove(i);
+		Pool.Instance.Exit(t.gameObject);
 	}
-	public void OnEndDrag(PointerEventData e)
+	private void UpdateName(GameObject o, int i)
 	{
-		Drag(e.delta.x);
+		var data = string.Format("{0:X}", _data[i]);
+		var text = string.Format("{0}[{1}]", i, data);
+		o.name = text;
+		Text[] texts = o.GetComponentsInChildren<Text>(true);
+		texts[0].text = data;
+		texts[1].text = i.ToString();
 	}
-	private void Drag(float offset)
+	private void Drag(float delta)
 	{
-		_current += offset;
+		_current += delta;
 		for (int i = 0; i < _data.Count; i++)
 		{
 			var x = _current + (i * Offset);
@@ -60,27 +70,25 @@ public class Flop : UIBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandle
 		}
 		gameObject.SortChildren();
 	}
-	private void UpdateName(GameObject view, int index)
+	private void Snap()
 	{
-		string data = string.Format("{0:X}", _data[index]);
-		string text = string.Format("{0}[{1}]", index, data);
-		view.name = text;
-		Text[] texts = view.GetComponentsInChildren<Text>(true);
-		texts[0].text = data;
-		texts[1].text = index.ToString();
+		var x = (int)(_current/Offset) * Offset;
+		Debug.Log(x);
+		_current = 0;
+		Drag(x);
 	}
-	private void Add(int i)
+	public void OnBeginDrag(PointerEventData e)
 	{
-		GameObject o = Pool.Instance.Enter();
-		var offset = i * Offset;
-		o.transform.localPosition = new Vector3(offset, _t.localPosition.y, offset);
-		UpdateName(o, i);
-		_views.Add(i, o.transform);
+		Drag(e.delta.x);
 	}
-	private void Remove(int i, Transform t)
+	public void OnDrag(PointerEventData e)
 	{
-		_views.Remove(i);
-		Pool.Instance.Exit(t.gameObject);
+		Drag(e.delta.x);
+	}
+	public void OnEndDrag(PointerEventData e)
+	{
+		Drag(e.delta.x);
+		Snap();
 	}
 	public void Prev()
 	{
