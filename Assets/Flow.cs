@@ -75,6 +75,7 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 		}
 		gameObject.SortChildren();
 		UpdateButtons();
+		UpdateScroll();
 	}
 	private void Snap()
 	{
@@ -90,6 +91,18 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 		PrevButton.interactable = (_current <= 0 - half);
 		NextButton.interactable = (_current >= -(_data.Count - 1) * Offset + half);
 	}
+	private void UpdateScroll()
+	{
+		var temp = _current / (_data.Count * Offset);
+		Debug.Log(temp);
+		Scrollbar.value = temp;
+	}
+	public void OnScrollChanged(float scroll)
+	{
+		var temp = (_data.Count * Offset) * scroll;
+		Debug.Log(temp);
+		Drag(temp);
+	}
 	public void OnDrag(PointerEventData e)
 	{
 		Drag(e.delta.x);
@@ -97,12 +110,6 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	public void OnEndDrag(PointerEventData e)
 	{
 		Snap();
-	}
-	public void OnScrollChanged(float scroll)
-	{
-		var temp = (_data.Count * Offset) * scroll;
-		Debug.Log(temp);
-		Drag(temp);
 	}
 	public void Prev()
 	{
