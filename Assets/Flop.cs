@@ -7,7 +7,7 @@ public class Flop : UIBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandle
 {
 	public float Offset = 64f;
 	private Transform _t;
-	private float _current = 0;
+	private float _current = 0f;
 	private const int _limitSide = 4;
 	private const int _limit = (_limitSide * 2) + 1;
 	private List<int> _data = Enumerable.Range(111, 7).ToList();
@@ -53,9 +53,10 @@ public class Flop : UIBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandle
 			{
 				if (!visible)
 					Remove(i, t);
-				else
-					t.localPosition = new Vector3(x, transform.localPosition.y, negative ? -x : x);
 			}
+			_views.TryGetValue(i, out t);
+			if (t != null)
+				t.localPosition = new Vector3(x, transform.localPosition.y, negative ? -x : x);
 		}
 		gameObject.SortChildren();
 	}
@@ -83,16 +84,10 @@ public class Flop : UIBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandle
 	}
 	public void Prev()
 	{
-		if (_current > 0)
-		{
-			// Snap(Mathf.RoundToInt(_current) - 1);
-		}
+		Drag(Offset);
 	}
 	public void Next()
 	{
-		if (_current < _data.Count - 1)
-		{
-			// Snap(Mathf.RoundToInt(_current) + 1);
-		}
+		Drag(-Offset);
 	}
 }
