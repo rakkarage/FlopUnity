@@ -6,17 +6,16 @@ using UnityEngine.UI;
 public class Flop : UIBehaviour, IEndDragHandler, IDragHandler
 {
 	public float Offset = 32f;
+	public int Limit = 4;
 	private Transform _t;
 	private float _current = 0f;
-	private const int _limitSide = 4;
-	private const int _limit = (_limitSide * 2) + 1;
-	private List<int> _data = Enumerable.Range(111, 7).ToList();
+	private static List<int> _data = Enumerable.Range(111, 8).ToList();
 	private Dictionary<int, Transform> _views = new Dictionary<int, Transform>();
 	protected override void Start()
 	{
 		base.Start();
 		_t = transform;
-		for (int i = 0; (i < _data.Count) && (i < _limitSide); i++)
+		for (int i = 0; (i < _data.Count) && (i < Limit); i++)
 		{
 			Add(i);
 		}
@@ -50,7 +49,7 @@ public class Flop : UIBehaviour, IEndDragHandler, IDragHandler
 		for (int i = 0; i < _data.Count; i++)
 		{
 			var x = _current + (i * Offset);
-			var visible = Mathf.Abs(x) < (_limitSide * Offset);
+			var visible = Mathf.Abs(x) < (Limit * Offset);
 			var negative = x < transform.localPosition.x;
 			Transform t;
 			_views.TryGetValue(i, out t);

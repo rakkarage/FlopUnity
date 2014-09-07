@@ -294,6 +294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Offset: 32
+  Limit: 4
 --- !u!114 &317071234
 MonoBehaviour:
   m_ObjectHideFlags: 0
