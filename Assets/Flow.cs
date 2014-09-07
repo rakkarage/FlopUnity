@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-public class Flop : UIBehaviour, IEndDragHandler, IDragHandler
+public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 {
 	public float Offset = 32f;
 	public int Limit = 4;
@@ -48,6 +48,7 @@ public class Flop : UIBehaviour, IEndDragHandler, IDragHandler
 	}
 	private void Drag(float delta)
 	{
+		Transform t;
 		var max = (Offset * (Limit - .5f));
 		var min = -((_data.Count - 1) * Offset + max);
 		_current = Mathf.Clamp(_current + delta, min, max);
@@ -56,7 +57,6 @@ public class Flop : UIBehaviour, IEndDragHandler, IDragHandler
 			var x = _current + (i * Offset);
 			var visible = Mathf.Abs(x) < (Limit * Offset);
 			var negative = x < transform.localPosition.x;
-			Transform t;
 			_views.TryGetValue(i, out t);
 			if (t == null)
 			{
