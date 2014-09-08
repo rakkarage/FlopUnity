@@ -101,26 +101,20 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	}
 	public int GetCurrent()
 	{
-		var i = Mathf.Clamp(Mathf.RoundToInt((float)Math.Round(_current / Offset, MidpointRounding.AwayFromZero)) * -1, 0, _data.Count);
-		Debug.Log(i);
-		return i;
+		return Mathf.Clamp(Mathf.RoundToInt((float)Math.Round(_current / Offset, MidpointRounding.AwayFromZero)) * -1, 0, _data.Count);
 	}
 	private void UpdateButtons()
 	{
 		var current = GetCurrent();
-		Debug.Log(current);
-		var next = (current > 0);
-		Debug.Log(next);
-		var prev = (current < _data.Count);
-		Debug.Log(prev);
-		NextButton.interactable = prev;
-		PrevButton.interactable = next;
+		PrevButton.interactable = (current > 0);
+		NextButton.interactable = (current < _data.Count - 1);
 	}
 	private void UpdateScroll()
 	{
-		var temp = _current / ((_data.Count - 1) * Offset) * -1f;
+		var current = GetCurrent();
+		var temp = (current / (_data.Count - 1));
 		Scrollbar.value = temp;
-		Text.text = GetCurrent().ToString();
+		Text.text = current.ToString();
 	}
 	public void OnScrollChanged(float scroll)
 	{
@@ -137,12 +131,10 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	}
 	public void Prev()
 	{
-		Drag(Offset);
-		UpdateButtons();
+		DragTo((GetCurrent() - 1) * Offset * -1f);
 	}
 	public void Next()
 	{
-		Drag(-Offset);
-		UpdateButtons();
+		DragTo((GetCurrent() + 1) * Offset * -1f);
 	}
 }
