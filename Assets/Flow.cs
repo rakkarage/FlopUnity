@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -12,13 +13,13 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	public Scrollbar Scrollbar;
 	public Text Text;
 	private Transform _t;
-	private float _current = 0f;
-	private static List<int> _data = Enumerable.Range(111, 33).ToList();
+	private float _current;
+	private static List<int> _data = Enumerable.Range(111, 5).ToList();
 	private Dictionary<int, Transform> _views = new Dictionary<int, Transform>();
 	protected override void Start()
 	{
-		base.Start();
 		_t = transform;
+		Scrollbar.numberOfSteps = _data.Count;
 		for (int i = 0; (i < _data.Count) && (i < Limit); i++)
 		{
 			Add(i);
@@ -28,12 +29,10 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	}
 	protected override void OnEnable()
 	{
-		base.OnEnable();
 		Scrollbar.onValueChanged.AddListener(OnScrollChanged);
 	}
 	protected override void OnDisable()
 	{
-		base.OnEnable();
 		Scrollbar.onValueChanged.RemoveListener(OnScrollChanged);
 	}
 	private void Add(int i)
@@ -57,6 +56,11 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 		Text[] texts = o.GetComponentsInChildren<Text>(true);
 		texts[0].text = text1;
 		texts[1].text = text0;
+	}
+	private void DragTo(float delta)
+	{
+		_current = 0;
+		Drag(delta);
 	}
 	private void Drag(float delta)
 	{
@@ -90,29 +94,38 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	}
 	private void Snap()
 	{
-		var i = Mathf.Clamp((int)(_current / Offset), -(_data.Count - 1), 0);
+		var i = Mathf.Clamp(GetCurrent() * -1, -(_data.Count - 1), 0);
 		var delta = i * Offset;
-		_current = 0f;
-		Drag(delta);
+		DragTo(delta);
 		UpdateButtons();
+	}
+	public int GetCurrent()
+	{
+		var i = Mathf.Clamp(Mathf.RoundToInt((float)Math.Round(_current / Offset, MidpointRounding.AwayFromZero)) * -1, 0, _data.Count);
+		Debug.Log(i);
+		return i;
 	}
 	private void UpdateButtons()
 	{
-		var half = Offset * .5f;
-		PrevButton.interactable = (_current <= 0 - half);
-		NextButton.interactable = (_current >= -(_data.Count - 1) * Offset + half);
+		var current = GetCurrent();
+		Debug.Log(current);
+		var next = (current > 0);
+		Debug.Log(next);
+		var prev = (current < _data.Count);
+		Debug.Log(prev);
+		NextButton.interactable = prev;
+		PrevButton.interactable = next;
 	}
 	private void UpdateScroll()
 	{
 		var temp = _current / ((_data.Count - 1) * Offset) * -1f;
 		Scrollbar.value = temp;
-		Text.text = ((_current / Offset) * -1).ToString();
+		Text.text = GetCurrent().ToString();
 	}
 	public void OnScrollChanged(float scroll)
 	{
-		var temp = (int)(scroll * (_data.Count - 1)) * Offset * -1f;
-		_current = 0f;
-		Drag(temp);
+		// var temp = (int)(scroll * (_data.Count - 1)) * Offset * -1f;
+		// DragTo(temp);
 	}
 	public void OnDrag(PointerEventData e)
 	{

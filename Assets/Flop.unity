@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .498039216}
+  m_Color: {r: 1, g: 1, b: 1, a: .250980407}
   m_Sprite: {fileID: 21300000, guid: bca7e6cc1e8cb934f98bce554803abce, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .498039216}
+  m_Color: {r: 1, g: 1, b: 1, a: .250980407}
   m_Sprite: {fileID: 21300000, guid: bca7e6cc1e8cb934f98bce554803abce, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -959,7 +959,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 2468dda36ecb02d42b61ff58e1e4247f, type: 2}
-  m_Color: {r: .1953125, g: .1953125, b: .1953125, a: .498039216}
+  m_Color: {r: .1953125, g: .1953125, b: .1953125, a: .250980407}
   m_FontData:
     m_Font: {fileID: 12800000, guid: 2468dda36ecb02d42b61ff58e1e4247f, type: 2}
     m_FontSize: 0
