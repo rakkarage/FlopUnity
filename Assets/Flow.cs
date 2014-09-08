@@ -25,6 +25,14 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 		gameObject.SortChildren();
 		UpdateButtons();
 	}
+	protected override void OnEnable()
+	{
+		Scrollbar.onValueChanged.AddListener(OnScrollChanged);
+	}
+	protected override void OnDisable()
+	{
+		Scrollbar.onValueChanged.RemoveListener(OnScrollChanged);
+	}
 	private void Add(int i)
 	{
 		GameObject o = Pool.Instance.Enter();
@@ -93,15 +101,14 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	}
 	private void UpdateScroll()
 	{
-		var temp = (_current / ((_data.Count - 1) * Offset)) * -1f;
-		Debug.Log(temp);
+		var temp = _current / ((_data.Count - 1) * Offset) * -1f;
 		Scrollbar.value = temp;
 	}
 	public void OnScrollChanged(float scroll)
 	{
-		//var temp = (_data.Count * Offset) * scroll;
-		//Debug.Log(temp);
-		//Drag(temp);
+		var temp = scroll * ((_data.Count - 1) * Offset) * -1f;
+		_current = 0f;
+		Drag(temp);
 	}
 	public void OnDrag(PointerEventData e)
 	{
