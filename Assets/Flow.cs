@@ -111,8 +111,8 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	}
 	private void UpdateScroll()
 	{
-		var current = GetCurrent();
-		var temp = (current / (_data.Count - 1));
+		float current = GetCurrent();
+		float temp = (current / (_data.Count - 1));
 		Scrollbar.value = temp;
 		Text.text = current.ToString();
 	}
@@ -129,11 +129,11 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	{
 		Snap();
 	}
-	public void Prev()
+	public void OnPrev()
 	{
 		DragTo((GetCurrent() - 1) * Offset * -1f);
 	}
-	public void Next()
+	public void OnNext()
 	{
 		DragTo((GetCurrent() + 1) * Offset * -1f);
 	}
