@@ -101,7 +101,7 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	}
 	public int GetCurrent()
 	{
-		return Mathf.Clamp(Mathf.RoundToInt((float)Math.Round(_current / Offset, MidpointRounding.AwayFromZero)) * -1, 0, _data.Count);
+		return Mathf.Clamp(Mathf.RoundToInt((float)Math.Round(_current / Offset, MidpointRounding.AwayFromZero)) * -1, 0, _data.Count - 1);
 	}
 	private void UpdateButtons()
 	{
