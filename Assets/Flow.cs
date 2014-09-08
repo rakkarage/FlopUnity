@@ -10,6 +10,7 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	public Button PrevButton;
 	public Button NextButton;
 	public Scrollbar Scrollbar;
+	public Text Text;
 	private Transform _t;
 	private float _current = 0f;
 	private static List<int> _data = Enumerable.Range(111, 33).ToList();
@@ -105,6 +106,7 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	{
 		var temp = _current / ((_data.Count - 1) * Offset) * -1f;
 		Scrollbar.value = temp;
+		Text.text = ((_current / Offset) * -1).ToString();
 	}
 	public void OnScrollChanged(float scroll)
 	{
