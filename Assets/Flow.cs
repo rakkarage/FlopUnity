@@ -27,10 +27,12 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	}
 	protected override void OnEnable()
 	{
+		base.OnEnable();
 		Scrollbar.onValueChanged.AddListener(OnScrollChanged);
 	}
 	protected override void OnDisable()
 	{
+		base.OnEnable();
 		Scrollbar.onValueChanged.RemoveListener(OnScrollChanged);
 	}
 	private void Add(int i)
@@ -87,7 +89,7 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	}
 	private void Snap()
 	{
-		var i = Mathf.Clamp(Mathf.RoundToInt(_current / Offset), -(_data.Count - 1), 0);
+		var i = Mathf.Clamp((int)(_current / Offset), -(_data.Count - 1), 0);
 		var delta = i * Offset;
 		_current = 0f;
 		Drag(delta);
@@ -106,7 +108,7 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	}
 	public void OnScrollChanged(float scroll)
 	{
-		var temp = scroll * ((_data.Count - 1) * Offset) * -1f;
+		var temp = (int)(scroll * (_data.Count - 1)) * Offset * -1f;
 		_current = 0f;
 		Drag(temp);
 	}
