@@ -93,15 +93,15 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	}
 	private void UpdateScroll()
 	{
-		var temp = _current / (_data.Count * Offset);
+		var temp = (_current / ((_data.Count - 1) * Offset)) * -1f;
 		Debug.Log(temp);
 		Scrollbar.value = temp;
 	}
 	public void OnScrollChanged(float scroll)
 	{
-		var temp = (_data.Count * Offset) * scroll;
-		Debug.Log(temp);
-		Drag(temp);
+		//var temp = (_data.Count * Offset) * scroll;
+		//Debug.Log(temp);
+		//Drag(temp);
 	}
 	public void OnDrag(PointerEventData e)
 	{
