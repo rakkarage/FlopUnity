@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using System.Linq;
+﻿using System.Linq;
+using UnityEngine;
 public static class GameObjectExtensions
 {
 	public static void SortChildren(this GameObject gameObject)
