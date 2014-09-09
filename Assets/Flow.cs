@@ -24,9 +24,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 		{
 			Add(i);
 		}
-		gameObject.SortChildren();
-		UpdateButtons();
-		UpdateScroll();
+		UpdateAll();
 	}
 	private void OnEnable()
 	{
@@ -88,9 +86,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 			if (t != null)
 				t.localPosition = new Vector3(x, transform.localPosition.y, negative ? -x : x);
 		}
-		gameObject.SortChildren();
-		UpdateButtons();
-		UpdateScroll();
+		UpdateAll();
 	}
 	public int GetCurrent()
 	{
@@ -104,6 +100,12 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 		Text[] texts = o.GetComponentsInChildren<Text>(true);
 		texts[0].text = text1;
 		texts[1].text = text0;
+	}
+	private void UpdateAll()
+	{
+		gameObject.SortChildren();
+		UpdateButtons();
+		UpdateScroll();
 	}
 	private void UpdateButtons()
 	{
