@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
+public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 {
 	public float Offset = 32f;
 	public int Limit = 4;
@@ -17,7 +17,7 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	private float _current;
 	private static List<int> _data = Enumerable.Range(111, 100).ToList();
 	private Dictionary<int, Transform> _views = new Dictionary<int, Transform>();
-	protected override void Start()
+	private void Start()
 	{
 		_t = transform;
 		Scrollbar.numberOfSteps = _data.Count;
@@ -28,11 +28,11 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 		gameObject.SortChildren();
 		UpdateButtons();
 	}
-	protected override void OnEnable()
+	private void OnEnable()
 	{
 		Scrollbar.onValueChanged.AddListener(OnScrollChanged);
 	}
-	protected override void OnDisable()
+	private void OnDisable()
 	{
 		Scrollbar.onValueChanged.RemoveListener(OnScrollChanged);
 	}
@@ -57,6 +57,10 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 		Text[] texts = o.GetComponentsInChildren<Text>(true);
 		texts[0].text = text1;
 		texts[1].text = text0;
+	}
+	public void DragToIndex(int index)
+	{
+		DragTo(index * Offset * -1f);
 	}
 	private void DragTo(float delta)
 	{
@@ -95,7 +99,7 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	}
 	private void Snap()
 	{
-		DragTo(GetCurrent() * Offset * -1f);
+		DragToIndex(GetCurrent());
 	}
 	public int GetCurrent()
 	{
@@ -118,7 +122,7 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	public void OnScrollChanged(float scroll)
 	{
 		if (!_ignore)
-			DragTo((int)(scroll * (_data.Count - 1)) * Offset * -1f);
+			DragToIndex((int)(scroll * (_data.Count - 1)));
 	}
 	public void OnDrag(PointerEventData e)
 	{
@@ -130,10 +134,10 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	}
 	public void OnPrev()
 	{
-		DragTo((GetCurrent() - 1) * Offset * -1f);
+		DragToIndex(GetCurrent() - 1);
 	}
 	public void OnNext()
 	{
-		DragTo((GetCurrent() + 1) * Offset * -1f);
+		DragToIndex(GetCurrent() + 1);
 	}
 }

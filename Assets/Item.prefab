@@ -65,6 +65,7 @@ GameObject:
   - 114: {fileID: 11400004}
   - 114: {fileID: 11400014}
   - 114: {fileID: 11400012}
+  - 114: {fileID: 11400016}
   m_Layer: 5
   m_Name: Item
   m_TagString: Untagged
@@ -241,6 +242,17 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_TargetGraphic: {fileID: 11400004}
   m_Interactable: 1
+--- !u!114 &11400016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d17c17a0252d7642a454ae0f45270f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!222 &22200000
 CanvasRenderer:
   m_ObjectHideFlags: 1
