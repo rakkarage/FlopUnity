@@ -15,7 +15,7 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	private Transform _t;
 	private bool _ignore = false;
 	private float _current;
-	private static List<int> _data = Enumerable.Range(111, 5).ToList();
+	private static List<int> _data = Enumerable.Range(111, 100).ToList();
 	private Dictionary<int, Transform> _views = new Dictionary<int, Transform>();
 	protected override void Start()
 	{
@@ -95,14 +95,11 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	}
 	private void Snap()
 	{
-		var i = Mathf.Clamp(GetCurrent() * -1f, -(_data.Count - 1), 0);
-		var delta = i * Offset;
-		DragTo(delta);
-		UpdateButtons();
+		DragTo(GetCurrent() * Offset * -1f);
 	}
 	public int GetCurrent()
 	{
-		return Mathf.Clamp((int)(_current / Offset) * -1, 0, _data.Count - 1);
+		return Mathf.Clamp((int)((_current / Offset) * -1f), 0, _data.Count - 1);
 	}
 	private void UpdateButtons()
 	{
