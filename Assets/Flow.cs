@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 {
 	public float Offset = 32f;
-	public int Limit = 4;
+	public int Limit = 6;
 	public Button PrevButton;
 	public Button NextButton;
 	public Scrollbar Scrollbar;

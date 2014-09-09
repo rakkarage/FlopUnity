@@ -465,7 +465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Offset: 32
-  Limit: 4
+  Limit: 6
   PrevButton: {fileID: 1922463922}
   NextButton: {fileID: 784256721}
   Scrollbar: {fileID: 107210767}
