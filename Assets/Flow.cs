@@ -94,7 +94,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	public int GetCurrent()
 	{
-		return Mathf.Clamp((int)((_current / Offset) * -1f), 0, _data.Count - 1);
+		return Mathf.Clamp(Mathf.RoundToInt((_current / Offset) * -1f), 0, _data.Count - 1);
 	}
 	private void UpdateName(GameObject o, int i)
 	{
@@ -122,7 +122,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	public void OnScrollChanged(float scroll)
 	{
 		if (!_ignore)
-			DragTo((int)(scroll * (_data.Count - 1)));
+			DragTo(Mathf.RoundToInt(scroll * (_data.Count - 1)));
 	}
 	public void OnDrag(PointerEventData e)
 	{
