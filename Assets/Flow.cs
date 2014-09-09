@@ -94,14 +94,14 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	}
 	private void Snap()
 	{
-		var i = Mathf.Clamp(GetCurrent() * -1, -(_data.Count - 1), 0);
+		var i = Mathf.Clamp(GetCurrent() * -1f, -(_data.Count - 1), 0);
 		var delta = i * Offset;
 		DragTo(delta);
 		UpdateButtons();
 	}
 	public int GetCurrent()
 	{
-		return Mathf.Clamp(Mathf.RoundToInt((float)Math.Round(_current / Offset, MidpointRounding.AwayFromZero)) * -1, 0, _data.Count - 1);
+		return Mathf.Clamp((int)(_current / Offset) * -1, 0, _data.Count - 1);
 	}
 	private void UpdateButtons()
 	{
@@ -114,12 +114,11 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 		float current = GetCurrent();
 		float temp = (current / (_data.Count - 1));
 		Scrollbar.value = temp;
-		Text.text = current.ToString();
+		Text.text = (current + 1).ToString();
 	}
 	public void OnScrollChanged(float scroll)
 	{
-		// var temp = (int)(scroll * (_data.Count - 1)) * Offset * -1f;
-		// DragTo(temp);
+		DragTo((int)(scroll * (_data.Count - 1)) * Offset * -1f);
 	}
 	public void OnDrag(PointerEventData e)
 	{
