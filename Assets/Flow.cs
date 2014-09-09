@@ -27,6 +27,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 		}
 		gameObject.SortChildren();
 		UpdateButtons();
+		UpdateScroll();
 	}
 	private void OnEnable()
 	{
@@ -48,15 +49,6 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	{
 		_views.Remove(i);
 		Pool.Instance.Exit(t.gameObject);
-	}
-	private void UpdateName(GameObject o, int i)
-	{
-		var text0 = i.ToString();
-		var text1 = string.Format("{0:X}", _data[i]);
-		o.name = text0;
-		Text[] texts = o.GetComponentsInChildren<Text>(true);
-		texts[0].text = text1;
-		texts[1].text = text0;
 	}
 	public void DragToIndex(int index)
 	{
@@ -97,13 +89,18 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 		UpdateButtons();
 		UpdateScroll();
 	}
-	private void Snap()
-	{
-		DragToIndex(GetCurrent());
-	}
 	public int GetCurrent()
 	{
 		return Mathf.Clamp((int)((_current / Offset) * -1f), 0, _data.Count - 1);
+	}
+	private void UpdateName(GameObject o, int i)
+	{
+		var text0 = i.ToString();
+		var text1 = string.Format("{0:X}", _data[i]);
+		o.name = text0;
+		Text[] texts = o.GetComponentsInChildren<Text>(true);
+		texts[0].text = text1;
+		texts[1].text = text0;
 	}
 	private void UpdateButtons()
 	{
@@ -130,7 +127,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	public void OnEndDrag(PointerEventData e)
 	{
-		Snap();
+		DragToIndex(GetCurrent());
 	}
 	public void OnPrev()
 	{
