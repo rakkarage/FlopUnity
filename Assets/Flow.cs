@@ -49,9 +49,13 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 		_views.Remove(i);
 		Pool.Instance.Exit(t.gameObject);
 	}
-	public void DragToIndex(int index)
+	public void DragTo(Transform t)
 	{
-		DragTo(index * Offset * -1f);
+		DragTo(_views.SingleOrDefault(x => x.Value == t).Key);
+	}
+	private void DragTo(int i)
+	{
+		DragTo(i * Offset * -1f);
 	}
 	private void DragTo(float delta)
 	{
@@ -118,7 +122,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	public void OnScrollChanged(float scroll)
 	{
 		if (!_ignore)
-			DragToIndex((int)(scroll * (_data.Count - 1)));
+			DragTo((int)(scroll * (_data.Count - 1)));
 	}
 	public void OnDrag(PointerEventData e)
 	{
@@ -126,14 +130,14 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	public void OnEndDrag(PointerEventData e)
 	{
-		DragToIndex(GetCurrent());
+		DragTo(GetCurrent());
 	}
 	public void OnPrev()
 	{
-		DragToIndex(GetCurrent() - 1);
+		DragTo(GetCurrent() - 1);
 	}
 	public void OnNext()
 	{
-		DragToIndex(GetCurrent() + 1);
+		DragTo(GetCurrent() + 1);
 	}
 }
