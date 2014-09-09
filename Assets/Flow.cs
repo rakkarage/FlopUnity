@@ -12,7 +12,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	public Scrollbar Scrollbar;
 	public Text Text;
 	private Transform _t;
-	private bool _ignore = false;
+	private bool _ignore;
 	private float _current;
 	private static List<int> _data = Enumerable.Range(111, 100).ToList();
 	private Dictionary<int, Transform> _views = new Dictionary<int, Transform>();
