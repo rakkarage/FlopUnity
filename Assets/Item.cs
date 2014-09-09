@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-public class Select : MonoBehaviour, IPointerClickHandler
+public class Item : MonoBehaviour, IPointerClickHandler
 {
 	private Transform _t;
 	private void Start()
