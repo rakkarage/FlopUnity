@@ -13,6 +13,7 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	public Scrollbar Scrollbar;
 	public Text Text;
 	private Transform _t;
+	private bool _ignore = false;
 	private float _current;
 	private static List<int> _data = Enumerable.Range(111, 5).ToList();
 	private Dictionary<int, Transform> _views = new Dictionary<int, Transform>();
@@ -111,14 +112,16 @@ public class Flow : UIBehaviour, IEndDragHandler, IDragHandler
 	}
 	private void UpdateScroll()
 	{
+		_ignore = true;
 		float current = GetCurrent();
-		float temp = (current / (_data.Count - 1));
-		Scrollbar.value = temp;
+		Scrollbar.value = (current / (_data.Count - 1));
 		Text.text = (current + 1).ToString();
+		_ignore = false;
 	}
 	public void OnScrollChanged(float scroll)
 	{
-		DragTo((int)(scroll * (_data.Count - 1)) * Offset * -1f);
+		if (!_ignore)
+			DragTo((int)(scroll * (_data.Count - 1)) * Offset * -1f);
 	}
 	public void OnDrag(PointerEventData e)
 	{
