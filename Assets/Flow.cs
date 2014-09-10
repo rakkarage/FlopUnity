@@ -55,8 +55,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	private void TweenTo(int to)
 	{
-		var current = GetCurrent();
-		Tween(current, to);
+		Tween(GetCurrent(), to);
 	}
 	private void TweenBy(int by)
 	{
@@ -65,8 +64,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	private void Tween(int from, int to)
 	{
-		var offset = Offset * -1f;
-		StartCoroutine(TweenCoroutine(from * offset, to * offset));
+		StartCoroutine(TweenCoroutine(from * -Offset, to * -Offset));
 	}
 	private IEnumerator TweenCoroutine(float from, float to)
 	{
@@ -80,7 +78,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	private void DragTo(int i)
 	{
-		DragTo(i * Offset * -1f);
+		DragTo(i * -Offset);
 	}
 	private void DragTo(float delta)
 	{
@@ -116,7 +114,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	public int GetCurrent()
 	{
-		return Mathf.Clamp(Mathf.RoundToInt((_current / Offset) * -1f), 0, _data.Count - 1);
+		return Mathf.Clamp(Mathf.RoundToInt(-(_current / Offset)), 0, _data.Count - 1);
 	}
 	private void UpdateName(GameObject o, int i)
 	{
