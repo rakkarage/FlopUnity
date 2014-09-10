@@ -7,18 +7,17 @@ TextureImporter:
     21300000: PanelPaper
     21300002: PanelStone
     21300004: Panel
-    21300006: Button2
-    21300008: Circle
-    21300010: Button0
+    21300006: Button1
+    21300008: Button0
+    21300010: Button2
     21300012: Tooltip
-    21300014: Interface_7
-    21300016: No
-    21300018: Yes
-    21300020: ArrowWest
-    21300022: ArrowEast
-    21300024: ArrowSouth
-    21300026: ArrowNorth
-    21300028: Button1
+    21300014: Circle
+    21300016: IconNo
+    21300018: IconYes
+    21300020: IconArrowWest
+    21300022: IconArrowEast
+    21300024: IconArrowSouth
+    21300026: IconArrowNorth
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -110,7 +109,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Button0
+    - name: Button1
       rect:
         serializedVersion: 2
         x: 37
@@ -130,7 +129,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 16, y: 16, z: 16, w: 16}
-    - name: No
+    - name: IconNo
       rect:
         serializedVersion: 2
         x: 1
@@ -140,7 +139,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Yes
+    - name: IconYes
       rect:
         serializedVersion: 2
         x: 23
@@ -150,7 +149,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ArrowWest
+    - name: IconArrowWest
       rect:
         serializedVersion: 2
         x: 46
@@ -160,7 +159,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ArrowEast
+    - name: IconArrowEast
       rect:
         serializedVersion: 2
         x: 65
@@ -170,7 +169,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ArrowSouth
+    - name: IconArrowSouth
       rect:
         serializedVersion: 2
         x: 84
@@ -180,7 +179,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ArrowNorth
+    - name: IconArrowNorth
       rect:
         serializedVersion: 2
         x: 101
@@ -190,7 +189,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Button1
+    - name: Button0
       rect:
         serializedVersion: 2
         x: 136
