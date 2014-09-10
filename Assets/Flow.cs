@@ -156,7 +156,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	public void OnEndDrag(PointerEventData e)
 	{
-		DragTo(GetCurrent());
+		TweenTo(GetCurrent());
 	}
 	public void OnPrev()
 	{
