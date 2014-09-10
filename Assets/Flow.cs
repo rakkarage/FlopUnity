@@ -15,7 +15,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	private float _time = .333f;
 	private bool _ignore;
 	private float _current;
-	private static List<int> _data = Enumerable.Range(111, 777).ToList();
+	private static List<int> _data = Enumerable.Range(32, 95).ToList();
 	private Dictionary<int, Transform> _views = new Dictionary<int, Transform>();
 	private void Start()
 	{
@@ -102,12 +102,12 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	private void UpdateName(GameObject o, int i)
 	{
-		var text0 = i.ToString();
-		var text1 = string.Format("{0:X}", _data[i]);
-		o.name = text0;
+		o.name = i.ToString();
 		Text[] texts = o.GetComponentsInChildren<Text>(true);
+		var text1 = string.Format("{0}", (char)_data[i]);
 		texts[0].text = text1;
-		texts[1].text = text0;
+		texts[1].text = text1;
+		texts[2].text = text1;
 	}
 	private void UpdateAll()
 	{
