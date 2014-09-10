@@ -4,20 +4,20 @@ labels:
 - Sprite
 TextureImporter:
   fileIDToRecycleName:
-    21300000: PanelPaper
-    21300002: PanelStone
-    21300004: Panel
-    21300006: Button1
+    21300000: ArrowEast
+    21300002: ArrowNorth
+    21300004: ArrowSouth
+    21300006: ArrowWest
     21300008: Button0
-    21300010: Button2
-    21300012: Tooltip
+    21300010: Button1
+    21300012: Button2
     21300014: Circle
     21300016: IconNo
     21300018: IconYes
-    21300020: IconArrowWest
-    21300022: IconArrowEast
-    21300024: IconArrowSouth
-    21300026: IconArrowNorth
+    21300020: Panel
+    21300022: PanelPaper
+    21300024: PanelStone
+    21300026: Tooltip
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -59,31 +59,61 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: PanelPaper
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 64
-        width: 64
-        height: 64
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 32, y: 32, z: 32, w: 32}
-    - name: PanelStone
+    - name: ArrowEast
       rect:
         serializedVersion: 2
         x: 65
-        y: 64
-        width: 64
-        height: 64
+        y: 14
+        width: 17
+        height: 16
       alignment: 0
       pivot: {x: .5, y: .5}
-      border: {x: 32, y: 32, z: 32, w: 32}
-    - name: Panel
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ArrowNorth
       rect:
         serializedVersion: 2
-        x: 130
-        y: 96
+        x: 101
+        y: 12
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ArrowSouth
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 12
+        width: 16
+        height: 18
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: ArrowWest
+      rect:
+        serializedVersion: 2
+        x: 46
+        y: 14
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Button0
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 63
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 16, y: 16, z: 16, w: 16}
+    - name: Button1
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 31
         width: 32
         height: 32
       alignment: 0
@@ -109,26 +139,6 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Button1
-      rect:
-        serializedVersion: 2
-        x: 37
-        y: 31
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 16, y: 16, z: 16, w: 16}
-    - name: Tooltip
-      rect:
-        serializedVersion: 2
-        x: 70
-        y: 31
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 16, y: 16, z: 16, w: 16}
     - name: IconNo
       rect:
         serializedVersion: 2
@@ -149,55 +159,45 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: IconArrowWest
+    - name: Panel
       rect:
         serializedVersion: 2
-        x: 46
-        y: 14
-        width: 17
-        height: 16
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: IconArrowEast
-      rect:
-        serializedVersion: 2
-        x: 65
-        y: 14
-        width: 17
-        height: 16
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: IconArrowSouth
-      rect:
-        serializedVersion: 2
-        x: 84
-        y: 12
-        width: 16
-        height: 18
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: IconArrowNorth
-      rect:
-        serializedVersion: 2
-        x: 101
-        y: 12
-        width: 16
-        height: 18
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Button0
-      rect:
-        serializedVersion: 2
-        x: 136
-        y: 63
+        x: 130
+        y: 96
         width: 32
         height: 32
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 16, y: 16, z: 16, w: 16}
-  spritePackingTag: 
-  userData: 
+    - name: PanelPaper
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 32, y: 32, z: 32, w: 32}
+    - name: PanelStone
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 32, y: 32, z: 32, w: 32}
+    - name: Tooltip
+      rect:
+        serializedVersion: 2
+        x: 70
+        y: 31
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 16, y: 16, z: 16, w: 16}
+  spritePackingTag:
+  userData:
