@@ -51,16 +51,16 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	public void TweenTo(Transform t)
 	{
-		TweenTo(_views.SingleOrDefault(x => x.Value == t).Key);
-	}
-	private void TweenTo(int to)
-	{
-		Tween(GetCurrent(), to);
+		Tween(_views.SingleOrDefault(x => x.Value == t).Key);
 	}
 	private void TweenBy(int by)
 	{
 		var current = GetCurrent();
 		Tween(current, current + by);
+	}
+	private void Tween(int to)
+	{
+		StartCoroutine(TweenCoroutine(_current, to * -Offset));
 	}
 	private void Tween(int from, int to)
 	{
@@ -156,7 +156,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	public void OnEndDrag(PointerEventData e)
 	{
-		TweenTo(GetCurrent());
+		Tween(GetCurrent());
 	}
 	public void OnPrev()
 	{
