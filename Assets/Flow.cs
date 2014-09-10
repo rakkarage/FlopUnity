@@ -72,7 +72,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	private void Drag(float delta)
 	{
 		Transform t;
-		var max = (Offset * (Limit - 1.5f));
+		var max = (Offset * (Limit - 2f));
 		var min = -((_data.Count - 1) * Offset + max);
 		_current = Mathf.Clamp(_current + delta, min, max);
 		for (int i = 0; i < _data.Count; i++)
