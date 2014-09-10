@@ -55,16 +55,11 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	private void TweenBy(int by)
 	{
-		var current = GetCurrent();
-		Tween(current, current + by);
+		Tween(GetCurrent() + by);
 	}
 	private void Tween(int to)
 	{
 		StartCoroutine(TweenCoroutine(_current, to * -Offset));
-	}
-	private void Tween(int from, int to)
-	{
-		StartCoroutine(TweenCoroutine(from * -Offset, to * -Offset));
 	}
 	private IEnumerator TweenCoroutine(float from, float to)
 	{
