@@ -1,4 +1,3 @@
-﻿using System.Collections;
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -16,7 +15,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	private float _time = .333f;
 	private bool _ignore;
 	private float _current;
-	private static List<int> _data = Enumerable.Range(111, 100).ToList();
+	private static List<int> _data = Enumerable.Range(111, 777).ToList();
 	private Dictionary<int, Transform> _views = new Dictionary<int, Transform>();
 	private void Start()
 	{
@@ -59,17 +58,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	private void Tween(int to)
 	{
-		StartCoroutine(TweenCoroutine(_current, to * -Offset));
-	}
-	private IEnumerator TweenCoroutine(float start, float end)
-	{
-		var i = 0f;
-		while (i <= 1f)
-		{
-			i += Time.deltaTime / _time;
-			DragTo(Easing.Spring(start, end, i));
-			yield return null;
-		}
+		Ease.Go(GetComponent<Flow>(), _current, to * -Offset, _time, DragTo);
 	}
 	private void DragTo(int i)
 	{
