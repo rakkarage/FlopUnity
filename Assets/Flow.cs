@@ -22,9 +22,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 		_t = transform;
 		Scrollbar.numberOfSteps = _data.Count;
 		for (int i = 0; (i < _data.Count) && (i < Limit); i++)
-		{
 			Add(i);
-		}
 		UpdateAll();
 	}
 	private void OnEnable()
@@ -141,9 +139,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	public void OnEndDrag(PointerEventData e)
 	{
 		if (!e.used)
-		{
 			Tween(GetCurrent());
-		}
 	}
 	public void OnPrev()
 	{

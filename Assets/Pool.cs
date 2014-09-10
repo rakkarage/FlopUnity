@@ -10,9 +10,7 @@ public class Pool : Singleton<Pool>
 	{
 		_pool = new List<GameObject>(Count);
 		for (int i = 0; i < Count; i++)
-		{
 			_pool.Add(New());
-		}
 	}
 	private GameObject New()
 	{
@@ -29,9 +27,7 @@ public class Pool : Singleton<Pool>
 		for (int i = 0; (i < _pool.Count) && (o == null); i++)
 		{
 			if (!_pool[i].activeInHierarchy)
-			{
 				o = _pool[i];
-			}
 		}
 		if (o == null)
 		{

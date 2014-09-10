@@ -12,8 +12,6 @@ public static class GameObjectExtensions
 					 where child != gameObject.transform
 					 select child;
 		for (int i = 0; i < sorted.Count(); i++)
-		{
 			sorted.ElementAt(i).SetSiblingIndex(i);
-		}
 	}
 }
