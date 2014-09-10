@@ -10,6 +10,7 @@ public class Item : MonoBehaviour, IPointerClickHandler
 	}
 	public void OnPointerClick(PointerEventData e)
 	{
+		e.Use();
 		Flow.Instance.TweenTo(_t);
 	}
 }

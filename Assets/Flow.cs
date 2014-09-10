@@ -61,13 +61,13 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	{
 		StartCoroutine(TweenCoroutine(_current, to * -Offset));
 	}
-	private IEnumerator TweenCoroutine(float from, float to)
+	private IEnumerator TweenCoroutine(float start, float end)
 	{
 		var i = 0f;
 		while (i <= 1f)
 		{
 			i += Time.deltaTime / _time;
-			DragTo(Easing.Spring(from, to, i));
+			DragTo(Easing.Spring(start, end, i));
 			yield return null;
 		}
 	}
@@ -151,11 +151,14 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	public void OnEndDrag(PointerEventData e)
 	{
-		Tween(GetCurrent());
+		if (!e.used)
+		{
+			Tween(GetCurrent());
+		}
 	}
 	public void OnPrev()
 	{
-        TweenBy(-1);
+		TweenBy(-1);
 	}
 	public void OnNext()
 	{
