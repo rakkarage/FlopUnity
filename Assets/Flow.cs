@@ -1,3 +1,4 @@
+﻿using System.Collections;
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	public Scrollbar Scrollbar;
 	public Text Text;
 	private Transform _t;
+	private float _time = .333f;
 	private bool _ignore;
 	private float _current;
 	private static List<int> _data = Enumerable.Range(111, 100).ToList();
@@ -47,9 +49,34 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 		_views.Remove(i);
 		Pool.Instance.Exit(t.gameObject);
 	}
-	public void DragTo(Transform t)
+	public void TweenTo(Transform t)
 	{
-		DragTo(_views.SingleOrDefault(x => x.Value == t).Key);
+		TweenTo(_views.SingleOrDefault(x => x.Value == t).Key);
+	}
+	private void TweenTo(int to)
+	{
+		var current = GetCurrent();
+		Tween(current, to);
+	}
+	private void TweenBy(int by)
+	{
+		var current = GetCurrent();
+		Tween(current, current + by);
+	}
+	private void Tween(int from, int to)
+	{
+		var offset = Offset * -1f;
+		StartCoroutine(TweenCoroutine(from * offset, to * offset));
+	}
+	private IEnumerator TweenCoroutine(float from, float to)
+	{
+		var i = 0f;
+		while (i <= 1f)
+		{
+			i += Time.deltaTime / _time;
+			DragTo(Easing.Spring(from, to, i));
+			yield return null;
+		}
 	}
 	private void DragTo(int i)
 	{
@@ -70,7 +97,6 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 		{
 			var x = _current + (i * Offset);
 			var visible = Mathf.Abs(x) < (Limit * Offset);
-			var negative = x < transform.localPosition.x;
 			_views.TryGetValue(i, out t);
 			if (t == null)
 			{
@@ -84,7 +110,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 			}
 			_views.TryGetValue(i, out t);
 			if (t != null)
-				t.localPosition = new Vector3(x, transform.localPosition.y, negative ? -x : x);
+				t.localPosition = new Vector3(x, transform.localPosition.y, Mathf.Abs(x));
 		}
 		UpdateAll();
 	}
@@ -136,10 +162,10 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	public void OnPrev()
 	{
-		DragTo(GetCurrent() - 1);
+        TweenBy(-1);
 	}
 	public void OnNext()
 	{
-		DragTo(GetCurrent() + 1);
+		TweenBy(1);
 	}
 }

@@ -8,7 +8,7 @@ public class LookAt : MonoBehaviour
 	{
 		_t = transform;
 	}
-	protected void LateUpdate()
+	private void LateUpdate()
 	{
 		var r = Quaternion.LookRotation(_t.position - Target.position);
 		_t.localRotation = Quaternion.Slerp(_t.localRotation, r, Time.deltaTime * Damping);
