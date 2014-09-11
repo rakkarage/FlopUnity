@@ -1,17 +1,19 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 {
-	public float Offset = 32f;
+	public Vector3 Offset = new Vector3(32f, -3f, 16f);
 	public int Limit = 6;
 	public Button PrevButton;
 	public Button NextButton;
 	public Scrollbar Scrollbar;
 	public Text Text;
 	private Transform _t;
+	private float _max;
+	private float _min;
 	private float _time = .333f;
 	private bool _ignore;
 	private float _current;
@@ -20,6 +22,8 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	private void Start()
 	{
 		_t = transform;
+		_max = (Offset.x * (Limit - 2f));
+		_min = -((_data.Count - 1) * Offset.x + _max);
 		Scrollbar.numberOfSteps = _data.Count;
 		for (int i = 0; (i < _data.Count) && (i < Limit); i++)
 			Add(i);
@@ -36,9 +40,16 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	private void Add(int i)
 	{
 		GameObject o = Pool.Instance.Enter();
-		var offset = i * Offset;
+		// var x = i * Offset.x;
+		// var ax = Mathf.Abs(x);
+		// var axn = Mathf.Lerp(1f, 0f, ax / (Limit * Offset.x));
+		// o.transform.localPosition = new Vector3(x, (1 - axn) * (Limit * Offset.y), i * Offset.z);
+		// o.GetComponent<CanvasGroup>().alpha = axn;
+
+		var offset = i * Offset.x;
 		o.transform.localPosition = new Vector3(offset, _t.localPosition.y, offset);
-		o.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(1f, 0f, offset / (Limit * Offset));
+		o.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(1f, 0f, offset / (Limit * Offset.x));
+
 		UpdateName(o, i);
 		_views.Add(i, o.transform);
 	}
@@ -57,11 +68,11 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	private void Tween(int to)
 	{
-		Ease.Go(GetComponent<Flow>(), _current, to * -Offset, _time, DragTo);
+		Ease.Go(GetComponent<Flow>(), _current, to * -Offset.x, _time, DragTo);
 	}
 	private void DragTo(int i)
 	{
-		DragTo(i * -Offset);
+		DragTo(i * -Offset.x);
 	}
 	private void DragTo(float delta)
 	{
@@ -71,14 +82,13 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	private void Drag(float delta)
 	{
 		Transform t;
-		var max = (Offset * (Limit - 2f));
-		var min = -((_data.Count - 1) * Offset + max);
-		_current = Mathf.Clamp(_current + delta, min, max);
+		_current = Mathf.Clamp(_current + delta, _min, _max);
 		for (int i = 0; i < _data.Count; i++)
 		{
-			var x = _current + (i * Offset);
+			var x = _current + (i * Offset.x);
 			var ax = Mathf.Abs(x);
-			var visible = ax < (Limit * Offset);
+			var lx = Limit * Offset.x;
+			var visible = ax < lx;
 			_views.TryGetValue(i, out t);
 			if (t == null)
 			{
@@ -93,15 +103,16 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 			_views.TryGetValue(i, out t);
 			if (t != null)
 			{
-				t.localPosition = new Vector3(x, t.localPosition.y, ax);
-				t.gameObject.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(1f, 0f, ax / (Limit * Offset));
+				var axn = Mathf.Lerp(1f, 0f, ax / lx);
+				t.localPosition = new Vector3(x, (1 - axn) * (Limit * Offset.y), (.5f - axn) * (Limit * Offset.z));
+				t.gameObject.GetComponent<CanvasGroup>().alpha = axn;
 			}
 		}
 		UpdateAll();
 	}
 	public int GetCurrent()
 	{
-		return Mathf.Clamp(Mathf.RoundToInt(-(_current / Offset)), 0, _data.Count - 1);
+		return Mathf.Clamp(Mathf.RoundToInt(-(_current / Offset.x)), 0, _data.Count - 1);
 	}
 	private void UpdateName(GameObject o, int i)
 	{
