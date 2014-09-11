@@ -5,6 +5,7 @@ public static class Ease
 {
 	public static void Go(MonoBehaviour o, float start, float end, float time, UnityAction<float> callback)
 	{
+		o.StopAllCoroutines();
 		o.StartCoroutine(GoCoroutine(o, start, end, time, callback));
 	}
 	public static IEnumerator GoCoroutine(MonoBehaviour o, float start, float end, float time, UnityAction<float> callback)
