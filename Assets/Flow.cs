@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 {
+	public bool AbsoluteY = true;
 	public Vector3 Offset = new Vector3(32f, -3f, 16f);
 	public int Limit = 6;
 	public Button PrevButton;
@@ -106,7 +107,8 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	private void UpdateItem(GameObject o, float x)
 	{
 		var axn =  Mathf.Abs(x) / (Limit * Offset.x);
-		o.transform.localPosition = new Vector3(x, axn * (Limit * Offset.y), (axn - .5f) * (Limit * Offset.z));
+		var xn =  x / (Limit * Offset.x);
+		o.transform.localPosition = new Vector3(x, (AbsoluteY ? axn : xn) * (Limit * Offset.y), (axn - .5f) * (Limit * Offset.z));
 		o.GetComponent<CanvasGroup>().alpha = 1 - axn;
 	}
 	private void UpdateName(GameObject o, int i)
