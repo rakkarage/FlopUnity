@@ -101,11 +101,9 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	private void UpdateName(GameObject o, int i)
 	{
 		o.name = i.ToString();
-		Text[] texts = o.GetComponentsInChildren<Text>(true);
-		var text1 = string.Format("{0}", (char)_data[i]);
-		texts[0].text = text1;
-		texts[1].text = text1;
-		texts[2].text = text1;
+		var data = string.Format("{0}", (char)_data[i]);
+		foreach (var text in o.GetComponentsInChildren<Text>(true))
+			text.text = data;
 	}
 	private void UpdateAll()
 	{
