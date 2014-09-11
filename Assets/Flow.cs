@@ -18,7 +18,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	private bool _ignore;
 	private float _current;
 	private int _dataMax;
-	private static List<int> _data = Enumerable.Range(32, 95).ToList();
+	private List<int> _data = Enumerable.Range(32, 95).ToList();
 	private Dictionary<int, Transform> _views = new Dictionary<int, Transform>();
 	private void Start()
 	{
@@ -106,8 +106,9 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	private void UpdateItem(GameObject o, float x)
 	{
-		var axn =  Mathf.Abs(x) / (Limit * Offset.x);
-		var xn =  x / (Limit * Offset.x);
+		var xl = Limit * Offset.x;
+		var xn =  x / xl;
+		var axn =  Mathf.Abs(x) / xl;
 		o.transform.localPosition = new Vector3(x, (AbsoluteY ? axn : xn) * (Limit * Offset.y), (axn - .5f) * (Limit * Offset.z));
 		o.GetComponent<CanvasGroup>().alpha = 1 - axn;
 	}
