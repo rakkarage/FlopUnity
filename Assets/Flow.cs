@@ -11,19 +11,19 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	public Button NextButton;
 	public Scrollbar Scrollbar;
 	public Text Text;
-	private Transform _t;
 	private float _max;
 	private float _min;
 	private float _time = .333f;
 	private bool _ignore;
 	private float _current;
+	private int _dataMax;
 	private static List<int> _data = Enumerable.Range(32, 95).ToList();
 	private Dictionary<int, Transform> _views = new Dictionary<int, Transform>();
 	private void Start()
 	{
-		_t = transform;
+		_dataMax = _data.Count - 1;
 		_max = (Offset.x * (Limit - 2f));
-		_min = -((_data.Count - 1) * Offset.x + _max);
+		_min = -(_dataMax * Offset.x + _max);
 		Scrollbar.numberOfSteps = _data.Count;
 		for (int i = 0; (i < _data.Count) && (i < Limit); i++)
 			Add(i);
@@ -40,16 +40,10 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	private void Add(int i)
 	{
 		GameObject o = Pool.Instance.Enter();
-		// var x = i * Offset.x;
-		// var ax = Mathf.Abs(x);
-		// var axn = Mathf.Lerp(1f, 0f, ax / (Limit * Offset.x));
-		// o.transform.localPosition = new Vector3(x, (1 - axn) * (Limit * Offset.y), i * Offset.z);
-		// o.GetComponent<CanvasGroup>().alpha = axn;
-
-		var offset = i * Offset.x;
-		o.transform.localPosition = new Vector3(offset, _t.localPosition.y, offset);
-		o.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(1f, 0f, offset / (Limit * Offset.x));
-
+		var x = i * Offset.x;
+		var axn = Mathf.Lerp(1f, 0f, Mathf.Abs(x) / (Limit * Offset.x));
+		o.transform.localPosition = new Vector3(x, (1 - axn) * (Limit * Offset.y), (.5f - axn) * (Limit * Offset.z));
+		o.GetComponent<CanvasGroup>().alpha = axn;
 		UpdateName(o, i);
 		_views.Add(i, o.transform);
 	}
@@ -112,7 +106,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	public int GetCurrent()
 	{
-		return Mathf.Clamp(Mathf.RoundToInt(-(_current / Offset.x)), 0, _data.Count - 1);
+		return Mathf.Clamp(Mathf.RoundToInt(-(_current / Offset.x)), 0, _dataMax);
 	}
 	private void UpdateName(GameObject o, int i)
 	{
@@ -131,20 +125,20 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	{
 		var current = GetCurrent();
 		PrevButton.interactable = (current > 0);
-		NextButton.interactable = (current < _data.Count - 1);
+		NextButton.interactable = (current < _dataMax);
 	}
 	private void UpdateScroll()
 	{
 		_ignore = true;
 		float current = GetCurrent();
-		Scrollbar.value = (current / (_data.Count - 1));
+		Scrollbar.value = current / _dataMax;
 		Text.text = (current + 1).ToString();
 		_ignore = false;
 	}
 	public void OnScrollChanged(float scroll)
 	{
 		if (!_ignore)
-			DragTo(Mathf.RoundToInt(scroll * (_data.Count - 1)));
+			DragTo(Mathf.RoundToInt(scroll * _dataMax));
 	}
 	public void OnDrag(PointerEventData e)
 	{
