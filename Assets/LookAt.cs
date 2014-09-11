@@ -8,6 +8,11 @@ public class LookAt : MonoBehaviour
 	{
 		_t = transform;
 	}
+	private void OnEnable()
+	{
+        if (_t != null && Target != null)
+            _t.localRotation = Quaternion.LookRotation(_t.position - Target.position);
+	}
 	private void LateUpdate()
 	{
 		var r = Quaternion.LookRotation(_t.position - Target.position);

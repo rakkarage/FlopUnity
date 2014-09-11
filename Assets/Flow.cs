@@ -38,6 +38,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 		GameObject o = Pool.Instance.Enter();
 		var offset = i * Offset;
 		o.transform.localPosition = new Vector3(offset, _t.localPosition.y, offset);
+    	o.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(1f, 0f, offset / (Limit * Offset));
 		UpdateName(o, i);
 		_views.Add(i, o.transform);
 	}
@@ -76,7 +77,8 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 		for (int i = 0; i < _data.Count; i++)
 		{
 			var x = _current + (i * Offset);
-			var visible = Mathf.Abs(x) < (Limit * Offset);
+            var ax = Mathf.Abs(x);
+			var visible = ax < (Limit * Offset);
 			_views.TryGetValue(i, out t);
 			if (t == null)
 			{
@@ -90,7 +92,10 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 			}
 			_views.TryGetValue(i, out t);
 			if (t != null)
-				t.localPosition = new Vector3(x, transform.localPosition.y, Mathf.Abs(x));
+			{
+                t.localPosition = new Vector3(x, t.localPosition.y, ax);
+                t.gameObject.GetComponent<CanvasGroup>().alpha = Mathf.Lerp(1f, 0f, ax / (Limit * Offset));
+			}
 		}
 		UpdateAll();
 	}
