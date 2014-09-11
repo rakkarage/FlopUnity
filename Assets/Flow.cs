@@ -105,9 +105,9 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	private void UpdateItem(GameObject o, float x)
 	{
-		var axn = Mathf.Lerp(1f, 0f, Mathf.Abs(x) / (Limit * Offset.x));
-		o.transform.localPosition = new Vector3(x, (1 - axn) * (Limit * Offset.y), (.5f - axn) * (Limit * Offset.z));
-		o.GetComponent<CanvasGroup>().alpha = axn;
+		var axn =  Mathf.Abs(x) / (Limit * Offset.x);
+		o.transform.localPosition = new Vector3(x, axn * (Limit * Offset.y), (axn - .5f) * (Limit * Offset.z));
+		o.GetComponent<CanvasGroup>().alpha = 1 - axn;
 	}
 	private void UpdateName(GameObject o, int i)
 	{
