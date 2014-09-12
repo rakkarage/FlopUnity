@@ -7,12 +7,13 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 {
 	public bool AbsoluteY = true;
 	public Vector3 Offset = new Vector3(32f, -3f, 16f);
+	public float Inset = .333f;
 	public int Limit = 6;
 	public Button PrevButton;
 	public Button NextButton;
 	public Scrollbar Scrollbar;
 	public Text Text;
-    private MonoBehaviour _m;
+	private MonoBehaviour _m;
 	private float _max;
 	private float _min;
 	private float _time = .333f;
@@ -23,7 +24,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	private Dictionary<int, Transform> _views = new Dictionary<int, Transform>();
 	private void Start()
 	{
-        _m = GetComponent<Flow>();
+		_m = GetComponent<Flow>();
 		_dataMax = _data.Count - 1;
 		_max = (Offset.x * (Limit - 2f));
 		_min = -(_dataMax * Offset.x + _max);
@@ -111,7 +112,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 		var xl = Limit * Offset.x;
 		var xn =  x / xl;
 		var axn =  Mathf.Abs(x) / xl;
-		o.transform.localPosition = new Vector3(x, (AbsoluteY ? axn : xn) * (Limit * Offset.y), (axn - .5f) * (Limit * Offset.z));
+		o.transform.localPosition = new Vector3(x, (AbsoluteY ? axn : xn) * (Limit * Offset.y), (axn - Inset) * (Limit * Offset.z));
 		o.GetComponent<CanvasGroup>().alpha = 1 - axn;
 	}
 	private void UpdateName(GameObject o, int i)
