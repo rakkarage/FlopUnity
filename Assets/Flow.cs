@@ -112,7 +112,9 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 		var xl = Limit * Offset.x;
 		var xn =  x / xl;
 		var axn =  Mathf.Abs(x) / xl;
-		o.transform.localPosition = new Vector3(x, (AbsoluteY ? axn : xn) * (Limit * Offset.y), (axn - Inset) * (Limit * Offset.z));
+		var y = (AbsoluteY ? axn : xn) * (Limit * Offset.y);
+		var z = (axn - Inset) * (Limit * Offset.z);
+		o.transform.localPosition = new Vector3(x, y, z);
 		o.GetComponent<CanvasGroup>().alpha = 1 - axn;
 	}
 	private void UpdateName(GameObject o, int i)
