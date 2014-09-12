@@ -10,6 +10,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	public int Limit = 6;
 	public float Inset = .5f;
 	public float Time = .333f;
+	public float Reference = 256f;
 	public Button PrevButton;
 	public Button NextButton;
 	public Scrollbar Scrollbar;
@@ -154,7 +155,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	public void OnDrag(PointerEventData e)
 	{
 		var temp = _current;
-		Drag(e.delta.x);
+		Drag(e.delta.x * Reference / Screen.width);
 		_velocity = temp - _current;
 	}
 	public void OnEndDrag(PointerEventData e)
@@ -170,6 +171,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
     }
     private void Snap()
     {
+		_velocity = 0f;
         Tween(GetCurrent());
     }
     public void OnPrev()
