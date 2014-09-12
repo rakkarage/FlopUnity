@@ -11,11 +11,11 @@ public class LookAt : MonoBehaviour
 	private void OnEnable()
 	{
         if (_t != null && Target != null)
-            _t.localRotation = Quaternion.LookRotation(_t.position - Target.position);
+            _t.localRotation = Quaternion.LookRotation(_t.localPosition - Target.localPosition);
 	}
 	private void LateUpdate()
 	{
-		var r = Quaternion.LookRotation(_t.position - Target.position);
+		var r = Quaternion.LookRotation(_t.localPosition - Target.localPosition);
 		_t.localRotation = Quaternion.Slerp(_t.localRotation, r, Time.deltaTime * Damping);
 	}
 }
