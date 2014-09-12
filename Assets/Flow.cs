@@ -99,9 +99,7 @@ public class Flow : Singleton<Flow>, IBeginDragHandler, IEndDragHandler, IDragHa
 			}
 			_views.TryGetValue(i, out t);
 			if (t != null)
-			{
 				UpdateItem(t.gameObject, x);
-			}
 		}
 		UpdateAll();
 	}
@@ -112,8 +110,8 @@ public class Flow : Singleton<Flow>, IBeginDragHandler, IEndDragHandler, IDragHa
 	private void UpdateItem(GameObject o, float x)
 	{
 		var xl = Limit * Offset.x;
-		var xn =  x / xl;
-		var axn =  Mathf.Abs(x) / xl;
+		var xn = x / xl;
+		var axn = Mathf.Abs(x) / xl;
 		var y = (AbsoluteY ? axn : xn) * (Limit * Offset.y);
 		var z = (axn - Inset) * (Limit * Offset.z);
 		o.transform.localPosition = new Vector3(x, y, z);
@@ -166,19 +164,17 @@ public class Flow : Singleton<Flow>, IBeginDragHandler, IEndDragHandler, IDragHa
 		if (!e.used)
 		{
 			if (!Mathf.Approximately(_velocity, 0f))
-			{
-	            Ease.Go(_m, -_velocity, 0f, Mathf.Abs(_velocity * .1f), Drag, Snap, Ease.Type.Linear);
-			}
-	        else
-	            Snap();
+				Ease.Go(_m, -_velocity, 0f, Mathf.Abs(_velocity * .1f), Drag, Snap, Ease.Type.Linear);
+			else
+				Snap();
 		}
 	}
-    private void Snap()
-    {
+	private void Snap()
+	{
 		_velocity = 0f;
-        Tween(GetCurrent());
-    }
-    public void OnPrev()
+		Tween(GetCurrent());
+	}
+	public void OnPrev()
 	{
 		TweenBy(-1);
 	}
