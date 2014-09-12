@@ -160,10 +160,13 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	public void OnEndDrag(PointerEventData e)
 	{
-		if (!Mathf.Approximately(_velocity, 0f))
-            Ease.Go(_m, _velocity, 0f, InertiaTime, HandleInertia, Snap, Ease.Type.Linear);
-        else
-            Snap();
+		if (!e.used)
+		{
+			if (!Mathf.Approximately(_velocity, 0f))
+	            Ease.Go(_m, _velocity, 0f, InertiaTime, HandleInertia, Snap, Ease.Type.Linear);
+	        else
+	            Snap();
+		}
 	}
     private void HandleInertia(float value)
     {
