@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .250980407}
+  m_Color: {r: 1, g: 1, b: 1, a: .498039216}
   m_Sprite: {fileID: 21300020, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .250980407}
+  m_Color: {r: 1, g: 1, b: 1, a: .498039216}
   m_Sprite: {fileID: 21300020, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -362,7 +362,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Sprite: {fileID: 21300006, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -496,6 +496,7 @@ GameObject:
   - 114: {fileID: 784256722}
   - 114: {fileID: 784256721}
   - 95: {fileID: 784256724}
+  - 225: {fileID: 784256725}
   m_Layer: 5
   m_Name: Next
   m_TagString: Untagged
@@ -617,6 +618,15 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!225 &784256725
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 784256719}
+  m_Alpha: .75
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
 --- !u!1 &962573956
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,7 +673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Sprite: {fileID: 21300000, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
@@ -771,7 +781,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: e131702a587108f47b70f13e5baf7f09, type: 2}
-  m_Color: {r: .623529434, g: .690196097, b: 1, a: .498039216}
+  m_Color: {r: .623529434, g: .690196097, b: 1, a: .125490203}
   m_FontData:
     m_Font: {fileID: 12800000, guid: e131702a587108f47b70f13e5baf7f09, type: 2}
     m_FontSize: 0
@@ -961,7 +971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 2468dda36ecb02d42b61ff58e1e4247f, type: 2}
-  m_Color: {r: .1953125, g: .1953125, b: .1953125, a: .250980407}
+  m_Color: {r: 1, g: 1, b: 1, a: .250980407}
   m_FontData:
     m_Font: {fileID: 12800000, guid: 2468dda36ecb02d42b61ff58e1e4247f, type: 2}
     m_FontSize: 0
@@ -1178,6 +1188,7 @@ GameObject:
   - 114: {fileID: 1922463923}
   - 114: {fileID: 1922463922}
   - 95: {fileID: 1922463925}
+  - 225: {fileID: 1922463926}
   m_Layer: 5
   m_Name: Prev
   m_TagString: Untagged
@@ -1299,3 +1310,12 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!225 &1922463926
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1922463920}
+  m_Alpha: .75
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
