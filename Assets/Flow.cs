@@ -5,10 +5,11 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 {
-	public bool AbsoluteY = true;
 	public Vector3 Offset = new Vector3(32f, -3f, 16f);
-	public float Inset = .333f;
+	public bool AbsoluteY = true;
 	public int Limit = 6;
+	public float Inset = .333f;
+	public float Time = .333f;
 	public Button PrevButton;
 	public Button NextButton;
 	public Scrollbar Scrollbar;
@@ -16,7 +17,6 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	private MonoBehaviour _m;
 	private float _max;
 	private float _min;
-	private float _time = .333f;
 	private bool _ignore;
 	private float _current;
 	private int _dataMax;
@@ -63,7 +63,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	private void Tween(int to)
 	{
-		Ease.Go(_m, _current, to * -Offset.x, _time, DragTo, Ease.Type.Spring);
+		Ease.Go(_m, _current, to * -Offset.x, Time, DragTo, Ease.Type.Spring);
 	}
 	private void DragTo(int i)
 	{

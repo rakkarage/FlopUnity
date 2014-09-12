@@ -464,10 +464,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ab6dd3d0e3b3a746b0fa199fc062f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AbsoluteY: 1
   Offset: {x: 32, y: -3, z: 16}
-  Inset: .333000004
+  AbsoluteY: 1
   Limit: 6
+  Inset: .333000004
+  Time: .333000004
   PrevButton: {fileID: 1922463922}
   NextButton: {fileID: 784256721}
   Scrollbar: {fileID: 107210767}
@@ -939,7 +940,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   In: 1
-  Time: 3.32999992
+  Time: 1
 --- !u!225 &1193085652
 CanvasGroup:
   m_ObjectHideFlags: 0
