@@ -14,6 +14,8 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	public Button NextButton;
 	public Scrollbar Scrollbar;
 	public Text Text;
+	public float InertiaTime = .5f;
+	private float _velocity;
 	private MonoBehaviour _m;
 	private float _max;
 	private float _min;
@@ -63,7 +65,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	private void Tween(int to)
 	{
-		Ease.Go(_m, _current, to * -Offset.x, Time, DragTo, Ease.Type.Spring);
+		Ease.Go(_m, _current, to * -Offset.x, Time, DragTo, null, Ease.Type.Spring);
 	}
 	private void DragTo(int i)
 	{
@@ -151,14 +153,26 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	}
 	public void OnDrag(PointerEventData e)
 	{
+		var temp = _current;
 		Drag(e.delta.x);
+		_velocity = temp - _current;
 	}
 	public void OnEndDrag(PointerEventData e)
 	{
-		if (!e.used)
-			Tween(GetCurrent());
+		if (!Mathf.Approximately(_velocity, 0f))
+            Ease.Go(_m, _velocity, 0f, InertiaTime, HandleInertia, Snap, Ease.Type.Linear);
+        else
+            Snap();
 	}
-	public void OnPrev()
+    private void HandleInertia(float value)
+    {
+        Drag(-value);
+    }
+    private void Snap()
+    {
+        Tween(GetCurrent());
+    }
+    public void OnPrev()
 	{
 		TweenBy(-1);
 	}

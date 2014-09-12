@@ -12,7 +12,7 @@ public static class Ease
 		Coserp,
 		Spring
 	}
-	private delegate float EaseHandler(float start, float end, float t);
+    private delegate float EaseHandler(float start, float end, float t);
 	private static Dictionary<Type, EaseHandler> _types = new Dictionary<Type, EaseHandler>()
 	{
 		{Type.Linear, Mathf.Lerp},
@@ -21,20 +21,22 @@ public static class Ease
 		{Type.Coserp, Coserp},
 		{Type.Spring, Spring}
 	};
-	public static void Go(MonoBehaviour o, float start, float end, float t, UnityAction<float> callback, Type type)
+	public static void Go(MonoBehaviour o, float start, float end, float t, UnityAction<float> update, UnityAction complete, Type type)
 	{
 		o.StopAllCoroutines();
-		o.StartCoroutine(GoCoroutine(start, end, t, callback, type));
+		o.StartCoroutine(GoCoroutine(start, end, t, update, complete, type));
 	}
-	private static IEnumerator GoCoroutine(float start, float end, float t, UnityAction<float> callback, Type type)
+	private static IEnumerator GoCoroutine(float start, float end, float t, UnityAction<float> update, UnityAction complete, Type type)
 	{
 		var i = 0f;
 		while (i <= 1f)
 		{
 			i += Time.deltaTime / t;
-			callback(_types[type](start, end, i));
+			update(_types[type](start, end, i));
 			yield return null;
 		}
+        if (complete != null)
+		    complete();
 	}
 	private static float Hermite(float start, float end, float t)
 	{
