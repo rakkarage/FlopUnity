@@ -13,8 +13,8 @@ public class Tilt : MonoBehaviour
 	private void Update()
 	{
 		var p = Input.mousePosition;
-		var halfWidth = Screen.width * 0.5f;
-		var halfHeight = Screen.height * 0.5f;
+		var halfWidth = Screen.width * .5f;
+		var halfHeight = Screen.height * .5f;
 		var x = Mathf.Clamp((p.x - halfWidth) / halfWidth, -1f, 1f);
 		var y = Mathf.Clamp((p.y - halfHeight) / halfHeight, -1f, 1f);
 		_r = Vector2.Lerp(_r, new Vector2(x, y), Time.deltaTime * 5f);
