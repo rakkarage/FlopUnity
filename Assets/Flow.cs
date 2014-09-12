@@ -15,7 +15,6 @@ public class Flow : Singleton<Flow>, IBeginDragHandler, IEndDragHandler, IDragHa
 	public Button NextButton;
 	public Scrollbar Scrollbar;
 	public Text Text;
-	public float InertiaTime = .5f;
 	private float _velocity;
 	private MonoBehaviour _m;
 	private float _max;
@@ -167,7 +166,9 @@ public class Flow : Singleton<Flow>, IBeginDragHandler, IEndDragHandler, IDragHa
 		if (!e.used)
 		{
 			if (!Mathf.Approximately(_velocity, 0f))
-	            Ease.Go(_m, -_velocity, 0f, InertiaTime, Drag, Snap, Ease.Type.Linear);
+			{
+	            Ease.Go(_m, -_velocity, 0f, Mathf.Abs(_velocity * .1f), Drag, Snap, Ease.Type.Linear);
+			}
 	        else
 	            Snap();
 		}

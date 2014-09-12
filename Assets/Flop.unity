@@ -469,11 +469,11 @@ MonoBehaviour:
   Limit: 6
   Inset: .5
   Time: .333000004
+  Reference: 256
   PrevButton: {fileID: 1922463922}
   NextButton: {fileID: 784256721}
   Scrollbar: {fileID: 107210767}
   Text: {fileID: 1452338531}
-  InertiaTime: .5
 --- !u!114 &317071234
 MonoBehaviour:
   m_ObjectHideFlags: 0
