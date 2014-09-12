@@ -103,7 +103,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 		}
 		UpdateAll();
 	}
-	public int GetCurrent()
+	private int GetCurrent()
 	{
 		return Mathf.Clamp(Mathf.RoundToInt(-(_current / Offset.x)), 0, _dataMax);
 	}
@@ -142,7 +142,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 		Text.text = (current + 1).ToString();
 		_ignore = false;
 	}
-	public void OnScrollChanged(float scroll)
+	private void OnScrollChanged(float scroll)
 	{
 		if (!_ignore)
 			DragTo(Mathf.RoundToInt(scroll * _dataMax));
