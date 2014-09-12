@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
+public class Flow : Singleton<Flow>, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
 	public Vector3 Offset = new Vector3(32f, -3f, 16f);
 	public bool AbsoluteY = true;
@@ -152,6 +152,10 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 		if (!_ignore)
 			DragTo(Mathf.RoundToInt(scroll * _dataMax));
 	}
+	public void OnBeginDrag(PointerEventData e)
+	{
+		_m.StopAllCoroutines();
+	}
 	public void OnDrag(PointerEventData e)
 	{
 		var temp = _current;
@@ -163,15 +167,11 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 		if (!e.used)
 		{
 			if (!Mathf.Approximately(_velocity, 0f))
-	            Ease.Go(_m, _velocity, 0f, InertiaTime, HandleInertia, Snap, Ease.Type.Linear);
+	            Ease.Go(_m, -_velocity, 0f, InertiaTime, Drag, Snap, Ease.Type.Linear);
 	        else
 	            Snap();
 		}
 	}
-    private void HandleInertia(float value)
-    {
-        Drag(-value);
-    }
     private void Snap()
     {
 		_velocity = 0f;
