@@ -8,7 +8,7 @@ public class Flow : Singleton<Flow>, IEndDragHandler, IDragHandler
 	public Vector3 Offset = new Vector3(32f, -3f, 16f);
 	public bool AbsoluteY = true;
 	public int Limit = 6;
-	public float Inset = .333f;
+	public float Inset = .5f;
 	public float Time = .333f;
 	public Button PrevButton;
 	public Button NextButton;
