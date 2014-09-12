@@ -34,6 +34,7 @@ public class Flow : Singleton<Flow>, IBeginDragHandler, IEndDragHandler, IDragHa
 		for (int i = 0; (i < _data.Count) && (i < Limit); i++)
 			Add(i);
 		UpdateAll();
+		OnNext();
 	}
 	private void OnEnable()
 	{
