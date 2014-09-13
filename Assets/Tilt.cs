@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 public class Tilt : MonoBehaviour
 {
-	public Vector2 Range = new Vector2(3.33f, 3.33f);
+	public Vector2 Range = new Vector2(1f, 1f);
 	private Transform _t;
 	private Quaternion _q;
 	private Vector2 _r;

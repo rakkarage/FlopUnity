@@ -12,7 +12,7 @@ public static class Ease
 		Coserp,
 		Spring
 	}
-    private delegate float EaseHandler(float start, float end, float t);
+	private delegate float EaseHandler(float start, float end, float t);
 	private static Dictionary<Type, EaseHandler> _types = new Dictionary<Type, EaseHandler>()
 	{
 		{Type.Linear, Mathf.Lerp},
@@ -35,8 +35,8 @@ public static class Ease
 			update(_types[type](start, end, i));
 			yield return null;
 		}
-        if (complete != null)
-		    complete();
+		if (complete != null)
+			complete();
 	}
 	private static float Hermite(float start, float end, float t)
 	{
