@@ -7,9 +7,9 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 {
 	public Vector3 Offset = new Vector3(32f, -3f, 16f);
 	public bool AbsoluteY = true;
-	public int Limit = 6;
-	public float Inset = .5f;
+	public float InsetZ = .5f;
 	public float Time = .333f;
+	public int Limit = 6;
 	public Pool Pool;
 	public Transform LookAt;
 	public Button PrevButton;
@@ -119,7 +119,7 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 		var xn = x / xl;
 		var axn = Mathf.Abs(x) / xl;
 		var y = (AbsoluteY ? axn : xn) * (Limit * Offset.y);
-		var z = (axn - Inset) * (Limit * Offset.z);
+		var z = (axn - InsetZ) * (Limit * Offset.z);
 		o.transform.localPosition = new Vector3(x, y, z);
 		o.GetComponent<CanvasGroup>().alpha = 1 - axn;
 	}
