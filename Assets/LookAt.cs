@@ -13,7 +13,7 @@ public class LookAt : MonoBehaviour
 		if (_t != null && Target != null)
 			_t.localRotation = Quaternion.LookRotation(_t.localPosition - Target.localPosition);
 	}
-	private void LateUpdate()
+	private void Update()
 	{
 		var r = Quaternion.LookRotation(_t.localPosition - Target.localPosition);
 		_t.localRotation = Quaternion.Slerp(_t.localRotation, r, Time.deltaTime * Damping);
