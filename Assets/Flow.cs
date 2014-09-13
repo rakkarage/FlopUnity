@@ -53,6 +53,7 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 		GameObject o = Pool.Enter();
 		o.GetComponent<LookAt>().Target = LookAt;
 		o.GetComponent<Button>().onClick.AddListener(delegate { TweenTo(o.transform); });
+		o.GetComponent<Item>().Flow = this;
 		UpdateItem(o, i * Offset.x);
 		UpdateName(o, i);
 		_views.Add(i, o.transform);
