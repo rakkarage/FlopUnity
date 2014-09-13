@@ -481,10 +481,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Offset: {x: 32, y: -3, z: 16}
   AbsoluteY: 1
-  Limit: 6
-  Inset: .5
+  InsetZ: .5
   Time: .333000004
-  Reference: 256
+  Limit: 6
   Pool: {fileID: 317071234}
   LookAt: {fileID: 1651842657}
   PrevButton: {fileID: 1922463922}
