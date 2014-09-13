@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-public class Pool : Singleton<Pool>
+public class Pool : MonoBehaviour
 {
 	public int Count = 10;
 	public GameObject Prefab;

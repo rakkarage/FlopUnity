@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-public class Flow : Singleton<Flow>, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
 	public Vector3 Offset = new Vector3(32f, -3f, 16f);
 	public bool AbsoluteY = true;
@@ -11,6 +11,8 @@ public class Flow : Singleton<Flow>, IBeginDragHandler, IEndDragHandler, IDragHa
 	public float Inset = .5f;
 	public float Time = .333f;
 	public float Reference = 256f;
+    public Pool Pool;
+	public Transform LookAt;
 	public Button PrevButton;
 	public Button NextButton;
 	public Scrollbar Scrollbar;
@@ -22,8 +24,8 @@ public class Flow : Singleton<Flow>, IBeginDragHandler, IEndDragHandler, IDragHa
 	private bool _ignore;
 	private float _current;
 	private int _dataMax;
-	private List<int> _data = Enumerable.Range(32, 95).ToList();
-	private Dictionary<int, Transform> _views = new Dictionary<int, Transform>();
+	private static List<int> _data = Enumerable.Range(32, 95).ToList();
+    private Dictionary<int, Transform> _views;
 	private void Start()
 	{
 		_m = GetComponent<Flow>();
@@ -31,7 +33,8 @@ public class Flow : Singleton<Flow>, IBeginDragHandler, IEndDragHandler, IDragHa
 		_max = (Offset.x * (Limit - 2f));
 		_min = -(_dataMax * Offset.x + _max);
 		Scrollbar.numberOfSteps = _data.Count;
-		for (int i = 0; (i < _data.Count) && (i < Limit); i++)
+        _views = new Dictionary<int, Transform>(_data.Count);
+        for (int i = 0; (i < _data.Count) && (i < Limit); i++)
 			Add(i);
 		UpdateAll();
 		OnNext();
@@ -46,7 +49,9 @@ public class Flow : Singleton<Flow>, IBeginDragHandler, IEndDragHandler, IDragHa
 	}
 	private void Add(int i)
 	{
-		GameObject o = Pool.Instance.Enter();
+		GameObject o = Pool.Enter();
+        o.GetComponent<LookAt>().Target = LookAt;
+        o.GetComponent<Button>().onClick.AddListener(delegate { TweenTo(o.transform); });
 		UpdateItem(o, i * Offset.x);
 		UpdateName(o, i);
 		_views.Add(i, o.transform);
@@ -54,7 +59,7 @@ public class Flow : Singleton<Flow>, IBeginDragHandler, IEndDragHandler, IDragHa
 	private void Remove(int i, Transform t)
 	{
 		_views.Remove(i);
-		Pool.Instance.Exit(t.gameObject);
+		Pool.Exit(t.gameObject);
 	}
 	public void TweenTo(Transform t)
 	{
@@ -88,16 +93,16 @@ public class Flow : Singleton<Flow>, IBeginDragHandler, IEndDragHandler, IDragHa
 			var lx = Limit * Offset.x;
 			var visible = ax < lx;
 			_views.TryGetValue(i, out t);
-			if (t == null)
-			{
-				if (visible)
-					Add(i);
-			}
-			else
-			{
-				if (!visible)
-					Remove(i, t);
-			}
+            if (t == null)
+            {
+                if (visible)
+                    Add(i);
+            }
+            else
+            {
+                if (!visible)
+                    Remove(i, t);
+            }
 			_views.TryGetValue(i, out t);
 			if (t != null)
 				UpdateItem(t.gameObject, x);
