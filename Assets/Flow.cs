@@ -25,7 +25,7 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	private float _current;
 	private int _dataMax;
 	private static List<int> _data = Enumerable.Range(32, 95).ToList();
-	private Dictionary<int, Transform> _views;
+	private Dictionary<int, Transform> _views = new Dictionary<int, Transform>(_data.Count);
 	private void Start()
 	{
 		_m = GetComponent<Flow>();
@@ -34,7 +34,6 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 		_max = (Offset.x * (Limit - 2f));
 		_min = -(_dataMax * Offset.x + _max);
 		Scrollbar.numberOfSteps = _data.Count;
-		_views = new Dictionary<int, Transform>(_data.Count);
 		for (int i = 0; (i < _data.Count) && (i < Limit); i++)
 			Add(i);
 		UpdateAll();
