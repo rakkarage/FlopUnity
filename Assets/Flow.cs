@@ -162,7 +162,7 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	public void OnDrag(PointerEventData e)
 	{
 		var temp = _current;
-		Drag(e.delta.x * Reference / Screen.width);
+		Drag(e.delta.x * ((Reference > 0) ? Reference / Screen.width : 1f));
 		_velocity = temp - _current;
 	}
 	public void OnEndDrag(PointerEventData e)

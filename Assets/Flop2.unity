@@ -551,6 +551,7 @@ MonoBehaviour:
   Time: .333000004
   Reference: 256
   Pool: {fileID: 317071234}
+  LookAt: {fileID: 1298671403}
   PrevButton: {fileID: 1922463922}
   NextButton: {fileID: 784256721}
   Scrollbar: {fileID: 107210767}
@@ -852,6 +853,38 @@ CanvasGroup:
   m_Alpha: .75
   m_Interactable: 1
   m_BlocksRaycasts: 1
+--- !u!1 &942763946
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 942763947}
+  m_Layer: 5
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &942763947
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 942763946}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -100}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1874843198}
+  m_RootOrder: 5
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: .5, y: .5}
 --- !u!1 &962573956
 GameObject:
   m_ObjectHideFlags: 0
@@ -1144,6 +1177,7 @@ RectTransform:
   - {fileID: 1922463921}
   - {fileID: 784256720}
   - {fileID: 107210766}
+  - {fileID: 1298671403}
   m_Father: {fileID: 1730986137}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
@@ -1173,6 +1207,38 @@ CanvasGroup:
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
+--- !u!1 &1298671402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 224: {fileID: 1298671403}
+  m_Layer: 5
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1298671403
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1298671402}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -100}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1193085650}
+  m_RootOrder: 5
+  m_AnchorMin: {x: .5, y: .5}
+  m_AnchorMax: {x: .5, y: .5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: .5, y: .5}
 --- !u!1 &1348464071
 GameObject:
   m_ObjectHideFlags: 0
@@ -1746,6 +1812,7 @@ MonoBehaviour:
   Time: .333000004
   Reference: 256
   Pool: {fileID: 1579884101}
+  LookAt: {fileID: 942763947}
   PrevButton: {fileID: 1554933879}
   NextButton: {fileID: 1902714350}
   Scrollbar: {fileID: 1451237469}
@@ -1938,6 +2005,7 @@ RectTransform:
   - {fileID: 1554933876}
   - {fileID: 1902714349}
   - {fileID: 1451237468}
+  - {fileID: 942763947}
   m_Father: {fileID: 1730986137}
   m_RootOrder: 1
   m_AnchorMin: {x: 0, y: 0}
