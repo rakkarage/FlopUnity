@@ -147,7 +147,7 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 		_ignore = true;
 		float current = GetCurrent();
 		Scrollbar.value = current / _dataMax;
-		Text.text = (current + 1).ToString();
+		Text.text = (current + 32).ToString();
 		_ignore = false;
 	}
 	private void OnScrollChanged(float scroll)
