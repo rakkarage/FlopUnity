@@ -156,7 +156,10 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	private void OnScrollChanged(float scroll)
 	{
 		if (!_ignore)
+		{
+			_m.StopAllCoroutines();
 			DragTo(Mathf.RoundToInt(scroll * _dataMax));
+		}
 	}
 	public void OnBeginDrag(PointerEventData e)
 	{
