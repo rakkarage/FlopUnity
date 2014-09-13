@@ -10,13 +10,13 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	public int Limit = 6;
 	public float Inset = .5f;
 	public float Time = .333f;
-	public float Reference = 256f;
-    public Pool Pool;
+	public Pool Pool;
 	public Transform LookAt;
 	public Button PrevButton;
 	public Button NextButton;
 	public Scrollbar Scrollbar;
 	public Text Text;
+	private ReferenceResolution _r;
 	private float _velocity;
 	private MonoBehaviour _m;
 	private float _max;
@@ -25,16 +25,17 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	private float _current;
 	private int _dataMax;
 	private static List<int> _data = Enumerable.Range(32, 95).ToList();
-    private Dictionary<int, Transform> _views;
+	private Dictionary<int, Transform> _views;
 	private void Start()
 	{
 		_m = GetComponent<Flow>();
+		_r = GetComponentInParent<ReferenceResolution>();
 		_dataMax = _data.Count - 1;
 		_max = (Offset.x * (Limit - 2f));
 		_min = -(_dataMax * Offset.x + _max);
 		Scrollbar.numberOfSteps = _data.Count;
-        _views = new Dictionary<int, Transform>(_data.Count);
-        for (int i = 0; (i < _data.Count) && (i < Limit); i++)
+		_views = new Dictionary<int, Transform>(_data.Count);
+		for (int i = 0; (i < _data.Count) && (i < Limit); i++)
 			Add(i);
 		UpdateAll();
 		OnNext();
@@ -50,8 +51,8 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	private void Add(int i)
 	{
 		GameObject o = Pool.Enter();
-        o.GetComponent<LookAt>().Target = LookAt;
-        o.GetComponent<Button>().onClick.AddListener(delegate { TweenTo(o.transform); });
+		o.GetComponent<LookAt>().Target = LookAt;
+		o.GetComponent<Button>().onClick.AddListener(delegate { TweenTo(o.transform); });
 		UpdateItem(o, i * Offset.x);
 		UpdateName(o, i);
 		_views.Add(i, o.transform);
@@ -93,16 +94,16 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 			var lx = Limit * Offset.x;
 			var visible = ax < lx;
 			_views.TryGetValue(i, out t);
-            if (t == null)
-            {
-                if (visible)
-                    Add(i);
-            }
-            else
-            {
-                if (!visible)
-                    Remove(i, t);
-            }
+			if (t == null)
+			{
+				if (visible)
+					Add(i);
+			}
+			else
+			{
+				if (!visible)
+					Remove(i, t);
+			}
 			_views.TryGetValue(i, out t);
 			if (t != null)
 				UpdateItem(t.gameObject, x);
@@ -162,7 +163,10 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	public void OnDrag(PointerEventData e)
 	{
 		var temp = _current;
-		Drag(e.delta.x * ((Reference > 0) ? Reference / Screen.width : 1f));
+		if (_r != null)
+			Drag(e.delta.x * _r.resolution.x / Screen.width);
+		else
+			Drag(e.delta.x);
 		_velocity = temp - _current;
 	}
 	public void OnEndDrag(PointerEventData e)
