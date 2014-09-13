@@ -26,10 +26,12 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	private int _dataMax;
 	private static List<int> _data = Enumerable.Range(32, 95).ToList();
 	private Dictionary<int, Transform> _views = new Dictionary<int, Transform>(_data.Count);
+	private AudioSource _audio;
 	private void Start()
 	{
 		_m = GetComponent<Flow>();
 		_r = GetComponentInParent<ReferenceResolution>();
+		_audio = GetComponent<AudioSource>();
 		_dataMax = _data.Count - 1;
 		_max = (Offset.x * (Limit - 2f));
 		_min = -(_dataMax * Offset.x + _max);
@@ -37,7 +39,6 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 		for (int i = 0; (i < _data.Count) && (i < Limit); i++)
 			Add(i);
 		UpdateAll();
-		OnNext();
 	}
 	private void OnEnable()
 	{
@@ -185,10 +186,16 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	}
 	public void OnPrev()
 	{
+		PlayClick();
 		TweenBy(-1);
 	}
 	public void OnNext()
 	{
+		PlayClick();
 		TweenBy(1);
+	}
+	public void PlayClick()
+	{
+		_audio.Play();
 	}
 }
