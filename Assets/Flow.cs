@@ -39,6 +39,7 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 		for (int i = 0; (i < _data.Count) && (i < Limit); i++)
 			Add(i);
 		UpdateAll();
+		Next();
 	}
 	private void OnEnable()
 	{
@@ -188,11 +189,19 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	public void OnPrev()
 	{
 		PlayClick();
+		Prev();
+	}
+	private void Prev()
+	{
 		TweenBy(-1);
 	}
 	public void OnNext()
 	{
 		PlayClick();
+		Next();
+	}
+	private void Next()
+	{
 		TweenBy(1);
 	}
 	public void PlayClick()
