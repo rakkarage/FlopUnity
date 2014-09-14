@@ -719,7 +719,7 @@ Transition:
   - m_ConditionMode: 1
     m_ConditionEvent: Normal
     m_EventTreshold: 0
-    m_ExitTime: .899999976
+    m_ExitTime: 0
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -739,7 +739,7 @@ Transition:
   - m_ConditionMode: 1
     m_ConditionEvent: Disabled
     m_EventTreshold: 0
-    m_ExitTime: .899999976
+    m_ExitTime: 0
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -759,7 +759,7 @@ Transition:
   - m_ConditionMode: 1
     m_ConditionEvent: Highlighted
     m_EventTreshold: 0
-    m_ExitTime: .899999976
+    m_ExitTime: 0
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -779,7 +779,7 @@ Transition:
   - m_ConditionMode: 1
     m_ConditionEvent: Pressed
     m_EventTreshold: 0
-    m_ExitTime: .899999976
+    m_ExitTime: 0
   m_Atomic: 1
   m_Solo: 0
   m_Mute: 0
@@ -868,16 +868,16 @@ StateMachine:
       - {fileID: 110192279}
       - {fileID: 110145473}
     data:
-      first: {fileID: 110200000}
+      first: {fileID: 110245473}
       second: []
     data:
       first: {fileID: 110250509}
       second: []
     data:
-      first: {fileID: 110292279}
+      first: {fileID: 110200000}
       second: []
     data:
-      first: {fileID: 110245473}
+      first: {fileID: 110292279}
       second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 0, y: 0, z: 0}
