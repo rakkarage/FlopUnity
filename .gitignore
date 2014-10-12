@@ -1,10 +1,10 @@
-Temp*
-Obj*
-Library*
-*.csproj
 *.booproj
-*.unityproj
+*.csproj
 *.sln
 *.suo
-*.userprefs
+*.unityproj
 *.user
+*.userprefs
+Library*
+Obj*
+Temp*
