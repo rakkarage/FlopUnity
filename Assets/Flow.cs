@@ -16,7 +16,7 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	public Button NextButton;
 	public Scrollbar Scrollbar;
 	public Text Text;
-	private ReferenceResolution _r;
+	private CanvasScaler _scaler;
 	private float _velocity;
 	private MonoBehaviour _m;
 	private float _max;
@@ -30,7 +30,7 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	private void Start()
 	{
 		_m = GetComponent<Flow>();
-		_r = GetComponentInParent<ReferenceResolution>();
+		_scaler = GetComponentInParent<CanvasScaler>();
 		_audio = GetComponent<AudioSource>();
 		_dataMax = _data.Count - 1;
 		_max = (Offset.x * (Limit - 2f));
@@ -170,8 +170,8 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	public void OnDrag(PointerEventData e)
 	{
 		var temp = _current;
-		if (_r != null)
-			Drag(e.delta.x * _r.resolution.x / Screen.width);
+		if (_scaler != null)
+			Drag(e.delta.x * _scaler.referenceResolution.x / Screen.width);
 		else
 			Drag(e.delta.x);
 		_velocity = temp - _current;
