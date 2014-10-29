@@ -54,7 +54,7 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 		GameObject o = Pool.Enter();
 		o.GetComponent<LookAt>().Target = LookAt;
 		var button = o.GetComponent<Button>();
-        button.onClick.RemoveAllListeners();
+		button.onClick.RemoveAllListeners();
 		button.onClick.AddListener(() => { TweenTo(o.transform); });
 		o.GetComponent<Item>().Flow = this;
 		UpdateItem(o, i * Offset.x);
@@ -159,6 +159,7 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	{
 		if (!_ignore)
 		{
+			PlayClick();
 			_m.StopAllCoroutines();
 			DragTo(Mathf.RoundToInt(scroll * _dataMax));
 		}
