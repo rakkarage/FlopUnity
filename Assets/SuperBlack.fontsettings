@@ -8,8 +8,7 @@ Material:
   m_PrefabInternal: {fileID: 0}
   m_Name: SuperBlack
   m_Shader: {fileID: 10770, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords:
-  - PIXELSNAP_ON
+  m_ShaderKeywords: []
   m_CustomRenderQueue: -1
   m_SavedProperties:
     serializedVersion: 2
@@ -21,33 +20,19 @@ Material:
           m_Texture: {fileID: 2800000}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _BumpMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _DecalTex
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
-      data:
-        first:
-          name: PixelSnap
-        second: 1
-      data:
-        first:
-          name: _Shininess
-        second: .078125
       data:
         first:
           name: _Stencil
         second: 0
+      data:
+        first:
+          name: _StencilReadMask
+        second: 255
+      data:
+        first:
+          name: _StencilWriteMask
+        second: 255
       data:
         first:
           name: _StencilComp
@@ -60,27 +45,11 @@ Material:
         first:
           name: _ColorMask
         second: 15
-      data:
-        first:
-          name: _StencilReadMask
-        second: 255
-      data:
-        first:
-          name: _StencilWriteMask
-        second: 255
     m_Colors:
       data:
         first:
           name: _Color
         second: {r: 1, g: 1, b: 1, a: 1}
-      data:
-        first:
-          name: _SpecColor
-        second: {r: .5, g: .5, b: .5, a: 1}
-      data:
-        first:
-          name: _Specular
-        second: {r: 0, g: 0, b: 0, a: 0}
 --- !u!28 &2800000
 Texture2D:
   m_ObjectHideFlags: 0
@@ -93,7 +62,7 @@ Texture2D:
   m_CompleteImageSize: 65536
   m_TextureFormat: 5
   m_MipMap: 0
-  m_IsReadable: 1
+  m_IsReadable: 0
   m_ReadAllowed: 1
   m_ImageCount: 1
   m_TextureDimension: 2
@@ -174,15 +143,15 @@ Font:
     uv:
       serializedVersion: 2
       x: .390625
-      y: .3828125
+      y: .3984375
       width: .0703125
-      height: .0703125
+      height: .0546875
     vert:
       serializedVersion: 2
       x: 0
-      y: -1
+      y: -2
       width: 9
-      height: -9
+      height: -7
     width: 9
     flipped: 0
   - serializedVersion: 2
@@ -292,7 +261,7 @@ Font:
     vert:
       serializedVersion: 2
       x: 0
-      y: -1
+      y: -2
       width: 7
       height: -7
     width: 7
@@ -1534,15 +1503,15 @@ Font:
     uv:
       serializedVersion: 2
       x: .78125
-      y: .3828125
+      y: .3984375
       width: .0546875
-      height: .0703125
+      height: .0546875
     vert:
       serializedVersion: 2
       x: 0
       y: -2
       width: 7
-      height: -9
+      height: -7
     width: 7
     flipped: 0
   - serializedVersion: 2
@@ -1550,23 +1519,7 @@ Font:
     uv:
       serializedVersion: 2
       x: .7890625
-      y: .5703125
-      width: .0546875
-      height: .0859375
-    vert:
-      serializedVersion: 2
-      x: 0
-      y: -2
-      width: 7
-      height: -11
-    width: 7
-    flipped: 0
-  - serializedVersion: 2
-    index: 90
-    uv:
-      serializedVersion: 2
-      x: .8671875
-      y: .3828125
+      y: .5859375
       width: .0546875
       height: .0703125
     vert:
@@ -1575,6 +1528,22 @@ Font:
       y: -2
       width: 7
       height: -9
+    width: 7
+    flipped: 0
+  - serializedVersion: 2
+    index: 90
+    uv:
+      serializedVersion: 2
+      x: .8671875
+      y: .3984375
+      width: .0546875
+      height: .0546875
+    vert:
+      serializedVersion: 2
+      x: 0
+      y: -2
+      width: 7
+      height: -7
     width: 7
     flipped: 0
   - serializedVersion: 2
