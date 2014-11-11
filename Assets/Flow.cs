@@ -76,7 +76,11 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	}
 	private void Tween(int to)
 	{
-		Ease.Go(_m, _current, to * -Offset.x, Time, DragTo, null, Ease.Type.Spring);
+		Ease.Go(_m, _current, to * -Offset.x, Time, HandleDrag, null, Ease.Type.Spring);
+	}
+	private void HandleDrag(float i, MonoBehaviour sender)
+	{
+		DragTo(i);
 	}
 	private void DragTo(int i)
 	{
@@ -182,7 +186,7 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 		if (!e.used)
 		{
 			if (!Mathf.Approximately(_velocity, 0f))
-				Ease.Go(_m, -_velocity, 0f, Mathf.Abs(_velocity * .1f), Drag, Snap, Ease.Type.Linear);
+				Ease.Go(_m, -_velocity, 0f, Mathf.Abs(_velocity * .1f), HandleDrag, Snap, Ease.Type.Linear);
 			else
 				Snap();
 		}

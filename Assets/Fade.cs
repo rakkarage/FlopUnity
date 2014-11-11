@@ -12,7 +12,7 @@ public class Fade : MonoBehaviour
 		_group.alpha = start;
 		Ease.Go(GetComponent<Fade>(), start, end, Time, HandleFade, null, Ease.Type.Sinerp);
 	}
-	private void HandleFade(float alpha)
+	private void HandleFade(float alpha, MonoBehaviour sender)
 	{
 		_group.alpha = alpha;
 	}
