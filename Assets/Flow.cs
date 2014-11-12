@@ -185,7 +185,7 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
         if (!e.used)
 		{
             _m.StopAllCoroutines();
-            if (_velocity > .0333f)
+            if (Mathf.Abs(_velocity) > .0333f)
 			{
 				var time = Mathf.Clamp(Mathf.Abs(_velocity * .1f), 0, 3.33f);
 				Ease.Go(_m, -_velocity, 0f, time, (i, s) => { Drag(i); }, Snap, Ease.Type.Linear);
