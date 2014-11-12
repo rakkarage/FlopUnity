@@ -1,6 +1,7 @@
 *.booproj
 *.csproj
 *.sln
+*.sln.ide
 *.suo
 *.unityproj
 *.user
