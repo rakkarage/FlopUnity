@@ -170,22 +170,22 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	}
 	public void OnDrag(PointerEventData e)
 	{
-        _m.StopAllCoroutines();
-        var temp = _current;
+		_m.StopAllCoroutines();
+		var temp = _current;
 		if (_scaler != null)
 			Drag(e.delta.x * _scaler.referenceResolution.x / Screen.width);
 		else
 			Drag(e.delta.x);
 		_velocity = temp - _current;
-        var time = Mathf.Clamp(Mathf.Abs(_velocity * .1f), 0, 3.33f);
-        Ease.Go(_m, _velocity, 0f, time, (i, s) => { _velocity = i; }, null, Ease.Type.Linear);
+		var time = Mathf.Clamp(Mathf.Abs(_velocity * .1f), 0, 3.33f);
+		Ease.Go(_m, _velocity, 0f, time, (i, s) => { _velocity = i; }, null, Ease.Type.Linear);
 	}
 	public void OnEndDrag(PointerEventData e)
 	{
-        if (!e.used)
+		if (!e.used)
 		{
-            _m.StopAllCoroutines();
-            if (Mathf.Abs(_velocity) > .0333f)
+			_m.StopAllCoroutines();
+			if (Mathf.Abs(_velocity) > .0333f)
 			{
 				var time = Mathf.Clamp(Mathf.Abs(_velocity * .1f), 0, 3.33f);
 				Ease.Go(_m, -_velocity, 0f, time, (i, s) => { Drag(i); }, Snap, Ease.Type.Linear);
