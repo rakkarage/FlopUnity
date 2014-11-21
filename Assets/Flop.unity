@@ -1134,8 +1134,8 @@ GameObject:
   m_Component:
   - 224: {fileID: 1730986137}
   - 223: {fileID: 1730986139}
-  - 114: {fileID: 1730986138}
   - 114: {fileID: 1730986140}
+  - 114: {fileID: 1730986138}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
