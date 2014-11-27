@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler
 {
 	public Vector3 Offset = new Vector3(32f, -3f, 16f);
 	public bool AbsoluteY = true;
@@ -163,6 +163,10 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 			_m.StopAllCoroutines();
 			DragTo(Mathf.RoundToInt(scroll * _dataMax));
 		}
+	}
+	public void OnPointerDown(PointerEventData e)
+	{
+		_m.StopAllCoroutines();
 	}
 	public void OnBeginDrag(PointerEventData e)
 	{
