@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 8eb3d6ca06477eb4e93178f99dda1e6d
+labels:
+- Icon
 TextureImporter:
   fileIDToRecycleName:
     21300000: Flop
