@@ -15,7 +15,7 @@ public enum EaseType
 }
 public static class Ease
 {
-	private delegate float EaseHandler(float start, float end, float t);
+	private delegate float EaseHandler(float start, float end, float time);
 	private static Dictionary<EaseType, EaseHandler> _types = new Dictionary<EaseType, EaseHandler>
 	{
 		{EaseType.Linear, Mathf.Lerp},
@@ -90,7 +90,7 @@ public static class Ease
 }
 public static class Ease3
 {
-	private delegate Vector3 EaseHandler(Vector3 start, Vector3 end, float t);
+	private delegate Vector3 EaseHandler(Vector3 start, Vector3 end, float time);
 	private static Dictionary<EaseType, EaseHandler> _types = new Dictionary<EaseType, EaseHandler>
 	{
 		{EaseType.Linear, Vector3.Lerp},
