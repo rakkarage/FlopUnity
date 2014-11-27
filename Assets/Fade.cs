@@ -10,9 +10,9 @@ public class Fade : MonoBehaviour
 		float end = In ? 1f : 0f;
 		_group = GetComponent<CanvasGroup>();
 		_group.alpha = start;
-		Ease.Go(GetComponent<Fade>(), start, end, Time, HandleFade, null, Ease.Type.Sinerp);
+		Ease.Go(GetComponent<Fade>(), start, end, Time, 0f, EaseType.Sinerp, HandleFade, null);
 	}
-	private void HandleFade(float alpha, MonoBehaviour sender)
+	private void HandleFade(float alpha)
 	{
 		_group.alpha = alpha;
 	}
