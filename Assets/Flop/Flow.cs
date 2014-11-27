@@ -210,6 +210,7 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	public void OnPrev()
 	{
 		PlayClick();
+		Stop();
 		Prev();
 	}
 	private void Prev()
@@ -219,6 +220,7 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	public void OnNext()
 	{
 		PlayClick();
+		Stop();
 		Next();
 	}
 	private void Next()
