@@ -160,21 +160,26 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 		if (!_ignore)
 		{
 			PlayClick();
-			_m.StopAllCoroutines();
+			Stop();
 			DragTo(Mathf.RoundToInt(scroll * _dataMax));
 		}
 	}
+	public void Stop()
+	{
+		_velocity = 0f;
+		_m.StopAllCoroutines();
+	}
 	public void OnPointerDown(PointerEventData e)
 	{
-		_m.StopAllCoroutines();
+		Stop();
 	}
 	public void OnBeginDrag(PointerEventData e)
 	{
-		_m.StopAllCoroutines();
+		Stop();
 	}
 	public void OnDrag(PointerEventData e)
 	{
-		_m.StopAllCoroutines();
+		Stop();
 		var temp = _current;
 		if (_scaler != null)
 			Drag(e.delta.x * _scaler.referenceResolution.x / Screen.width);
@@ -188,7 +193,6 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	{
 		if (!e.used)
 		{
-			_m.StopAllCoroutines();
 			if (Mathf.Abs(_velocity) > .0333f)
 			{
 				var time = Mathf.Clamp(Mathf.Abs(_velocity * .1f), 0, 3.33f);

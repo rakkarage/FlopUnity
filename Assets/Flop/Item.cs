@@ -10,7 +10,7 @@ public class Item : MonoBehaviour, IPointerClickHandler, IPointerDownHandler
 	}
 	public void OnPointerDown(PointerEventData e)
 	{
-		Flow.StopAllCoroutines();
+		Flow.Stop();
 	}
 	public void OnPointerClick(PointerEventData e)
 	{
