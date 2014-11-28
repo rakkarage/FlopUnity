@@ -86,7 +86,7 @@ GameObject:
   - 114: {fileID: 70573654}
   - 114: {fileID: 70573653}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: Events
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
