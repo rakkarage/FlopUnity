@@ -45,19 +45,19 @@ public static class Ease
 		if (complete != null)
 		complete();
 	}
-	private static float Hermite(float start, float end, float time)
+	public static float Hermite(float start, float end, float time)
 	{
 		return Mathf.Lerp(start, end, time * time * (3f - 2f * time));
 	}
-	private static float Sinerp(float start, float end, float time)
+	public static float Sinerp(float start, float end, float time)
 	{
 		return Mathf.Lerp(start, end, Mathf.Sin(time * Mathf.PI * .5f));
 	}
-	private static float Coserp(float start, float end, float time)
+	public static float Coserp(float start, float end, float time)
 	{
 		return Mathf.Lerp(start, end, 1f - Mathf.Cos(time * Mathf.PI * .5f));
 	}
-	private static float Spring(float start, float end, float time)
+	public static float Spring(float start, float end, float time)
 	{
 		time = Mathf.Clamp01(time);
 		time = (Mathf.Sin(time * Mathf.PI * (.2f + 2.5f * time * time * time)) * Mathf.Pow(1f - time, 2.2f) + time) * (1f + (1.2f * (1f - time)));
@@ -171,46 +171,32 @@ public static class Ease3
 		}
 		o.transform.localScale = end;
 	}
-	private static Vector3 Hermite(Vector3 start, Vector3 end, float time)
+	public static Vector3 Hermite(Vector3 start, Vector3 end, float time)
 	{
-		return Vector3.Lerp(start, end, time * time * (3f - 2f * time));
+		return new Vector3(Ease.Hermite(start.x, end.x, time), Ease.Hermite(start.y, end.y, time), Ease.Hermite(start.z, end.z, time));
 	}
-	private static Vector3 Sinerp(Vector3 start, Vector3 end, float time)
+	public static Vector3 Sinerp(Vector3 start, Vector3 end, float time)
 	{
-		return Vector3.Lerp(start, end, Mathf.Sin(time * Mathf.PI * .5f));
+		return new Vector3(Ease.Sinerp(start.x, end.x, time), Ease.Sinerp(start.y, end.y, time), Ease.Sinerp(start.z, end.z, time));
 	}
-	private static Vector3 Coserp(Vector3 start, Vector3 end, float time)
+	public static Vector3 Coserp(Vector3 start, Vector3 end, float time)
 	{
-		return Vector3.Lerp(start, end, 1f - Mathf.Cos(time * Mathf.PI * .5f));
+		return new Vector3(Ease.Coserp(start.x, end.x, time), Ease.Coserp(start.y, end.y, time), Ease.Coserp(start.z, end.z, time));
 	}
-	private static Vector3 Spring(Vector3 start, Vector3 end, float time)
+	public static Vector3 Spring(Vector3 start, Vector3 end, float time)
 	{
-		time = Mathf.Clamp01(time);
-		time = (Mathf.Sin(time * Mathf.PI * (.2f + 2.5f * time * time * time)) * Mathf.Pow(1f - time, 2.2f) + time) * (1f + (1.2f * (1f - time)));
-		return start + (end - start) * time;
+		return new Vector3(Ease.Spring(start.x, end.x, time), Ease.Spring(start.y, end.y, time), Ease.Spring(start.z, end.z, time));
 	}
 	public static Vector3 BounceIn(Vector3 start, Vector3 end, float time)
 	{
-		end -= start;
-		return end - BounceOut(Vector3.zero, end, 1f - time) + start;
+		return new Vector3(Ease.BounceIn(start.x, end.x, time), Ease.BounceIn(start.y, end.y, time), Ease.BounceIn(start.z, end.z, time));
 	}
 	public static Vector3 BounceOut(Vector3 start, Vector3 end, float time)
 	{
-		time /= 1f;
-		end -= start;
-		if (time < (1f / 2.75f))
-		return end * (7.5625f * time * time) + start;
-		if (time < (2f / 2.75f))
-		return end * (7.5625f * (time -= (1.5f / 2.75f)) * time + .75f) + start;
-		if (time < (2.5f / 2.75f))
-		return end * (7.5625f * (time -= (2.25f / 2.75f)) * time + .9375f) + start;
-		return end * (7.5625f * (time -= (2.625f / 2.75f)) * time + .984375f) + start;
+		return new Vector3(Ease.BounceOut(start.x, end.x, time), Ease.BounceOut(start.y, end.y, time), Ease.BounceOut(start.z, end.z, time));
 	}
 	public static Vector3 BounceInOut(Vector3 start, Vector3 end, float time)
 	{
-		end -= start;
-		if (time < .5f)
-		return BounceIn(Vector3.zero, end, time * 2f) * .5f + start;
-		return BounceOut(Vector3.zero, end, time * 2f - 1f) * .5f + end * .5f + start;
+		return new Vector3(Ease.BounceInOut(start.x, end.x, time), Ease.BounceInOut(start.y, end.y, time), Ease.BounceInOut(start.z, end.z, time));
 	}
 }
