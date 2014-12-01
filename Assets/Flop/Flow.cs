@@ -17,7 +17,7 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	public Scrollbar Scrollbar;
 	public Text Text;
 	private CanvasScaler _scaler;
-	private float _velocity;
+	private float _inertia;
 	private MonoBehaviour _m;
 	private float _max;
 	private float _min;
@@ -166,7 +166,7 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	}
 	public void Stop()
 	{
-		_velocity = 0f;
+		_inertia = 0f;
 		_m.StopAllCoroutines();
 	}
 	public void OnPointerDown(PointerEventData e)
@@ -185,18 +185,18 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 			Drag(e.delta.x * _scaler.referenceResolution.x / Screen.width);
 		else
 			Drag(e.delta.x);
-		_velocity = temp - _current;
-		var time = Mathf.Clamp(Mathf.Abs(_velocity * .1f), 0, 3.33f);
-		Ease.Go(_m, _velocity, 0f, time, 0f, EaseType.Linear, (i) => { _velocity = i; }, null);
+		_inertia = temp - _current;
+		var time = Mathf.Clamp(Mathf.Abs(_inertia * .1f), 0, 3.33f);
+		Ease.Go(_m, _inertia, 0f, time, 0f, EaseType.Linear, (i) => { _inertia = i; }, null);
 	}
 	public void OnEndDrag(PointerEventData e)
 	{
 		if (!e.used)
 		{
-			if (Mathf.Abs(_velocity) > .0333f)
+			if (Mathf.Abs(_inertia) > .0333f)
 			{
-				var time = Mathf.Clamp(Mathf.Abs(_velocity * .1f), 0, 3.33f);
-				Ease.Go(_m, -_velocity, 0f, time, 0f, EaseType.Linear, (i) => { Drag(i); }, Snap);
+				var time = Mathf.Clamp(Mathf.Abs(_inertia * .1f), 0, 3.33f);
+				Ease.Go(_m, -_inertia, 0f, time, 0f, EaseType.Linear, (i) => { Drag(i); }, Snap);
 			}
 			else
 				Snap();
@@ -204,7 +204,7 @@ public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHand
 	}
 	private void Snap()
 	{
-		_velocity = 0f;
+		_inertia = 0f;
 		Tween(GetCurrent());
 	}
 	public void OnPrev()
