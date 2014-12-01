@@ -1,19 +1,22 @@
 ﻿using UnityEngine;
-public class Fade : MonoBehaviour
+namespace ca.HenrySoftware.Flop
 {
-	public bool In = true;
-	public float Time = 1f;
-	private CanvasGroup _group;
-	private void Start()
+	public class Fade : MonoBehaviour
 	{
-		float start = In ? 0f : 1f;
-		float end = In ? 1f : 0f;
-		_group = GetComponent<CanvasGroup>();
-		_group.alpha = start;
-		Ease.Go(GetComponent<Fade>(), start, end, Time, 0f, EaseType.Sinerp, HandleFade, null);
-	}
-	private void HandleFade(float alpha)
-	{
-		_group.alpha = alpha;
+		public bool In = true;
+		public float Time = 1f;
+		private CanvasGroup _group;
+		private void Start()
+		{
+			float start = In ? 0f : 1f;
+			float end = In ? 1f : 0f;
+			_group = GetComponent<CanvasGroup>();
+			_group.alpha = start;
+			Ease.Go(GetComponent<Fade>(), start, end, Time, 0f, EaseType.Sinerp, HandleFade, null);
+		}
+		private void HandleFade(float alpha)
+		{
+			_group.alpha = alpha;
+		}
 	}
 }

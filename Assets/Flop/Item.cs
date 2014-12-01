@@ -1,21 +1,24 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
-public class Item : MonoBehaviour, IPointerClickHandler, IPointerDownHandler
+namespace ca.HenrySoftware.Flop
 {
-	public Flow Flow;
-	private Transform _t;
-	private void Start()
+	public class Item : MonoBehaviour, IPointerClickHandler, IPointerDownHandler
 	{
-		_t = transform;
-	}
-	public void OnPointerDown(PointerEventData e)
-	{
-		Flow.Stop();
-	}
-	public void OnPointerClick(PointerEventData e)
-	{
-		e.Use();
-		Flow.PlayClick();
-		Flow.TweenTo(_t);
+		public Flow Flow;
+		private Transform _t;
+		private void Start()
+		{
+			_t = transform;
+		}
+		public void OnPointerDown(PointerEventData e)
+		{
+			Flow.Stop();
+		}
+		public void OnPointerClick(PointerEventData e)
+		{
+			e.Use();
+			Flow.PlayClick();
+			Flow.TweenTo(_t);
+		}
 	}
 }
