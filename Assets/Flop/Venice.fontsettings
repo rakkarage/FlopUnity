@@ -84,7 +84,7 @@ Font:
   serializedVersion: 4
   m_AsciiStartOffset: 32
   m_Kerning: 1
-  m_LineSpacing: 14
+  m_LineSpacing: 17
   m_CharacterSpacing: 1
   m_CharacterPadding: 0
   m_ConvertCase: 0
