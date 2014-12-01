@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 namespace ca.HenrySoftware.Flop
 {
-	public class Item : MonoBehaviour, IPointerClickHandler, IPointerDownHandler
+	public class Item : MonoBehaviour, IPointerDownHandler, IPointerClickHandler
 	{
 		public Flow Flow;
 		private Transform _t;

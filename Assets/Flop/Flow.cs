@@ -18,9 +18,9 @@ namespace ca.HenrySoftware.Flop
 		public Button NextButton;
 		public Scrollbar Scrollbar;
 		public Text Text;
+		private MonoBehaviour _m;
 		private CanvasScaler _scaler;
 		private float _inertia;
-		private MonoBehaviour _m;
 		private float _max;
 		private float _min;
 		private bool _ignore;
