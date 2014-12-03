@@ -11,6 +11,8 @@ namespace ca.HenrySoftware.Flop
 		public static Color ErrorGreen = new Color(.5f, .75f, .5f);
 		public static Color ErrorBlue = new Color(.5f, .5f, .75f);
 		public static Color ErrorYellow = new Color(.75f, .75f, .5f);
+		public static Color ButtonBlue = new Color32(159, 176, 255, 255);
+		public static Color HenryBlue = new Color32(59, 67, 82, 255);
 		public static string Error = "Error";
 		public const float SpringTime = .333f;
 		public static int OffsetInterface = 3072;
