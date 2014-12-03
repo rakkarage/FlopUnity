@@ -17,7 +17,7 @@ namespace ca.HenrySoftware.Flop
 		public void OnPointerClick(PointerEventData e)
 		{
 			e.Use();
-			Flow.PlayClick();
+			Audio.Instance.PlayClick();
 			Flow.TweenTo(_t);
 		}
 	}

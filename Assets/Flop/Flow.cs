@@ -28,12 +28,10 @@ namespace ca.HenrySoftware.Flop
 		private int _dataMax;
 		private static List<int> _data = Enumerable.Range(32, 95).ToList();
 		private Dictionary<int, Transform> _views = new Dictionary<int, Transform>(_data.Count);
-		private AudioSource _audio;
 		private void Start()
 		{
 			_m = GetComponent<Flow>();
 			_scaler = GetComponentInParent<CanvasScaler>();
-			_audio = GetComponent<AudioSource>();
 			_dataMax = _data.Count - 1;
 			_max = (Offset.x * (Limit - 2f));
 			_min = -(_dataMax * Offset.x + _max);
@@ -161,7 +159,7 @@ namespace ca.HenrySoftware.Flop
 		{
 			if (!_ignore)
 			{
-				PlayClick();
+				Audio.Instance.PlayClick();
 				Stop();
 				DragTo(Mathf.RoundToInt(scroll * _dataMax));
 			}
@@ -211,7 +209,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		public void OnPrev()
 		{
-			PlayClick();
+			Audio.Instance.PlayClick();
 			Stop();
 			Prev();
 		}
@@ -221,17 +219,13 @@ namespace ca.HenrySoftware.Flop
 		}
 		public void OnNext()
 		{
-			PlayClick();
+			Audio.Instance.PlayClick();
 			Stop();
 			Next();
 		}
 		private void Next()
 		{
 			TweenBy(1);
-		}
-		public void PlayClick()
-		{
-			_audio.Play();
 		}
 	}
 }
