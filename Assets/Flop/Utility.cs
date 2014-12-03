@@ -14,11 +14,11 @@ namespace ca.HenrySoftware.Flop
 		public static string Error = "Error";
 		public const float SpringTime = .333f;
 		public static int OffsetInterface = 3072;
-		public static Vector3 OffsetSignIn = new Vector3(0f, -OffsetInterface, 0f);
-		public static Vector3 OffsetRegister = new Vector3(OffsetInterface, -OffsetInterface, 0f);
-		public static Vector3 OffsetResetPassword = new Vector3(-OffsetInterface, -OffsetInterface, 0f);
+		public static Vector3 OffsetSignIn = new Vector3(0f, OffsetInterface, 0f);
+		public static Vector3 OffsetRegister = new Vector3(OffsetInterface, OffsetInterface, 0f);
+		public static Vector3 OffsetReset = new Vector3(-OffsetInterface, OffsetInterface, 0f);
 		public static Vector3 OffsetAccount = new Vector3(-OffsetInterface, 0f, 0f);
-		public static Vector3 OffsetChangePassword = new Vector3(-(OffsetInterface * 2), 0f, 0f);
+		public static Vector3 OffsetChange = new Vector3(-(OffsetInterface * 2), 0f, 0f);
 		public static Vector2 OffsetDialog = new Vector2(OffsetInterface, 0f);
 		public static int AnimatorCompute = Animator.StringToHash("Compute");
 		public static int AnimatorError = Animator.StringToHash("Error");

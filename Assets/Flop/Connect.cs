@@ -46,7 +46,7 @@ namespace ca.HenrySoftware.Flop
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
-			Utility.Spring(_m, Constants.OffsetResetPassword);
+			Utility.Spring(_m, Constants.OffsetReset);
 		}
 		public void SpringAccount()
 		{
@@ -58,7 +58,7 @@ namespace ca.HenrySoftware.Flop
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
-			Utility.Spring(_m, Constants.OffsetChangePassword);
+			Utility.Spring(_m, Constants.OffsetChange);
 		}
 		public void SpringBack()
 		{
