@@ -44,6 +44,7 @@ namespace ca.HenrySoftware.Flop
 		{
 			foreach (var i in Activate)
 				i.SetActive(true);
+			Camera.main.backgroundColor = Constants.HenryBlue;
 			gameObject.SetActive(false);
 		}
 	}
