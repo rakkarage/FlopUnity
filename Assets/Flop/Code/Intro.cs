@@ -42,10 +42,11 @@ namespace ca.HenrySoftware.Flop
 		}
 		public void HandleNext()
 		{
+			_m.StopAllCoroutines();
+			gameObject.SetActive(false);
+			Camera.main.backgroundColor = Constants.HenryBlue;
 			foreach (var i in Activate)
 				i.SetActive(true);
-			Camera.main.backgroundColor = Constants.HenryBlue;
-			gameObject.SetActive(false);
 		}
 	}
 }
