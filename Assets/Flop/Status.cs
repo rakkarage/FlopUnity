@@ -7,12 +7,10 @@ namespace ca.HenrySoftware.Flop
 		public Text EmailText;
 		public GameObject Tip;
 		private Image _image;
-		private Image _child;
 		private bool _highlight = false;
 		private void Awake()
 		{
 			_image = GetComponent<Image>();
-			_child = transform.FindChild("Image").GetComponent<Image>();
 		}
 		private void OnEnable()
 		{
@@ -32,13 +30,11 @@ namespace ca.HenrySoftware.Flop
 		{
 			if (Connection.Connected)
 			{
-				_image.color = Constants.ErrorGreen.SetAlpha(_highlight ? .5f : 0f);
-				_child.color = Constants.ErrorGreen.SetAlpha(.5f);
+				_image.color = Constants.ErrorGreen.SetAlpha(_highlight ? 1f : .5f);
 			}
 			else
 			{
-				_image.color = Constants.ErrorRed.SetAlpha(_highlight ? .5f : 0f);
-				_child.color = Constants.ErrorRed.SetAlpha(.5f);
+				_image.color = Constants.ErrorRed.SetAlpha(_highlight ? 1f : .5f);
 			}
 		}
 		public void StatusClicked()
