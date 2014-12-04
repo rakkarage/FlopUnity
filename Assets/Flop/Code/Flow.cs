@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 namespace ca.HenrySoftware.Flop
 {
-	public class Flow : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler
+	public class Flow : Singleton<Flow>, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler
 	{
 		public Vector3 Offset = new Vector3(32f, -3f, 16f);
 		public bool AbsoluteY = true;
@@ -39,7 +39,7 @@ namespace ca.HenrySoftware.Flop
 			for (int i = 0; (i < _data.Count) && (i < Limit); i++)
 				Add(i);
 			UpdateAll();
-			Next();
+			Connect.Instance.GetData();
 		}
 		private void OnEnable()
 		{
@@ -70,7 +70,7 @@ namespace ca.HenrySoftware.Flop
 		{
 			Tween(_views.SingleOrDefault(x => x.Value == t).Key);
 		}
-		private void TweenBy(int by)
+		public void TweenBy(int by)
 		{
 			Tween(GetCurrent() + by);
 		}
@@ -162,8 +162,8 @@ namespace ca.HenrySoftware.Flop
 				Audio.Instance.PlayClick();
 				Stop();
 				DragTo(Mathf.RoundToInt(scroll * _dataMax));
-				Connect.Instance.SetData((int)_current);
 			}
+			Connect.Instance.SetData(GetCurrent());
 		}
 		public void Stop()
 		{
@@ -214,7 +214,7 @@ namespace ca.HenrySoftware.Flop
 			Stop();
 			Prev();
 		}
-		private void Prev()
+		public void Prev()
 		{
 			TweenBy(-1);
 		}
@@ -224,7 +224,7 @@ namespace ca.HenrySoftware.Flop
 			Stop();
 			Next();
 		}
-		private void Next()
+		public void Next()
 		{
 			TweenBy(1);
 		}

@@ -1,6 +1,6 @@
 ﻿using Parse;
+using System;
 using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 namespace ca.HenrySoftware.Flop
@@ -28,26 +28,51 @@ namespace ca.HenrySoftware.Flop
 		}
 		public void SetData(int data)
 		{
-			if (Connection.Connected)
+			try
 			{
-				var p = new ParseObject("Data");
-				p["data"] = data;
-				Task saveTask = p.SaveAsync();
+				if (Connection.Connected)
+				{
+					var task = ParseObject.GetQuery("Data").WhereEqualTo("userId", ParseUser.CurrentUser.ObjectId).FirstOrDefaultAsync();
+					task.ContinueWith(t =>
+					{
+						ParseObject p = (t.Result != null) ? t.Result : new ParseObject("Data");
+						p["page"] = data;
+						p["userId"] = ParseUser.CurrentUser.ObjectId;
+						p.SaveAsync();
+					});
+				}
+			}
+			catch (Exception e)
+			{
+				Utility.LogError(e);
 			}
 		}
-		public int GetData()
+		public void GetData()
 		{
-			int data = 1;
-			if (Connection.Connected)
+			try
 			{
-				ParseQuery<ParseObject> query = ParseObject.GetQuery("Data");
-				query.FirstOrDefaultAsync().ContinueWith(t =>
+				if (Connection.Connected)
 				{
-					ParseObject p = t.Result;
-                    data = (int)p["data"];
-				});
+					var task = ParseObject.GetQuery("Data").WhereEqualTo("userId", ParseUser.CurrentUser.ObjectId).FirstOrDefaultAsync();
+					task.ContinueWith(t =>
+					{
+						if (t.Result != null)
+						{
+							ParseObject p = t.Result;
+							var page = p.Get<int>("page");
+							Loom.QueueOnMainThread(() => { Flow.Instance.TweenBy(page); });
+						}
+						else
+						{
+							Loom.QueueOnMainThread(() => { Flow.Instance.Next(); });
+						}
+					});
+				}
 			}
-			return data;
+			catch (Exception e)
+			{
+				Utility.LogError(e);
+			}
 		}
 		public void SetEmail(string email)
 		{
