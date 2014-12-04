@@ -162,6 +162,7 @@ namespace ca.HenrySoftware.Flop
 				Audio.Instance.PlayClick();
 				Stop();
 				DragTo(Mathf.RoundToInt(scroll * _dataMax));
+				Connect.Instance.SetData((int)_current);
 			}
 		}
 		public void Stop()

@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Parse;
+using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 namespace ca.HenrySoftware.Flop
@@ -23,6 +25,29 @@ namespace ca.HenrySoftware.Flop
 			{
 				SetEmail(email);
 			}
+		}
+		public void SetData(int data)
+		{
+			if (Connection.Connected)
+			{
+				var p = new ParseObject("Data");
+				p["data"] = data;
+				Task saveTask = p.SaveAsync();
+			}
+		}
+		public int GetData()
+		{
+			int data = 1;
+			if (Connection.Connected)
+			{
+				ParseQuery<ParseObject> query = ParseObject.GetQuery("Data");
+				query.FirstOrDefaultAsync().ContinueWith(t =>
+				{
+					ParseObject p = t.Result;
+                    data = (int)p["data"];
+				});
+			}
+			return data;
 		}
 		public void SetEmail(string email)
 		{
