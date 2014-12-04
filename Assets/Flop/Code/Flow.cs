@@ -163,8 +163,20 @@ namespace ca.HenrySoftware.Flop
 				Stop();
 				DragTo(Mathf.RoundToInt(scroll * _dataMax));
 			}
+		}
+		private void OnApplicationQuit()
+		{
 			Connect.Instance.SetData(GetCurrent());
 		}
+		private void OnApplicationFocus(bool focusStatus)
+		{
+			Connect.Instance.SetData(GetCurrent());
+		}
+		private void OnApplicationPause(bool pauseStatus)
+		{
+			Connect.Instance.SetData(GetCurrent());
+		}
+
 		public void Stop()
 		{
 			_inertia = 0f;
