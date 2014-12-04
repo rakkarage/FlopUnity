@@ -17,12 +17,15 @@ TextureImporter:
     21300020: Panel
     21300022: PanelPaper
     21300024: PanelStone
-    21300026: Tooltip
+    21300026: TooltipEast
     21300028: Empty
     21300030: Cloud0
     21300032: Cloud1
     21300034: Input
     21300036: Filled
+    21300038: TooltipWest
+    21300040: TooltipNorth
+    21300042: TooltipSouth
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -77,8 +80,8 @@ TextureImporter:
     - name: ArrowNorth
       rect:
         serializedVersion: 2
-        x: 125
-        y: 12
+        x: 142
+        y: 11
         width: 16
         height: 18
       alignment: 0
@@ -87,8 +90,8 @@ TextureImporter:
     - name: ArrowSouth
       rect:
         serializedVersion: 2
-        x: 142
-        y: 11
+        x: 125
+        y: 12
         width: 16
         height: 18
       alignment: 0
@@ -107,8 +110,8 @@ TextureImporter:
     - name: Button0
       rect:
         serializedVersion: 2
-        x: 144
-        y: 63
+        x: 163
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -117,8 +120,8 @@ TextureImporter:
     - name: Button1
       rect:
         serializedVersion: 2
-        x: 144
-        y: 30
+        x: 130
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -127,8 +130,8 @@ TextureImporter:
     - name: Button2
       rect:
         serializedVersion: 2
-        x: 163
-        y: 96
+        x: 144
+        y: 63
         width: 32
         height: 32
       alignment: 0
@@ -147,7 +150,7 @@ TextureImporter:
     - name: IconNo
       rect:
         serializedVersion: 2
-        x: 41
+        x: 64
         y: 4
         width: 22
         height: 22
@@ -157,7 +160,7 @@ TextureImporter:
     - name: IconYes
       rect:
         serializedVersion: 2
-        x: 64
+        x: 41
         y: 4
         width: 22
         height: 22
@@ -167,8 +170,8 @@ TextureImporter:
     - name: Panel
       rect:
         serializedVersion: 2
-        x: 130
-        y: 96
+        x: 111
+        y: 31
         width: 32
         height: 32
       alignment: 0
@@ -194,11 +197,11 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 32, y: 32, z: 32, w: 32}
-    - name: Tooltip
+    - name: TooltipEast
       rect:
         serializedVersion: 2
-        x: 78
-        y: 31
+        x: 196
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -208,7 +211,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 224
-        y: 64
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -218,7 +221,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 33
+        y: 2
         width: 40
         height: 30
       alignment: 0
@@ -228,7 +231,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2
+        y: 33
         width: 40
         height: 30
       alignment: 0
@@ -237,7 +240,7 @@ TextureImporter:
     - name: Input
       rect:
         serializedVersion: 2
-        x: 111
+        x: 78
         y: 31
         width: 32
         height: 32
@@ -248,11 +251,41 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 224
-        y: 96
+        y: 0
         width: 32
         height: 32
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
+    - name: TooltipWest
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 63
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 16, y: 16, z: 16, w: 16}
+    - name: TooltipNorth
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 30
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 16, y: 16, z: 16, w: 16}
+    - name: TooltipSouth
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 30
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 16, y: 16, z: 16, w: 16}
   spritePackingTag: 
   userData: 
