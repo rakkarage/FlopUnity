@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 namespace ca.HenrySoftware.Flop
 {
+	[RequireComponent(typeof(Selectable))]
 	public class SoundOver : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	{
 		private Selectable _selectable;
