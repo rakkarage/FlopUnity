@@ -15,7 +15,7 @@ namespace ca.HenrySoftware.Flop
 		{
 			if (_selectable.interactable)
 				Audio.Instance.PlayButton1();
-	    }
+		}
 		public void OnPointerExit(PointerEventData e)
 		{
 			if (_selectable.interactable)
