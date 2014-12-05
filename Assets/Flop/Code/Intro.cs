@@ -43,10 +43,15 @@ namespace ca.HenrySoftware.Flop
 		public void HandleNext()
 		{
 			_m.StopAllCoroutines();
-			gameObject.SetActive(false);
+			_logo.SetActive(false);
+			Ease.Go(_m, _fade.color.a, 0f, TimeAnimation, 0f, EaseType.Sinerp, HandleFade, HandleEnd);
 			Camera.main.backgroundColor = Constants.HenryBlue;
 			foreach (var i in Activate)
 				i.SetActive(true);
+		}
+		public void HandleEnd()
+		{
+			gameObject.SetActive(false);
 		}
 	}
 }
