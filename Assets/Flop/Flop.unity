@@ -3108,6 +3108,7 @@ GameObject:
   - 114: {fileID: 784256721}
   - 95: {fileID: 784256724}
   - 225: {fileID: 784256725}
+  - 114: {fileID: 784256726}
   m_Layer: 5
   m_Name: Next
   m_TagString: Untagged
@@ -3245,6 +3246,17 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &784256726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 784256719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deae457881fee8348b5a7eee248b548c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &829406212
 GameObject:
   m_ObjectHideFlags: 0
@@ -7610,8 +7622,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebaa4ab55c7ce194faba6fb172ac026d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VolumeMin: .77700001
+  VolumeMin: .5
   VolumeMax: 1
+  VolumeLowMin: .300000012
+  VolumeLowMax: .600000024
   PitchMin: .75
   PitchMax: 1.25
   Button0: {fileID: 8300000, guid: f9c656ba9fd6a3a4fa4602396761bcb5, type: 3}
@@ -7823,6 +7837,7 @@ GameObject:
   - 114: {fileID: 1922463922}
   - 95: {fileID: 1922463925}
   - 225: {fileID: 1922463926}
+  - 114: {fileID: 1922463927}
   m_Layer: 5
   m_Name: Prev
   m_TagString: Untagged
@@ -7960,6 +7975,17 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1922463927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1922463920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deae457881fee8348b5a7eee248b548c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1930629584
 GameObject:
   m_ObjectHideFlags: 0
