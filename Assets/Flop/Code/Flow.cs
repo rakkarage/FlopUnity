@@ -176,7 +176,6 @@ namespace ca.HenrySoftware.Flop
 		{
 			Connect.Instance.SetData(GetCurrent());
 		}
-
 		public void Stop()
 		{
 			_inertia = 0f;
