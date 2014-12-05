@@ -7,7 +7,7 @@ namespace ca.HenrySoftware.Flop
 		public Text Title;
 		public Text Text;
 		private MonoBehaviour _m;
-		private void Start()
+		private void Awake()
 		{
 			_m = GetComponent<Dialog>();
 		}
