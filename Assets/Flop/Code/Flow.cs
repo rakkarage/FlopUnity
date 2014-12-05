@@ -30,7 +30,6 @@ namespace ca.HenrySoftware.Flop
 		private Dictionary<int, Transform> _views = new Dictionary<int, Transform>(_data.Count);
 		private void Start()
 		{
-			Data.Instance.Get();
 			_m = GetComponent<Flow>();
 			_scaler = GetComponentInParent<CanvasScaler>();
 			_dataMax = _data.Count - 1;
@@ -40,6 +39,7 @@ namespace ca.HenrySoftware.Flop
 			for (int i = 0; (i < _data.Count) && (i < Limit); i++)
 				Add(i);
 			UpdateAll();
+			TweenBy(Data.Instance.Page);
 		}
 		private void OnEnable()
 		{
@@ -163,7 +163,7 @@ namespace ca.HenrySoftware.Flop
 				Stop();
 				DragTo(Mathf.RoundToInt(scroll * _dataMax));
 			}
-			Data.Instance.Set(GetCurrent());
+			Data.Instance.Page = GetCurrent();
 		}
 		public void Stop()
 		{

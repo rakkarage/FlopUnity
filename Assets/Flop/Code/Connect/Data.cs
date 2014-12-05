@@ -5,17 +5,30 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Data : Singleton<Data>
 	{
+		private int _page = 1;
+		public int Page
+		{
+			get
+			{
+				return _page;
+			}
+			set
+			{
+				_page = value;
+				_m.StopAllCoroutines();
+				_m.StartCoroutine(Save(_page));
+			}
+		}
 		private MonoBehaviour _m;
 		private void Awake()
 		{
 			_m = GetComponent<Data>();
 		}
-		public void Set(int data)
+		private void Start()
 		{
-			_m.StopAllCoroutines();
-			_m.StartCoroutine(FinishSet(data));
+			Load();
 		}
-		private IEnumerator FinishSet(int data)
+		private IEnumerator Save(int data)
 		{
 			yield return new WaitForSeconds(1);
 			if (Connection.Connected)
@@ -30,7 +43,7 @@ namespace ca.HenrySoftware.Flop
 				});
 			}
 		}
-		public void Get()
+		public void Load()
 		{
 			if (Connection.Connected)
 			{
@@ -39,11 +52,7 @@ namespace ca.HenrySoftware.Flop
 				{
 					if (t.Result != null)
 					{
-						Loom.QueueOnMainThread(() => { Flow.Instance.TweenBy(t.Result.Get<int>("page")); });
-					}
-					else
-					{
-						Loom.QueueOnMainThread(() => { Flow.Instance.Next(); });
+						Loom.QueueOnMainThread(() => { Page = t.Result.Get<int>("page"); });
 					}
 				});
 			}

@@ -7597,6 +7597,7 @@ GameObject:
   - 114: {fileID: 1894599099}
   - 114: {fileID: 1894599104}
   - 114: {fileID: 1894599103}
+  - 114: {fileID: 1894599105}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -7759,6 +7760,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   applicationID: MKZztYjvNGS21Ay7FMk8wJlIxVP5lsbsJ6fwSR95
   dotnetKey: RaWRzFfocEqeofy6b563y7UIHntfaLpLEjpTkEKO
+--- !u!114 &1894599105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1894599097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5140e2ccd0360944b975bff81e78d318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1902671540
 GameObject:
   m_ObjectHideFlags: 0
@@ -9080,7 +9092,6 @@ GameObject:
   m_Component:
   - 224: {fileID: 2100121067}
   - 114: {fileID: 2100121068}
-  - 114: {fileID: 2100121069}
   m_Layer: 5
   m_Name: ConnectRoot
   m_TagString: Untagged
@@ -9122,17 +9133,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9f19671534bb804fa3e12bd3108820c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &2100121069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2100121066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5140e2ccd0360944b975bff81e78d318, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2119684452
