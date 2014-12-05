@@ -28,7 +28,6 @@ namespace ca.HenrySoftware.Flop
 					p["userId"] = ParseUser.CurrentUser.ObjectId;
 					p.SaveAsync();
 				});
-				Debug.Log(data);
 			}
 		}
 		public void Get()
@@ -40,9 +39,7 @@ namespace ca.HenrySoftware.Flop
 				{
 					if (t.Result != null)
 					{
-						ParseObject p = t.Result;
-						var page = p.Get<int>("page");
-						Loom.QueueOnMainThread(() => { Flow.Instance.TweenBy(page); });
+						Loom.QueueOnMainThread(() => { Flow.Instance.TweenBy(t.Result.Get<int>("page")); });
 					}
 					else
 					{

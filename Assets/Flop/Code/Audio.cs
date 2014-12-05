@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 namespace ca.HenrySoftware.Flop
 {
 	public class Audio : Singleton<Audio>
