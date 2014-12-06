@@ -38,6 +38,10 @@ namespace ca.HenrySoftware.Flop
 		{
 			Debug.Log("<color=red>Error: </color>" + e);
 		}
+		public static Color RandomColor()
+		{
+			return new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
+		}
 		public static void Spring(MonoBehaviour m, Vector2 p)
 		{
 			Ease3.GoPosition(m, m.gameObject, m.gameObject.transform.localPosition, new Vector3(p.x, p.y, m.gameObject.transform.position.z), Constants.SpringTime, 0f, EaseType.Spring);

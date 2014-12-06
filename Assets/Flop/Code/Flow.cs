@@ -56,7 +56,9 @@ namespace ca.HenrySoftware.Flop
 			var button = o.GetComponent<Button>();
 			button.onClick.RemoveAllListeners();
 			button.onClick.AddListener(() => { TweenTo(o.transform); });
-			o.GetComponent<Item>().Flow = this;
+			Item item = o.GetComponent<Item>();
+			item.Flow = this;
+			item.ResetColor();
 			UpdateItem(o, i * Offset.x);
 			UpdateName(o, i);
 			_views.Add(i, o.transform);

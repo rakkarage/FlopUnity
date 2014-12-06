@@ -546,6 +546,7 @@ GameObject:
   - 224: {fileID: 1735704908}
   - 222: {fileID: 1735704910}
   - 114: {fileID: 1735704909}
+  - 114: {fileID: 1735704911}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -598,6 +599,17 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1735704907}
+--- !u!114 &1735704911
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1735704907}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98801f3ec9352424fa64b77909153b78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1794190331
 GameObject:
   m_ObjectHideFlags: 0
