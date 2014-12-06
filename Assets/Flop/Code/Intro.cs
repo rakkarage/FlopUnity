@@ -10,7 +10,7 @@ namespace ca.HenrySoftware.Flop
 		private Image _fade;
 		private MonoBehaviour _m;
 		private AudioSource _source;
-		private const float TimeAnimation = 1.0f;
+		private const float TimeAnimation = 1f;
 		private const float TimeDelay = .5f;
 		private const float TimeDelaySound = .8f;
 		private void Awake()
@@ -26,8 +26,8 @@ namespace ca.HenrySoftware.Flop
 			_fade = _foreground.GetComponent<Image>();
 			_source = GetComponent<AudioSource>();
 			_source.PlayDelayed(TimeDelaySound);
-			Ease3.GoScale(_m, _logo, _logo.transform.localScale, new Vector3(2.0f, 2.0f, 1.0f), TimeAnimation, TimeDelay, EaseType.BounceOut);
-			Ease3.GoRotation(_m, _logo, _logo.transform.localRotation.eulerAngles, new Vector3(0.0f, 0.0f, 180.0f), TimeAnimation, TimeDelay, EaseType.BounceOut);
+			Ease3.GoScale(_m, _logo, _logo.transform.localScale, new Vector3(2f, 2f, 1f), TimeAnimation, TimeDelay, EaseType.BounceOut);
+			Ease3.GoRotation(_m, _logo, _logo.transform.localRotation.eulerAngles, new Vector3(0f, 0f, 180f), TimeAnimation, TimeDelay, EaseType.BounceOut);
 			Ease3.Go(_m, Constants.HenryBlue.GetVector(), Color.black.GetVector(), TimeAnimation, TimeDelay, EaseType.BounceOut, HandleColor, HandleFade);
 		}
 		private void HandleColor(Vector3 vector)
