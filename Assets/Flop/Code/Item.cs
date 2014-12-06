@@ -21,7 +21,6 @@ namespace ca.HenrySoftware.Flop
 		public void OnPointerClick(PointerEventData e)
 		{
 			e.Use();
-			Debug.Log(e.button);
 			if (e.button == PointerEventData.InputButton.Right)
 			{
 				UpdateColor();
