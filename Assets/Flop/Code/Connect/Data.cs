@@ -8,10 +8,7 @@ namespace ca.HenrySoftware.Flop
 		private int _page = 1;
 		public int Page
 		{
-			get
-			{
-				return _page;
-			}
+			get { return _page; }
 			set
 			{
 				_page = value;
@@ -28,7 +25,7 @@ namespace ca.HenrySoftware.Flop
 		{
 			Load();
 		}
-		private IEnumerator Save(int data)
+		private IEnumerator Save(int page)
 		{
 			yield return new WaitForSeconds(1);
 			if (Connection.Connected)
@@ -37,7 +34,7 @@ namespace ca.HenrySoftware.Flop
 				task.ContinueWith(t =>
 				{
 					ParseObject p = (t.Result != null) ? t.Result : new ParseObject("Data");
-					p["page"] = data;
+					p["page"] = page;
 					p["userId"] = ParseUser.CurrentUser.ObjectId;
 					p.SaveAsync();
 				});
