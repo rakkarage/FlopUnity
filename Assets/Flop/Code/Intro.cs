@@ -25,7 +25,7 @@ namespace ca.HenrySoftware.Flop
 			_source = GetComponent<AudioSource>();
 			_source.PlayDelayed(TimeDelaySound);
 			Ease3.GoScale(this, _logo, _logo.transform.localScale, new Vector3(2f, 2f, 1f), TimeAnimation, TimeDelay, EaseType.BounceOut);
-			Ease3.GoRotation(this, _logo, _logo.transform.localEulerAngles, new Vector3(0f, 0f, 180f), TimeAnimation, TimeDelay, EaseType.BounceOut);
+			Ease3.GoRotation(this, _logo, new Vector3(0f, 0f, 180f), TimeAnimation, TimeDelay, EaseType.BounceOut);
 			Ease3.Go(this, Constants.HenryBlue.GetVector(), Color.black.GetVector(), TimeAnimation, TimeDelay, EaseType.BounceOut, HandleColor, HandleFade);
 		}
 		private void HandleColor(Vector3 vector)

@@ -139,11 +139,11 @@ namespace ca.HenrySoftware.Flop
 			}
 			o.transform.localPosition = end;
 		}
-		public static void GoRotation(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
+		public static void GoRotation(MonoBehaviour m, GameObject o, Vector3 angle, float time, float delay, EaseType type)
 		{
-			m.StartCoroutine(GoRotationCoroutine(o, start, end, time, delay, type));
+			m.StartCoroutine(GoRotationCoroutine(o, angle, time, delay, type));
 		}
-		private static IEnumerator GoRotationCoroutine(GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
+		private static IEnumerator GoRotationCoroutine(GameObject o, Vector3 angle, float time, float delay, EaseType type)
 		{
 			if (delay > 0f)
 				yield return new WaitForSeconds(delay);
@@ -151,10 +151,10 @@ namespace ca.HenrySoftware.Flop
 			while (i <= 1f)
 			{
 				i += Time.deltaTime / time;
-				o.transform.localEulerAngles = _types[type](start, end, i);
+				o.transform.localEulerAngles = _types[type](Vector3.zero, angle, i);
 				yield return null;
 			}
-			o.transform.localEulerAngles = end;
+			o.transform.localEulerAngles = _types[type](Vector3.zero, angle, 1f);
 		}
 		public static void GoScale(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
 		{
