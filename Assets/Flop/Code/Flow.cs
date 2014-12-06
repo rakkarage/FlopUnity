@@ -18,7 +18,6 @@ namespace ca.HenrySoftware.Flop
 		public Button NextButton;
 		public Scrollbar Scrollbar;
 		public Text Text;
-		private MonoBehaviour _m;
 		private CanvasScaler _scaler;
 		private float _inertia;
 		private float _max;
@@ -30,7 +29,6 @@ namespace ca.HenrySoftware.Flop
 		private Dictionary<int, Transform> _views = new Dictionary<int, Transform>(_data.Count);
 		private void Start()
 		{
-			_m = GetComponent<Flow>();
 			_scaler = GetComponentInParent<CanvasScaler>();
 			_dataMax = _data.Count - 1;
 			_max = (Offset.x * (Limit - 2f));
@@ -40,7 +38,7 @@ namespace ca.HenrySoftware.Flop
 				Add(i);
 			UpdateAll();
 			TweenBy(Data.Instance.Page);
-			Ease3.GoRotation(_m, gameObject, gameObject.transform.localRotation.eulerAngles, new Vector3(360f, 0f, 0f), 1f, 0f, EaseType.Spring);
+			Ease3.GoRotation(this, gameObject, gameObject.transform.localRotation.eulerAngles, new Vector3(360f, 0f, 0f), Constants.SpringTime, 0f, EaseType.Spring);
 		}
 		private void OnEnable()
 		{
@@ -79,7 +77,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		private void Tween(int to)
 		{
-			Ease.Go(_m, _current, to * -Offset.x, Time, 0f, EaseType.Spring, (i) => { DragTo(i); }, null);
+			Ease.Go(this, _current, to * -Offset.x, Time, 0f, EaseType.Spring, (i) => { DragTo(i); }, null);
 		}
 		private void DragTo(int i)
 		{
@@ -171,7 +169,7 @@ namespace ca.HenrySoftware.Flop
 		public void Stop()
 		{
 			_inertia = 0f;
-			_m.StopAllCoroutines();
+			StopAllCoroutines();
 		}
 		public void OnPointerDown(PointerEventData e)
 		{
@@ -191,7 +189,7 @@ namespace ca.HenrySoftware.Flop
 				Drag(e.delta.x);
 			_inertia = temp - _current;
 			var time = Mathf.Clamp(Mathf.Abs(_inertia * .1f), 0, 3.33f);
-			Ease.Go(_m, _inertia, 0f, time, 0f, EaseType.Linear, (i) => { _inertia = i; }, null);
+			Ease.Go(this, _inertia, 0f, time, 0f, EaseType.Linear, (i) => { _inertia = i; }, null);
 		}
 		public void OnEndDrag(PointerEventData e)
 		{
@@ -200,7 +198,7 @@ namespace ca.HenrySoftware.Flop
 				if (Mathf.Abs(_inertia) > .0333f)
 				{
 					var time = Mathf.Clamp(Mathf.Abs(_inertia * .1f), 0, 3.33f);
-					Ease.Go(_m, -_inertia, 0f, time, 0f, EaseType.Linear, (i) => { Drag(i); }, Snap);
+					Ease.Go(this, -_inertia, 0f, time, 0f, EaseType.Linear, (i) => { Drag(i); }, Snap);
 				}
 				else
 					Snap();

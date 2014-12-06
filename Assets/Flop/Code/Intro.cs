@@ -8,7 +8,6 @@ namespace ca.HenrySoftware.Flop
 		private GameObject _logo;
 		private GameObject _foreground;
 		private Image _fade;
-		private MonoBehaviour _m;
 		private AudioSource _source;
 		private const float TimeAnimation = 1f;
 		private const float TimeDelay = .5f;
@@ -20,15 +19,14 @@ namespace ca.HenrySoftware.Flop
 		}
 		private void Start()
 		{
-			_m = GetComponent<Intro>();
 			_logo = transform.FindChild("Logo").gameObject;
 			_foreground = transform.FindChild("Fore").gameObject;
 			_fade = _foreground.GetComponent<Image>();
 			_source = GetComponent<AudioSource>();
 			_source.PlayDelayed(TimeDelaySound);
-			Ease3.GoScale(_m, _logo, _logo.transform.localScale, new Vector3(2f, 2f, 1f), TimeAnimation, TimeDelay, EaseType.BounceOut);
-			Ease3.GoRotation(_m, _logo, _logo.transform.localRotation.eulerAngles, new Vector3(0f, 0f, 180f), TimeAnimation, TimeDelay, EaseType.BounceOut);
-			Ease3.Go(_m, Constants.HenryBlue.GetVector(), Color.black.GetVector(), TimeAnimation, TimeDelay, EaseType.BounceOut, HandleColor, HandleFade);
+			Ease3.GoScale(this, _logo, _logo.transform.localScale, new Vector3(2f, 2f, 1f), TimeAnimation, TimeDelay, EaseType.BounceOut);
+			Ease3.GoRotation(this, _logo, _logo.transform.localRotation.eulerAngles, new Vector3(0f, 0f, 180f), TimeAnimation, TimeDelay, EaseType.BounceOut);
+			Ease3.Go(this, Constants.HenryBlue.GetVector(), Color.black.GetVector(), TimeAnimation, TimeDelay, EaseType.BounceOut, HandleColor, HandleFade);
 		}
 		private void HandleColor(Vector3 vector)
 		{
@@ -36,7 +34,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		private void HandleFade()
 		{
-			Ease.Go(_m, 0f, 1f, TimeAnimation, TimeAnimation, EaseType.Sinerp, HandleFade, HandleNext);
+			Ease.Go(this, 0f, 1f, TimeAnimation, TimeAnimation, EaseType.Sinerp, HandleFade, HandleNext);
 		}
 		private void HandleFade(float value)
 		{
@@ -45,9 +43,9 @@ namespace ca.HenrySoftware.Flop
 		public void HandleNext()
 		{
 			_source.Stop();
-			_m.StopAllCoroutines();
+			StopAllCoroutines();
 			_logo.SetActive(false);
-			Ease.Go(_m, _fade.color.a, 0f, TimeAnimation, 0f, EaseType.Sinerp, HandleFade, HandleEnd);
+			Ease.Go(this, _fade.color.a, 0f, TimeAnimation, 0f, EaseType.Sinerp, HandleFade, HandleEnd);
 			Camera.main.backgroundColor = Constants.HenryBlue;
 			foreach (var i in Activate)
 				i.SetActive(true);

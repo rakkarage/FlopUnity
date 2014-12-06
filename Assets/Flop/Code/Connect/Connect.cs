@@ -6,11 +6,6 @@ namespace ca.HenrySoftware.Flop
 	public class Connect : Singleton<Connect>
 	{
 		public static UnityAction<string> EmailChangedEvent;
-		private MonoBehaviour _m;
-		private void Awake()
-		{
-			_m = GetComponent<Connect>();
-		}
 		private void OnEnable()
 		{
 			StartCoroutine(UpdateEmail());
@@ -34,38 +29,38 @@ namespace ca.HenrySoftware.Flop
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
-			Utility.Spring(_m, Constants.OffsetSignIn);
+			Utility.Spring(this, Constants.OffsetSignIn);
 		}
 		public void SpringRegister()
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
-			Utility.Spring(_m, Constants.OffsetRegister);
+			Utility.Spring(this, Constants.OffsetRegister);
 		}
 		public void SpringReset()
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
-			Utility.Spring(_m, Constants.OffsetReset);
+			Utility.Spring(this, Constants.OffsetReset);
 		}
 		public void SpringAccount()
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
-			Utility.Spring(_m, Constants.OffsetAccount);
+			Utility.Spring(this, Constants.OffsetAccount);
 		}
 		public void SpringChange()
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
-			Utility.Spring(_m, Constants.OffsetChange);
+			Utility.Spring(this, Constants.OffsetChange);
 		}
 		public void SpringBack()
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
 			Status.Instance.UpdateColor();
-			Utility.Spring(_m, Vector3.zero);
+			Utility.Spring(this, Vector3.zero);
 		}
 	}
 }

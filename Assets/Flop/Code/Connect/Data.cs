@@ -12,14 +12,9 @@ namespace ca.HenrySoftware.Flop
 			set
 			{
 				_page = value;
-				_m.StopAllCoroutines();
-				_m.StartCoroutine(Save(_page));
+				StopAllCoroutines();
+				StartCoroutine(Save(_page));
 			}
-		}
-		private MonoBehaviour _m;
-		private void Awake()
-		{
-			_m = GetComponent<Data>();
 		}
 		private void Start()
 		{

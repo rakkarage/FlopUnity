@@ -6,11 +6,6 @@ namespace ca.HenrySoftware.Flop
 	{
 		public Text Title;
 		public Text Text;
-		private MonoBehaviour _m;
-		private void Awake()
-		{
-			_m = GetComponent<Dialog>();
-		}
 		public void Show(string text)
 		{
 			Title.text = Constants.Error;
@@ -19,11 +14,11 @@ namespace ca.HenrySoftware.Flop
 		}
 		public void Spring()
 		{
-			Utility.Spring(_m, Constants.OffsetDialog);
+			Utility.Spring(this, Constants.OffsetDialog);
 		}
 		public void SpringBack()
 		{
-			Utility.Spring(_m, Vector3.zero);
+			Utility.Spring(this, Vector3.zero);
 		}
 	}
 }
