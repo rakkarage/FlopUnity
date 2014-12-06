@@ -13,7 +13,7 @@ namespace ca.HenrySoftware.Flop
 					instance = (T)FindObjectOfType(typeof(T));
 					if (instance == null)
 					{
-						Debug.LogError("An instance of " + typeof(T) + " is needed in the scene, but there is none.");
+						Debug.LogError("Missing: " + typeof(T));
 					}
 				}
 				return instance;

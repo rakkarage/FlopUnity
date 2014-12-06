@@ -115,7 +115,7 @@ namespace ca.HenrySoftware.Flop
 			children.Remove(o.transform);
 			children.Sort(Compare);
 			for (int i = 0; i < children.Count; i++)
-			children[i].SetSiblingIndex(i);
+				children[i].SetSiblingIndex(i);
 		}
 		private static int Compare(Transform lhs, Transform rhs)
 		{

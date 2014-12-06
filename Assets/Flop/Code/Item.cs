@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 namespace ca.HenrySoftware.Flop
 {
 	public class Item : MonoBehaviour, IPointerDownHandler, IPointerClickHandler
@@ -32,7 +31,7 @@ namespace ca.HenrySoftware.Flop
 		public void UpdateColor()
 		{
 			Color c = Utility.RandomColor();
-            foreach (var text in _children)
+			foreach (var text in _children)
 			{
 				if (text.color == Color.white)
 				{

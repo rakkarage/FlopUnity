@@ -36,7 +36,7 @@ namespace ca.HenrySoftware.Flop
 		private static IEnumerator GoCoroutine(float start, float end, float time, float delay, EaseType type, UnityAction<float> update, UnityAction complete)
 		{
 			if (delay > 0f)
-			yield return new WaitForSeconds(delay);
+				yield return new WaitForSeconds(delay);
 			var i = 0f;
 			while (i <= 1f)
 			{
@@ -45,7 +45,7 @@ namespace ca.HenrySoftware.Flop
 				yield return null;
 			}
 			if (complete != null)
-			complete();
+				complete();
 		}
 		public static float Hermite(float start, float end, float time)
 		{
@@ -75,18 +75,18 @@ namespace ca.HenrySoftware.Flop
 			time /= 1f;
 			end -= start;
 			if (time < (1f / 2.75f))
-			return end * (7.5625f * time * time) + start;
+				return end * (7.5625f * time * time) + start;
 			if (time < (2f / 2.75f))
-			return end * (7.5625f * (time -= (1.5f / 2.75f)) * time + .75f) + start;
+				return end * (7.5625f * (time -= (1.5f / 2.75f)) * time + .75f) + start;
 			if (time < (2.5f / 2.75f))
-			return end * (7.5625f * (time -= (2.25f / 2.75f)) * time + .9375f) + start;
+				return end * (7.5625f * (time -= (2.25f / 2.75f)) * time + .9375f) + start;
 			return end * (7.5625f * (time -= (2.625f / 2.75f)) * time + .984375f) + start;
 		}
 		public static float BounceInOut(float start, float end, float time)
 		{
 			end -= start;
 			if (time < .5f)
-			return BounceIn(0f, end, time * 2f) * .5f + start;
+				return BounceIn(0f, end, time * 2f) * .5f + start;
 			return BounceOut(0f, end, time * 2f - 1f) * .5f + end * .5f + start;
 		}
 	}
@@ -111,7 +111,7 @@ namespace ca.HenrySoftware.Flop
 		private static IEnumerator GoCoroutine(Vector3 start, Vector3 end, float time, float delay, EaseType type, UnityAction<Vector3> update, UnityAction complete)
 		{
 			if (delay > 0f)
-			yield return new WaitForSeconds(delay);
+				yield return new WaitForSeconds(delay);
 			var i = 0f;
 			while (i <= 1f)
 			{
@@ -120,7 +120,7 @@ namespace ca.HenrySoftware.Flop
 				yield return null;
 			}
 			if (complete != null)
-			complete();
+				complete();
 		}
 		public static void GoPosition(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
 		{
@@ -129,7 +129,7 @@ namespace ca.HenrySoftware.Flop
 		private static IEnumerator GoPositionCoroutine(GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
 		{
 			if (delay > 0f)
-			yield return new WaitForSeconds(delay);
+				yield return new WaitForSeconds(delay);
 			var i = 0f;
 			while (i <= 1f)
 			{
@@ -146,7 +146,7 @@ namespace ca.HenrySoftware.Flop
 		private static IEnumerator GoRotationCoroutine(GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
 		{
 			if (delay > 0f)
-			yield return new WaitForSeconds(delay);
+				yield return new WaitForSeconds(delay);
 			var i = 0f;
 			while (i <= 1f)
 			{
@@ -163,7 +163,7 @@ namespace ca.HenrySoftware.Flop
 		private static IEnumerator GoScaleCoroutine(GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
 		{
 			if (delay > 0f)
-			yield return new WaitForSeconds(delay);
+				yield return new WaitForSeconds(delay);
 			var i = 0f;
 			while (i <= 1f)
 			{

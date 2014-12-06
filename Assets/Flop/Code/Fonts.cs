@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 namespace ca.HenrySoftware.Flop
 {
 	public class Fonts : MonoBehaviour, IPointerClickHandler
