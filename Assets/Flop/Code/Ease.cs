@@ -151,10 +151,10 @@ namespace ca.HenrySoftware.Flop
 			while (i <= 1f)
 			{
 				i += Time.deltaTime / time;
-				o.transform.eulerAngles = _types[type](start, end, i);
+				o.transform.localEulerAngles = _types[type](start, end, i);
 				yield return null;
 			}
-			o.transform.eulerAngles = end;
+			o.transform.localEulerAngles = end;
 		}
 		public static void GoScale(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
 		{
