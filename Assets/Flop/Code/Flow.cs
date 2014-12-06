@@ -40,6 +40,7 @@ namespace ca.HenrySoftware.Flop
 				Add(i);
 			UpdateAll();
 			TweenBy(Data.Instance.Page);
+			Ease3.GoRotation(_m, gameObject, gameObject.transform.localRotation.eulerAngles, new Vector3(360f, 0f, 0f), 1f, 0f, EaseType.Spring);
 		}
 		private void OnEnable()
 		{

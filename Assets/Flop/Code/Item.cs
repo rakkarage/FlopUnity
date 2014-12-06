@@ -22,7 +22,11 @@ namespace ca.HenrySoftware.Flop
 		{
 			e.Use();
 			Debug.Log(e.button);
-			if (e.button == PointerEventData.InputButton.Right) UpdateColor();
+			if (e.button == PointerEventData.InputButton.Right)
+			{
+				UpdateColor();
+				Ease3.GoRotation(this, gameObject, gameObject.transform.localRotation.eulerAngles, new Vector3(0f, 360f, 0f), 1f, 0f, EaseType.Spring);
+			}
 			Audio.Instance.PlayClick();
 			Flow.TweenTo(_t);
 		}
