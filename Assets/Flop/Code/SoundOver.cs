@@ -13,12 +13,12 @@ namespace ca.HenrySoftware.Flop
 		}
 		public void OnPointerEnter(PointerEventData e)
 		{
-			if (_selectable.interactable)
+			if (!e.used && _selectable.interactable)
 				Audio.Instance.PlayButton1();
 		}
 		public void OnPointerExit(PointerEventData e)
 		{
-			if (_selectable.interactable)
+			if (!e.used && _selectable.interactable)
 				Audio.Instance.PlayButton0();
 		}
 	}
