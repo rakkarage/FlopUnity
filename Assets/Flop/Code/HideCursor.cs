@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
-public class HideCursor : MonoBehaviour
+namespace ca.HenrySoftware.Flop
 {
-	void Start()
+	public class HideCursor : MonoBehaviour
 	{
-#if !UNITY_STANDALONE && !UNITY_WEBPLAYER && !UNITY_EDITOR
-		Screen.showCursor = false;
-#endif
+		void Start()
+		{
+			if (Utility.TouchPlatform)
+				Screen.showCursor = false;
+		}
 	}
 }
