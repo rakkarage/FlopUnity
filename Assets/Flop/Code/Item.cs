@@ -21,7 +21,8 @@ namespace ca.HenrySoftware.Flop
 		{
 			e.Use();
 			UpdateColor();
-			Ease3.GoRotation(this, gameObject, new Vector3(0f, 360f, 0f), 1f, 0f, EaseType.Spring);
+			var direction = _t.localPosition.x > 0 ? 360f : -360f;
+			Ease3.GoRotation(this, gameObject, new Vector3(0f, direction, 0f), 1f, 0f, EaseType.Spring);
 			Audio.Instance.PlayClick();
 			Flow.TweenTo(_t);
 		}
