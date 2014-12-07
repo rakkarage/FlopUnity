@@ -3,32 +3,32 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Audio : Singleton<Audio>
 	{
-		public float VolumeMin = .5f;
-		public float VolumeMax = 1f;
-		public float VolumeLowMin = .3f;
-		public float VolumeLowMax = .6f;
-		public float PitchMin = .75f;
-		public float PitchMax = 1.25f;
 		public AudioClip Button0;
 		public AudioClip Button1;
 		public AudioClip Click;
 		public AudioClip Error;
 		private AudioSource _source;
+		private float _volumeMin = .5f;
+		private float _volumeMax = 1f;
+		private float _volumeLowMin = .3f;
+		private float _volumeLowMax = .6f;
+		private float _pitchMin = .75f;
+		private float _pitchMax = 1.25f;
 		private void Awake()
 		{
 			_source = GetComponent<AudioSource>();
 		}
 		private float RandomVolume()
 		{
-			return Random.Range(VolumeMin, VolumeMax);
+			return Random.Range(_volumeMin, _volumeMax);
 		}
 		private float RandomVolumeLow()
 		{
-			return Random.Range(VolumeLowMin, VolumeLowMax);
+			return Random.Range(_volumeLowMin, _volumeLowMax);
 		}
 		private float RandomPitch()
 		{
-			return Random.Range(PitchMin, PitchMax);
+			return Random.Range(_pitchMin, _pitchMax);
 		}
 		private void RandomSound(AudioClip sound)
 		{
