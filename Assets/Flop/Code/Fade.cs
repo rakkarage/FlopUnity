@@ -13,7 +13,7 @@ namespace ca.HenrySoftware.Flop
 			float end = In ? 1f : 0f;
 			_group = GetComponent<CanvasGroup>();
 			_group.alpha = start;
-			Ease.Go(GetComponent<Fade>(), start, end, Time, 0f, EaseType.Sinerp, HandleFade, null);
+			Ease.Go(this, start, end, Time, 0f, EaseType.Sinerp, HandleFade, null);
 		}
 		private void HandleFade(float alpha)
 		{
