@@ -20,11 +20,8 @@ namespace ca.HenrySoftware.Flop
 		public void OnPointerClick(PointerEventData e)
 		{
 			e.Use();
-			if (e.button == PointerEventData.InputButton.Right)
-			{
-				UpdateColor();
-				Ease3.GoRotation(this, gameObject, new Vector3(0f, 360f, 0f), 1f, 0f, EaseType.Spring);
-			}
+			UpdateColor();
+			Ease3.GoRotation(this, gameObject, new Vector3(0f, 360f, 0f), 1f, 0f, EaseType.Spring);
 			Audio.Instance.PlayClick();
 			Flow.TweenTo(_t);
 		}
