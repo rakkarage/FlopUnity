@@ -5,7 +5,6 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Item : MonoBehaviour, IPointerDownHandler, IPointerClickHandler
 	{
-		public Flow Flow;
 		private Transform _t;
 		private Text[] _children;
 		private void Start()
@@ -19,7 +18,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		public void OnPointerDown(PointerEventData e)
 		{
-			Flow.Stop();
+			Flow.Instance.Stop();
 		}
 		public void OnPointerClick(PointerEventData e)
 		{
@@ -28,7 +27,7 @@ namespace ca.HenrySoftware.Flop
 			var direction = _t.localPosition.x > 0 ? 360f : -360f;
 			Ease3.GoRotation(this, gameObject, new Vector3(0f, direction, 0f), 1f, 0f, EaseType.Spring);
 			Audio.Instance.PlayClick();
-			Flow.TweenTo(_t);
+			Flow.Instance.EaseTo(_t);
 		}
 	}
 }

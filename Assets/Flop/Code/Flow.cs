@@ -8,6 +8,7 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Flow : Singleton<Flow>, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler
 	{
+		public bool Big = false;
 		public Vector3 Offset = new Vector3(32f, -3f, 16f);
 		public bool AbsoluteY = true;
 		public float InsetZ = .5f;
@@ -29,18 +30,21 @@ namespace ca.HenrySoftware.Flop
 		private float _current;
 		private int _dataMax;
 		private static List<int> _data = Enumerable.Range(32, 95).ToList();
-		private Dictionary<int, Transform> _views = new Dictionary<int, Transform>(_data.Count);
+		private static List<int> _dataBig = Enumerable.Range(3000000, 1000000).ToList();
+		private Dictionary<int, Transform> _views;
 		private void Start()
 		{
+            _views = new Dictionary<int, Transform>(Big ? _dataBig.Count : _data.Count);
 			_scaler = GetComponentInParent<CanvasScaler>();
-			_dataMax = _data.Count - 1;
+			_dataMax = Big ? _dataBig.Count :  _data.Count - 1;
 			_max = (Offset.x * (Limit - 2f));
 			_min = -(_dataMax * Offset.x + _max);
-			Scrollbar.numberOfSteps = _data.Count;
-			for (int i = 0; (i < _data.Count) && (i < Limit); i++)
+			Scrollbar.numberOfSteps = Big ? _data.Count : _dataBig.Count;
+			for (int i = 0; (i < (Big ? _dataBig.Count : _data.Count)) && (i < Limit); i++)
 				Add(i);
 			UpdateAll();
-			TweenBy(Data.Instance.Page);
+			var page = Data.Instance.Page;
+            EaseBy((page == -1) ? (Big ? 0 : 1) : page);
 			Ease3.GoRotation(this, gameObject, new Vector3(-360f, 0f, 0f), 1f, 0f, EaseType.Spring);
 		}
 		private void OnEnable()
@@ -57,9 +61,7 @@ namespace ca.HenrySoftware.Flop
 			o.GetComponent<LookAt>().Target = LookAt;
 			var button = o.GetComponent<Button>();
 			button.onClick.RemoveAllListeners();
-			button.onClick.AddListener(() => { TweenTo(o.transform); });
-			Item item = o.GetComponent<Item>();
-			item.Flow = this;
+			button.onClick.AddListener(() => { EaseTo(o.transform); });
 			UpdateItem(o, i * Offset.x);
 			UpdateName(o, i);
 			_views.Add(i, o.transform);
@@ -69,15 +71,15 @@ namespace ca.HenrySoftware.Flop
 			_views.Remove(i);
 			Pool.Exit(t.gameObject);
 		}
-		public void TweenTo(Transform t)
+		public void EaseBy(int by)
 		{
-			Tween(_views.SingleOrDefault(x => x.Value == t).Key);
+			EaseTo(GetCurrent() + by);
 		}
-		public void TweenBy(int by)
+		public void EaseTo(Transform t)
 		{
-			Tween(GetCurrent() + by);
+			EaseTo(_views.SingleOrDefault(x => x.Value == t).Key);
 		}
-		private void Tween(int to)
+		private void EaseTo(int to)
 		{
 			Ease.Go(this, _current, to * -Offset.x, Time, 0f, EaseType.Spring, (i) => { DragTo(i); }, null);
 		}
@@ -94,7 +96,7 @@ namespace ca.HenrySoftware.Flop
 		{
 			Transform t;
 			_current = Mathf.Clamp(_current + delta, _min, _max);
-			for (int i = 0; i < _data.Count; i++)
+			for (int i = 0; i < (Big ? _dataBig.Count : _data.Count); i++)
 			{
 				var x = _current + (i * Offset.x);
 				var ax = Mathf.Abs(x);
@@ -134,7 +136,7 @@ namespace ca.HenrySoftware.Flop
 		private void UpdateName(GameObject o, int i)
 		{
 			o.name = i.ToString();
-			var data = string.Format("{0}", (char)_data[i]);
+			var data = Big ? _dataBig[i].ToString() :  string.Format("{0}", (char)_data[i]);
 			foreach (var text in o.GetComponentsInChildren<Text>(true))
 				text.text = data;
 		}
@@ -155,7 +157,7 @@ namespace ca.HenrySoftware.Flop
 			_ignore = true;
 			float current = GetCurrent();
 			Scrollbar.value = current / _dataMax;
-			Text.text = (current + 32).ToString();
+			Text.text = Big ? current.ToString() : (current + 32).ToString();
 			_ignore = false;
 		}
 		private void OnScrollChanged(float scroll)
@@ -209,7 +211,7 @@ namespace ca.HenrySoftware.Flop
 		private void Snap()
 		{
 			_inertia = 0f;
-			Tween(GetCurrent());
+			EaseTo(GetCurrent());
 		}
 		public void OnPrev()
 		{
@@ -219,7 +221,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		public void Prev()
 		{
-			TweenBy(-1);
+			EaseBy(-1);
 		}
 		public void OnNext()
 		{
@@ -229,7 +231,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		public void Next()
 		{
-			TweenBy(1);
+			EaseBy(1);
 		}
 	}
 }

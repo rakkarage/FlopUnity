@@ -5,7 +5,7 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Data : Singleton<Data>
 	{
-		private int _page = 1;
+		private int _page = -1;
 		public int Page
 		{
 			get { return _page; }
