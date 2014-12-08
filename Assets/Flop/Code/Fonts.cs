@@ -12,22 +12,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		public void OnPointerClick(PointerEventData e)
 		{
-			UpdateColor();
-		}
-		public void UpdateColor()
-		{
-			Color c = Utility.RandomColor();
-			foreach (var text in _children)
-			{
-				if (text.color == Color.white)
-				{
-					text.color = c;
-				}
-				else
-				{
-					text.color = Color.white;
-				}
-			}
+			Utility.RandomColor(_children);
 		}
 	}
 }

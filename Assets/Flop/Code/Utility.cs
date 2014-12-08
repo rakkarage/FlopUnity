@@ -38,13 +38,36 @@ namespace ca.HenrySoftware.Flop
 		{
 			Debug.Log("<color=red>Error: </color>" + e);
 		}
+		public static void Spring(MonoBehaviour m, Vector2 p)
+		{
+			Ease3.GoPosition(m, m.gameObject, m.gameObject.transform.localPosition, new Vector3(p.x, p.y, m.gameObject.transform.position.z), Constants.SpringTime, 0f, EaseType.Spring);
+		}
 		public static Color RandomColor()
 		{
 			return new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
 		}
-		public static void Spring(MonoBehaviour m, Vector2 p)
+		public static void RandomColor(Text[] texts)
 		{
-			Ease3.GoPosition(m, m.gameObject, m.gameObject.transform.localPosition, new Vector3(p.x, p.y, m.gameObject.transform.position.z), Constants.SpringTime, 0f, EaseType.Spring);
+			Color c = Utility.RandomColor();
+			foreach (var text in texts)
+			{
+				if (text.color == Color.white)
+				{
+					text.color = c;
+				}
+				else
+				{
+					text.color = Color.white;
+				}
+			}
+		}
+		public static void ResetColor(Text[] texts)
+		{
+			if (texts != null)
+			{
+				foreach (var text in texts)
+					text.color = Color.white;
+			}
 		}
 	}
 	public static class Prefs

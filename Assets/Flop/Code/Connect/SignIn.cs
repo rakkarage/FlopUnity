@@ -62,7 +62,7 @@ namespace ca.HenrySoftware.Flop
 		private void SignInFail(string reason)
 		{
 			Audio.Instance.PlayError();
-			Dialog.Instance.Show(reason);
+			Dialog.Instance.ShowError(reason);
 			EnableInput();
 		}
 		private void SignInSucceed()

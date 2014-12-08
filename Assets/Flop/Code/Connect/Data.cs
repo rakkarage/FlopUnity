@@ -22,7 +22,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		private IEnumerator Save(int page)
 		{
-			yield return new WaitForSeconds(1);
+			yield return new WaitForSeconds(1f);
 			if (Connection.Connected)
 			{
 				var task = ParseObject.GetQuery("Data").WhereEqualTo("userId", ParseUser.CurrentUser.ObjectId).FirstOrDefaultAsync();

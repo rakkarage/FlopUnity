@@ -60,7 +60,6 @@ namespace ca.HenrySoftware.Flop
 			button.onClick.AddListener(() => { TweenTo(o.transform); });
 			Item item = o.GetComponent<Item>();
 			item.Flow = this;
-			item.ResetColor();
 			UpdateItem(o, i * Offset.x);
 			UpdateName(o, i);
 			_views.Add(i, o.transform);

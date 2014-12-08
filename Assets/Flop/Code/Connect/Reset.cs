@@ -53,7 +53,7 @@ namespace ca.HenrySoftware.Flop
 		private void ResetFail(string reason)
 		{
 			Audio.Instance.PlayError();
-			Dialog.Instance.Show(reason);
+			Dialog.Instance.ShowError(reason);
 			EnableInput();
 		}
 		private void ResetSucceed()

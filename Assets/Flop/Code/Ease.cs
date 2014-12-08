@@ -4,17 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 namespace ca.HenrySoftware.Flop
 {
-	public enum EaseType
-	{
-		Linear,
-		Hermite,
-		Sinerp,
-		Coserp,
-		Spring,
-		BounceIn,
-		BounceOut,
-		BounceInOut
-	}
+	public enum EaseType { Linear, Hermite, Sinerp, Coserp, Spring, BounceIn, BounceOut, BounceInOut }
 	public static class Ease
 	{
 		private delegate float EaseHandler(float start, float end, float time);

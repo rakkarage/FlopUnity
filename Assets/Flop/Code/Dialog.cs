@@ -6,7 +6,7 @@ namespace ca.HenrySoftware.Flop
 	{
 		public Text Title;
 		public Text Text;
-		public void Show(string text)
+		public void ShowError(string text)
 		{
 			Title.text = Constants.Error;
 			Text.text = text;
