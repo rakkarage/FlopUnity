@@ -7368,8 +7368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebaa4ab55c7ce194faba6fb172ac026d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Button0: {fileID: 8300000, guid: f9c656ba9fd6a3a4fa4602396761bcb5, type: 3}
-  Button1: {fileID: 8300000, guid: 8ff6b71f34ed3f14ea0d6afa9722f5ec, type: 3}
   Click: {fileID: 8300000, guid: 95c99f7dfea60444b88181e5df071c05, type: 3}
   Error: {fileID: 8300000, guid: aad08865f0d66924c967b23538de4aee, type: 3}
 --- !u!82 &1894599100
