@@ -46,17 +46,6 @@ namespace ca.HenrySoftware.Flop
 		{
 			Ease3.GoPosition(m, m.gameObject, m.gameObject.transform.localPosition, new Vector3(p.x, p.y, m.gameObject.transform.position.z), Constants.SpringTime, 0f, EaseType.Spring);
 		}
-		public static bool TouchPlatform
-		{
-			get
-			{
-#if !UNITY_STANDALONE && !UNITY_WEBPLAYER && !UNITY_EDITOR
-				return true;
-#else
-				return false;
-#endif
-			}
-		}
 	}
 	public static class Prefs
 	{

@@ -5,8 +5,9 @@ namespace ca.HenrySoftware.Flop
 	{
 		void Start()
 		{
-			if (Utility.TouchPlatform)
-				Screen.showCursor = false;
+#if UNITY_MOBILE
+			Screen.showCursor = false;
+#endif
 		}
 	}
 }
