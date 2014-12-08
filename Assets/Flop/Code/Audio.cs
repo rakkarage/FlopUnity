@@ -3,8 +3,6 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Audio : Singleton<Audio>
 	{
-		public AudioClip Button0;
-		public AudioClip Button1;
 		public AudioClip Click;
 		public AudioClip Error;
 		private AudioSource _source;
@@ -40,14 +38,6 @@ namespace ca.HenrySoftware.Flop
 			_source.pitch = RandomPitch();
 			_source.PlayOneShot(sound, low ? RandomVolumeLow() : RandomVolume());
 			_source.pitch = oldPitch;
-		}
-		public void PlayButton0()
-		{
-			RandomSound(Button0, true);
-		}
-		public void PlayButton1()
-		{
-			RandomSound(Button1, true);
 		}
 		public void PlayClick()
 		{
