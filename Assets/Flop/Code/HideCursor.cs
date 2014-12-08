@@ -5,7 +5,7 @@ namespace ca.HenrySoftware.Flop
 	{
 		void Start()
 		{
-#if UNITY_MOBILE
+#if !UNITY_EDITOR && (UNITY_IPHONE || UNITY_ANDROID)
 			Screen.showCursor = false;
 #endif
 		}
