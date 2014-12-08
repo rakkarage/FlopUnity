@@ -2,6 +2,7 @@ fileFormatVersion: 2
 guid: 4b189e16d442047478c329ad22fd9c43
 labels:
 - Sprite
+- Texture
 TextureImporter:
   fileIDToRecycleName:
     21300000: ArrowEast

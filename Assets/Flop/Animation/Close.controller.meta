@@ -2,5 +2,6 @@ fileFormatVersion: 2
 guid: dc94e0fbc7d80694aaa4dfb6c815611f
 labels:
 - Animation
+- Controller
 NativeFormatImporter:
   userData: 

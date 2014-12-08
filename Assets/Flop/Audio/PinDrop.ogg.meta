@@ -2,6 +2,7 @@ fileFormatVersion: 2
 guid: 96d66235adb8ff24684b8a033818695d
 labels:
 - Sound
+- Audio
 AudioImporter:
   serializedVersion: 4
   format: 0
