@@ -36,7 +36,7 @@ namespace ca.HenrySoftware.Flop
 		{
             _views = new Dictionary<int, Transform>(Big ? _dataBig.Count : _data.Count);
 			_scaler = GetComponentInParent<CanvasScaler>();
-			_dataMax = Big ? _dataBig.Count :  _data.Count - 1;
+			_dataMax = Big ? _dataBig.Count - 1 :  _data.Count - 1;
 			_max = (Offset.x * (Limit - 2f));
 			_min = -(_dataMax * Offset.x + _max);
 			Scrollbar.numberOfSteps = Big ? _data.Count : _dataBig.Count;
