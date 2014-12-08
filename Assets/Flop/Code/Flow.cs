@@ -193,16 +193,13 @@ namespace ca.HenrySoftware.Flop
 		}
 		public void OnEndDrag(PointerEventData e)
 		{
-			if (!e.used)
+			if (Mathf.Abs(_inertia) > .0333f)
 			{
-				if (Mathf.Abs(_inertia) > .0333f)
-				{
-					var time = Mathf.Clamp(Mathf.Abs(_inertia * .1f), 0, 3.33f);
-					Ease.Go(this, -_inertia, 0f, time, 0f, EaseType.Linear, (i) => { Drag(i); }, Snap);
-				}
-				else
-					Snap();
+				var time = Mathf.Clamp(Mathf.Abs(_inertia * .1f), 0, 3.33f);
+				Ease.Go(this, -_inertia, 0f, time, 0f, EaseType.Linear, (i) => { Drag(i); }, Snap);
 			}
+			else
+				Snap();
 		}
 		private void Snap()
 		{

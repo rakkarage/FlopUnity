@@ -19,7 +19,6 @@ namespace ca.HenrySoftware.Flop
 		}
 		public void OnPointerClick(PointerEventData e)
 		{
-			e.Use();
 			UpdateColor();
 			var direction = _t.localPosition.x > 0 ? 360f : -360f;
 			Ease3.GoRotation(this, gameObject, new Vector3(0f, direction, 0f), 1f, 0f, EaseType.Spring);
