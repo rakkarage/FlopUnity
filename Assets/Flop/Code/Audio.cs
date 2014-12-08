@@ -8,8 +8,6 @@ namespace ca.HenrySoftware.Flop
 		private AudioSource _source;
 		private float _volumeMin = .5f;
 		private float _volumeMax = 1f;
-		private float _volumeLowMin = .3f;
-		private float _volumeLowMax = .6f;
 		private float _pitchMin = .75f;
 		private float _pitchMax = 1.25f;
 		private void Awake()
@@ -20,23 +18,15 @@ namespace ca.HenrySoftware.Flop
 		{
 			return Random.Range(_volumeMin, _volumeMax);
 		}
-		private float RandomVolumeLow()
-		{
-			return Random.Range(_volumeLowMin, _volumeLowMax);
-		}
 		private float RandomPitch()
 		{
 			return Random.Range(_pitchMin, _pitchMax);
 		}
 		private void RandomSound(AudioClip sound)
 		{
-			RandomSound(sound, false);
-		}
-		private void RandomSound(AudioClip sound, bool low)
-		{
 			var oldPitch = _source.pitch;
 			_source.pitch = RandomPitch();
-			_source.PlayOneShot(sound, low ? RandomVolumeLow() : RandomVolume());
+			_source.PlayOneShot(sound, RandomVolume());
 			_source.pitch = oldPitch;
 		}
 		public void PlayClick()
