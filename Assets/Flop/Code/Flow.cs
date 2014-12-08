@@ -30,7 +30,7 @@ namespace ca.HenrySoftware.Flop
 		private float _current;
 		private int _dataMax;
 		private static List<int> _data = Enumerable.Range(32, 95).ToList();
-		private static List<int> _dataBig = Enumerable.Range(3000000, 1000000).ToList();
+		private static List<int> _dataBig = Enumerable.Range(100000, 100000).ToList();
 		private Dictionary<int, Transform> _views;
 		private void Start()
 		{
