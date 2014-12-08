@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -19,6 +20,8 @@ namespace ca.HenrySoftware.Flop
 		public Scrollbar Scrollbar;
 		public Text Text;
 		private CanvasScaler _scaler;
+		private IEnumerator _inertiaDecayEase;
+		private IEnumerator _inertiaEase;
 		private float _inertia;
 		private float _max;
 		private float _min;
@@ -169,7 +172,10 @@ namespace ca.HenrySoftware.Flop
 		public void Stop()
 		{
 			_inertia = 0f;
-			StopAllCoroutines();
+			if (_inertiaEase != null)
+				StopCoroutine(_inertiaEase);
+			if (_inertiaDecayEase != null)
+				StopCoroutine(_inertiaDecayEase);
 		}
 		public void OnPointerDown(PointerEventData e)
 		{
@@ -189,14 +195,14 @@ namespace ca.HenrySoftware.Flop
 				Drag(e.delta.x);
 			_inertia = temp - _current;
 			var time = Mathf.Clamp(Mathf.Abs(_inertia * .1f), 0, 3.33f);
-			Ease.Go(this, _inertia, 0f, time, 0f, EaseType.Linear, (i) => { _inertia = i; }, null);
+			_inertiaDecayEase = Ease.Go(this, _inertia, 0f, time, 0f, EaseType.Linear, (i) => { _inertia = i; }, null);
 		}
 		public void OnEndDrag(PointerEventData e)
 		{
 			if (Mathf.Abs(_inertia) > .0333f)
 			{
 				var time = Mathf.Clamp(Mathf.Abs(_inertia * .1f), 0, 3.33f);
-				Ease.Go(this, -_inertia, 0f, time, 0f, EaseType.Linear, (i) => { Drag(i); }, Snap);
+				_inertiaEase = Ease.Go(this, -_inertia, 0f, time, 0f, EaseType.Linear, (i) => { Drag(i); }, Snap);
 			}
 			else
 				Snap();
