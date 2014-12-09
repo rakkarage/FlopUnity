@@ -7,6 +7,7 @@ namespace ca.HenrySoftware.Flop
 		{
 #if !UNITY_EDITOR && (UNITY_IPHONE || UNITY_ANDROID)
 			Screen.showCursor = false;
+			Screen.lockCursor = true;
 #endif
 		}
 	}
