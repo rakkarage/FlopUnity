@@ -3737,7 +3737,7 @@ GameObject:
   - 114: {fileID: 1012960725}
   - 114: {fileID: 1012960724}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: IntroCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4201,7 +4201,7 @@ GameObject:
   - 114: {fileID: 1131685858}
   - 114: {fileID: 1131685857}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: ConnectCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6608,7 +6608,7 @@ GameObject:
   - 114: {fileID: 1730986140}
   - 114: {fileID: 1730986138}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: FlopCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
