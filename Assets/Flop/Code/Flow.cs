@@ -35,7 +35,7 @@ namespace ca.HenrySoftware.Flop
 		private Dictionary<int, Transform> _views;
 		private void Start()
 		{
-            _views = new Dictionary<int, Transform>(Big ? _dataBig.Count : _data.Count);
+			_views = new Dictionary<int, Transform>(Big ? _dataBig.Count : _data.Count);
 			_fade = GetComponentInParent<Fade>();
 			_scaler = GetComponentInParent<CanvasScaler>();
 			_dataMax = Big ? _dataBig.Count - 1 :  _data.Count - 1;
@@ -45,18 +45,24 @@ namespace ca.HenrySoftware.Flop
 			for (int i = 0; (i < (Big ? _dataBig.Count : _data.Count)) && (i < Limit); i++)
 				Add(i);
 			UpdateAll();
-			var page = Data.Instance.Page;
-			var pageBig = Data.Instance.PageBig;
-			EaseBy(Big ? (pageBig == -1 ? 0 : pageBig) : (page == -1 ? 1 : page));
+			LoadPage();
 			Ease3.GoRotation(this, gameObject, new Vector3(-360f, 0f, 0f), 1f, 0f, EaseType.Spring);
 		}
 		private void OnEnable()
 		{
 			Scrollbar.onValueChanged.AddListener(OnScrollChanged);
+			Data.LoadSucceedEvent += LoadPage;
 		}
 		private void OnDisable()
 		{
 			Scrollbar.onValueChanged.RemoveListener(OnScrollChanged);
+			Data.LoadSucceedEvent -= LoadPage;
+		}
+		private void LoadPage()
+		{
+			var page = Data.Instance.Page;
+			var pageBig = Data.Instance.PageBig;
+			EaseTo(Big ? (pageBig == -1 ? 0 : pageBig) : (page == -1 ? 1 : page));
 		}
 		private void Add(int i)
 		{

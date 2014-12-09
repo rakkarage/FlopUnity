@@ -1,6 +1,7 @@
 ﻿using Parse;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 namespace ca.HenrySoftware.Flop
 {
 	public class Data : Singleton<Data>
@@ -33,7 +34,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		private IEnumerator Save()
 		{
-			yield return new WaitForSeconds(1f);
+			yield return new WaitForSeconds(.5f);
 			if (Connection.Connected)
 			{
 				var task = ParseObject.GetQuery("Data").WhereEqualTo("userId", ParseUser.CurrentUser.ObjectId).FirstOrDefaultAsync();
@@ -47,19 +48,21 @@ namespace ca.HenrySoftware.Flop
 				});
 			}
 		}
-		public void Load()
+		public static UnityAction LoadSucceedEvent;
+		private void Load()
 		{
 			if (Connection.Connected)
 			{
 				var task = ParseObject.GetQuery("Data").WhereEqualTo("userId", ParseUser.CurrentUser.ObjectId).FirstOrDefaultAsync();
 				task.ContinueWith(t =>
 				{
-					if (t.Result != null)
+					if (t.Result != null && !(t.IsFaulted || t.IsCanceled))
 					{
 						Loom.QueueOnMainThread(() =>
 						{
 							_page = t.Result.Get<int>("page");
 							_pageBig = t.Result.Get<int>("pageBig");
+							if (LoadSucceedEvent != null) LoadSucceedEvent();
 						});
 					}
 				});
