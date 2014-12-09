@@ -5,22 +5,27 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Data : Singleton<Data>
 	{
-		private bool _big = false;
-		public bool Big
-		{
-			get { return _big; }
-		}
 		private int _page = -1;
 		public int Page
 		{
 			get { return _page; }
+			set
+			{
+				_page = value;
+				StopAllCoroutines();
+				StartCoroutine(Save());
+			}
 		}
-		public void SaveData(int page, bool big)
+		private int _pageBig = -1;
+		public int PageBig
 		{
-			_big = big;
-			_page = page;
-			StopAllCoroutines();
-			StartCoroutine(Save());
+			get { return _pageBig; }
+			set
+			{
+				_pageBig = value;
+				StopAllCoroutines();
+				StartCoroutine(Save());
+			}
 		}
 		private void Start()
 		{
@@ -36,7 +41,7 @@ namespace ca.HenrySoftware.Flop
 				{
 					ParseObject p = (t.Result != null) ? t.Result : new ParseObject("Data");
 					p["page"] = _page;
-					p["big"] = _big;
+					p["pageBig"] = _pageBig;
 					p["userId"] = ParseUser.CurrentUser.ObjectId;
 					p.SaveAsync();
 				});
@@ -53,8 +58,8 @@ namespace ca.HenrySoftware.Flop
 					{
 						Loom.QueueOnMainThread(() =>
 						{
-							_big = t.Result.Get<bool>("big");
 							_page = t.Result.Get<int>("page");
+							_pageBig = t.Result.Get<int>("pageBig");
 						});
 					}
 				});

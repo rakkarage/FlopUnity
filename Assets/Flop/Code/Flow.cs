@@ -46,8 +46,8 @@ namespace ca.HenrySoftware.Flop
 				Add(i);
 			UpdateAll();
 			var page = Data.Instance.Page;
-			var pageBig = Data.Instance.Big;
-            EaseBy((page == -1) ? (Big ? 0 : 1) : (Big ? (pageBig ? page : 0) : (pageBig ? 0 : page)));
+			var pageBig = Data.Instance.PageBig;
+			EaseBy(Big ? (pageBig == -1 ? 0 : pageBig) : (page == -1 ? 1 : page));
 			Ease3.GoRotation(this, gameObject, new Vector3(-360f, 0f, 0f), 1f, 0f, EaseType.Spring);
 		}
 		private void OnEnable()
@@ -171,7 +171,10 @@ namespace ca.HenrySoftware.Flop
 				Stop();
 				DragTo(Mathf.RoundToInt(scroll * _dataMax));
 			}
-			Data.Instance.SaveData(GetCurrent(), Big);
+			if (Big)
+				Data.Instance.PageBig = GetCurrent();
+			else
+				Data.Instance.Page = GetCurrent();
 		}
 		public void Stop()
 		{
