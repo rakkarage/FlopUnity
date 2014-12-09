@@ -13,7 +13,7 @@ namespace ca.HenrySoftware.Flop
 			var end = In ? 1f : 0f;
 			_group = GetComponent<CanvasGroup>();
 			_group.alpha = start;
-			Ease.Go(this, start, end, Time, 0f, EaseType.Hermite, HandleFade, null);
+			Ease.Go(this, start, end, Time, 0f, EaseType.SineIn, HandleFade, null);
 		}
 		private void HandleFade(float alpha)
 		{
@@ -22,7 +22,7 @@ namespace ca.HenrySoftware.Flop
 		public void FadeTo(float alpha, float time)
 		{
 			StopAllCoroutines();
-			Ease.Go(this, _group.alpha, alpha, time, 0f, EaseType.Hermite, HandleFade, null);
+			Ease.Go(this, _group.alpha, alpha, time, 0f, EaseType.SineIn, HandleFade, null);
 		}
 	}
 }

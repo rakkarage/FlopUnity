@@ -4,17 +4,17 @@ using UnityEngine;
 using UnityEngine.Events;
 namespace ca.HenrySoftware.Flop
 {
-	public enum EaseType { Linear, Hermite, Sinerp, Coserp, Spring, BounceIn, BounceOut, BounceInOut }
+	public enum EaseType { Linear, Spring, SineIn, SineOut, SineInOut, BounceIn, BounceOut, BounceInOut }
 	public static class Ease
 	{
 		private delegate float EaseHandler(float start, float end, float time);
 		private readonly static Dictionary<EaseType, EaseHandler> _types = new Dictionary<EaseType, EaseHandler>
 		{
 			{EaseType.Linear, Mathf.Lerp},
-			{EaseType.Hermite, Hermite},
-			{EaseType.Sinerp, Sinerp},
-			{EaseType.Coserp, Coserp},
 			{EaseType.Spring, Spring},
+			{EaseType.SineIn, SineIn},
+			{EaseType.SineOut, SineOut},
+			{EaseType.SineInOut, SineInOut},
 			{EaseType.BounceIn, BounceIn},
 			{EaseType.BounceOut, BounceOut},
 			{EaseType.BounceInOut, BounceInOut}
@@ -39,23 +39,23 @@ namespace ca.HenrySoftware.Flop
 			if (complete != null)
 				complete();
 		}
-		public static float Hermite(float start, float end, float time)
-		{
-			return Mathf.Lerp(start, end, time * time * (3f - 2f * time));
-		}
-		public static float Sinerp(float start, float end, float time)
-		{
-			return Mathf.Lerp(start, end, Mathf.Sin(time * Mathf.PI * .5f));
-		}
-		public static float Coserp(float start, float end, float time)
-		{
-			return Mathf.Lerp(start, end, 1f - Mathf.Cos(time * Mathf.PI * .5f));
-		}
 		public static float Spring(float start, float end, float time)
 		{
 			time = Mathf.Clamp01(time);
 			time = (Mathf.Sin(time * Mathf.PI * (.2f + 2.5f * time * time * time)) * Mathf.Pow(1f - time, 2.2f) + time) * (1f + (1.2f * (1f - time)));
 			return start + (end - start) * time;
+		}
+		public static float SineIn(float start, float end, float time)
+		{
+			return Mathf.Lerp(start, end, Mathf.Sin(time * Mathf.PI * .5f));
+		}
+		public static float SineOut(float start, float end, float time)
+		{
+			return Mathf.Lerp(start, end, 1f - Mathf.Cos(time * Mathf.PI * .5f));
+		}
+		public static float SineInOut(float start, float end, float time)
+		{
+			return Mathf.Lerp(start, end, time * time * (3f - 2f * time));
 		}
 		public static float BounceIn(float start, float end, float time)
 		{
@@ -88,9 +88,9 @@ namespace ca.HenrySoftware.Flop
 		private readonly static Dictionary<EaseType, EaseHandler> _types = new Dictionary<EaseType, EaseHandler>
 		{
 			{EaseType.Linear, Vector3.Lerp},
-			{EaseType.Hermite, Hermite},
-			{EaseType.Sinerp, Sinerp},
-			{EaseType.Coserp, Coserp},
+			{EaseType.SineInOut, SineInOut},
+			{EaseType.SineIn, SineIn},
+			{EaseType.SineOut, SineOut},
 			{EaseType.Spring, Spring},
 			{EaseType.BounceIn, BounceIn},
 			{EaseType.BounceOut, BounceOut},
@@ -173,21 +173,21 @@ namespace ca.HenrySoftware.Flop
 			}
 			o.transform.localScale = end;
 		}
-		public static Vector3 Hermite(Vector3 start, Vector3 end, float time)
-		{
-			return new Vector3(Ease.Hermite(start.x, end.x, time), Ease.Hermite(start.y, end.y, time), Ease.Hermite(start.z, end.z, time));
-		}
-		public static Vector3 Sinerp(Vector3 start, Vector3 end, float time)
-		{
-			return new Vector3(Ease.Sinerp(start.x, end.x, time), Ease.Sinerp(start.y, end.y, time), Ease.Sinerp(start.z, end.z, time));
-		}
-		public static Vector3 Coserp(Vector3 start, Vector3 end, float time)
-		{
-			return new Vector3(Ease.Coserp(start.x, end.x, time), Ease.Coserp(start.y, end.y, time), Ease.Coserp(start.z, end.z, time));
-		}
 		public static Vector3 Spring(Vector3 start, Vector3 end, float time)
 		{
 			return new Vector3(Ease.Spring(start.x, end.x, time), Ease.Spring(start.y, end.y, time), Ease.Spring(start.z, end.z, time));
+		}
+		public static Vector3 SineIn(Vector3 start, Vector3 end, float time)
+		{
+			return new Vector3(Ease.SineIn(start.x, end.x, time), Ease.SineIn(start.y, end.y, time), Ease.SineIn(start.z, end.z, time));
+		}
+		public static Vector3 SineOut(Vector3 start, Vector3 end, float time)
+		{
+			return new Vector3(Ease.SineOut(start.x, end.x, time), Ease.SineOut(start.y, end.y, time), Ease.SineOut(start.z, end.z, time));
+		}
+		public static Vector3 SineInOut(Vector3 start, Vector3 end, float time)
+		{
+			return new Vector3(Ease.SineInOut(start.x, end.x, time), Ease.SineInOut(start.y, end.y, time), Ease.SineInOut(start.z, end.z, time));
 		}
 		public static Vector3 BounceIn(Vector3 start, Vector3 end, float time)
 		{
