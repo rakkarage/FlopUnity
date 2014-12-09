@@ -20,6 +20,7 @@ namespace ca.HenrySoftware.Flop
 		public Button NextButton;
 		public Scrollbar Scrollbar;
 		public Text Text;
+		private Fade _fade;
 		private CanvasScaler _scaler;
 		private IEnumerator _inertiaDecayEase;
 		private IEnumerator _inertiaEase;
@@ -35,6 +36,7 @@ namespace ca.HenrySoftware.Flop
 		private void Start()
 		{
             _views = new Dictionary<int, Transform>(Big ? _dataBig.Count : _data.Count);
+			_fade = GetComponentInParent<Fade>();
 			_scaler = GetComponentInParent<CanvasScaler>();
 			_dataMax = Big ? _dataBig.Count - 1 :  _data.Count - 1;
 			_max = (Offset.x * (Limit - 2f));
@@ -233,6 +235,14 @@ namespace ca.HenrySoftware.Flop
 		public void Next()
 		{
 			EaseBy(1);
+		}
+		public void FadeBack()
+		{
+			_fade.FadeTo(.25f, 1f);
+		}
+		public void FadeFore()
+		{
+			_fade.FadeTo(1f, 1f);
 		}
 	}
 }

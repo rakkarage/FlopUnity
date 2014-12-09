@@ -19,5 +19,10 @@ namespace ca.HenrySoftware.Flop
 		{
 			_group.alpha = alpha;
 		}
+		public void FadeTo(float alpha, float time)
+		{
+			StopAllCoroutines();
+			Ease.Go(this, _group.alpha, alpha, time, 0f, EaseType.Linear, HandleFade, null);
+		}
 	}
 }
