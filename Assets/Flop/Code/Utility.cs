@@ -14,7 +14,7 @@ namespace ca.HenrySoftware.Flop
 		public static Color ButtonBlue = new Color32(159, 176, 255, 255);
 		public static Color HenryBlue = new Color32(59, 67, 82, 255);
 		public static string Error = "Error";
-		public const float SpringTime = .333f;
+		public const float SpringTime = .5f;
 		public static int OffsetInterface = 3072;
 		public static Vector3 OffsetSignIn = new Vector3(0f, OffsetInterface, 0f);
 		public static Vector3 OffsetRegister = new Vector3(OffsetInterface, OffsetInterface, 0f);
