@@ -1726,7 +1726,7 @@ MonoBehaviour:
   m_LineType: 0
   m_HideMobileInput: 0
   m_CharacterValidation: 5
-  m_CharacterLimit: 0
+  m_CharacterLimit: 32
   m_EndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -1938,7 +1938,7 @@ MonoBehaviour:
   m_LineType: 0
   m_HideMobileInput: 0
   m_CharacterValidation: 0
-  m_CharacterLimit: 0
+  m_CharacterLimit: 32
   m_EndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -2075,13 +2075,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 497990384}
   m_TextComponent: {fileID: 2070348595}
   m_Placeholder: {fileID: 1870242332}
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
   m_CharacterValidation: 0
-  m_CharacterLimit: 0
+  m_CharacterLimit: 32
   m_EndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -2332,7 +2332,7 @@ MonoBehaviour:
   m_LineType: 0
   m_HideMobileInput: 0
   m_CharacterValidation: 0
-  m_CharacterLimit: 0
+  m_CharacterLimit: 32
   m_EndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -2792,7 +2792,7 @@ MonoBehaviour:
   m_LineType: 0
   m_HideMobileInput: 0
   m_CharacterValidation: 5
-  m_CharacterLimit: 0
+  m_CharacterLimit: 32
   m_EndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -4871,7 +4871,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Confirm
+  m_Text: Confirm Password
 --- !u!222 &1364802034
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6215,7 +6215,7 @@ MonoBehaviour:
   m_LineType: 0
   m_HideMobileInput: 0
   m_CharacterValidation: 5
-  m_CharacterLimit: 0
+  m_CharacterLimit: 32
   m_EndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -7280,13 +7280,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1887735484}
   m_TextComponent: {fileID: 1458221474}
   m_Placeholder: {fileID: 1816759863}
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
   m_CharacterValidation: 0
-  m_CharacterLimit: 0
+  m_CharacterLimit: 32
   m_EndEdit:
     m_PersistentCalls:
       m_Calls: []
@@ -8439,13 +8439,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2050714580}
   m_TextComponent: {fileID: 13622434}
   m_Placeholder: {fileID: 1545910586}
-  m_ContentType: 0
-  m_InputType: 0
+  m_ContentType: 7
+  m_InputType: 2
   m_KeyboardType: 0
   m_LineType: 0
   m_HideMobileInput: 0
   m_CharacterValidation: 0
-  m_CharacterLimit: 0
+  m_CharacterLimit: 32
   m_EndEdit:
     m_PersistentCalls:
       m_Calls: []

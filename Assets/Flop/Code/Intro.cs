@@ -38,7 +38,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		private void HandleFade()
 		{
-			Ease.Go(this, 0f, 1f, TimeAnimation, TimeAnimation, EaseType.Sinerp, HandleFade, HandleNext);
+			Ease.Go(this, 0f, 1f, TimeAnimation, TimeAnimation, EaseType.Linear, HandleFade, HandleNext);
 		}
 		private void HandleFade(float value)
 		{
@@ -48,7 +48,7 @@ namespace ca.HenrySoftware.Flop
 		{
 			StopAllCoroutines();
 			_logo.gameObject.SetActive(false);
-			Ease.Go(this, _foreground.color.a, 0f, TimeAnimation, 0f, EaseType.Sinerp, HandleFade, HandleEnd);
+			Ease.Go(this, _foreground.color.a, 0f, TimeAnimation, 0f, EaseType.Linear, HandleFade, HandleEnd);
 			Camera.main.backgroundColor = Constants.HenryBlue;
 			foreach (var i in Activate)
 				i.SetActive(true);

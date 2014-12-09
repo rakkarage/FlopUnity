@@ -23,9 +23,9 @@ namespace ca.HenrySoftware.Flop
 		}
 		public void SignOutClicked()
 		{
+			Connection.SignOut();
 			Audio.Instance.PlayClick();
 			Connect.Instance.SpringBack();
-			Connection.SignOut();
 		}
 	}
 }
