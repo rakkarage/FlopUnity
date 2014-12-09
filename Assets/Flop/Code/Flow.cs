@@ -22,6 +22,7 @@ namespace ca.HenrySoftware.Flop
 		public Text Text;
 		private Fade _fade;
 		private CanvasScaler _scaler;
+		private IEnumerator _ease;
 		private IEnumerator _inertiaDecayEase;
 		private IEnumerator _inertiaEase;
 		private float _inertia;
@@ -90,7 +91,9 @@ namespace ca.HenrySoftware.Flop
 		}
 		private void EaseTo(int to)
 		{
-			Ease.Go(this, _current, to * -Offset.x, Time, 0f, EaseType.Spring, (i) => { DragTo(i); }, null);
+			if (_ease != null)
+				StopCoroutine(_ease);
+			_ease = Ease.Go(this, _current, to * -Offset.x, Time, 0f, EaseType.Spring, (i) => { DragTo(i); }, null);
 		}
 		private void DragTo(int i)
 		{
