@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
@@ -13,17 +14,17 @@ namespace ca.HenrySoftware.Flop
 		public static Color ErrorYellow = new Color(.75f, .75f, .5f);
 		public static Color ButtonBlue = new Color32(159, 176, 255, 255);
 		public static Color HenryBlue = new Color32(59, 67, 82, 255);
-		public static string Error = "Error";
+		public const string Error = "Error";
 		public const float SpringTime = .5f;
-		public static int OffsetInterface = 3072;
+		private const int OffsetInterface = 3072;
 		public static Vector3 OffsetSignIn = new Vector3(0f, OffsetInterface, 0f);
 		public static Vector3 OffsetRegister = new Vector3(OffsetInterface, OffsetInterface, 0f);
 		public static Vector3 OffsetReset = new Vector3(-OffsetInterface, OffsetInterface, 0f);
 		public static Vector3 OffsetAccount = new Vector3(-OffsetInterface, 0f, 0f);
 		public static Vector3 OffsetChange = new Vector3(-(OffsetInterface * 2), 0f, 0f);
 		public static Vector2 OffsetDialog = new Vector2(OffsetInterface, 0f);
-		public static int AnimatorCompute = Animator.StringToHash("Compute");
-		public static int AnimatorError = Animator.StringToHash("Error");
+		public static readonly int AnimatorCompute = Animator.StringToHash("Compute");
+		public static readonly int AnimatorError = Animator.StringToHash("Error");
 	}
 	public static class Utility
 	{
@@ -46,19 +47,12 @@ namespace ca.HenrySoftware.Flop
 		{
 			return new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
 		}
-		public static void RandomColor(Text[] texts)
+		public static void RandomColor(IEnumerable<Text> texts)
 		{
-			Color c = Utility.RandomColor();
+			var c = RandomColor();
 			foreach (var text in texts)
 			{
-				if (text.color == Color.white)
-				{
-					text.color = c;
-				}
-				else
-				{
-					text.color = Color.white;
-				}
+				text.color = text.color == Color.white ? c : Color.white;
 			}
 		}
 		public static void ResetColor(Text[] texts)
@@ -89,12 +83,12 @@ namespace ca.HenrySoftware.Flop
 	public static class EmailValidator
 	{
 		private static readonly Regex ValidEmailRegex = CreateValidEmailRegex();
-		private const string validEmailPattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|"
+		private const string _validEmailPattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|"
 			+ @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)"
 			+ @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";
 		private static Regex CreateValidEmailRegex()
 		{
-			return new Regex(validEmailPattern, RegexOptions.IgnoreCase);
+			return new Regex(_validEmailPattern, RegexOptions.IgnoreCase);
 		}
 		public static bool IsValid(string email)
 		{

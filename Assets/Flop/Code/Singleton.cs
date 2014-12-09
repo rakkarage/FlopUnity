@@ -3,20 +3,20 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 	{
-		protected static T instance;
+		private static T _instance;
 		public static T Instance
 		{
 			get
 			{
-				if (instance == null)
+				if (_instance == null)
 				{
-					instance = (T)FindObjectOfType(typeof(T));
-					if (instance == null)
+					_instance = (T)FindObjectOfType(typeof(T));
+					if (_instance == null)
 					{
 						Debug.LogError("Missing: " + typeof(T));
 					}
 				}
-				return instance;
+				return _instance;
 			}
 		}
 	}

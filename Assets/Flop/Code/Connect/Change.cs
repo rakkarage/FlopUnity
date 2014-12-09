@@ -24,9 +24,9 @@ namespace ca.HenrySoftware.Flop
 		public void ChangeClicked()
 		{
 			Audio.Instance.PlayClick();
-			string oldPass = OldField.text;
-			string newPass = NewField.text;
-			string confirm = ConfirmField.text;
+			var oldPass = OldField.text;
+			var newPass = NewField.text;
+			var confirm = ConfirmField.text;
 			ClearError();
 			if (!Connection.ValidPassword(oldPass))
 			{

@@ -7,21 +7,19 @@ namespace ca.HenrySoftware.Flop
 	{
 		public static bool Connected
 		{
-			get { return (ParseUser.CurrentUser != null); }
+			get { return ParseUser.CurrentUser != null; }
 		}
 		public static string Email
 		{
-			get { return (Connected ? ParseUser.CurrentUser.Email : string.Empty); }
+			get { return Connected ? ParseUser.CurrentUser.Email : string.Empty; }
 		}
 		public static bool ValidEmail(string email)
 		{
-			if (!string.IsNullOrEmpty(email) && EmailValidator.IsValid(email)) return true;
-			else return false;
+			return !string.IsNullOrEmpty(email) && EmailValidator.IsValid(email);
 		}
 		public static bool ValidPassword(string password)
 		{
-			if (!string.IsNullOrEmpty(password) && (password.Length > 3)) return true;
-			else return false;
+			return !string.IsNullOrEmpty(password) && (password.Length > 3);
 		}
 		// register
 		public static UnityAction<string> RegisterFailEvent;
@@ -30,13 +28,13 @@ namespace ca.HenrySoftware.Flop
 		{
 			try
 			{
-				ParseUser user = new ParseUser() { Username = email, Email = email, Password = password };
+				var user = new ParseUser() { Username = email, Email = email, Password = password };
 				user.SignUpAsync().ContinueWith(t =>
 				{
 					if (t.IsFaulted || t.IsCanceled)
 						Loom.QueueOnMainThread(() => { RegisterFail(t.Exception); });
 					else
-						Loom.QueueOnMainThread(() => { RegisterSucceed(); });
+						Loom.QueueOnMainThread(RegisterSucceed);
 				});
 			}
 			catch (Exception e)
@@ -65,7 +63,7 @@ namespace ca.HenrySoftware.Flop
 					if (t.IsFaulted || t.IsCanceled)
 						Loom.QueueOnMainThread(() => { SignInFail(t.Exception); });
 					else
-						Loom.QueueOnMainThread(() => { SignInSucceed(); });
+						Loom.QueueOnMainThread(SignInSucceed);
 				});
 			}
 			catch (Exception e)
@@ -101,7 +99,7 @@ namespace ca.HenrySoftware.Flop
 					if (t.IsFaulted || t.IsCanceled)
 						Loom.QueueOnMainThread(() => { ResetFail(t.Exception); });
 					else
-						Loom.QueueOnMainThread(() => { ResetSucceed(); });
+						Loom.QueueOnMainThread(ResetSucceed);
 				});
 			}
 			catch (Exception e)
@@ -134,7 +132,7 @@ namespace ca.HenrySoftware.Flop
 					}
 					else
 					{
-						Loom.QueueOnMainThread(() => { ChangeSucceed(); });
+						Loom.QueueOnMainThread(ChangeSucceed);
 					}
 				});
 			}

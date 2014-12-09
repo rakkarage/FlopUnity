@@ -40,7 +40,7 @@ namespace ca.HenrySoftware.Flop
 				var task = ParseObject.GetQuery("Data").WhereEqualTo("userId", ParseUser.CurrentUser.ObjectId).FirstOrDefaultAsync();
 				task.ContinueWith(t =>
 				{
-					ParseObject p = (t.Result != null) ? t.Result : new ParseObject("Data");
+					var p = t.Result ?? new ParseObject("Data");
 					p["page"] = _page;
 					p["pageBig"] = _pageBig;
 					p["userId"] = ParseUser.CurrentUser.ObjectId;

@@ -11,16 +11,19 @@ namespace ca.HenrySoftware.Flop
 		private void Awake()
 		{
 			_pool = new List<GameObject>(Count);
-			for (int i = 0; i < Count; i++)
+			for (var i = 0; i < Count; i++)
 				_pool.Add(New());
 		}
 		private GameObject New()
 		{
-			GameObject o = Instantiate(Prefab) as GameObject;
-			o.transform.SetParent(gameObject.transform, false);
-			o.transform.position = Vector3.zero;
-			o.name = _name;
-			o.SetActive(false);
+			var o = Instantiate(Prefab) as GameObject;
+			if (o != null)
+			{
+				o.transform.SetParent(gameObject.transform, false);
+				o.transform.position = Vector3.zero;
+				o.name = _name;
+				o.SetActive(false);
+			}
 			return o;
 		}
 		public GameObject Enter()

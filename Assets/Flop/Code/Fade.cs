@@ -9,8 +9,8 @@ namespace ca.HenrySoftware.Flop
 		private CanvasGroup _group;
 		private void Start()
 		{
-			float start = In ? 0f : 1f;
-			float end = In ? 1f : 0f;
+			var start = In ? 0f : 1f;
+			var end = In ? 1f : 0f;
 			_group = GetComponent<CanvasGroup>();
 			_group.alpha = start;
 			Ease.Go(this, start, end, Time, 0f, EaseType.Hermite, HandleFade, null);

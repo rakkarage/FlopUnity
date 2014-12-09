@@ -6,10 +6,11 @@ namespace ca.HenrySoftware.Flop
 		public AudioClip Click;
 		public AudioClip Error;
 		private AudioSource _source;
-		private float _volumeMin = .5f;
-		private float _volumeMax = 1f;
-		private float _pitchMin = .75f;
-		private float _pitchMax = 1.25f;
+		private const float _volumeMin = .5f;
+		private const float _volumeMax = 1f;
+		private const float _pitchMin = .75f;
+		private const float _pitchMax = 1.25f;
+
 		private void Awake()
 		{
 			_source = GetComponent<AudioSource>();
