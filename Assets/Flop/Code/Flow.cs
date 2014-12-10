@@ -14,6 +14,7 @@ namespace ca.HenrySoftware.Flop
 		public float InsetZ = .5f;
 		public float Time = .333f;
 		public int Limit = 6;
+		private int _limit;
 		public Pool Pool;
 		public Transform LookAt;
 		public Button PrevButton;
@@ -32,10 +33,11 @@ namespace ca.HenrySoftware.Flop
 		private float _current;
 		private int _dataMax;
 		private static readonly List<int> _data = Enumerable.Range(32, 95).ToList();
-		private static readonly List<int> _dataBig = Enumerable.Range(100000, 100000).ToList();
+		private static readonly List<int> _dataBig = Enumerable.Range(1000000, 1000000).ToList();
 		private Dictionary<int, Transform> _views;
 		private void Start()
 		{
+			_limit = Limit * 2;
 			_views = new Dictionary<int, Transform>(Big ? _dataBig.Count : _data.Count);
 			_fade = GetComponentInParent<Fade>();
 			_scaler = GetComponentInParent<CanvasScaler>();
@@ -101,13 +103,24 @@ namespace ca.HenrySoftware.Flop
 		}
 		private void DragTo(float delta)
 		{
+			var old = GetCurrent();
 			_current = 0;
-			Drag(delta);
+			Drag(delta, old);
 		}
 		private void Drag(float delta)
 		{
+			Drag(delta, GetCurrent());
+		}
+        private void Drag(float delta, int old)
+		{
 			_current = Mathf.Clamp(_current + delta, _min, _max);
-			for (var i = 0; i < (Big ? _dataBig.Count : _data.Count); i++)
+			var current = GetCurrent();
+			var min = Mathf.Min(old, current) - _limit;
+			if (min < 0) min = 0;
+			var max = Mathf.Max(old, current) + _limit;
+			if (max > _dataMax) max = _dataMax;
+			bool back = current < old; 
+			for (var i = (back ? max : min); (back ? (i >= min) : (i <= max)); i = (back ? i - 1 : i + 1))
 			{
 				var x = _current + (i * Offset.x);
 				var ax = Mathf.Abs(x);
