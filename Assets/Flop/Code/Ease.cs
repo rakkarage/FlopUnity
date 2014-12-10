@@ -22,7 +22,7 @@ namespace ca.HenrySoftware.Flop
 		public static IEnumerator Go(MonoBehaviour m, float start, float end, float time, float delay, EaseType type, UnityAction<float> update, UnityAction complete)
 		{
 			IEnumerator i = GoCoroutine(start, end, time, delay, type, update, complete);
-            m.StartCoroutine(i);
+			m.StartCoroutine(i);
 			return i;
 		}
 		private static IEnumerator GoCoroutine(float start, float end, float time, float delay, EaseType type, UnityAction<float> update, UnityAction complete)
@@ -99,7 +99,7 @@ namespace ca.HenrySoftware.Flop
 		public static IEnumerator Go(MonoBehaviour m, Vector3 start, Vector3 end, float time, float delay, EaseType type, UnityAction<Vector3> update, UnityAction complete)
 		{
 			IEnumerator i = GoCoroutine(start, end, time, delay, type, update, complete);
-            m.StartCoroutine(i);
+			m.StartCoroutine(i);
 			return i;
 		}
 		private static IEnumerator GoCoroutine(Vector3 start, Vector3 end, float time, float delay, EaseType type, UnityAction<Vector3> update, UnityAction complete)
@@ -119,7 +119,7 @@ namespace ca.HenrySoftware.Flop
 		public static IEnumerator GoPosition(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
 		{
 			IEnumerator i = GoPositionCoroutine(o, start, end, time, delay, type);
-            m.StartCoroutine(i);
+			m.StartCoroutine(i);
 			return i;
 		}
 		private static IEnumerator GoPositionCoroutine(GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
@@ -138,7 +138,7 @@ namespace ca.HenrySoftware.Flop
 		public static IEnumerator GoRotation(MonoBehaviour m, GameObject o, Vector3 angle, float time, float delay, EaseType type)
 		{
 			IEnumerator i = GoRotationCoroutine(o, angle, time, delay, type);
-            m.StartCoroutine(i);
+			m.StartCoroutine(i);
 			return i;
 		}
 		private static IEnumerator GoRotationCoroutine(GameObject o, Vector3 angle, float time, float delay, EaseType type)
@@ -157,7 +157,7 @@ namespace ca.HenrySoftware.Flop
 		public static IEnumerator GoScale(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
 		{
 			IEnumerator i = GoScaleCoroutine(o, start, end, time, delay, type);
-            m.StartCoroutine(i);
+			m.StartCoroutine(i);
 			return i;
 		}
 		private static IEnumerator GoScaleCoroutine(GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)

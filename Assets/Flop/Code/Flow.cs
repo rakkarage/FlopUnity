@@ -111,7 +111,7 @@ namespace ca.HenrySoftware.Flop
 		{
 			Drag(delta, GetCurrent());
 		}
-        private void Drag(float delta, int old)
+		private void Drag(float delta, int old)
 		{
 			_current = Mathf.Clamp(_current + delta, _min, _max);
 			var current = GetCurrent();
@@ -119,7 +119,7 @@ namespace ca.HenrySoftware.Flop
 			if (min < 0) min = 0;
 			var max = Mathf.Max(old, current) + _limit;
 			if (max > _dataMax) max = _dataMax;
-			bool back = current < old; 
+			bool back = current < old;
 			for (var i = (back ? max : min); (back ? (i >= min) : (i <= max)); i = (back ? i - 1 : i + 1))
 			{
 				var x = _current + (i * Offset.x);
