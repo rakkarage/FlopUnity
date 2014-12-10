@@ -8,32 +8,19 @@ namespace ca.HenrySoftware.Flop
 {
 	public static class Constants
 	{
-		public static Color ErrorRed = new Color(.75f, .5f, .5f);
-		public static Color ErrorGreen = new Color(.5f, .75f, .5f);
-		public static Color ErrorBlue = new Color(.5f, .5f, .75f);
-		public static Color ErrorYellow = new Color(.75f, .75f, .5f);
+		public const string Error = "Error";
+		public const int Offset = 3072;
+        public static Color StatusRed = new Color(.75f, .5f, .5f);
+		public static Color StatusGreen = new Color(.5f, .75f, .5f);
+		public static Color StatusBlue = new Color(.5f, .5f, .75f);
+		public static Color StatusYellow = new Color(.75f, .75f, .5f);
 		public static Color ButtonBlue = new Color32(159, 176, 255, 255);
 		public static Color HenryBlue = new Color32(59, 67, 82, 255);
-		public const string Error = "Error";
-		private const int OffsetInterface = 3072;
-		public static Vector3 OffsetSignIn = new Vector3(0f, OffsetInterface, 0f);
-		public static Vector3 OffsetRegister = new Vector3(OffsetInterface, OffsetInterface, 0f);
-		public static Vector3 OffsetReset = new Vector3(-OffsetInterface, OffsetInterface, 0f);
-		public static Vector3 OffsetAccount = new Vector3(-OffsetInterface, 0f, 0f);
-		public static Vector3 OffsetChange = new Vector3(-(OffsetInterface * 2), 0f, 0f);
-		public static Vector2 OffsetDialog = new Vector2(OffsetInterface, 0f);
 		public static readonly int AnimatorCompute = Animator.StringToHash("Compute");
 		public static readonly int AnimatorError = Animator.StringToHash("Error");
 	}
 	public static class Utility
 	{
-		public static void Assert(bool condition)
-		{
-			if (Debug.isDebugBuild)
-			{
-				if (!condition) throw new Exception();
-			}
-		}
 		public static void LogError(Exception e)
 		{
 			Debug.Log("<color=red>Error: </color>" + e);

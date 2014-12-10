@@ -6,6 +6,7 @@ namespace ca.HenrySoftware.Flop
 	{
 		public Text Title;
 		public Text Text;
+		private static readonly Vector3 _offsetDialog = new Vector3(Constants.Offset, 0f, 0f);
 		public void ShowError(string text)
 		{
 			Title.text = Constants.Error;
@@ -14,7 +15,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		public void Spring()
 		{
-			Utility.Spring(this, Constants.OffsetDialog);
+			Utility.Spring(this, _offsetDialog);
 		}
 		public void SpringBack()
 		{

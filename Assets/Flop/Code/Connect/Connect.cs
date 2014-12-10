@@ -6,6 +6,11 @@ namespace ca.HenrySoftware.Flop
 	public class Connect : Singleton<Connect>
 	{
 		public static UnityAction<string> EmailChangedEvent;
+		private static readonly Vector3 _offsetSignIn = new Vector3(0f, Constants.Offset, 0f);
+		private static readonly Vector3 _offsetRegister = new Vector3(Constants.Offset, Constants.Offset, 0f);
+		private static readonly Vector3 _offsetReset = new Vector3(-Constants.Offset, Constants.Offset, 0f);
+		private static readonly Vector3 _offsetAccount = new Vector3(-Constants.Offset, 0f, 0f);
+		private static readonly Vector3 _offsetChange = new Vector3(-(Constants.Offset * 2f), 0f, 0f);
 		private void OnEnable()
 		{
 			StartCoroutine(UpdateEmail());
@@ -29,35 +34,35 @@ namespace ca.HenrySoftware.Flop
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
-			Utility.Spring(this, Constants.OffsetSignIn);
+			Utility.Spring(this, _offsetSignIn);
 			Flow.Instance.FadeBack();
 		}
 		public void SpringRegister()
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
-			Utility.Spring(this, Constants.OffsetRegister);
+			Utility.Spring(this, _offsetRegister);
 			Flow.Instance.FadeBack();
 		}
 		public void SpringReset()
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
-			Utility.Spring(this, Constants.OffsetReset);
+			Utility.Spring(this, _offsetReset);
 			Flow.Instance.FadeBack();
 		}
 		public void SpringAccount()
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
-			Utility.Spring(this, Constants.OffsetAccount);
+			Utility.Spring(this, _offsetAccount);
 			Flow.Instance.FadeBack();
 		}
 		public void SpringChange()
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
-			Utility.Spring(this, Constants.OffsetChange);
+			Utility.Spring(this, _offsetChange);
 			Flow.Instance.FadeBack();
 		}
 		public void SpringBack()

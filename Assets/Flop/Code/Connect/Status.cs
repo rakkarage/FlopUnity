@@ -30,11 +30,11 @@ namespace ca.HenrySoftware.Flop
 		{
 			if (Connection.Connected)
 			{
-				_image.color = Constants.ErrorGreen.SetAlpha(_highlight ? 1f : .5f);
+				_image.color = Constants.StatusGreen.SetAlpha(_highlight ? 1f : .5f);
 			}
 			else
 			{
-				_image.color = Constants.ErrorRed.SetAlpha(_highlight ? 1f : .5f);
+				_image.color = Constants.StatusRed.SetAlpha(_highlight ? 1f : .5f);
 			}
 		}
 		public void StatusClicked()
