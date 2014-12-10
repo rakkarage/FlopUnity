@@ -10,7 +10,6 @@ namespace ca.HenrySoftware.Flop
 		private const float _volumeMax = 1f;
 		private const float _pitchMin = .75f;
 		private const float _pitchMax = 1.25f;
-
 		private void Awake()
 		{
 			_source = GetComponent<AudioSource>();
