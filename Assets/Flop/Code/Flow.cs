@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 namespace ca.HenrySoftware.Flop
 {
-	public class Flow : Singleton<Flow>, IBeginDragHandler, IEndDragHandler, IDragHandler
+	public class Flow : Singleton<Flow>, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler, IPointerUpHandler
 	{
 		public bool Big = false;
 		public Vector3 Offset = new Vector3(32f, -3f, 16f);
@@ -192,6 +192,15 @@ namespace ca.HenrySoftware.Flop
 				StopCoroutine(_inertiaEase);
 			if (_inertiaDecayEase != null)
 				StopCoroutine(_inertiaDecayEase);
+		}
+		public void OnPointerDown(PointerEventData e)
+		{
+			Stop();
+		}
+		public void OnPointerUp(PointerEventData e)
+		{
+			if (Mathf.Abs(_inertia) < 0.001f)
+				Snap();
 		}
 		public void OnBeginDrag(PointerEventData e)
 		{
