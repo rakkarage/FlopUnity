@@ -4,7 +4,7 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Pool : MonoBehaviour
 	{
-		public int Count = 10;
+		public int Count = 12;
 		public GameObject Prefab;
 		private List<GameObject> _pool;
 		private const string _name = "Pool";
