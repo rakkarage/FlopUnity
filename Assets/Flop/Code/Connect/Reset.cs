@@ -52,7 +52,7 @@ namespace ca.HenrySoftware.Flop
 			Audio.Instance.PlayError();
 			a.SetBool(Constants.AnimatorError, true);
 		}
-		public void ClearError()
+		private void ClearError()
 		{
 			_emailAnimator.SetBool(Constants.AnimatorError, false);
 		}
@@ -67,12 +67,12 @@ namespace ca.HenrySoftware.Flop
 			Connect.Instance.SpringSignIn();
 			EnableInput();
 		}
-		public void DisableInput()
+		private void DisableInput()
 		{
 			ResetButton.SetBool(Constants.AnimatorCompute, true);
 			gameObject.SetInteractable(false);
 		}
-		public void EnableInput()
+		private void EnableInput()
 		{
 			ResetButton.SetBool(Constants.AnimatorCompute, false);
 			gameObject.SetInteractable(true);

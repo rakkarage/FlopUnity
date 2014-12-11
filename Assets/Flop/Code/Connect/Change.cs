@@ -63,7 +63,7 @@ namespace ca.HenrySoftware.Flop
 			Audio.Instance.PlayError();
 			a.SetBool(Constants.AnimatorError, true);
 		}
-		public void ClearError()
+		private void ClearError()
 		{
 			_oldAnimator.SetBool(Constants.AnimatorError, false);
 			_newAnimator.SetBool(Constants.AnimatorError, false);
@@ -83,12 +83,12 @@ namespace ca.HenrySoftware.Flop
 			_confirmField.text = string.Empty;
 			EnableInput();
 		}
-		public void DisableInput()
+		private void DisableInput()
 		{
 			ChangeButton.SetBool(Constants.AnimatorCompute, true);
 			gameObject.SetInteractable(false);
 		}
-		public void EnableInput()
+		private void EnableInput()
 		{
 			ChangeButton.SetBool(Constants.AnimatorCompute, false);
 			gameObject.SetInteractable(true);

@@ -63,7 +63,7 @@ namespace ca.HenrySoftware.Flop
 			Audio.Instance.PlayError();
 			a.SetBool(Constants.AnimatorError, true);
 		}
-		public void ClearError()
+		private void ClearError()
 		{
 			_emailAnimator.SetBool(Constants.AnimatorError, false);
 			_passwordAnimator.SetBool(Constants.AnimatorError, false);
@@ -80,12 +80,12 @@ namespace ca.HenrySoftware.Flop
 			_passwordField.text = string.Empty;
 			EnableInput();
 		}
-		public void DisableInput()
+		private void DisableInput()
 		{
 			SignInButton.SetBool(Constants.AnimatorCompute, true);
 			gameObject.SetInteractable(false);
 		}
-		public void EnableInput()
+		private void EnableInput()
 		{
 			SignInButton.SetBool(Constants.AnimatorCompute, false);
 			gameObject.SetInteractable(true);
