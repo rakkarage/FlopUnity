@@ -16,10 +16,7 @@ namespace ca.HenrySoftware.Flop
 		private void HandleEmailChanged(string email)
 		{
 			if (!string.IsNullOrEmpty(email))
-			{
 				EmailField.text = email;
-				EmailField.MoveTextEnd(false);
-			}
 		}
 		public void SignOutClicked()
 		{

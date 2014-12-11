@@ -33,10 +33,7 @@ namespace ca.HenrySoftware.Flop
 		private void HandleEmailChanged(string email)
 		{
 			if (!string.IsNullOrEmpty(email))
-			{
 				_emailField.text = email;
-				_emailField.MoveTextEnd(false);
-			}
 		}
 		public void SignInClicked()
 		{
