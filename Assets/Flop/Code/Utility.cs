@@ -27,7 +27,9 @@ namespace ca.HenrySoftware.Flop
 		}
 		public static void Spring(MonoBehaviour m, Vector2 p)
 		{
-			Ease3.GoPosition(m, m.gameObject, m.gameObject.transform.localPosition, new Vector3(p.x, p.y, m.gameObject.transform.position.z), .5f, 0f, EaseType.Spring);
+			var o = m.gameObject;
+			var t = o.transform;
+            Ease3.GoPosition(m, o, t.localPosition, new Vector3(p.x, p.y, t.position.z), .5f, 0f, EaseType.Spring);
 		}
 		public static Color RandomColor()
 		{
