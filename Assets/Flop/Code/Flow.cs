@@ -38,14 +38,15 @@ namespace ca.HenrySoftware.Flop
 		private void Start()
 		{
 			_limit = Limit * 2;
-			_views = new Dictionary<int, Transform>(Big ? _dataBig.Count : _data.Count);
+			var count = Big ? _dataBig.Count : _data.Count;
+			_views = new Dictionary<int, Transform>(count);
 			_fade = GetComponentInParent<Fade>();
 			_scaler = GetComponentInParent<CanvasScaler>();
-			_dataMax = Big ? _dataBig.Count - 1 :  _data.Count - 1;
+			_dataMax = count - 1;
 			_max = (Offset.x * (Limit - 2f));
 			_min = -(_dataMax * Offset.x + _max);
-			Scrollbar.numberOfSteps = Big ? _data.Count : _dataBig.Count;
-			for (var i = 0; (i < (Big ? _dataBig.Count : _data.Count)) && (i < Limit); i++)
+			Scrollbar.numberOfSteps = count;
+			for (var i = 0; (i < count) && (i < Limit); i++)
 				Add(i);
 			UpdateAll();
 			LoadPage();
