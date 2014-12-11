@@ -831,7 +831,7 @@ AnimationClip:
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
-    m_LoopTime: 0
+    m_LoopTime: 1
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
@@ -1154,16 +1154,16 @@ StateMachine:
       first: {fileID: 110200000}
       second: []
     data:
-      first: {fileID: 110226190}
+      first: {fileID: 110293938}
       second: []
     data:
       first: {fileID: 110261058}
       second: []
     data:
-      first: {fileID: 110279217}
+      first: {fileID: 110226190}
       second: []
     data:
-      first: {fileID: 110293938}
+      first: {fileID: 110279217}
       second: []
   m_MotionSetCount: 1
   m_AnyStatePosition: {x: 0, y: 0, z: 0}
