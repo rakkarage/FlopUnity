@@ -4,13 +4,25 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Change : MonoBehaviour
 	{
-		public Image Old;
-		public InputField OldField;
-		public Image New;
-		public InputField NewField;
-		public Image Confirm;
-		public InputField ConfirmField;
-		public Button ChangeButton;
+		public GameObject Old;
+		private InputField _oldField;
+		private Animator _oldAnimator;
+		public GameObject New;
+		private InputField _newField;
+		private Animator _newAnimator;
+		public GameObject Confirm;
+		private InputField _confirmField;
+		private Animator _confirmAnimator;
+		public Animator ChangeButton;
+		private void Awake()
+		{
+			_oldField = Old.GetComponent<InputField>();
+			_oldAnimator = Old.GetComponent<Animator>();
+			_newField = New.GetComponent<InputField>();
+			_newAnimator = New.GetComponent<Animator>();
+			_confirmField = Confirm.GetComponent<InputField>();
+			_confirmAnimator = Confirm.GetComponent<Animator>();
+		}
 		private void OnEnable()
 		{
 			Connection.ChangeFailEvent += ChangeFail;
@@ -24,38 +36,38 @@ namespace ca.HenrySoftware.Flop
 		public void ChangeClicked()
 		{
 			Audio.Instance.PlayClick();
-			var oldPass = OldField.text;
-			var newPass = NewField.text;
-			var confirm = ConfirmField.text;
+			var oldPass = _oldField.text;
+			var newPass = _newField.text;
+			var confirm = _confirmField.text;
 			ClearError();
 			if (!Connection.ValidPassword(oldPass))
 			{
-				Error(Old.gameObject);
+				Error(_oldAnimator);
 				return;
 			}
 			if (!Connection.ValidPassword(newPass))
 			{
-				Error(New.gameObject);
+				Error(_newAnimator);
 				return;
 			}
 			if (!Connection.ValidPassword(confirm) || !confirm.Equals(newPass))
 			{
-				Error(Confirm.gameObject);
+				Error(_confirmAnimator);
 				return;
 			}
 			DisableInput();
 			Connection.Change(newPass, oldPass);
 		}
-		private void Error(GameObject o)
+		private void Error(Animator a)
 		{
 			Audio.Instance.PlayError();
-			o.GetComponent<Animator>().SetBool(Constants.AnimatorError, true);
+			a.SetBool(Constants.AnimatorError, true);
 		}
 		public void ClearError()
 		{
-			Old.GetComponent<Animator>().SetBool(Constants.AnimatorError, false);
-			New.GetComponent<Animator>().SetBool(Constants.AnimatorError, false);
-			Confirm.GetComponent<Animator>().SetBool(Constants.AnimatorError, false);
+			_oldAnimator.SetBool(Constants.AnimatorError, false);
+			_newAnimator.SetBool(Constants.AnimatorError, false);
+			_confirmAnimator.SetBool(Constants.AnimatorError, false);
 		}
 		private void ChangeFail(string reason)
 		{
@@ -66,19 +78,19 @@ namespace ca.HenrySoftware.Flop
 		private void ChangeSucceed()
 		{
 			Connect.Instance.SpringBack();
-			OldField.text = string.Empty;
-			NewField.text = string.Empty;
-			ConfirmField.text = string.Empty;
+			_oldField.text = string.Empty;
+			_newField.text = string.Empty;
+			_confirmField.text = string.Empty;
 			EnableInput();
 		}
 		public void DisableInput()
 		{
-			ChangeButton.GetComponent<Animator>().SetBool(Constants.AnimatorCompute, true);
+			ChangeButton.SetBool(Constants.AnimatorCompute, true);
 			gameObject.SetInteractable(false);
 		}
 		public void EnableInput()
 		{
-			ChangeButton.GetComponent<Animator>().SetBool(Constants.AnimatorCompute, false);
+			ChangeButton.SetBool(Constants.AnimatorCompute, false);
 			gameObject.SetInteractable(true);
 		}
 	}

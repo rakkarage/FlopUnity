@@ -4,13 +4,25 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Register : MonoBehaviour
 	{
-		public Image Email;
-		public InputField EmailField;
-		public Image Password;
-		public InputField PasswordField;
-		public Image Confirm;
-		public InputField ConfirmField;
-		public Button RegisterButton;
+		public GameObject Email;
+		private InputField _emailField;
+		private Animator _emailAnimator;
+		public GameObject Password;
+		private InputField _passwordField;
+		private Animator _passwordAnimator;
+		public GameObject Confirm;
+		private InputField _confirmField;
+		private Animator _confirmAnimator;
+		public Animator RegisterButton;
+		private void Awake()
+		{
+			_emailField = Email.GetComponent<InputField>();
+			_emailAnimator = Email.GetComponent<Animator>();
+			_passwordField = Password.GetComponent<InputField>();
+			_passwordAnimator = Password.GetComponent<Animator>();
+			_confirmField = Confirm.GetComponent<InputField>();
+			_confirmAnimator = Confirm.GetComponent<Animator>();
+		}
 		private void OnEnable()
 		{
 			Connect.EmailChangedEvent += HandleEmailChanged;
@@ -27,46 +39,46 @@ namespace ca.HenrySoftware.Flop
 		{
 			if (!string.IsNullOrEmpty(email))
 			{
-				EmailField.text = email;
-				EmailField.MoveTextEnd(false);
+				_emailField.text = email;
+				_emailField.MoveTextEnd(false);
 			}
 		}
 		public void RegisterClicked()
 		{
 			Audio.Instance.PlayClick();
-			string email = EmailField.text;
-			string password = PasswordField.text;
-			string confirm = ConfirmField.text;
+			string email = _emailField.text;
+			string password = _passwordField.text;
+			string confirm = _confirmField.text;
 			Connect.Instance.SetEmail(email);
 			ClearError();
 			if (!Connection.ValidEmail(email))
 			{
-				Error(Email.gameObject);
+				Error(_emailAnimator);
 				return;
 			}
 			if (!Connection.ValidPassword(password))
 			{
-				Error(Password.gameObject);
+				Error(_passwordAnimator);
 				return;
 			}
 			if (!Connection.ValidPassword(confirm) || !confirm.Equals(password))
 			{
-				Error(Confirm.gameObject);
+				Error(_confirmAnimator);
 				return;
 			}
 			DisableInput();
 			Connection.Register(email, password);
 		}
-		private void Error(GameObject o)
+		private void Error(Animator a)
 		{
 			Audio.Instance.PlayError();
-			o.GetComponent<Animator>().SetBool(Constants.AnimatorError, true);
+			a.SetBool(Constants.AnimatorError, true);
 		}
 		public void ClearError()
 		{
-			Email.GetComponent<Animator>().SetBool(Constants.AnimatorError, false);
-			Password.GetComponent<Animator>().SetBool(Constants.AnimatorError, false);
-			Confirm.GetComponent<Animator>().SetBool(Constants.AnimatorError, false);
+			_emailAnimator.SetBool(Constants.AnimatorError, false);
+			_passwordAnimator.SetBool(Constants.AnimatorError, false);
+			_confirmAnimator.SetBool(Constants.AnimatorError, false);
 		}
 		private void RegisterFail(string reason)
 		{
@@ -77,18 +89,18 @@ namespace ca.HenrySoftware.Flop
 		private void RegisterSucceed()
 		{
 			Connect.Instance.SpringBack();
-			PasswordField.text = string.Empty;
-			ConfirmField.text = string.Empty;
+			_passwordField.text = string.Empty;
+			_confirmField.text = string.Empty;
 			EnableInput();
 		}
 		public void DisableInput()
 		{
-			RegisterButton.GetComponent<Animator>().SetBool(Constants.AnimatorCompute, true);
+			RegisterButton.SetBool(Constants.AnimatorCompute, true);
 			gameObject.SetInteractable(false);
 		}
 		public void EnableInput()
 		{
-			RegisterButton.GetComponent<Animator>().SetBool(Constants.AnimatorCompute, false);
+			RegisterButton.SetBool(Constants.AnimatorCompute, false);
 			gameObject.SetInteractable(true);
 		}
 	}

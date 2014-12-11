@@ -4,11 +4,20 @@ namespace ca.HenrySoftware.Flop
 {
 	public class SignIn : MonoBehaviour
 	{
-		public Image Email;
-		public InputField EmailField;
-		public Image Password;
-		public InputField PasswordField;
-		public Button SignInButton;
+		public GameObject Email;
+		private InputField _emailField;
+		private Animator _emailAnimator;
+		public GameObject Password;
+		private InputField _passwordField;
+		private Animator _passwordAnimator;
+		public Animator SignInButton;
+		private void Awake()
+		{
+			_emailField = Email.GetComponent<InputField>();
+			_emailAnimator = Email.GetComponent<Animator>();
+			_passwordField = Password.GetComponent<InputField>();
+			_passwordAnimator = Password.GetComponent<Animator>();
+		}
 		private void OnEnable()
 		{
 			Connect.EmailChangedEvent += HandleEmailChanged;
@@ -25,39 +34,39 @@ namespace ca.HenrySoftware.Flop
 		{
 			if (!string.IsNullOrEmpty(email))
 			{
-				EmailField.text = email;
-				EmailField.MoveTextEnd(false);
+				_emailField.text = email;
+				_emailField.MoveTextEnd(false);
 			}
 		}
 		public void SignInClicked()
 		{
 			Audio.Instance.PlayClick();
-			string email = EmailField.text;
-			string password = PasswordField.text;
+			string email = _emailField.text;
+			string password = _passwordField.text;
 			Connect.Instance.SetEmail(email);
 			ClearError();
 			if (!Connection.ValidEmail(email))
 			{
-				Error(Email.gameObject);
+				Error(_emailAnimator);
 				return;
 			}
 			if (!Connection.ValidPassword(password))
 			{
-				Error(Password.gameObject);
+				Error(_passwordAnimator);
 				return;
 			}
 			DisableInput();
 			Connection.SignIn(email, password);
 		}
-		private void Error(GameObject o)
+		private void Error(Animator a)
 		{
 			Audio.Instance.PlayError();
-			o.GetComponent<Animator>().SetBool(Constants.AnimatorError, true);
+			a.SetBool(Constants.AnimatorError, true);
 		}
 		public void ClearError()
 		{
-			Email.GetComponent<Animator>().SetBool(Constants.AnimatorError, false);
-			Password.GetComponent<Animator>().SetBool(Constants.AnimatorError, false);
+			_emailAnimator.SetBool(Constants.AnimatorError, false);
+			_passwordAnimator.SetBool(Constants.AnimatorError, false);
 		}
 		private void SignInFail(string reason)
 		{
@@ -68,17 +77,17 @@ namespace ca.HenrySoftware.Flop
 		private void SignInSucceed()
 		{
 			Connect.Instance.SpringBack();
-			PasswordField.text = string.Empty;
+			_passwordField.text = string.Empty;
 			EnableInput();
 		}
 		public void DisableInput()
 		{
-			SignInButton.GetComponent<Animator>().SetBool(Constants.AnimatorCompute, true);
+			SignInButton.SetBool(Constants.AnimatorCompute, true);
 			gameObject.SetInteractable(false);
 		}
 		public void EnableInput()
 		{
-			SignInButton.GetComponent<Animator>().SetBool(Constants.AnimatorCompute, false);
+			SignInButton.SetBool(Constants.AnimatorCompute, false);
 			gameObject.SetInteractable(true);
 		}
 	}

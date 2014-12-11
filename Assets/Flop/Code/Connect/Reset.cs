@@ -4,9 +4,15 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Reset : MonoBehaviour
 	{
-		public Image Email;
-		public InputField EmailField;
-		public Button ResetButton;
+		public GameObject Email;
+		private InputField _emailField;
+		private Animator _emailAnimator;
+		public Animator ResetButton;
+		private void Awake()
+		{
+			_emailField = Email.GetComponent<InputField>();
+			_emailAnimator = Email.GetComponent<Animator>();
+		}
 		private void OnEnable()
 		{
 			Connect.EmailChangedEvent += HandleEmailChanged;
@@ -23,32 +29,32 @@ namespace ca.HenrySoftware.Flop
 		{
 			if (!string.IsNullOrEmpty(email))
 			{
-				EmailField.text = email;
-				EmailField.MoveTextEnd(false);
+				_emailField.text = email;
+				_emailField.MoveTextEnd(false);
 			}
 		}
 		public void ResetClicked()
 		{
 			Audio.Instance.PlayClick();
-			string email = EmailField.text;
+			string email = _emailField.text;
 			Connect.Instance.SetEmail(email);
 			ClearError();
 			if (!Connection.ValidEmail(email))
 			{
-				Error(Email.gameObject);
+				Error(_emailAnimator);
 				return;
 			}
 			DisableInput();
 			Connection.Reset(email);
 		}
-		private void Error(GameObject o)
+		private void Error(Animator a)
 		{
 			Audio.Instance.PlayError();
-			o.GetComponent<Animator>().SetBool(Constants.AnimatorError, true);
+			a.SetBool(Constants.AnimatorError, true);
 		}
 		public void ClearError()
 		{
-			Email.GetComponent<Animator>().SetBool(Constants.AnimatorError, false);
+			_emailAnimator.SetBool(Constants.AnimatorError, false);
 		}
 		private void ResetFail(string reason)
 		{
@@ -63,12 +69,12 @@ namespace ca.HenrySoftware.Flop
 		}
 		public void DisableInput()
 		{
-			ResetButton.GetComponent<Animator>().SetBool(Constants.AnimatorCompute, true);
+			ResetButton.SetBool(Constants.AnimatorCompute, true);
 			gameObject.SetInteractable(false);
 		}
 		public void EnableInput()
 		{
-			ResetButton.GetComponent<Animator>().SetBool(Constants.AnimatorCompute, false);
+			ResetButton.SetBool(Constants.AnimatorCompute, false);
 			gameObject.SetInteractable(true);
 		}
 	}
