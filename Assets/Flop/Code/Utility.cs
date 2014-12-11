@@ -35,13 +35,16 @@ namespace ca.HenrySoftware.Flop
 		}
 		public static void RandomColor(IEnumerable<Text> texts)
 		{
-			var c = RandomColor();
-			foreach (var text in texts)
+			if (texts != null)
 			{
-				text.color = text.color == Color.white ? c : Color.white;
+				var c = RandomColor();
+				foreach (var text in texts)
+				{
+					text.color = text.color == Color.white ? c : Color.white;
+				}
 			}
 		}
-		public static void ResetColor(Text[] texts)
+		public static void ResetColor(IEnumerable<Text> texts)
 		{
 			if (texts != null)
 			{
