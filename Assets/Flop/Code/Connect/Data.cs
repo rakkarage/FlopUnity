@@ -48,7 +48,7 @@ namespace ca.HenrySoftware.Flop
 				});
 			}
 		}
-		public static UnityAction LoadSucceedEvent;
+		public static UnityAction LoadedEvent;
 		private void Load()
 		{
 			if (Connection.Connected)
@@ -62,7 +62,7 @@ namespace ca.HenrySoftware.Flop
 						{
 							_page = t.Result.Get<int>("page");
 							_pageBig = t.Result.Get<int>("pageBig");
-							if (LoadSucceedEvent != null) LoadSucceedEvent();
+							if (LoadedEvent != null) LoadedEvent();
 						});
 					}
 				});

@@ -55,12 +55,12 @@ namespace ca.HenrySoftware.Flop
 		private void OnEnable()
 		{
 			Scrollbar.onValueChanged.AddListener(OnScrollChanged);
-			Data.LoadSucceedEvent += LoadPage;
+			Data.LoadedEvent += LoadPage;
 		}
 		private void OnDisable()
 		{
 			Scrollbar.onValueChanged.RemoveListener(OnScrollChanged);
-			Data.LoadSucceedEvent -= LoadPage;
+			Data.LoadedEvent -= LoadPage;
 		}
 		private void LoadPage()
 		{
