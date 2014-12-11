@@ -162,7 +162,7 @@ namespace ca.HenrySoftware.Flop
 		private void UpdateName(GameObject o, int i)
 		{
 			o.name = i.ToString();
-			var data = Big ? _dataBig[i].ToString() :  string.Format("{0}", (char)_data[i]);
+			var data = Big ? _dataBig[i].ToString("x") :  string.Format("{0}", (char)_data[i]);
 			foreach (var text in o.GetComponentsInChildren<Text>(true))
 				text.text = data;
 		}
