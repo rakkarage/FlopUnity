@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 95c99f7dfea60444b88181e5df071c05
+guid: 3e2d8d83cc2fa6040a1d625e3dcf079e
 labels:
 - Sound
 - Audio
 AudioImporter:
   serializedVersion: 4
-  format: 0
+  format: -1
   quality: .5
   stream: 1
   3D: 0

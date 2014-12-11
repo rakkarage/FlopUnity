@@ -2182,7 +2182,7 @@ AudioSource:
   m_GameObject: {fileID: 521971106}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: 96d66235adb8ff24684b8a033818695d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 3e2d8d83cc2fa6040a1d625e3dcf079e, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -7361,8 +7361,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebaa4ab55c7ce194faba6fb172ac026d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Click: {fileID: 8300000, guid: 95c99f7dfea60444b88181e5df071c05, type: 3}
-  Error: {fileID: 8300000, guid: aad08865f0d66924c967b23538de4aee, type: 3}
+  Click: {fileID: 8300000, guid: d517807a6a15cd043b8d6ee178df403a, type: 3}
+  Error: {fileID: 8300000, guid: c70bd7c7da1576244a7a278d74cf86e8, type: 3}
 --- !u!82 &1894599100
 AudioSource:
   m_ObjectHideFlags: 0
