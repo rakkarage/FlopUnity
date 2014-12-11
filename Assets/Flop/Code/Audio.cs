@@ -22,7 +22,7 @@ namespace ca.HenrySoftware.Flop
 		{
 			return Random.Range(_pitchMin, _pitchMax);
 		}
-		private void RandomSound(AudioClip sound)
+		private void RandomPlay(AudioClip sound)
 		{
 			var oldPitch = _source.pitch;
 			_source.pitch = RandomPitch();
@@ -31,11 +31,11 @@ namespace ca.HenrySoftware.Flop
 		}
 		public void PlayClick()
 		{
-			RandomSound(Click);
+			RandomPlay(Click);
 		}
 		public void PlayError()
 		{
-			RandomSound(Error);
+			RandomPlay(Error);
 		}
 	}
 }
