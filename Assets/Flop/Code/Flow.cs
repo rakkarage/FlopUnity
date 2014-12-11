@@ -236,7 +236,7 @@ namespace ca.HenrySoftware.Flop
 		{
 			if (Mathf.Abs(_inertia) > .0333f)
 			{
-				var time = Mathf.Clamp(Mathf.Abs(_inertia * .1f), 0, 3.33f);
+				var time = Mathf.Clamp(Mathf.Abs(_inertia * .1f), 0, Big ? 33f : 3.33f);
 				_inertiaEase = Ease.Go(this, -_inertia, 0f, time, 0f, EaseType.Linear, Drag, Snap);
 			}
 			else
