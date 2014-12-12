@@ -116,7 +116,11 @@ namespace ca.HenrySoftware.Flop
 			if (complete != null)
 				complete();
 		}
-		public static IEnumerator GoPosition(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
+		public static IEnumerator GoPosition(MonoBehaviour m, Vector3 start, Vector3 end, float time, float delay, EaseType type)
+		{
+			return GoPosition(m, m.gameObject, start, end, time, delay, type);
+		}
+        public static IEnumerator GoPosition(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
 		{
 			IEnumerator i = GoPositionCoroutine(o, start, end, time, delay, type);
 			m.StartCoroutine(i);
@@ -135,7 +139,11 @@ namespace ca.HenrySoftware.Flop
 			}
 			o.transform.localPosition = end;
 		}
-		public static IEnumerator GoRotation(MonoBehaviour m, GameObject o, Vector3 angle, float time, float delay, EaseType type)
+		public static IEnumerator GoRotation(MonoBehaviour m, Vector3 angle, float time, float delay, EaseType type)
+		{
+			return GoRotation(m, m.gameObject, angle, time, delay, type);
+		}
+        public static IEnumerator GoRotation(MonoBehaviour m, GameObject o, Vector3 angle, float time, float delay, EaseType type)
 		{
 			IEnumerator i = GoRotationCoroutine(o, angle, time, delay, type);
 			m.StartCoroutine(i);
@@ -154,7 +162,11 @@ namespace ca.HenrySoftware.Flop
 			}
 			o.transform.localEulerAngles = _types[type](Vector3.zero, angle, 1f);
 		}
-		public static IEnumerator GoScale(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
+		public static IEnumerator GoScale(MonoBehaviour m, Vector3 start, Vector3 end, float time, float delay, EaseType type)
+		{
+			return GoScale(m, m.gameObject, start, end, time, delay, type);
+		}
+        public static IEnumerator GoScale(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
 		{
 			IEnumerator i = GoScaleCoroutine(o, start, end, time, delay, type);
 			m.StartCoroutine(i);
