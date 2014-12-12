@@ -53,9 +53,6 @@ namespace ca.HenrySoftware.Flop
 		void Awake()
 		{
 			ParseObject.RegisterSubclass<ParseData>();
-		}
-		private void Start()
-		{
 			Load();
 		}
 		private IEnumerator Save()
