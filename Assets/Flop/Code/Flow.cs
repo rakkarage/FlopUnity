@@ -14,7 +14,6 @@ namespace ca.HenrySoftware.Flop
 		public float InsetZ = .5f;
 		public float Time = .333f;
 		public int Limit = 6;
-		private int _limit;
 		public Pool Pool;
 		public Transform LookAt;
 		public Button PrevButton;
@@ -37,7 +36,6 @@ namespace ca.HenrySoftware.Flop
 		private Dictionary<int, Transform> _views;
 		private void Start()
 		{
-			_limit = Limit * 2;
 			var count = Big ? _dataBig.Count : _data.Count;
 			_views = new Dictionary<int, Transform>(count);
 			_fade = GetComponentInParent<Fade>();
@@ -116,9 +114,9 @@ namespace ca.HenrySoftware.Flop
 		{
 			_current = Mathf.Clamp(_current + delta, _min, _max);
 			var current = GetCurrent();
-			var min = Mathf.Min(old, current) - _limit;
+			var min = Mathf.Min(old, current) - Limit;
 			if (min < 0) min = 0;
-			var max = Mathf.Max(old, current) + _limit;
+			var max = Mathf.Max(old, current) + Limit;
 			if (max > _dataMax) max = _dataMax;
 			bool back = current < old;
 			for (var i = (back ? max : min); (back ? (i >= min) : (i <= max)); i = (back ? i - 1 : i + 1))
