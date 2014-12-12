@@ -24,7 +24,9 @@ namespace ca.HenrySoftware.Flop
 		{
 			StopAllCoroutines();
 			Utility.RandomColor(_children);
-			var direction = _t.localPosition.x == 0 ? new Vector3(360f, 0f, 0f) : new Vector3(0f, _t.localPosition.x > 0 ? 360f : -360f, 0f);
+			var direction = _t.localPosition.x == 0 ?
+				new Vector3(e.position.y > (Screen.height * .5f) ? 360f : -360f, 0f, 0f) :
+				new Vector3(0f, _t.localPosition.x > 0 ? 360f : -360f, 0f);
 			Ease3.GoRotation(this, direction, 1f, 0f, EaseType.Spring);
 			Audio.Instance.PlayClick();
 			Flow.Instance.EaseTo(_t);
