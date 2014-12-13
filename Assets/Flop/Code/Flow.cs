@@ -263,7 +263,7 @@ namespace ca.HenrySoftware.Flop
 			Stop();
 			Prev();
 		}
-		public void Prev()
+		private void Prev()
 		{
 			EaseBy(-1);
 		}
@@ -273,7 +273,7 @@ namespace ca.HenrySoftware.Flop
 			Stop();
 			Next();
 		}
-		public void Next()
+		private void Next()
 		{
 			EaseBy(1);
 		}
