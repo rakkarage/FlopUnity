@@ -47,11 +47,11 @@ namespace ca.HenrySoftware.Flop
 		}
 		public static float SineIn(float start, float end, float time)
 		{
-			return Mathf.Lerp(start, end, Mathf.Sin(time * Mathf.PI * .5f));
+			return Mathf.Lerp(start, end, 1f - Mathf.Cos(time * Mathf.PI * .5f));
 		}
 		public static float SineOut(float start, float end, float time)
 		{
-			return Mathf.Lerp(start, end, 1f - Mathf.Cos(time * Mathf.PI * .5f));
+			return Mathf.Lerp(start, end, Mathf.Sin(time * Mathf.PI * .5f));
 		}
 		public static float SineInOut(float start, float end, float time)
 		{
@@ -88,10 +88,10 @@ namespace ca.HenrySoftware.Flop
 		private readonly static Dictionary<EaseType, EaseHandler> _types = new Dictionary<EaseType, EaseHandler>
 		{
 			{EaseType.Linear, Vector3.Lerp},
-			{EaseType.SineInOut, SineInOut},
+			{EaseType.Spring, Spring},
 			{EaseType.SineIn, SineIn},
 			{EaseType.SineOut, SineOut},
-			{EaseType.Spring, Spring},
+			{EaseType.SineInOut, SineInOut},
 			{EaseType.BounceIn, BounceIn},
 			{EaseType.BounceOut, BounceOut},
 			{EaseType.BounceInOut, BounceInOut}
