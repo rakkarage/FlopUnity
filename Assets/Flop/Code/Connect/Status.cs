@@ -4,8 +4,10 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Status : Singleton<Status>
 	{
-		public Text EmailText;
-		public GameObject Tip;
+		[SerializeField]
+		private GameObject _tip = null;
+		[SerializeField]
+		private Text _email = null;
 		private Image _image;
 		private bool _highlight = false;
 		private void Awake()
@@ -24,7 +26,7 @@ namespace ca.HenrySoftware.Flop
 		private void HandleEmailChanged(string email)
 		{
 			if (!string.IsNullOrEmpty(email))
-				EmailText.text = email;
+				_email.text = email;
 		}
 		public void UpdateColor()
 		{
@@ -48,13 +50,13 @@ namespace ca.HenrySoftware.Flop
 		public void Enter()
 		{
 			if (Connection.Connected)
-				Tip.SetActive(true);
+				_tip.SetActive(true);
 			_highlight = true;
 			UpdateColor();
 		}
 		public void Exit()
 		{
-			Tip.SetActive(false);
+			_tip.SetActive(false);
 			_highlight = false;
 			UpdateColor();
 		}

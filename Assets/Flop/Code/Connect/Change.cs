@@ -4,24 +4,28 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Change : MonoBehaviour
 	{
-		public GameObject Old;
+		[SerializeField]
+		private GameObject _old = null;
 		private InputField _oldField;
 		private Animator _oldAnimator;
-		public GameObject New;
+		[SerializeField]
+		private GameObject _new = null;
 		private InputField _newField;
 		private Animator _newAnimator;
-		public GameObject Confirm;
+		[SerializeField]
+		private GameObject _confirm = null;
 		private InputField _confirmField;
 		private Animator _confirmAnimator;
-		public Animator ChangeButton;
+		[SerializeField]
+		private Animator _changeButton = null;
 		private void Awake()
 		{
-			_oldField = Old.GetComponent<InputField>();
-			_oldAnimator = Old.GetComponent<Animator>();
-			_newField = New.GetComponent<InputField>();
-			_newAnimator = New.GetComponent<Animator>();
-			_confirmField = Confirm.GetComponent<InputField>();
-			_confirmAnimator = Confirm.GetComponent<Animator>();
+			_oldField = _old.GetComponent<InputField>();
+			_oldAnimator = _old.GetComponent<Animator>();
+			_newField = _new.GetComponent<InputField>();
+			_newAnimator = _new.GetComponent<Animator>();
+			_confirmField = _confirm.GetComponent<InputField>();
+			_confirmAnimator = _confirm.GetComponent<Animator>();
 		}
 		private void OnEnable()
 		{
@@ -85,12 +89,12 @@ namespace ca.HenrySoftware.Flop
 		}
 		private void DisableInput()
 		{
-			ChangeButton.SetBool(Constants.AnimatorCompute, true);
+			_changeButton.SetBool(Constants.AnimatorCompute, true);
 			gameObject.SetInteractable(false);
 		}
 		private void EnableInput()
 		{
-			ChangeButton.SetBool(Constants.AnimatorCompute, false);
+			_changeButton.SetBool(Constants.AnimatorCompute, false);
 			gameObject.SetInteractable(true);
 		}
 	}

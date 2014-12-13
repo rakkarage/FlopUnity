@@ -4,19 +4,22 @@ namespace ca.HenrySoftware.Flop
 {
 	public class SignIn : MonoBehaviour
 	{
-		public GameObject Email;
+		[SerializeField]
+		private GameObject _email = null;
 		private InputField _emailField;
 		private Animator _emailAnimator;
-		public GameObject Password;
+		[SerializeField]
+		private GameObject _password = null;
 		private InputField _passwordField;
 		private Animator _passwordAnimator;
-		public Animator SignInButton;
+		[SerializeField]
+		private Animator _signInButton = null;
 		private void Awake()
 		{
-			_emailField = Email.GetComponent<InputField>();
-			_emailAnimator = Email.GetComponent<Animator>();
-			_passwordField = Password.GetComponent<InputField>();
-			_passwordAnimator = Password.GetComponent<Animator>();
+			_emailField = _email.GetComponent<InputField>();
+			_emailAnimator = _email.GetComponent<Animator>();
+			_passwordField = _password.GetComponent<InputField>();
+			_passwordAnimator = _password.GetComponent<Animator>();
 		}
 		private void OnEnable()
 		{
@@ -79,12 +82,12 @@ namespace ca.HenrySoftware.Flop
 		}
 		private void DisableInput()
 		{
-			SignInButton.SetBool(Constants.AnimatorCompute, true);
+			_signInButton.SetBool(Constants.AnimatorCompute, true);
 			gameObject.SetInteractable(false);
 		}
 		private void EnableInput()
 		{
-			SignInButton.SetBool(Constants.AnimatorCompute, false);
+			_signInButton.SetBool(Constants.AnimatorCompute, false);
 			gameObject.SetInteractable(true);
 		}
 	}

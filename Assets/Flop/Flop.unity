@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ef8588b18ded6f4f9cf1529ea895696, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EmailField: {fileID: 641394145}
+  _emailField: {fileID: 641394145}
 --- !u!114 &53156567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1463,18 +1463,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ab6dd3d0e3b3a746b0fa199fc062f24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Big: 1
-  Offset: {x: 32, y: -3, z: 16}
-  AbsoluteY: 1
-  InsetZ: .5
-  Time: .333000004
-  Limit: 6
-  Pool: {fileID: 317071234}
-  LookAt: {fileID: 1651842657}
-  PrevButton: {fileID: 1922463922}
-  NextButton: {fileID: 784256721}
-  Scrollbar: {fileID: 107210767}
-  Text: {fileID: 1452338531}
+  _big: 0
+  _offset: {x: 32, y: -3, z: 16}
+  _absoluteY: 1
+  _insetZ: .5
+  _time: .333000004
+  _limit: 6
+  _lookAt: {fileID: 1651842657}
+  _prev: {fileID: 1922463922}
+  _next: {fileID: 784256721}
+  _scrollbar: {fileID: 107210767}
 --- !u!114 &317071234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1487,8 +1485,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6750ef4648f6e994dad2a301aa83df70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Count: 12
-  Prefab: {fileID: 100006, guid: 6e282f18d04c0484eb78e49cada4856f, type: 2}
+  _count: 12
+  _prefab: {fileID: 100006, guid: 6e282f18d04c0484eb78e49cada4856f, type: 2}
 --- !u!1 &332819503
 GameObject:
   m_ObjectHideFlags: 0
@@ -2171,7 +2169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 380a4c1cef9b1db4283538320d7b8600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Activate:
+  _activate:
   - {fileID: 1730986136}
   - {fileID: 1131685855}
 --- !u!82 &521971109
@@ -2426,10 +2424,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 340d77a8bcc07b147807059470af2f0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Email: {fileID: 1652518680}
-  Password: {fileID: 540008843}
-  Confirm: {fileID: 492279891}
-  RegisterButton: {fileID: 1271050314}
+  _email: {fileID: 1652518680}
+  _password: {fileID: 540008843}
+  _confirm: {fileID: 492279891}
+  _registerButton: {fileID: 1271050314}
 --- !u!114 &586552033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2512,9 +2510,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0b97ac756a5e5c4c91d61a8e0a5ccc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Email: {fileID: 637122358}
-  Password: {fileID: 1158511462}
-  SignInButton: {fileID: 1515460247}
+  _email: {fileID: 637122358}
+  _password: {fileID: 1158511462}
+  _signInButton: {fileID: 1515460247}
 --- !u!114 &617415154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4588,7 +4586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60a82bc8550a42e4f8d02ffbe2630d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: {x: 1, y: 1}
+  _range: {x: 1, y: 1}
 --- !u!114 &1193085648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4654,8 +4652,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a276c413d093a54d9b8065751d4a8e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  In: 1
-  Time: 3.32999992
+  _in: 1
+  _time: 3.32999992
 --- !u!225 &1193085652
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -6801,10 +6799,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0eb77f4ba3a941b41bbb738ebefe423b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Old: {fileID: 1887735480}
-  New: {fileID: 2050714576}
-  Confirm: {fileID: 497990380}
-  ChangeButton: {fileID: 829406214}
+  _old: {fileID: 1887735480}
+  _new: {fileID: 2050714576}
+  _confirm: {fileID: 497990380}
+  _changeButton: {fileID: 829406214}
 --- !u!114 &1771711295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7361,8 +7359,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebaa4ab55c7ce194faba6fb172ac026d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Click: {fileID: 8300000, guid: d517807a6a15cd043b8d6ee178df403a, type: 3}
-  Error: {fileID: 8300000, guid: c70bd7c7da1576244a7a278d74cf86e8, type: 3}
+  _click: {fileID: 8300000, guid: d517807a6a15cd043b8d6ee178df403a, type: 3}
+  _error: {fileID: 8300000, guid: c70bd7c7da1576244a7a278d74cf86e8, type: 3}
 --- !u!82 &1894599100
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7816,8 +7814,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c8d5d9139a48d44b8cc54ad8aba6d9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EmailText: {fileID: 87831628}
-  Tip: {fileID: 1084796387}
+  _tip: {fileID: 1084796387}
+  _email: {fileID: 87831628}
 --- !u!114 &1930629589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8138,8 +8136,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9a07f5ede038542ae821bce51835df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Title: {fileID: 314638062}
-  Text: {fileID: 332819505}
+  _title: {fileID: 0}
+  _text: {fileID: 0}
 --- !u!1 &2018709195
 GameObject:
   m_ObjectHideFlags: 0
@@ -8859,8 +8857,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f867dbcbdaa12174a8c85cdcca4fbb75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Email: {fileID: 432786045}
-  ResetButton: {fileID: 956254259}
+  _email: {fileID: 432786045}
+  _resetButton: {fileID: 956254259}
 --- !u!114 &2119684455
 MonoBehaviour:
   m_ObjectHideFlags: 0

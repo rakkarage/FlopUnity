@@ -50,7 +50,7 @@ namespace ca.HenrySoftware.Flop
 				StartCoroutine(Save());
 			}
 		}
-		void Awake()
+		private void Awake()
 		{
 			ParseObject.RegisterSubclass<ParseData>();
 			Load();

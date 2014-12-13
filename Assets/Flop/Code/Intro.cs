@@ -5,7 +5,8 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Intro : MonoBehaviour
 	{
-		public GameObject[] Activate;
+		[SerializeField]
+		private GameObject[] _activate = null;
 		private Image _logo;
 		private Image _foreground;
 		private AudioSource _source;
@@ -14,8 +15,9 @@ namespace ca.HenrySoftware.Flop
 		private const float _timeDelaySound = .8f;
 		private void Awake()
 		{
-			foreach (var i in Activate)
-				i.SetActive(false);
+			if (_activate != null)
+				foreach (var i in _activate)
+					i.SetActive(false);
 		}
 		private void Start()
 		{
@@ -50,8 +52,9 @@ namespace ca.HenrySoftware.Flop
 			_logo.gameObject.SetActive(false);
 			Ease.Go(this, _foreground.color.a, 0f, _timeAnimation, 0f, EaseType.Linear, HandleFade, HandleEnd);
 			Camera.main.backgroundColor = Constants.HenryBlue;
-			foreach (var i in Activate)
-				i.SetActive(true);
+			if (_activate != null)
+				foreach (var i in _activate)
+					i.SetActive(true);
 		}
 		public void HandleEnd()
 		{

@@ -4,24 +4,28 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Register : MonoBehaviour
 	{
-		public GameObject Email;
+		[SerializeField]
+		private GameObject _email = null;
 		private InputField _emailField;
 		private Animator _emailAnimator;
-		public GameObject Password;
+		[SerializeField]
+		private GameObject _password = null;
 		private InputField _passwordField;
 		private Animator _passwordAnimator;
-		public GameObject Confirm;
+		[SerializeField]
+		private GameObject _confirm = null;
 		private InputField _confirmField;
 		private Animator _confirmAnimator;
-		public Animator RegisterButton;
+		[SerializeField]
+		private Animator _registerButton = null;
 		private void Awake()
 		{
-			_emailField = Email.GetComponent<InputField>();
-			_emailAnimator = Email.GetComponent<Animator>();
-			_passwordField = Password.GetComponent<InputField>();
-			_passwordAnimator = Password.GetComponent<Animator>();
-			_confirmField = Confirm.GetComponent<InputField>();
-			_confirmAnimator = Confirm.GetComponent<Animator>();
+			_emailField = _email.GetComponent<InputField>();
+			_emailAnimator = _email.GetComponent<Animator>();
+			_passwordField = _password.GetComponent<InputField>();
+			_passwordAnimator = _password.GetComponent<Animator>();
+			_confirmField = _confirm.GetComponent<InputField>();
+			_confirmAnimator = _confirm.GetComponent<Animator>();
 		}
 		private void OnEnable()
 		{
@@ -92,12 +96,12 @@ namespace ca.HenrySoftware.Flop
 		}
 		private void DisableInput()
 		{
-			RegisterButton.SetBool(Constants.AnimatorCompute, true);
+			_registerButton.SetBool(Constants.AnimatorCompute, true);
 			gameObject.SetInteractable(false);
 		}
 		private void EnableInput()
 		{
-			RegisterButton.SetBool(Constants.AnimatorCompute, false);
+			_registerButton.SetBool(Constants.AnimatorCompute, false);
 			gameObject.SetInteractable(true);
 		}
 	}

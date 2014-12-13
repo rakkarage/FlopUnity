@@ -4,19 +4,21 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Pool : MonoBehaviour
 	{
-		public int Count = 12;
-		public GameObject Prefab;
+		[SerializeField]
+		private int _count = 12;
+		[SerializeField]
+		private GameObject _prefab = null;
 		private List<GameObject> _pool;
 		private const string _name = "Pool";
 		private void Awake()
 		{
-			_pool = new List<GameObject>(Count);
-			for (var i = 0; i < Count; i++)
+			_pool = new List<GameObject>(_count);
+			for (var i = 0; i < _count; i++)
 				_pool.Add(New());
 		}
 		private GameObject New()
 		{
-			var o = Instantiate(Prefab) as GameObject;
+			var o = Instantiate(_prefab) as GameObject;
 			if (o != null)
 			{
 				o.transform.SetParent(gameObject.transform, false);

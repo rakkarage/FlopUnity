@@ -4,16 +4,18 @@ namespace ca.HenrySoftware.Flop
 	[RequireComponent(typeof(CanvasGroup))]
 	public class Fade : MonoBehaviour
 	{
-		public bool In = true;
-		public float Time = 3.33f;
+		[SerializeField]
+		private bool _in = true;
+		[SerializeField]
+		private float _time = 3.33f;
 		private CanvasGroup _group;
 		private void Start()
 		{
-			var start = In ? 0f : 1f;
-			var end = In ? 1f : 0f;
+			var start = _in ? 0f : 1f;
+			var end = _in ? 1f : 0f;
 			_group = GetComponent<CanvasGroup>();
 			_group.alpha = start;
-			Ease.Go(this, start, end, Time, 0f, EaseType.SineInOut, HandleFade, null);
+			Ease.Go(this, start, end, _time, 0f, EaseType.SineInOut, HandleFade, null);
 		}
 		private void HandleFade(float alpha)
 		{

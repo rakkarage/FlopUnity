@@ -8,20 +8,30 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Flow : Singleton<Flow>, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler, IPointerUpHandler
 	{
-		public bool Big = false;
-		public Vector3 Offset = new Vector3(32f, -3f, 16f);
-		public bool AbsoluteY = true;
-		public float InsetZ = .5f;
-		public float Time = .333f;
-		public int Limit = 6;
-		public Pool Pool;
-		public Transform LookAt;
-		public Button PrevButton;
-		public Button NextButton;
-		public Scrollbar Scrollbar;
-		public Text Text;
+		[SerializeField]
+		private bool _big = false;
+		[SerializeField]
+		private Vector3 _offset = new Vector3(32f, -3f, 16f);
+		[SerializeField]
+		private bool _absoluteY = true;
+		[SerializeField]
+		private float _insetZ = .5f;
+		[SerializeField]
+		private float _time = .333f;
+		[SerializeField]
+		private int _limit = 6;
+		[SerializeField]
+		private Transform _lookAt = null;
+		[SerializeField]
+		private Button _prev = null;
+		[SerializeField]
+		private Button _next = null;
+		[SerializeField]
+		private Scrollbar _scrollbar = null;
+		private Text _scrollbarText;
 		private Fade _fade;
 		private CanvasScaler _scaler;
+		private Pool _pool;
 		private IEnumerator _ease;
 		private IEnumerator _inertiaDecayEase;
 		private IEnumerator _inertiaEase;
@@ -36,15 +46,17 @@ namespace ca.HenrySoftware.Flop
 		private Dictionary<int, Transform> _views;
 		private void Start()
 		{
-			var count = Big ? _dataBig.Count : _data.Count;
+			var count = _big ? _dataBig.Count : _data.Count;
 			_views = new Dictionary<int, Transform>(count);
+			_scrollbarText = _scrollbar.GetComponentInChildren<Text>();
 			_fade = GetComponentInParent<Fade>();
 			_scaler = GetComponentInParent<CanvasScaler>();
+			_pool = GetComponent<Pool>();
 			_dataMax = count - 1;
-			_max = (Offset.x * (Limit - 2f));
-			_min = -(_dataMax * Offset.x + _max);
-			Scrollbar.numberOfSteps = count;
-			for (var i = 0; (i < count) && (i < Limit); i++)
+			_max = (_offset.x * (_limit - 2f));
+			_min = -(_dataMax * _offset.x + _max);
+			_scrollbar.numberOfSteps = count;
+			for (var i = 0; (i < count) && (i < _limit); i++)
 				Add(i);
 			UpdateAll();
 			LoadPage();
@@ -52,35 +64,35 @@ namespace ca.HenrySoftware.Flop
 		}
 		private void OnEnable()
 		{
-			Scrollbar.onValueChanged.AddListener(OnScrollChanged);
+			_scrollbar.onValueChanged.AddListener(OnScrollChanged);
 			Data.LoadedEvent += LoadPage;
 		}
 		private void OnDisable()
 		{
-			Scrollbar.onValueChanged.RemoveListener(OnScrollChanged);
+			_scrollbar.onValueChanged.RemoveListener(OnScrollChanged);
 			Data.LoadedEvent -= LoadPage;
 		}
 		private void LoadPage()
 		{
 			var page = Data.Instance.Page;
 			var pageBig = Data.Instance.PageBig;
-			EaseTo(Big ? (pageBig == -1 ? 0 : pageBig) : (page == -1 ? 1 : page));
+			EaseTo(_big ? (pageBig == -1 ? 0 : pageBig) : (page == -1 ? 1 : page));
 		}
 		private void Add(int i)
 		{
-			GameObject o = Pool.Enter();
-			o.GetComponent<LookAt>().Target = LookAt;
+			GameObject o = _pool.Enter();
+			o.GetComponent<LookAt>().Target = _lookAt;
 			var button = o.GetComponent<Button>();
 			button.onClick.RemoveAllListeners();
 			button.onClick.AddListener(() => { EaseTo(o.transform); });
-			UpdateItem(o, i * Offset.x);
+			UpdateItem(o, i * _offset.x);
 			UpdateName(o, i);
 			_views.Add(i, o.transform);
 		}
 		private void Remove(int i, Transform t)
 		{
 			_views.Remove(i);
-			Pool.Exit(t.gameObject);
+			_pool.Exit(t.gameObject);
 		}
 		public void EaseBy(int by)
 		{
@@ -94,11 +106,11 @@ namespace ca.HenrySoftware.Flop
 		{
 			if (_ease != null)
 				StopCoroutine(_ease);
-			_ease = Ease.Go(this, _current, to * -Offset.x, Time, 0f, EaseType.Spring, DragTo, null);
+			_ease = Ease.Go(this, _current, to * -_offset.x, _time, 0f, EaseType.Spring, DragTo, null);
 		}
 		private void DragTo(int i)
 		{
-			DragTo(i * -Offset.x);
+			DragTo(i * -_offset.x);
 		}
 		private void DragTo(float delta)
 		{
@@ -114,16 +126,16 @@ namespace ca.HenrySoftware.Flop
 		{
 			_current = Mathf.Clamp(_current + delta, _min, _max);
 			var current = GetCurrent();
-			var min = Mathf.Min(old, current) - Limit;
+			var min = Mathf.Min(old, current) - _limit;
 			if (min < 0) min = 0;
-			var max = Mathf.Max(old, current) + Limit;
+			var max = Mathf.Max(old, current) + _limit;
 			if (max > _dataMax) max = _dataMax;
 			bool back = current < old;
 			for (var i = (back ? max : min); (back ? (i >= min) : (i <= max)); i = (back ? i - 1 : i + 1))
 			{
-				var x = _current + (i * Offset.x);
+				var x = _current + (i * _offset.x);
 				var ax = Mathf.Abs(x);
-				var lx = Limit * Offset.x;
+				var lx = _limit * _offset.x;
 				var visible = ax < lx;
 				Transform t;
 				_views.TryGetValue(i, out t);
@@ -145,22 +157,22 @@ namespace ca.HenrySoftware.Flop
 		}
 		private int GetCurrent()
 		{
-			return Mathf.Clamp(Mathf.RoundToInt(-(_current / Offset.x)), 0, _dataMax);
+			return Mathf.Clamp(Mathf.RoundToInt(-(_current / _offset.x)), 0, _dataMax);
 		}
 		private void UpdateItem(GameObject o, float x)
 		{
-			var xl = Limit * Offset.x;
+			var xl = _limit * _offset.x;
 			var xn = x / xl;
 			var axn = Mathf.Abs(x) / xl;
-			var y = (AbsoluteY ? axn : xn) * (Limit * Offset.y);
-			var z = (axn - InsetZ) * (Limit * Offset.z);
+			var y = (_absoluteY ? axn : xn) * (_limit * _offset.y);
+			var z = (axn - _insetZ) * (_limit * _offset.z);
 			o.transform.localPosition = new Vector3(x, y, z);
 			o.GetComponent<CanvasGroup>().alpha = 1 - axn;
 		}
 		private void UpdateName(GameObject o, int i)
 		{
 			o.name = i.ToString();
-			var data = Big ? _dataBig[i].ToString("x") :  string.Format("{0}", (char)_data[i]);
+			var data = _big ? _dataBig[i].ToString("x") :  string.Format("{0}", (char)_data[i]);
 			foreach (var text in o.GetComponentsInChildren<Text>(true))
 				text.text = data;
 		}
@@ -173,15 +185,15 @@ namespace ca.HenrySoftware.Flop
 		private void UpdateButtons()
 		{
 			var current = GetCurrent();
-			PrevButton.interactable = (current > 0);
-			NextButton.interactable = (current < _dataMax);
+			_prev.interactable = (current > 0);
+			_next.interactable = (current < _dataMax);
 		}
 		private void UpdateScroll()
 		{
 			_ignore = true;
 			float current = GetCurrent();
-			Scrollbar.value = current / _dataMax;
-			Text.text = Big ? current.ToString() : (current + 32).ToString();
+			_scrollbar.value = current / _dataMax;
+			_scrollbarText.text = _big ? current.ToString() : (current + 32).ToString();
 			_ignore = false;
 		}
 		private void OnScrollChanged(float scroll)
@@ -192,7 +204,7 @@ namespace ca.HenrySoftware.Flop
 				Stop();
 				DragTo(Mathf.RoundToInt(scroll * _dataMax));
 			}
-			if (Big)
+			if (_big)
 				Data.Instance.PageBig = GetCurrent();
 			else
 				Data.Instance.Page = GetCurrent();
@@ -227,14 +239,14 @@ namespace ca.HenrySoftware.Flop
 			else
 				Drag(e.delta.x);
 			_inertia = temp - _current;
-			var time = Mathf.Clamp(Mathf.Abs(_inertia * .1f), 0f, Big ? 33f : 3.33f);
+			var time = Mathf.Clamp(Mathf.Abs(_inertia * .1f), 0f, _big ? 33f : 3.33f);
 			_inertiaDecayEase = Ease.Go(this, _inertia, 0f, time, 0f, EaseType.Linear, i => _inertia = i, null);
 		}
 		public void OnEndDrag(PointerEventData e)
 		{
 			if (Mathf.Abs(_inertia) > .0333f)
 			{
-				var time = Mathf.Clamp(Mathf.Abs(_inertia * .1f), 0f, Big ? 33f : 3.33f);
+				var time = Mathf.Clamp(Mathf.Abs(_inertia * .1f), 0f, _big ? 33f : 3.33f);
 				_inertiaEase = Ease.Go(this, -_inertia, 0f, time, 0f, EaseType.Linear, Drag, Snap);
 			}
 			else

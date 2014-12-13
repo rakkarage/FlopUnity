@@ -4,7 +4,8 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Account : MonoBehaviour
 	{
-		public InputField EmailField;
+		[SerializeField]
+		private InputField _emailField = null;
 		private void OnEnable()
 		{
 			Connect.EmailChangedEvent += HandleEmailChanged;
@@ -16,7 +17,7 @@ namespace ca.HenrySoftware.Flop
 		private void HandleEmailChanged(string email)
 		{
 			if (!string.IsNullOrEmpty(email))
-				EmailField.text = email;
+				_emailField.text = email;
 		}
 		public void SignOutClicked()
 		{

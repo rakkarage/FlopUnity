@@ -4,13 +4,15 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Dialog : Singleton<Dialog>
 	{
-		public Text Title;
-		public Text Text;
+		[SerializeField]
+		private Text _title = null;
+		[SerializeField]
+		private Text _text = null;
 		private static readonly Vector3 _offsetDialog = new Vector3(Constants.Offset, 0f, 0f);
 		public void ShowError(string text)
 		{
-			Title.text = Constants.Error;
-			Text.text = text;
+			_title.text = Constants.Error;
+			_text.text = text;
 			Spring();
 		}
 		public void Spring()

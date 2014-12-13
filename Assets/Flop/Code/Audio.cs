@@ -3,8 +3,10 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Audio : Singleton<Audio>
 	{
-		public AudioClip Click;
-		public AudioClip Error;
+		[SerializeField]
+		private AudioClip _click = null;
+		[SerializeField]
+		private AudioClip _error = null;
 		private AudioSource _source;
 		private const float _volumeMin = .5f;
 		private const float _volumeMax = 1f;
@@ -31,11 +33,11 @@ namespace ca.HenrySoftware.Flop
 		}
 		public void PlayClick()
 		{
-			RandomPlay(Click);
+			RandomPlay(_click);
 		}
 		public void PlayError()
 		{
-			RandomPlay(Error);
+			RandomPlay(_error);
 		}
 	}
 }

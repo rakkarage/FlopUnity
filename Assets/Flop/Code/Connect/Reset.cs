@@ -4,14 +4,16 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Reset : MonoBehaviour
 	{
-		public GameObject Email;
+		[SerializeField]
+		private GameObject _email = null;
 		private InputField _emailField;
 		private Animator _emailAnimator;
-		public Animator ResetButton;
+		[SerializeField]
+		private Animator _resetButton = null;
 		private void Awake()
 		{
-			_emailField = Email.GetComponent<InputField>();
-			_emailAnimator = Email.GetComponent<Animator>();
+			_emailField = _email.GetComponent<InputField>();
+			_emailAnimator = _email.GetComponent<Animator>();
 		}
 		private void OnEnable()
 		{
@@ -66,12 +68,12 @@ namespace ca.HenrySoftware.Flop
 		}
 		private void DisableInput()
 		{
-			ResetButton.SetBool(Constants.AnimatorCompute, true);
+			_resetButton.SetBool(Constants.AnimatorCompute, true);
 			gameObject.SetInteractable(false);
 		}
 		private void EnableInput()
 		{
-			ResetButton.SetBool(Constants.AnimatorCompute, false);
+			_resetButton.SetBool(Constants.AnimatorCompute, false);
 			gameObject.SetInteractable(true);
 		}
 	}
