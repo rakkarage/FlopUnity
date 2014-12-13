@@ -41,22 +41,21 @@ namespace ca.HenrySoftware.Flop
 		private bool _ignore;
 		private float _current;
 		private int _dataMax;
-		private static readonly List<int> _data = Enumerable.Range(32, 95).ToList();
-		private static readonly List<int> _dataBig = Enumerable.Range(1000000, 1000000).ToList();
+		private List<int> _data;
 		private Dictionary<int, Transform> _views;
 		private void Start()
 		{
-			var count = _big ? _dataBig.Count : _data.Count;
-			_views = new Dictionary<int, Transform>(count);
+			_data = (_big ? Enumerable.Range(1000000, 1000000) : Enumerable.Range(32, 95)).ToList();
+			_views = new Dictionary<int, Transform>(_data.Count);
 			_scrollbarText = _scrollbar.GetComponentInChildren<Text>();
 			_fade = GetComponentInParent<Fade>();
 			_scaler = GetComponentInParent<CanvasScaler>();
 			_pool = GetComponent<Pool>();
-			_dataMax = count - 1;
+			_dataMax = _data.Count - 1;
 			_max = (_offset.x * (_limit - 2f));
 			_min = -(_dataMax * _offset.x + _max);
-			_scrollbar.numberOfSteps = count;
-			for (var i = 0; (i < count) && (i < _limit); i++)
+			_scrollbar.numberOfSteps = _data.Count;
+			for (var i = 0; (i < _data.Count) && (i < _limit); i++)
 				Add(i);
 			UpdateAll();
 			LoadPage();
@@ -172,7 +171,7 @@ namespace ca.HenrySoftware.Flop
 		private void UpdateName(GameObject o, int i)
 		{
 			o.name = i.ToString();
-			var data = _big ? _dataBig[i].ToString("x") :  string.Format("{0}", (char)_data[i]);
+			var data = _big ? _data[i].ToString("x") :  string.Format("{0}", (char)_data[i]);
 			foreach (var text in o.GetComponentsInChildren<Text>(true))
 				text.text = data;
 		}
