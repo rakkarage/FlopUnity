@@ -35,35 +35,35 @@ namespace ca.HenrySoftware.Flop
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
 			Utility.Spring(this, _offsetSignIn);
-			Flow.Instance.FadeBack();
+			Flow.Instance.FadeOut();
 		}
 		public void SpringRegister()
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
 			Utility.Spring(this, _offsetRegister);
-			Flow.Instance.FadeBack();
+			Flow.Instance.FadeOut();
 		}
 		public void SpringReset()
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
 			Utility.Spring(this, _offsetReset);
-			Flow.Instance.FadeBack();
+			Flow.Instance.FadeOut();
 		}
 		public void SpringAccount()
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
 			Utility.Spring(this, _offsetAccount);
-			Flow.Instance.FadeBack();
+			Flow.Instance.FadeOut();
 		}
 		public void SpringChange()
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
 			Utility.Spring(this, _offsetChange);
-			Flow.Instance.FadeBack();
+			Flow.Instance.FadeOut();
 		}
 		public void SpringBack()
 		{
@@ -71,7 +71,7 @@ namespace ca.HenrySoftware.Flop
 			Dialog.Instance.SpringBack();
 			Status.Instance.UpdateColor();
 			Utility.Spring(this, Vector3.zero);
-			Flow.Instance.FadeFore();
+			Flow.Instance.FadeIn();
 		}
 	}
 }

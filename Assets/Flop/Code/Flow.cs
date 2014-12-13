@@ -265,11 +265,11 @@ namespace ca.HenrySoftware.Flop
 		{
 			EaseBy(1);
 		}
-		public void FadeBack()
+		public void FadeOut()
 		{
 			_fade.FadeTo(.25f, 1f);
 		}
-		public void FadeFore()
+		public void FadeIn()
 		{
 			_fade.FadeTo(1f, 1f);
 		}
