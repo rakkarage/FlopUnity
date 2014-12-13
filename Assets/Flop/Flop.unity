@@ -4655,7 +4655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   In: 1
-  Time: 3
+  Time: 3.32999992
 --- !u!225 &1193085652
 CanvasGroup:
   m_ObjectHideFlags: 0

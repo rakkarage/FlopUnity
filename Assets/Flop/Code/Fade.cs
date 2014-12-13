@@ -5,7 +5,7 @@ namespace ca.HenrySoftware.Flop
 	public class Fade : MonoBehaviour
 	{
 		public bool In = true;
-		public float Time = 3f;
+		public float Time = 3.33f;
 		private CanvasGroup _group;
 		private void Start()
 		{
