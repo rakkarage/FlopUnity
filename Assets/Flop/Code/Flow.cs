@@ -88,8 +88,9 @@ namespace ca.HenrySoftware.Flop
 			UpdateName(o, i);
 			_views.Add(i, o.transform);
 		}
-		private void Remove(int i, Transform t)
+		private void Remove(int i)
 		{
+			var t = _views[i];
 			_views.Remove(i);
 			_pool.Exit(t.gameObject);
 		}
@@ -146,7 +147,7 @@ namespace ca.HenrySoftware.Flop
 				else
 				{
 					if (!visible)
-						Remove(i, t);
+						Remove(i);
 				}
 				_views.TryGetValue(i, out t);
 				if (t != null)
