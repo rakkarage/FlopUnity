@@ -15,7 +15,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		public static bool ValidEmail(string email)
 		{
-			return !string.IsNullOrEmpty(email) && EmailValidator.IsValid(email);
+			return !string.IsNullOrEmpty(email) && Valid.Email(email);
 		}
 		public static bool ValidPassword(string password)
 		{

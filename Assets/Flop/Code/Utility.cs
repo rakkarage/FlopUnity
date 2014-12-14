@@ -36,53 +36,42 @@ namespace ca.HenrySoftware.Flop
 		}
 		public static void RandomColor(IEnumerable<Text> texts)
 		{
-			if (texts != null)
+			if (texts == null) return;
+			var c = RandomColor();
+			foreach (var text in texts)
 			{
-				var c = RandomColor();
-				foreach (var text in texts)
-				{
-					text.color = text.color == Color.white ? c : Color.white;
-				}
+				text.color = text.color == Color.white ? c : Color.white;
 			}
 		}
 		public static void ResetColor(IEnumerable<Text> texts)
 		{
-			if (texts != null)
-			{
-				foreach (var text in texts)
-					text.color = Color.white;
-			}
+			if (texts == null) return;
+			foreach (var text in texts)
+				text.color = Color.white;
 		}
 	}
 	public static class Prefs
 	{
-		private const string _emailKey = "email";
+		private const string EmailKey = "email";
 		public static string Email
 		{
-			get
-			{
-				return PlayerPrefs.GetString(_emailKey, null);
-			}
+			get { return PlayerPrefs.GetString(EmailKey, null); }
 			set
 			{
-				PlayerPrefs.SetString(_emailKey, value);
+				PlayerPrefs.SetString(EmailKey, value);
 				PlayerPrefs.Save();
 			}
 		}
 	}
-	public static class EmailValidator
+	public static class Valid
 	{
-		private static readonly Regex ValidEmailRegex = CreateValidEmailRegex();
-		private const string _validEmailPattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|"
+		private const string EmailPattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|"
 			+ @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)"
 			+ @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";
-		private static Regex CreateValidEmailRegex()
+		private static readonly Regex EmailRegex = new Regex(EmailPattern, RegexOptions.IgnoreCase);
+		public static bool Email(string email)
 		{
-			return new Regex(_validEmailPattern, RegexOptions.IgnoreCase);
-		}
-		public static bool IsValid(string email)
-		{
-			return ValidEmailRegex.IsMatch(email);
+			return EmailRegex.IsMatch(email);
 		}
 	}
 	public static class Vector3Extensions
@@ -100,8 +89,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		public static Color SetAlpha(this Color c, float a)
 		{
-			c = new Color(c.r, c.g, c.b, a);
-			return c;
+			return new Color(c.r, c.g, c.b, a);
 		}
 	}
 	public static class GameObjectExtensions
@@ -129,8 +117,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		public static void SetInteractable(this GameObject o, bool interactable)
 		{
-			Selectable[] controls = o.GetComponentsInChildren<Selectable>();
-			foreach (var i in controls)
+			foreach (var i in o.GetComponentsInChildren<Selectable>())
 			{
 				i.interactable = interactable;
 			}
