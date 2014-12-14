@@ -223,7 +223,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		public void OnPointerUp(PointerEventData e)
 		{
-			if (Mathf.Abs(_inertia) < 0.001f)
+			if (Mathf.Approximately(_inertia, 0f))
 				Snap();
 		}
 		public void OnBeginDrag(PointerEventData e)
