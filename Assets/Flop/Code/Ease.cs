@@ -88,13 +88,13 @@ namespace ca.HenrySoftware.Flop
 		private readonly static Dictionary<EaseType, EaseHandler> _types = new Dictionary<EaseType, EaseHandler>
 		{
 			{EaseType.Linear, Vector3.Lerp},
-			{EaseType.Spring, Spring},
-			{EaseType.SineIn, SineIn},
-			{EaseType.SineOut, SineOut},
-			{EaseType.SineInOut, SineInOut},
-			{EaseType.BounceIn, BounceIn},
-			{EaseType.BounceOut, BounceOut},
-			{EaseType.BounceInOut, BounceInOut}
+			{EaseType.Spring, (start, end, time) => { return new Vector3(Ease.Spring(start.x, end.x, time), Ease.Spring(start.y, end.y, time), Ease.Spring(start.z, end.z, time)); }},
+			{EaseType.SineIn, (start, end, time) => { return new Vector3(Ease.SineIn(start.x, end.x, time), Ease.SineIn(start.y, end.y, time), Ease.SineIn(start.z, end.z, time)); }},
+			{EaseType.SineOut, (start, end, time) => { return new Vector3(Ease.SineOut(start.x, end.x, time), Ease.SineOut(start.y, end.y, time), Ease.SineOut(start.z, end.z, time)); }},
+			{EaseType.SineInOut, (start, end, time) => { return new Vector3(Ease.SineInOut(start.x, end.x, time), Ease.SineInOut(start.y, end.y, time), Ease.SineInOut(start.z, end.z, time)); }},
+			{EaseType.BounceIn, (start, end, time) => { return new Vector3(Ease.BounceIn(start.x, end.x, time), Ease.BounceIn(start.y, end.y, time), Ease.BounceIn(start.z, end.z, time)); }},
+			{EaseType.BounceOut, (start, end, time) => { return new Vector3(Ease.BounceOut(start.x, end.x, time), Ease.BounceOut(start.y, end.y, time), Ease.BounceOut(start.z, end.z, time)); }},
+			{EaseType.BounceInOut, (start, end, time) => { return new Vector3(Ease.BounceInOut(start.x, end.x, time), Ease.BounceInOut(start.y, end.y, time), Ease.BounceInOut(start.z, end.z, time)); }}
 		};
 		public static IEnumerator Go(MonoBehaviour m, Vector3 start, Vector3 end, float time, float delay, EaseType type, UnityAction<Vector3> update, UnityAction complete)
 		{
@@ -184,34 +184,6 @@ namespace ca.HenrySoftware.Flop
 				yield return null;
 			}
 			o.transform.localScale = end;
-		}
-		public static Vector3 Spring(Vector3 start, Vector3 end, float time)
-		{
-			return new Vector3(Ease.Spring(start.x, end.x, time), Ease.Spring(start.y, end.y, time), Ease.Spring(start.z, end.z, time));
-		}
-		public static Vector3 SineIn(Vector3 start, Vector3 end, float time)
-		{
-			return new Vector3(Ease.SineIn(start.x, end.x, time), Ease.SineIn(start.y, end.y, time), Ease.SineIn(start.z, end.z, time));
-		}
-		public static Vector3 SineOut(Vector3 start, Vector3 end, float time)
-		{
-			return new Vector3(Ease.SineOut(start.x, end.x, time), Ease.SineOut(start.y, end.y, time), Ease.SineOut(start.z, end.z, time));
-		}
-		public static Vector3 SineInOut(Vector3 start, Vector3 end, float time)
-		{
-			return new Vector3(Ease.SineInOut(start.x, end.x, time), Ease.SineInOut(start.y, end.y, time), Ease.SineInOut(start.z, end.z, time));
-		}
-		public static Vector3 BounceIn(Vector3 start, Vector3 end, float time)
-		{
-			return new Vector3(Ease.BounceIn(start.x, end.x, time), Ease.BounceIn(start.y, end.y, time), Ease.BounceIn(start.z, end.z, time));
-		}
-		public static Vector3 BounceOut(Vector3 start, Vector3 end, float time)
-		{
-			return new Vector3(Ease.BounceOut(start.x, end.x, time), Ease.BounceOut(start.y, end.y, time), Ease.BounceOut(start.z, end.z, time));
-		}
-		public static Vector3 BounceInOut(Vector3 start, Vector3 end, float time)
-		{
-			return new Vector3(Ease.BounceInOut(start.x, end.x, time), Ease.BounceInOut(start.y, end.y, time), Ease.BounceInOut(start.z, end.z, time));
 		}
 	}
 }
