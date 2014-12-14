@@ -121,6 +121,10 @@ namespace ca.HenrySoftware.Flop
 			if (test != 0) return test;
 			if (lhs.localPosition.z < rhs.localPosition.z) return 1;
 			if (lhs.localPosition.z > rhs.localPosition.z) return -1;
+			if (lhs.localPosition.y < rhs.localPosition.y) return 1;
+			if (lhs.localPosition.y > rhs.localPosition.y) return -1;
+			if (lhs.localPosition.x < rhs.localPosition.x) return 1;
+			if (lhs.localPosition.x > rhs.localPosition.x) return -1;
 			return 0;
 		}
 		public static void SetInteractable(this GameObject o, bool interactable)
