@@ -254,7 +254,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		private void Snap()
 		{
-			_inertia = 0f;
+			Stop();
 			EaseTo(GetCurrent());
 		}
 		public void OnPrev()
