@@ -159,7 +159,7 @@ namespace ca.HenrySoftware.Flop
 			_prev.interactable = (current > 0);
 			_next.interactable = (current < _dataMax);
 			_ignore = true;
-			_scrollbar.value = current / _dataMax;
+			_scrollbar.value = (float)current / _dataMax;
 			_scrollbarText.text = _big ? current.ToString() : (current + 32).ToString();
 			_ignore = false;
 		}
