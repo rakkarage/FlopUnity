@@ -261,20 +261,12 @@ namespace ca.HenrySoftware.Flop
 		{
 			Audio.Instance.PlayClick();
 			Stop();
-			Prev();
-		}
-		private void Prev()
-		{
 			EaseBy(-1);
 		}
 		public void OnNext()
 		{
 			Audio.Instance.PlayClick();
 			Stop();
-			Next();
-		}
-		private void Next()
-		{
 			EaseBy(1);
 		}
 		public void FadeOut()
