@@ -7713,8 +7713,8 @@ GameObject:
   - 222: {fileID: 1930629591}
   - 114: {fileID: 1930629590}
   - 114: {fileID: 1930629589}
-  - 114: {fileID: 1930629587}
   - 114: {fileID: 1930629586}
+  - 114: {fileID: 1930629587}
   m_Layer: 5
   m_Name: Status
   m_TagString: Untagged
@@ -7759,7 +7759,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1930629587}
-          m_MethodName: Enter
+          m_MethodName: PointerEnter
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -7777,7 +7777,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1930629587}
-          m_MethodName: Exit
+          m_MethodName: PointerExit
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

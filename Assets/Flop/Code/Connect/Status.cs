@@ -30,14 +30,8 @@ namespace ca.HenrySoftware.Flop
 		}
 		public void UpdateColor()
 		{
-			if (Connection.Connected)
-			{
-				_image.color = Constants.StatusGreen.SetAlpha(_highlight ? 1f : .5f);
-			}
-			else
-			{
-				_image.color = Constants.StatusRed.SetAlpha(_highlight ? 1f : .5f);
-			}
+			var alpha = _highlight ? .75f : .25f;
+            _image.color = Connection.Connected ? Constants.StatusGreen.SetAlpha(alpha) : Constants.StatusRed.SetAlpha(alpha);
 		}
 		public void StatusClicked()
 		{
@@ -47,14 +41,14 @@ namespace ca.HenrySoftware.Flop
 			else
 				Connect.Instance.SpringSignIn();
 		}
-		public void Enter()
+		public void PointerEnter()
 		{
 			if (Connection.Connected)
 				_tip.SetActive(true);
 			_highlight = true;
 			UpdateColor();
 		}
-		public void Exit()
+		public void PointerExit()
 		{
 			_tip.SetActive(false);
 			_highlight = false;
