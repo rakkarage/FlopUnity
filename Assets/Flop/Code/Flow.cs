@@ -59,7 +59,7 @@ namespace ca.HenrySoftware.Flop
 				Add(i);
 			UpdateAll();
 			LoadPage();
-			Ease3.GoRotation(this, new Vector3(-360f, 0f, 0f), 1f, 0f, EaseType.Spring);
+			Ease3.GoRotation(this, new Vector3(-360f, 0f, 0f), 1f, EaseType.Spring);
 		}
 		private void OnEnable()
 		{
@@ -106,7 +106,7 @@ namespace ca.HenrySoftware.Flop
 		{
 			if (_ease != null)
 				StopCoroutine(_ease);
-			_ease = Ease.Go(this, _current, to * -_offset.x, _time, 0f, EaseType.Spring, DragTo, null);
+			_ease = Ease.Go(this, _current, to * -_offset.x, _time, DragTo, null, EaseType.Spring);
 		}
 		private void DragTo(int i)
 		{
@@ -240,14 +240,14 @@ namespace ca.HenrySoftware.Flop
 				Drag(e.delta.x);
 			_inertia = temp - _current;
 			var time = Mathf.Clamp(Mathf.Abs(_inertia * .1f), 0f, _big ? 33f : 3.33f);
-			_inertiaDecayEase = Ease.Go(this, _inertia, 0f, time, 0f, EaseType.Linear, i => _inertia = i, null);
+			_inertiaDecayEase = Ease.Go(this, _inertia, 0f, time, i => _inertia = i);
 		}
 		public void OnEndDrag(PointerEventData e)
 		{
 			if (Mathf.Abs(_inertia) > .0333f)
 			{
 				var time = Mathf.Clamp(Mathf.Abs(_inertia * .1f), 0f, _big ? 33f : 3.33f);
-				_inertiaEase = Ease.Go(this, -_inertia, 0f, time, 0f, EaseType.Linear, Drag, Snap);
+				_inertiaEase = Ease.Go(this, -_inertia, 0f, time, Drag, Snap);
 			}
 			else
 				Snap();

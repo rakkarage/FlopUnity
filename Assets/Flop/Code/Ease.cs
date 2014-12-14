@@ -19,13 +19,13 @@ namespace ca.HenrySoftware.Flop
 			{EaseType.BounceOut, BounceOut},
 			{EaseType.BounceInOut, BounceInOut}
 		};
-		public static IEnumerator Go(MonoBehaviour m, float start, float end, float time, float delay, EaseType type, UnityAction<float> update, UnityAction complete)
+		public static IEnumerator Go(MonoBehaviour m, float start, float end, float time, UnityAction<float> update, UnityAction complete = null, EaseType type = EaseType.Linear, float delay = 0f)
 		{
-			IEnumerator i = GoCoroutine(start, end, time, delay, type, update, complete);
+			IEnumerator i = GoCoroutine(start, end, time, update, complete, type, delay);
 			m.StartCoroutine(i);
 			return i;
 		}
-		private static IEnumerator GoCoroutine(float start, float end, float time, float delay, EaseType type, UnityAction<float> update, UnityAction complete)
+		private static IEnumerator GoCoroutine(float start, float end, float time, UnityAction<float> update, UnityAction complete, EaseType type, float delay)
 		{
 			if (delay > 0f)
 				yield return new WaitForSeconds(delay);
@@ -96,13 +96,13 @@ namespace ca.HenrySoftware.Flop
 			{EaseType.BounceOut, (start, end, time) => { return new Vector3(Ease.BounceOut(start.x, end.x, time), Ease.BounceOut(start.y, end.y, time), Ease.BounceOut(start.z, end.z, time)); }},
 			{EaseType.BounceInOut, (start, end, time) => { return new Vector3(Ease.BounceInOut(start.x, end.x, time), Ease.BounceInOut(start.y, end.y, time), Ease.BounceInOut(start.z, end.z, time)); }}
 		};
-		public static IEnumerator Go(MonoBehaviour m, Vector3 start, Vector3 end, float time, float delay, EaseType type, UnityAction<Vector3> update, UnityAction complete)
+		public static IEnumerator Go(MonoBehaviour m, Vector3 start, Vector3 end, float time, UnityAction<Vector3> update, UnityAction complete = null, EaseType type = EaseType.Linear, float delay = 0f)
 		{
-			IEnumerator i = GoCoroutine(start, end, time, delay, type, update, complete);
+			IEnumerator i = GoCoroutine(start, end, time, update, complete, type, delay);
 			m.StartCoroutine(i);
 			return i;
 		}
-		private static IEnumerator GoCoroutine(Vector3 start, Vector3 end, float time, float delay, EaseType type, UnityAction<Vector3> update, UnityAction complete)
+		private static IEnumerator GoCoroutine(Vector3 start, Vector3 end, float time, UnityAction<Vector3> update, UnityAction complete, EaseType type, float delay)
 		{
 			if (delay > 0f)
 				yield return new WaitForSeconds(delay);
@@ -116,17 +116,17 @@ namespace ca.HenrySoftware.Flop
 			if (complete != null)
 				complete();
 		}
-		public static IEnumerator GoPosition(MonoBehaviour m, Vector3 start, Vector3 end, float time, float delay, EaseType type)
+		public static IEnumerator GoPosition(MonoBehaviour m, Vector3 start, Vector3 end, float time, EaseType type = EaseType.Linear, float delay = 0f)
 		{
-			return GoPosition(m, m.gameObject, start, end, time, delay, type);
+			return GoPosition(m, m.gameObject, start, end, time, type, delay);
 		}
-		public static IEnumerator GoPosition(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
+		public static IEnumerator GoPosition(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, EaseType type = EaseType.Linear, float delay = 0f)
 		{
-			IEnumerator i = GoPositionCoroutine(o, start, end, time, delay, type);
+			IEnumerator i = GoPositionCoroutine(o, start, end, time, type, delay);
 			m.StartCoroutine(i);
 			return i;
 		}
-		private static IEnumerator GoPositionCoroutine(GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
+		private static IEnumerator GoPositionCoroutine(GameObject o, Vector3 start, Vector3 end, float time, EaseType type, float delay)
 		{
 			if (delay > 0f)
 				yield return new WaitForSeconds(delay);
@@ -139,17 +139,17 @@ namespace ca.HenrySoftware.Flop
 			}
 			o.transform.localPosition = end;
 		}
-		public static IEnumerator GoRotation(MonoBehaviour m, Vector3 angle, float time, float delay, EaseType type)
+		public static IEnumerator GoRotation(MonoBehaviour m, Vector3 angle, float time, EaseType type = EaseType.Linear, float delay = 0f)
 		{
-			return GoRotation(m, m.gameObject, angle, time, delay, type);
+			return GoRotation(m, m.gameObject, angle, time, type, delay);
 		}
-		public static IEnumerator GoRotation(MonoBehaviour m, GameObject o, Vector3 angle, float time, float delay, EaseType type)
+		public static IEnumerator GoRotation(MonoBehaviour m, GameObject o, Vector3 angle, float time, EaseType type = EaseType.Linear, float delay = 0f)
 		{
-			IEnumerator i = GoRotationCoroutine(o, angle, time, delay, type);
+			IEnumerator i = GoRotationCoroutine(o, angle, time, type, delay);
 			m.StartCoroutine(i);
 			return i;
 		}
-		private static IEnumerator GoRotationCoroutine(GameObject o, Vector3 angle, float time, float delay, EaseType type)
+		private static IEnumerator GoRotationCoroutine(GameObject o, Vector3 angle, float time, EaseType type, float delay)
 		{
 			if (delay > 0f)
 				yield return new WaitForSeconds(delay);
@@ -162,17 +162,17 @@ namespace ca.HenrySoftware.Flop
 			}
 			o.transform.localEulerAngles = _types[type](Vector3.zero, angle, 1f);
 		}
-		public static IEnumerator GoScale(MonoBehaviour m, Vector3 start, Vector3 end, float time, float delay, EaseType type)
+		public static IEnumerator GoScale(MonoBehaviour m, Vector3 start, Vector3 end, float time, EaseType type = EaseType.Linear, float delay = 0f)
 		{
-			return GoScale(m, m.gameObject, start, end, time, delay, type);
+			return GoScale(m, m.gameObject, start, end, time, type, delay);
 		}
-		public static IEnumerator GoScale(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
+		public static IEnumerator GoScale(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, EaseType type = EaseType.Linear, float delay = 0f)
 		{
-			IEnumerator i = GoScaleCoroutine(o, start, end, time, delay, type);
+			IEnumerator i = GoScaleCoroutine(o, start, end, time, type, delay);
 			m.StartCoroutine(i);
 			return i;
 		}
-		private static IEnumerator GoScaleCoroutine(GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
+		private static IEnumerator GoScaleCoroutine(GameObject o, Vector3 start, Vector3 end, float time, EaseType type, float delay)
 		{
 			if (delay > 0f)
 				yield return new WaitForSeconds(delay);
