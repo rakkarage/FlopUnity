@@ -55,14 +55,11 @@ namespace ca.HenrySoftware.Flop
 		}
 		private static void Initialize()
 		{
-			if (!_initialized)
-			{
-				if (!Application.isPlaying)
-					return;
-				_initialized = true;
-				var g = new GameObject("Loom");
-				_current = g.AddComponent<Loom>();
-			}
+			if (_initialized) return;
+			if (!Application.isPlaying) return;
+			_initialized = true;
+			var g = new GameObject("Loom");
+			_current = g.AddComponent<Loom>();
 		}
 		private static void RunAction(object action)
 		{
@@ -114,7 +111,7 @@ namespace ca.HenrySoftware.Flop
 				delayed.Action();
 			}
 		}
-		public struct DelayedQueueItem
+		private struct DelayedQueueItem
 		{
 			public Action Action;
 			public float Time;

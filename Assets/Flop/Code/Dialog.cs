@@ -8,7 +8,7 @@ namespace ca.HenrySoftware.Flop
 		private Text _title = null;
 		[SerializeField]
 		private Text _text = null;
-		private static readonly Vector3 _offsetDialog = new Vector3(Constants.Offset, 0f, 0f);
+		private static readonly Vector3 Offset = new Vector3(Constants.Offset, 0f, 0f);
 		public void ShowError(string text)
 		{
 			_title.text = Constants.Error;
@@ -17,7 +17,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		public void Spring()
 		{
-			Utility.Spring(this, _offsetDialog);
+			Utility.Spring(this, Offset);
 		}
 		public void SpringBack()
 		{

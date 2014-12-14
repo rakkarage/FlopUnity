@@ -46,11 +46,9 @@ namespace ca.HenrySoftware.Flop
 		}
 		public void Exit(GameObject o)
 		{
-			if (o != null)
-			{
-				o.name = _name;
-				o.SetActive(false);
-			}
+			if (o == null) return;
+			o.name = _name;
+			o.SetActive(false);
 		}
 	}
 }

@@ -56,7 +56,7 @@ namespace ca.HenrySoftware.Flop
 				foreach (var i in _activate)
 					i.SetActive(true);
 		}
-		public void HandleEnd()
+		private void HandleEnd()
 		{
 			gameObject.SetActive(false);
 		}

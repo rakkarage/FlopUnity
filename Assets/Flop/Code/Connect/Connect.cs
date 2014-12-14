@@ -6,11 +6,11 @@ namespace ca.HenrySoftware.Flop
 	public class Connect : Singleton<Connect>
 	{
 		public static UnityAction<string> EmailChangedEvent;
-		private static readonly Vector3 _offsetSignIn = new Vector3(0f, Constants.Offset, 0f);
-		private static readonly Vector3 _offsetRegister = new Vector3(Constants.Offset, Constants.Offset, 0f);
-		private static readonly Vector3 _offsetReset = new Vector3(-Constants.Offset, Constants.Offset, 0f);
-		private static readonly Vector3 _offsetAccount = new Vector3(-Constants.Offset, 0f, 0f);
-		private static readonly Vector3 _offsetChange = new Vector3(-(Constants.Offset * 2f), 0f, 0f);
+		private static readonly Vector3 OffsetSignIn = new Vector3(0f, Constants.Offset, 0f);
+		private static readonly Vector3 OffsetRegister = new Vector3(Constants.Offset, Constants.Offset, 0f);
+		private static readonly Vector3 OffsetReset = new Vector3(-Constants.Offset, Constants.Offset, 0f);
+		private static readonly Vector3 OffsetAccount = new Vector3(-Constants.Offset, 0f, 0f);
+		private static readonly Vector3 OffsetChange = new Vector3(-(Constants.Offset * 2f), 0f, 0f);
 		private void OnEnable()
 		{
 			StartCoroutine(UpdateEmail());
@@ -34,35 +34,35 @@ namespace ca.HenrySoftware.Flop
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
-			Utility.Spring(this, _offsetSignIn);
+			Utility.Spring(this, OffsetSignIn);
 			Flow.Instance.FadeOut();
 		}
 		public void SpringRegister()
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
-			Utility.Spring(this, _offsetRegister);
+			Utility.Spring(this, OffsetRegister);
 			Flow.Instance.FadeOut();
 		}
 		public void SpringReset()
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
-			Utility.Spring(this, _offsetReset);
+			Utility.Spring(this, OffsetReset);
 			Flow.Instance.FadeOut();
 		}
 		public void SpringAccount()
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
-			Utility.Spring(this, _offsetAccount);
+			Utility.Spring(this, OffsetAccount);
 			Flow.Instance.FadeOut();
 		}
 		public void SpringChange()
 		{
 			Audio.Instance.PlayClick();
 			Dialog.Instance.SpringBack();
-			Utility.Spring(this, _offsetChange);
+			Utility.Spring(this, OffsetChange);
 			Flow.Instance.FadeOut();
 		}
 		public void SpringBack()

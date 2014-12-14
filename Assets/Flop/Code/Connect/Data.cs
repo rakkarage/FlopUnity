@@ -57,39 +57,35 @@ namespace ca.HenrySoftware.Flop
 		}
 		private IEnumerator Save()
 		{
+			if (!Connection.Connected) yield break;
 			yield return new WaitForSeconds(.5f);
-			if (Connection.Connected)
+			var task = new ParseQuery<ParseData>().WhereEqualTo("userId", ParseUser.CurrentUser.ObjectId).FirstOrDefaultAsync();
+			task.ContinueWith(t =>
 			{
-				var task = new ParseQuery<ParseData>().WhereEqualTo("userId", ParseUser.CurrentUser.ObjectId).FirstOrDefaultAsync();
-				task.ContinueWith(t =>
-				{
-					var p = t.Result ?? new ParseData();
-					p.Page = _page;
-					p.PageBig = _pageBig;
-					p.UserId = ParseUser.CurrentUser.ObjectId;
-					p.SaveAsync();
-				});
-			}
+				var p = t.Result ?? new ParseData();
+				p.Page = _page;
+				p.PageBig = _pageBig;
+				p.UserId = ParseUser.CurrentUser.ObjectId;
+				p.SaveAsync();
+			});
 		}
 		public static UnityAction LoadedEvent;
 		private void Load()
 		{
-			if (Connection.Connected)
+			if (!Connection.Connected) return;
+			var task = new ParseQuery<ParseData>().WhereEqualTo("userId", ParseUser.CurrentUser.ObjectId).FirstOrDefaultAsync();
+			task.ContinueWith(t =>
 			{
-				var task = new ParseQuery<ParseData>().WhereEqualTo("userId", ParseUser.CurrentUser.ObjectId).FirstOrDefaultAsync();
-				task.ContinueWith(t =>
+				if (t.Result != null && !(t.IsFaulted || t.IsCanceled))
 				{
-					if (t.Result != null && !(t.IsFaulted || t.IsCanceled))
+					Loom.QueueOnMainThread(() =>
 					{
-						Loom.QueueOnMainThread(() =>
-						{
-							_page = t.Result.Page;
-							_pageBig = t.Result.PageBig;
-							if (LoadedEvent != null) LoadedEvent();
-						});
-					}
-				});
-			}
+						_page = t.Result.Page;
+						_pageBig = t.Result.PageBig;
+						if (LoadedEvent != null) LoadedEvent();
+					});
+				}
+			});
 		}
 	}
 }
