@@ -36,6 +36,7 @@ namespace ca.HenrySoftware.Flop
 		private IEnumerator _inertiaDecayEase;
 		private IEnumerator _inertiaEase;
 		private float _inertia;
+		private float _inertiaLimit;
 		private float _max;
 		private float _min;
 		private bool _ignore;
@@ -54,6 +55,7 @@ namespace ca.HenrySoftware.Flop
 			_dataMax = _data.Count - 1;
 			_max = (_offset.x * (_limit - 2f));
 			_min = -(_dataMax * _offset.x + _max);
+			_inertiaLimit = _big ? 33f : 3.33f;
 			_scrollbar.numberOfSteps = _data.Count;
 			for (var i = 0; (i < _data.Count) && (i < _limit); i++)
 				Add(i);
@@ -239,15 +241,15 @@ namespace ca.HenrySoftware.Flop
 			else
 				Drag(e.delta.x);
 			_inertia = temp - _current;
-			var time = Mathf.Clamp(Mathf.Abs(_inertia * .1f), 0f, _big ? 33f : 3.33f);
+			var time = Mathf.Clamp(Mathf.Abs(_inertia * .1f), 0f, _inertiaLimit);
 			_inertiaDecayEase = Ease.Go(this, _inertia, 0f, time, i => _inertia = i);
 		}
 		public void OnEndDrag(PointerEventData e)
 		{
 			if (Mathf.Abs(_inertia) > .0333f)
 			{
-				var time = Mathf.Clamp(Mathf.Abs(_inertia * .1f), 0f, _big ? 33f : 3.33f);
-				_inertiaEase = Ease.Go(this, -_inertia, 0f, time, Drag, Snap);
+				var time = Mathf.Clamp(Mathf.Abs(_inertia * .1f), 0f, _inertiaLimit);
+				_inertiaEase = Ease.Go(this, -_inertia, 0f, time, Drag, Snap, EaseType.SineOut);
 			}
 			else
 				Snap();
