@@ -58,7 +58,7 @@ namespace ca.HenrySoftware.Flop
 			_inertiaLimit = _big ? 33f : 3.33f;
 			_scrollbar.numberOfSteps = _data.Count;
 			for (var i = 0; (i < _data.Count) && (i < _limit); i++)
-				Add(i);
+				Enter(i);
 			LoadPage();
 			UpdateCurrent(GetCurrent());
 			Ease3.GoRotation(this, new Vector3(-360f, 0f, 0f), 1f, EaseType.Spring);
@@ -79,7 +79,7 @@ namespace ca.HenrySoftware.Flop
 			var pageBig = Data.Instance.PageBig;
 			EaseTo(_big ? (pageBig == -1 ? 0 : pageBig) : (page == -1 ? 1 : page));
 		}
-		private void Add(int i)
+		private void Enter(int i)
 		{
 			var o = _pool.Enter();
 			o.GetComponent<LookAt>().Target = _lookAt;
@@ -90,7 +90,7 @@ namespace ca.HenrySoftware.Flop
 			UpdateName(o, i);
 			_views.Add(i, o.transform);
 		}
-		private void Remove(int i)
+		private void Exit(int i)
 		{
 			var t = _views[i];
 			_views.Remove(i);
@@ -140,12 +140,12 @@ namespace ca.HenrySoftware.Flop
 				if (t == null)
 				{
 					if (visible)
-						Add(i);
+						Enter(i);
 				}
 				else
 				{
 					if (!visible)
-						Remove(i);
+						Exit(i);
 				}
 				_views.TryGetValue(i, out t);
 				if (t != null)
