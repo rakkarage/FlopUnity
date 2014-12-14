@@ -23,7 +23,7 @@ namespace ca.HenrySoftware.Flop
 	{
 		public static void LogError(Exception e)
 		{
-			Debug.Log("<color=red>Error: </color>" + e);
+			Debug.Log("<color=red>Error:</color> " + e);
 		}
 		public static void Spring(MonoBehaviour m, Vector2 p)
 		{
@@ -113,7 +113,7 @@ namespace ca.HenrySoftware.Flop
 		// 				 orderby child.gameObject.activeInHierarchy descending, child.localPosition.z descending
 		// 				 where child != o.transform
 		// 				 select child;
-		// 	for (int i = 0; i < sorted.Count(); i++)
+		// 	for (var i = 0; i < sorted.Count(); i++)
 		// 		sorted.ElementAt(i).SetSiblingIndex(i);
 		// }
 		public static void SortChildren(this GameObject o)
@@ -121,7 +121,7 @@ namespace ca.HenrySoftware.Flop
 			var children = o.GetComponentsInChildren<Transform>(true).ToList();
 			children.Remove(o.transform);
 			children.Sort(Compare);
-			for (int i = 0; i < children.Count; i++)
+			for (var i = 0; i < children.Count; i++)
 				children[i].SetSiblingIndex(i);
 		}
 		private static int Compare(Transform lhs, Transform rhs)

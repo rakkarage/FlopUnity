@@ -18,7 +18,7 @@ namespace ca.HenrySoftware.Flop
 		private IEnumerator UpdateEmail()
 		{
 			yield return null;
-			string email = Prefs.Email;
+			var email = Prefs.Email;
 			if (!string.IsNullOrEmpty(email))
 			{
 				SetEmail(email);

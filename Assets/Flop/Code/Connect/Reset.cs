@@ -35,7 +35,7 @@ namespace ca.HenrySoftware.Flop
 		public void ResetClicked()
 		{
 			Audio.Instance.PlayClick();
-			string email = _emailField.text;
+			var email = _emailField.text;
 			Connect.Instance.SetEmail(email);
 			ClearError();
 			if (!Connection.ValidEmail(email))

@@ -47,9 +47,9 @@ namespace ca.HenrySoftware.Flop
 		public void RegisterClicked()
 		{
 			Audio.Instance.PlayClick();
-			string email = _emailField.text;
-			string password = _passwordField.text;
-			string confirm = _confirmField.text;
+			var email = _emailField.text;
+			var password = _passwordField.text;
+			var confirm = _confirmField.text;
 			Connect.Instance.SetEmail(email);
 			ClearError();
 			if (!Connection.ValidEmail(email))

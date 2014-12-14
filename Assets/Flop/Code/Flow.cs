@@ -81,7 +81,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		private void Add(int i)
 		{
-			GameObject o = _pool.Enter();
+			var o = _pool.Enter();
 			o.GetComponent<LookAt>().Target = _lookAt;
 			var button = o.GetComponent<Button>();
 			button.onClick.RemoveAllListeners();
@@ -95,10 +95,6 @@ namespace ca.HenrySoftware.Flop
 			var t = _views[i];
 			_views.Remove(i);
 			_pool.Exit(t.gameObject);
-		}
-		public void EaseBy(int by)
-		{
-			EaseTo(GetCurrent() + by);
 		}
 		public void EaseTo(Transform t)
 		{
@@ -132,7 +128,7 @@ namespace ca.HenrySoftware.Flop
 			if (min < 0) min = 0;
 			var max = Mathf.Max(old, current) + _limit;
 			if (max > _dataMax) max = _dataMax;
-			bool back = current < old;
+			var back = current < old;
 			for (var i = (back ? max : min); (back ? (i >= min) : (i <= max)); i = (back ? i - 1 : i + 1))
 			{
 				var x = _current + (i * _offset.x);
@@ -253,13 +249,13 @@ namespace ca.HenrySoftware.Flop
 		{
 			Audio.Instance.PlayClick();
 			Stop();
-			EaseBy(-1);
+			EaseTo(GetCurrent() - 1);
 		}
 		public void OnNext()
 		{
 			Audio.Instance.PlayClick();
 			Stop();
-			EaseBy(1);
+			EaseTo(GetCurrent() + 1);
 		}
 		public void FadeOut()
 		{

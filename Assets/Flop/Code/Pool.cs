@@ -31,7 +31,7 @@ namespace ca.HenrySoftware.Flop
 		public GameObject Enter()
 		{
 			GameObject o = null;
-			for (int i = 0; (i < _pool.Count) && (o == null); i++)
+			for (var i = 0; (i < _pool.Count) && (o == null); i++)
 			{
 				if (!_pool[i].activeInHierarchy)
 					o = _pool[i];

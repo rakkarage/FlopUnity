@@ -7,8 +7,8 @@ namespace ca.HenrySoftware.Flop
 	public enum EaseType { Linear, Spring, SineIn, SineOut, SineInOut, BounceIn, BounceOut, BounceInOut }
 	public static class Ease
 	{
-		private delegate float _handler(float start, float end, float time);
-		private readonly static Dictionary<EaseType, _handler> _types = new Dictionary<EaseType, _handler>
+		private delegate float Handler(float start, float end, float time);
+		private readonly static Dictionary<EaseType, Handler> Types = new Dictionary<EaseType, Handler>
 		{
 			{EaseType.Linear, Mathf.Lerp},
 			{EaseType.Spring, Spring},
@@ -21,7 +21,7 @@ namespace ca.HenrySoftware.Flop
 		};
 		public static IEnumerator Go(MonoBehaviour m, float start, float end, float time, UnityAction<float> update, UnityAction complete = null, EaseType type = EaseType.Linear, float delay = 0f)
 		{
-			IEnumerator i = GoCoroutine(start, end, time, update, complete, type, delay);
+			var i = GoCoroutine(start, end, time, update, complete, type, delay);
 			m.StartCoroutine(i);
 			return i;
 		}
@@ -33,7 +33,7 @@ namespace ca.HenrySoftware.Flop
 			while (i <= 1f)
 			{
 				i += Time.deltaTime / time;
-				update(_types[type](start, end, i));
+				update(Types[type](start, end, i));
 				yield return null;
 			}
 			if (complete != null)
@@ -84,21 +84,21 @@ namespace ca.HenrySoftware.Flop
 	}
 	public static class Ease3
 	{
-		private delegate Vector3 _handler(Vector3 start, Vector3 end, float time);
-		private readonly static Dictionary<EaseType, _handler> _types = new Dictionary<EaseType, _handler>
+		private delegate Vector3 Handler(Vector3 start, Vector3 end, float time);
+		private readonly static Dictionary<EaseType, Handler> Types = new Dictionary<EaseType, Handler>
 		{
 			{EaseType.Linear, Vector3.Lerp},
-			{EaseType.Spring, (start, end, time) => { return new Vector3(Ease.Spring(start.x, end.x, time), Ease.Spring(start.y, end.y, time), Ease.Spring(start.z, end.z, time)); }},
-			{EaseType.SineIn, (start, end, time) => { return new Vector3(Ease.SineIn(start.x, end.x, time), Ease.SineIn(start.y, end.y, time), Ease.SineIn(start.z, end.z, time)); }},
-			{EaseType.SineOut, (start, end, time) => { return new Vector3(Ease.SineOut(start.x, end.x, time), Ease.SineOut(start.y, end.y, time), Ease.SineOut(start.z, end.z, time)); }},
-			{EaseType.SineInOut, (start, end, time) => { return new Vector3(Ease.SineInOut(start.x, end.x, time), Ease.SineInOut(start.y, end.y, time), Ease.SineInOut(start.z, end.z, time)); }},
-			{EaseType.BounceIn, (start, end, time) => { return new Vector3(Ease.BounceIn(start.x, end.x, time), Ease.BounceIn(start.y, end.y, time), Ease.BounceIn(start.z, end.z, time)); }},
-			{EaseType.BounceOut, (start, end, time) => { return new Vector3(Ease.BounceOut(start.x, end.x, time), Ease.BounceOut(start.y, end.y, time), Ease.BounceOut(start.z, end.z, time)); }},
-			{EaseType.BounceInOut, (start, end, time) => { return new Vector3(Ease.BounceInOut(start.x, end.x, time), Ease.BounceInOut(start.y, end.y, time), Ease.BounceInOut(start.z, end.z, time)); }}
+			{EaseType.Spring, (start, end, time) => new Vector3(Ease.Spring(start.x, end.x, time), Ease.Spring(start.y, end.y, time), Ease.Spring(start.z, end.z, time))},
+			{EaseType.SineIn, (start, end, time) => new Vector3(Ease.SineIn(start.x, end.x, time), Ease.SineIn(start.y, end.y, time), Ease.SineIn(start.z, end.z, time))},
+			{EaseType.SineOut, (start, end, time) => new Vector3(Ease.SineOut(start.x, end.x, time), Ease.SineOut(start.y, end.y, time), Ease.SineOut(start.z, end.z, time))},
+			{EaseType.SineInOut, (start, end, time) => new Vector3(Ease.SineInOut(start.x, end.x, time), Ease.SineInOut(start.y, end.y, time), Ease.SineInOut(start.z, end.z, time))},
+			{EaseType.BounceIn, (start, end, time) => new Vector3(Ease.BounceIn(start.x, end.x, time), Ease.BounceIn(start.y, end.y, time), Ease.BounceIn(start.z, end.z, time))},
+			{EaseType.BounceOut, (start, end, time) => new Vector3(Ease.BounceOut(start.x, end.x, time), Ease.BounceOut(start.y, end.y, time), Ease.BounceOut(start.z, end.z, time))},
+			{EaseType.BounceInOut, (start, end, time) => new Vector3(Ease.BounceInOut(start.x, end.x, time), Ease.BounceInOut(start.y, end.y, time), Ease.BounceInOut(start.z, end.z, time))}
 		};
 		public static IEnumerator Go(MonoBehaviour m, Vector3 start, Vector3 end, float time, UnityAction<Vector3> update, UnityAction complete = null, EaseType type = EaseType.Linear, float delay = 0f)
 		{
-			IEnumerator i = GoCoroutine(start, end, time, update, complete, type, delay);
+			var i = GoCoroutine(start, end, time, update, complete, type, delay);
 			m.StartCoroutine(i);
 			return i;
 		}
@@ -110,7 +110,7 @@ namespace ca.HenrySoftware.Flop
 			while (i <= 1f)
 			{
 				i += Time.deltaTime / time;
-				update(_types[type](start, end, i));
+				update(Types[type](start, end, i));
 				yield return null;
 			}
 			if (complete != null)
@@ -122,7 +122,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		public static IEnumerator GoPosition(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, EaseType type = EaseType.Linear, float delay = 0f)
 		{
-			IEnumerator i = GoPositionCoroutine(o, start, end, time, type, delay);
+			var i = GoPositionCoroutine(o, start, end, time, type, delay);
 			m.StartCoroutine(i);
 			return i;
 		}
@@ -134,7 +134,7 @@ namespace ca.HenrySoftware.Flop
 			while (i <= 1f)
 			{
 				i += Time.deltaTime / time;
-				o.transform.localPosition = _types[type](start, end, i);
+				o.transform.localPosition = Types[type](start, end, i);
 				yield return null;
 			}
 			o.transform.localPosition = end;
@@ -145,7 +145,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		public static IEnumerator GoRotation(MonoBehaviour m, GameObject o, Vector3 angle, float time, EaseType type = EaseType.Linear, float delay = 0f)
 		{
-			IEnumerator i = GoRotationCoroutine(o, angle, time, type, delay);
+			var i = GoRotationCoroutine(o, angle, time, type, delay);
 			m.StartCoroutine(i);
 			return i;
 		}
@@ -157,10 +157,10 @@ namespace ca.HenrySoftware.Flop
 			while (i <= 1f)
 			{
 				i += Time.deltaTime / time;
-				o.transform.localEulerAngles = _types[type](Vector3.zero, angle, i);
+				o.transform.localEulerAngles = Types[type](Vector3.zero, angle, i);
 				yield return null;
 			}
-			o.transform.localEulerAngles = _types[type](Vector3.zero, angle, 1f);
+			o.transform.localEulerAngles = Types[type](Vector3.zero, angle, 1f);
 		}
 		public static IEnumerator GoScale(MonoBehaviour m, Vector3 start, Vector3 end, float time, EaseType type = EaseType.Linear, float delay = 0f)
 		{
@@ -168,7 +168,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		public static IEnumerator GoScale(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, EaseType type = EaseType.Linear, float delay = 0f)
 		{
-			IEnumerator i = GoScaleCoroutine(o, start, end, time, type, delay);
+			var i = GoScaleCoroutine(o, start, end, time, type, delay);
 			m.StartCoroutine(i);
 			return i;
 		}
@@ -180,7 +180,7 @@ namespace ca.HenrySoftware.Flop
 			while (i <= 1f)
 			{
 				i += Time.deltaTime / time;
-				o.transform.localScale = _types[type](start, end, i);
+				o.transform.localScale = Types[type](start, end, i);
 				yield return null;
 			}
 			o.transform.localScale = end;
