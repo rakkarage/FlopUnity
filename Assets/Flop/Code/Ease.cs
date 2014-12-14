@@ -7,8 +7,8 @@ namespace ca.HenrySoftware.Flop
 	public enum EaseType { Linear, Spring, SineIn, SineOut, SineInOut, BounceIn, BounceOut, BounceInOut }
 	public static class Ease
 	{
-		private delegate float EaseHandler(float start, float end, float time);
-		private readonly static Dictionary<EaseType, EaseHandler> _types = new Dictionary<EaseType, EaseHandler>
+		private delegate float _handler(float start, float end, float time);
+		private readonly static Dictionary<EaseType, _handler> _types = new Dictionary<EaseType, _handler>
 		{
 			{EaseType.Linear, Mathf.Lerp},
 			{EaseType.Spring, Spring},
@@ -84,8 +84,8 @@ namespace ca.HenrySoftware.Flop
 	}
 	public static class Ease3
 	{
-		private delegate Vector3 EaseHandler(Vector3 start, Vector3 end, float time);
-		private readonly static Dictionary<EaseType, EaseHandler> _types = new Dictionary<EaseType, EaseHandler>
+		private delegate Vector3 _handler(Vector3 start, Vector3 end, float time);
+		private readonly static Dictionary<EaseType, _handler> _types = new Dictionary<EaseType, _handler>
 		{
 			{EaseType.Linear, Vector3.Lerp},
 			{EaseType.Spring, (start, end, time) => { return new Vector3(Ease.Spring(start.x, end.x, time), Ease.Spring(start.y, end.y, time), Ease.Spring(start.z, end.z, time)); }},
