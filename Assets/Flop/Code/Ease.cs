@@ -120,7 +120,7 @@ namespace ca.HenrySoftware.Flop
 		{
 			return GoPosition(m, m.gameObject, start, end, time, delay, type);
 		}
-        public static IEnumerator GoPosition(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
+		public static IEnumerator GoPosition(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
 		{
 			IEnumerator i = GoPositionCoroutine(o, start, end, time, delay, type);
 			m.StartCoroutine(i);
@@ -143,7 +143,7 @@ namespace ca.HenrySoftware.Flop
 		{
 			return GoRotation(m, m.gameObject, angle, time, delay, type);
 		}
-        public static IEnumerator GoRotation(MonoBehaviour m, GameObject o, Vector3 angle, float time, float delay, EaseType type)
+		public static IEnumerator GoRotation(MonoBehaviour m, GameObject o, Vector3 angle, float time, float delay, EaseType type)
 		{
 			IEnumerator i = GoRotationCoroutine(o, angle, time, delay, type);
 			m.StartCoroutine(i);
@@ -166,7 +166,7 @@ namespace ca.HenrySoftware.Flop
 		{
 			return GoScale(m, m.gameObject, start, end, time, delay, type);
 		}
-        public static IEnumerator GoScale(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
+		public static IEnumerator GoScale(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, float delay, EaseType type)
 		{
 			IEnumerator i = GoScaleCoroutine(o, start, end, time, delay, type);
 			m.StartCoroutine(i);
