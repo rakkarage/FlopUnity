@@ -59,8 +59,8 @@ namespace ca.HenrySoftware.Flop
 			_scrollbar.numberOfSteps = _data.Count;
 			for (var i = 0; (i < _data.Count) && (i < _limit); i++)
 				Add(i);
-			UpdateAll();
 			LoadPage();
+			UpdateCurrent(GetCurrent());
 			Ease3.GoRotation(this, new Vector3(-360f, 0f, 0f), 1f, EaseType.Spring);
 		}
 		private void OnEnable()
@@ -155,7 +155,17 @@ namespace ca.HenrySoftware.Flop
 				if (t != null)
 					UpdateItem(t.gameObject, x);
 			}
-			UpdateAll();
+			gameObject.SortChildren();
+			UpdateCurrent(current);
+		}
+		private void UpdateCurrent(int current)
+		{
+			_prev.interactable = (current > 0);
+			_next.interactable = (current < _dataMax);
+			_ignore = true;
+			_scrollbar.value = current / _dataMax;
+			_scrollbarText.text = _big ? current.ToString() : (current + 32).ToString();
+			_ignore = false;
 		}
 		private int GetCurrent()
 		{
@@ -177,26 +187,6 @@ namespace ca.HenrySoftware.Flop
 			var data = _big ? _data[i].ToString("x") : ((char)_data[i]).ToString();
 			foreach (var text in o.GetComponentsInChildren<Text>(true))
 				text.text = data;
-		}
-		private void UpdateAll()
-		{
-			gameObject.SortChildren();
-			UpdateButtons();
-			UpdateScroll();
-		}
-		private void UpdateButtons()
-		{
-			var current = GetCurrent();
-			_prev.interactable = (current > 0);
-			_next.interactable = (current < _dataMax);
-		}
-		private void UpdateScroll()
-		{
-			_ignore = true;
-			float current = GetCurrent();
-			_scrollbar.value = current / _dataMax;
-			_scrollbarText.text = _big ? current.ToString() : (current + 32).ToString();
-			_ignore = false;
 		}
 		private void OnScrollChanged(float scroll)
 		{
