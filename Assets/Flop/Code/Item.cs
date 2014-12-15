@@ -7,13 +7,18 @@ namespace ca.HenrySoftware.Flop
 	{
 		private Transform _t;
 		private Text[] _children;
-		private void Start()
+		private void Awake()
 		{
 			_t = transform;
 			_children = GetComponentsInChildren<Text>();
 		}
-		private void OnEnable()
+		private void OnDisable()
 		{
+			if (_t != null)
+			{
+				_t.localPosition = Vector3.zero;
+				_t.localRotation = Quaternion.identity;
+			}
 			Utility.ResetColor(_children);
 		}
 		public void OnPointerDown(PointerEventData e)

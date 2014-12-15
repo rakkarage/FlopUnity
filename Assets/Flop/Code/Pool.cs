@@ -10,8 +10,10 @@ namespace ca.HenrySoftware.Flop
 		private GameObject _prefab = null;
 		private List<GameObject> _pool;
 		private const string _name = "Pool";
+		private Transform _t;
 		private void Awake()
 		{
+			_t = transform;
 			_pool = new List<GameObject>(_count);
 			for (var i = 0; i < _count; i++)
 				_pool.Add(New());
@@ -21,8 +23,7 @@ namespace ca.HenrySoftware.Flop
 			var o = Instantiate(_prefab) as GameObject;
 			if (o != null)
 			{
-				o.transform.SetParent(gameObject.transform, false);
-				o.transform.position = Vector3.zero;
+				o.transform.SetParent(_t, false);
 				o.name = _name;
 				o.SetActive(false);
 			}

@@ -82,13 +82,20 @@ namespace ca.HenrySoftware.Flop
 		private void Enter(int i)
 		{
 			var o = _pool.Enter();
-			o.GetComponent<LookAt>().Target = _lookAt;
+			var l = o.GetComponent<LookAt>();
+			l.Target = _lookAt;
 			var button = o.GetComponent<Button>();
 			button.onClick.RemoveAllListeners();
 			button.onClick.AddListener(() => { EaseTo(o.transform); });
 			UpdateItem(o, i * _offset.x);
 			UpdateName(o, i);
 			_views.Add(i, o.transform);
+			StartCoroutine(Face(l));
+		}
+		private IEnumerator Face(LookAt l)
+		{
+			yield return new WaitForFixedUpdate();
+			l.Face();
 		}
 		private void Exit(int i)
 		{

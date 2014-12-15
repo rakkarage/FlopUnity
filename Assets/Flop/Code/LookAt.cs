@@ -6,11 +6,11 @@ namespace ca.HenrySoftware.Flop
 		public float Damping = 3.33f;
 		public Transform Target;
 		private Transform _t;
-		private void Start()
+		private void Awake()
 		{
 			_t = transform;
 		}
-		private void OnEnable()
+		public void Face()
 		{
 			if (_t != null && Target != null)
 				_t.localRotation = Quaternion.LookRotation(_t.localPosition - Target.localPosition);
