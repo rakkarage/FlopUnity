@@ -8,4 +8,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Flop/Flop.unity
   - enabled: 0
-    path: Assets/Flop/Fonts.unity
+    path: Assets/Flop/Font.unity
