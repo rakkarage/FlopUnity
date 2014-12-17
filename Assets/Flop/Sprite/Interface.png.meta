@@ -117,7 +117,7 @@ TextureImporter:
         height: 32
       alignment: 0
       pivot: {x: .5, y: .5}
-      border: {x: 16, y: 16, z: 16, w: 16}
+      border: {x: 10, y: 14, z: 10, w: 7}
     - name: Button1
       rect:
         serializedVersion: 2
@@ -127,7 +127,7 @@ TextureImporter:
         height: 32
       alignment: 0
       pivot: {x: .5, y: .5}
-      border: {x: 16, y: 16, z: 16, w: 16}
+      border: {x: 10, y: 14, z: 10, w: 7}
     - name: Button2
       rect:
         serializedVersion: 2
@@ -137,7 +137,7 @@ TextureImporter:
         height: 32
       alignment: 0
       pivot: {x: .5, y: .5}
-      border: {x: 16, y: 16, z: 16, w: 16}
+      border: {x: 10, y: 10, z: 10, w: 10}
     - name: Circle
       rect:
         serializedVersion: 2
@@ -177,7 +177,7 @@ TextureImporter:
         height: 32
       alignment: 0
       pivot: {x: .5, y: .5}
-      border: {x: 16, y: 16, z: 16, w: 16}
+      border: {x: 6, y: 6, z: 6, w: 6}
     - name: PanelPaper
       rect:
         serializedVersion: 2
@@ -207,7 +207,7 @@ TextureImporter:
         height: 32
       alignment: 0
       pivot: {x: .5, y: .5}
-      border: {x: 16, y: 16, z: 16, w: 16}
+      border: {x: 16, y: 14, z: 6, w: 14}
     - name: Empty
       rect:
         serializedVersion: 2
@@ -247,7 +247,7 @@ TextureImporter:
         height: 32
       alignment: 0
       pivot: {x: .5, y: .5}
-      border: {x: 16, y: 16, z: 16, w: 16}
+      border: {x: 7, y: 6, z: 8, w: 8}
     - name: Filled
       rect:
         serializedVersion: 2
@@ -267,7 +267,7 @@ TextureImporter:
         height: 32
       alignment: 0
       pivot: {x: .5, y: .5}
-      border: {x: 16, y: 16, z: 16, w: 16}
+      border: {x: 6, y: 14, z: 16, w: 14}
     - name: TooltipNorth
       rect:
         serializedVersion: 2
@@ -277,7 +277,7 @@ TextureImporter:
         height: 32
       alignment: 0
       pivot: {x: .5, y: .5}
-      border: {x: 16, y: 16, z: 16, w: 16}
+      border: {x: 14, y: 16, z: 14, w: 6}
     - name: TooltipSouth
       rect:
         serializedVersion: 2
@@ -287,6 +287,6 @@ TextureImporter:
         height: 32
       alignment: 0
       pivot: {x: .5, y: .5}
-      border: {x: 16, y: 16, z: 16, w: 16}
+      border: {x: 14, y: 6, z: 14, w: 16}
   spritePackingTag: 
   userData: 

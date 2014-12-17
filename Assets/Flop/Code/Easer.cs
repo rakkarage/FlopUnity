@@ -8,6 +8,7 @@ namespace ca.HenrySoftware.Flop
 		private Vector3 _end;
 		private const float Time = 1f;
 		private const float Delay = .333f;
+		private const float Offset = 132f;
 		private Transform _t;
 		private void Awake()
 		{
@@ -15,8 +16,8 @@ namespace ca.HenrySoftware.Flop
 		}
 		private void Start()
 		{
-			_start = new Vector3(-64f, _t.localPosition.y, _t.localPosition.z);
-			_end = new Vector3(64f, _t.localPosition.y, _t.localPosition.z);
+			_start = new Vector3(-Offset, _t.localPosition.y, _t.localPosition.z);
+			_end = new Vector3(Offset, _t.localPosition.y, _t.localPosition.z);
 			_t.localPosition = _start;
 			Fore();
 		}
