@@ -122,7 +122,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		public static float QuartOut(float start, float end, float time)
 		{
-			return Mathf.Lerp(start, end, (time -= 1f) * time * time * time - 1f);
+			return Mathf.Lerp(start, end, -((time -= 1f) * time * time * time - 1f));
 		}
 		public static float QuartInOut(float start, float end, float time)
 		{
