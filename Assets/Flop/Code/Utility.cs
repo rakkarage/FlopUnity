@@ -10,14 +10,16 @@ namespace ca.HenrySoftware.Flop
 	{
 		public const string Error = "Error";
 		public const int Offset = 3072;
-		public static Color StatusRed = new Color(.75f, .5f, .5f);
-		public static Color StatusGreen = new Color(.5f, .75f, .5f);
-		public static Color StatusBlue = new Color(.5f, .5f, .75f);
-		public static Color StatusYellow = new Color(.75f, .75f, .5f);
-		public static Color ButtonBlue = new Color32(159, 176, 255, 255);
-		public static Color HenryBlue = new Color32(59, 67, 82, 255);
+		public const float HalfPI = Mathf.PI * .5f;
+		public const float DoublePI = Mathf.PI * 2f;
 		public static readonly int AnimatorCompute = Animator.StringToHash("Compute");
 		public static readonly int AnimatorError = Animator.StringToHash("Error");
+		public static readonly Color StatusRed = new Color(.75f, .5f, .5f);
+		public static readonly Color StatusGreen = new Color(.5f, .75f, .5f);
+		public static readonly Color StatusBlue = new Color(.5f, .5f, .75f);
+		public static readonly Color StatusYellow = new Color(.75f, .75f, .5f);
+		public static readonly Color ButtonBlue = new Color32(159, 176, 255, 255);
+		public static readonly Color HenryBlue = new Color32(59, 67, 82, 255);
 	}
 	public static class Utility
 	{
@@ -28,7 +30,7 @@ namespace ca.HenrySoftware.Flop
 		public static void Spring(MonoBehaviour m, Vector2 p)
 		{
 			var t = m.transform;
-			Ease3.GoPosition(m, t.localPosition, new Vector3(p.x, p.y, t.position.z), .5f, EaseType.Spring);
+			Ease3.GoPosition(m, t.localPosition, new Vector3(p.x, p.y, t.position.z), .5f, null, null, EaseType.Spring);
 		}
 		public static Color RandomColor()
 		{

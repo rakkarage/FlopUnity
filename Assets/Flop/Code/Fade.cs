@@ -24,7 +24,7 @@ namespace ca.HenrySoftware.Flop
 		public void FadeTo(float alpha, float time)
 		{
 			StopAllCoroutines();
-			Ease.Go(this, _group.alpha, alpha, time, HandleFade, null, EaseType.SineOut);
+			Ease.Go(this, _group.alpha, alpha, time, HandleFade, null, EaseType.CircOut);
 		}
 	}
 }

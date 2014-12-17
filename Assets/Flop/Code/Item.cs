@@ -33,7 +33,7 @@ namespace ca.HenrySoftware.Flop
 			var direction = Mathf.Approximately(_t.localPosition.x, 0f) ?
 				new Vector3(e.position.y > (Screen.height * .5f) ? 360f : -360f, 0f, 0f) :
 				new Vector3(0f, _t.localPosition.x > 0 ? 360f : -360f, 0f);
-			Ease3.GoRotation(this, direction, 1f, EaseType.Spring);
+			Ease3.GoRotation(this, direction, 1f, null, null, EaseType.Spring);
 			Flow.Instance.EaseTo(_t);
 		}
 	}
