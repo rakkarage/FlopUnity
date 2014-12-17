@@ -1795,8 +1795,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
-  m_Sprite: {fileID: 21300024, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
+  m_Color: {r: .749019623, g: .749019623, b: .749019623, a: .749019623}
+  m_Sprite: {fileID: 21300020, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4840,7 +4840,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 1024, y: 1024}
+  m_ReferenceResolution: {x: 842, y: 842}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
