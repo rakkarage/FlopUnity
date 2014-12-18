@@ -18,6 +18,8 @@ namespace ca.HenrySoftware.Flop
 		protected float _delay = 0f;
 		[SerializeField, Range(-1, 100)]
 		protected int _repeat = 1;
+		[SerializeField]
+		protected UnityEvent Complete;
 		protected Transform _t;
 		private void Awake()
 		{
