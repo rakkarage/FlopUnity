@@ -27,8 +27,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		public static void Spring(MonoBehaviour m, Vector2 p)
 		{
-			var t = m.transform;
-			Ease3.GoPosition(m, t.localPosition, new Vector3(p.x, p.y, t.position.z), .5f, null, null, EaseType.Spring);
+			Ease3.GoPositionBy(m, new Vector3(p.x, p.y, 0f), .5f, null, null, EaseType.Spring);
 		}
 		public static Color RandomColor()
 		{
@@ -118,9 +117,7 @@ namespace ca.HenrySoftware.Flop
 		public static void SetInteractable(this GameObject o, bool interactable)
 		{
 			foreach (var i in o.GetComponentsInChildren<Selectable>())
-			{
 				i.interactable = interactable;
-			}
 		}
 	}
 }
