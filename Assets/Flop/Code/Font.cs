@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 namespace ca.HenrySoftware.Flop
 {
-	public class Fonts : MonoBehaviour, IPointerClickHandler
+	public class Font : MonoBehaviour, IPointerClickHandler
 	{
 		private Text[] _children;
 		private void Start()

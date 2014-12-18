@@ -550,7 +550,7 @@ GameObject:
   - 114: {fileID: 1735704909}
   - 114: {fileID: 1735704911}
   m_Layer: 5
-  m_Name: FontsRoot
+  m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
