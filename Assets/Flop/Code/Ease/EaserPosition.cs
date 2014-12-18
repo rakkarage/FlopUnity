@@ -4,10 +4,10 @@
 	{
 		public override void Go()
 		{
-			if (_by)
-				Ease3.GoPositionBy(this, _value, _time, null, _complete.Invoke, _type, _delay, _repeat);
+			if (By)
+				Ease3.GoPositionBy(this, Value, Time, null, Complete.Invoke, Type, Delay, Repeat);
 			else
-				Ease3.GoPositionTo(this, _value, _time, null, _complete.Invoke, _type, _delay, _repeat);
+				Ease3.GoPositionTo(this, Value, Time, null, Complete.Invoke, Type, Delay, Repeat);
 		}
 	}
 }

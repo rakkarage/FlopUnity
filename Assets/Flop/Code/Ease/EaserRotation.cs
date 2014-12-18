@@ -4,10 +4,10 @@
 	{
 		public override void Go()
 		{
-			if (_by)
-				Ease3.GoRotationTo(this, _value, _time, null, _complete.Invoke, _type, _delay, _repeat);
+			if (By)
+				Ease3.GoRotationTo(this, Value, Time, null, Complete.Invoke, Type, Delay, Repeat);
 			else
-				Ease3.GoRotationBy(this, _value, _time, null, _complete.Invoke, _type, _delay, _repeat);
+				Ease3.GoRotationBy(this, Value, Time, null, Complete.Invoke, Type, Delay, Repeat);
 		}
 	}
 }

@@ -58,8 +58,8 @@ namespace ca.HenrySoftware.Flop
 			{EaseType.BounceInOut, BounceInOut},
 			{EaseType.Spring, Spring}
 		};
-		private const float HalfPI = Mathf.PI * .5f;
-		private const float DoublePI = Mathf.PI * 2f;
+		private const float HalfPi = Mathf.PI * .5f;
+		private const float DoublePi = Mathf.PI * 2f;
 		public static IEnumerator Go(MonoBehaviour m, float start, float end, float time, UnityAction<float> update, UnityAction complete = null, EaseType type = EaseType.Linear, float delay = 0f, int repeat = 1)
 		{
 			var i = GoCoroutine(start, end, time, update, complete, type, delay, repeat);
@@ -131,11 +131,11 @@ namespace ca.HenrySoftware.Flop
 		}
 		public static float SineIn(float start, float end, float time)
 		{
-			return Mathf.Lerp(start, end, 1f - Mathf.Cos(time * HalfPI));
+			return Mathf.Lerp(start, end, 1f - Mathf.Cos(time * HalfPi));
 		}
 		public static float SineOut(float start, float end, float time)
 		{
-			return Mathf.Lerp(start, end, Mathf.Sin(time * HalfPI));
+			return Mathf.Lerp(start, end, Mathf.Sin(time * HalfPi));
 		}
 		public static float SineInOut(float start, float end, float time)
 		{
@@ -250,14 +250,14 @@ namespace ca.HenrySoftware.Flop
 			const float p = .3f;
 			const float s = p / 4f;
 			end -= start;
-			return end * -(Mathf.Pow(2f, 10f * (time -= 1f)) * Mathf.Sin((time - s) * DoublePI / p)) + start;
+			return end * -(Mathf.Pow(2f, 10f * (time -= 1f)) * Mathf.Sin((time - s) * DoublePi / p)) + start;
 		}
 		public static float ElasticOut(float start, float end, float time)
 		{
 			const float p = .3f;
 			const float s = p / 4f;
 			end -= start;
-			return end * Mathf.Pow(2f, -10f * time) * Mathf.Sin((time - s) * DoublePI / p) + end + start;
+			return end * Mathf.Pow(2f, -10f * time) * Mathf.Sin((time - s) * DoublePi / p) + end + start;
 		}
 		public static float ElasticInOut(float start, float end, float time)
 		{
@@ -265,8 +265,8 @@ namespace ca.HenrySoftware.Flop
 			const float s = p / 4f;
 			end -= start;
 			if ((time /= .5f) < 1f)
-				return -.5f * (end * Mathf.Pow(2f, 10f * (time -= 1f)) * Mathf.Sin((time - s) * DoublePI / p)) + start;
-			return end * Mathf.Pow(2f, -10f * (time -= 1f)) * Mathf.Sin((time - s) * DoublePI / p) * .5f + end + start;
+				return -.5f * (end * Mathf.Pow(2f, 10f * (time -= 1f)) * Mathf.Sin((time - s) * DoublePi / p)) + start;
+			return end * Mathf.Pow(2f, -10f * (time -= 1f)) * Mathf.Sin((time - s) * DoublePi / p) * .5f + end + start;
 		}
 		public static float BounceIn(float start, float end, float time)
 		{

@@ -5,24 +5,24 @@ namespace ca.HenrySoftware.Flop
 	public abstract class Easer : MonoBehaviour
 	{
 		[SerializeField]
-		protected bool _start = true;
+		protected bool Begin = true;
 		[SerializeField]
-		protected bool _by = true;
+		protected bool By = true;
 		[SerializeField]
-		protected Vector3 _value = Vector3.zero;
+		protected Vector3 Value = Vector3.zero;
 		[SerializeField]
-		protected EaseType _type = EaseType.Linear;
+		protected EaseType Type = EaseType.Linear;
 		[SerializeField]
-		protected float _time = 1f;
+		protected float Time = 1f;
 		[SerializeField]
-		protected float _delay = 0f;
+		protected float Delay = 0f;
 		[SerializeField, Range(-1, 100), Tooltip("< 0 : Infinite, 0 : PingPong, > 0 : Repeat")]
-		protected int _repeat = 1;
+		protected int Repeat = 1;
 		[SerializeField]
-		protected UnityEvent _complete;
+		protected UnityEvent Complete;
 		private void Start()
 		{
-			if (_start) Go();
+			if (Begin) Go();
 		}
 		public abstract void Go();
 	}
