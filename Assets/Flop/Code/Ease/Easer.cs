@@ -20,11 +20,6 @@ namespace ca.HenrySoftware.Flop
 		protected int _repeat = 1;
 		[SerializeField]
 		protected UnityEvent Complete;
-		protected Transform _t;
-		private void Awake()
-		{
-			_t = transform;
-		}
 		private void Start()
 		{
 			if (_start) Go();
