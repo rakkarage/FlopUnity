@@ -14,7 +14,8 @@ namespace ca.HenrySoftware.Flop
 		public void Go()
 		{
 			Time.timeScale = (_slow = !_slow) ? .1f : 1f;
-			_status.color = _slow ? Constants.StatusRed : Constants.StatusGreen;
+			StopAllCoroutines();
+			Ease3.Go(this, _status.color.GetVector(), (_slow ? Constants.StatusRed : Constants.StatusGreen).GetVector(), 1f, (i) => { _status.color = i.GetColor(); }, null, EaseType.ExpoOut);
 		}
 	}
 }
