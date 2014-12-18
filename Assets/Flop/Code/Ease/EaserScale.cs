@@ -1,6 +1,7 @@
-﻿namespace ca.HenrySoftware.Flop
+﻿using UnityEngine;
+namespace ca.HenrySoftware.Flop
 {
-	public class EaserScale : Easer
+	public class EaserScale : Easer<Vector3>
 	{
 		public override void Go()
 		{

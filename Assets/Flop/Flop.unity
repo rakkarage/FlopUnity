@@ -2157,6 +2157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 380a4c1cef9b1db4283538320d7b8600, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _logo: {fileID: 686835552}
+  _foreground: {fileID: 1365448645}
   _activate:
   - {fileID: 1730986136}
   - {fileID: 1131685855}
@@ -2826,6 +2828,8 @@ GameObject:
   - 224: {fileID: 686835551}
   - 222: {fileID: 686835553}
   - 114: {fileID: 686835552}
+  - 114: {fileID: 686835555}
+  - 114: {fileID: 686835554}
   m_Layer: 5
   m_Name: Logo
   m_TagString: Untagged
@@ -2877,6 +2881,52 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 686835550}
+--- !u!114 &686835554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 686835550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37e4e5d014f7d7e40a0d2a727f77ea1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 1
+  Value: {x: 0, y: 0, z: 180}
+  Type: 29
+  Time: 1
+  Delay: .5
+  Repeat: 1
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &686835555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 686835550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d65034f9e157ae4a99d35e81f212cc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: 2, y: 2, z: 0}
+  Type: 29
+  Time: 1
+  Delay: .5
+  Repeat: 1
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &709340678
 GameObject:
   m_ObjectHideFlags: 0

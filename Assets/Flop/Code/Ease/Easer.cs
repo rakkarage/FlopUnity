@@ -2,14 +2,14 @@
 using UnityEngine.Events;
 namespace ca.HenrySoftware.Flop
 {
-	public abstract class Easer : MonoBehaviour
+	public abstract class Easer<T> : MonoBehaviour
 	{
 		[SerializeField]
 		protected bool Begin = true;
 		[SerializeField]
 		protected bool By = true;
 		[SerializeField]
-		protected Vector3 Value = Vector3.zero;
+		protected T Value;
 		[SerializeField]
 		protected EaseType Type = EaseType.Linear;
 		[SerializeField]
