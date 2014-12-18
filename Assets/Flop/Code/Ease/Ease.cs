@@ -222,8 +222,8 @@ namespace ca.HenrySoftware.Flop
 		public static float CircInOut(float start, float end, float time)
 		{
 			if ((time /= .5f) < 1f)
-				return Mathf.Lerp(start, end, -.5f * (Mathf.Sqrt(1 - time * time) - 1));
-			return Mathf.Lerp(start, end, .5f * (Mathf.Sqrt(1 - (time -= 2) * time) + 1));
+				return Mathf.Lerp(start, end, -.5f * (Mathf.Sqrt(1f - time * time) - 1f));
+			return Mathf.Lerp(start, end, .5f * (Mathf.Sqrt(1f - (time -= 2f) * time) + 1f));
 		}
 		public static float BackIn(float start, float end, float time)
 		{
@@ -235,7 +235,7 @@ namespace ca.HenrySoftware.Flop
 		{
 			const float s = 1.70158f;
 			end -= start;
-			return end * (--time * time * ((s + 1) * time + s) + 1) + start;
+			return end * (--time * time * ((s + 1f) * time + s) + 1f) + start;
 		}
 		public static float BackInOut(float start, float end, float time)
 		{
