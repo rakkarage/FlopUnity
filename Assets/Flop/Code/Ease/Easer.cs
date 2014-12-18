@@ -19,7 +19,7 @@ namespace ca.HenrySoftware.Flop
 		[SerializeField, Range(-1, 100), Tooltip("< 0 : Infinite, 0 : PingPong, > 0 : Repeat")]
 		protected int _repeat = 1;
 		[SerializeField]
-		protected UnityEvent Complete;
+		protected UnityEvent _complete;
 		private void Start()
 		{
 			if (_start) Go();
