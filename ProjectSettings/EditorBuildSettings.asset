@@ -9,3 +9,5 @@ EditorBuildSettings:
     path: Assets/Flop/Flop.unity
   - enabled: 0
     path: Assets/Flop/Font.unity
+  - enabled: 0
+    path: Assets/Flop/Ease.unity
