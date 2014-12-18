@@ -5,9 +5,9 @@
 		public override void Go()
 		{
 			if (_by)
-				Ease3.GoPositionTo(this, _value, _time, null, _complete.Invoke, _type, _delay, _repeat);
+				Ease3.GoScaleTo(this, _value, _time, null, _complete.Invoke, _type, _delay, _repeat);
 			else
-				Ease3.GoPositionBy(this, _value, _time, null, _complete.Invoke, _type, _delay, _repeat);
+				Ease3.GoScaleBy(this, _value, _time, null, _complete.Invoke, _type, _delay, _repeat);
 		}
 	}
 }
