@@ -61,7 +61,7 @@ namespace ca.HenrySoftware.Flop
 				Enter(i);
 			LoadPage();
 			UpdateCurrent(GetCurrent());
-			Ease3.GoRotation(this, new Vector3(-360f, 0f, 0f), 1f, null, null, EaseType.Spring);
+			Ease3.GoRotationTo(this, new Vector3(-360f, 0f, 0f), 1f, null, null, EaseType.Spring);
 		}
 		private void OnEnable()
 		{

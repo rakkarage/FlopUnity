@@ -18,7 +18,7 @@ namespace ca.HenrySoftware.Flop
 		BackIn, BackOut, BackInOut,
 		ElasticIn, ElasticOut, ElasticInOut,
 		BounceIn, BounceOut, BounceInOut,
-        Spring
+		Spring
 	}
 	public static class Ease
 	{
@@ -56,35 +56,86 @@ namespace ca.HenrySoftware.Flop
 			{EaseType.BounceIn, BounceIn},
 			{EaseType.BounceOut, BounceOut},
 			{EaseType.BounceInOut, BounceInOut},
-            {EaseType.Spring, Spring}
+			{EaseType.Spring, Spring}
 		};
-		public static IEnumerator Go(MonoBehaviour m, float start, float end, float time, UnityAction<float> update, UnityAction complete = null, EaseType type = EaseType.Linear, float delay = 0f)
+		private const float HalfPI = Mathf.PI * .5f;
+		private const float DoublePI = Mathf.PI * 2f;
+		public static IEnumerator Go(MonoBehaviour m, float start, float end, float time, UnityAction<float> update, UnityAction complete = null, EaseType type = EaseType.Linear, float delay = 0f, int repeat = 1)
 		{
-			var i = GoCoroutine(start, end, time, update, complete, type, delay);
+			var i = GoCoroutine(start, end, time, update, complete, type, delay, repeat);
 			m.StartCoroutine(i);
 			return i;
 		}
-		private static IEnumerator GoCoroutine(float start, float end, float time, UnityAction<float> update, UnityAction complete, EaseType type, float delay)
+		private static IEnumerator GoCoroutine(float start, float end, float time, UnityAction<float> update, UnityAction complete, EaseType type, float delay, int repeat)
 		{
-			if (delay > 0f)
-				yield return new WaitForSeconds(delay);
-			var i = 0f;
-			while (i <= 1f)
+			if (repeat == 0)
 			{
-				i += Time.deltaTime / time;
-				update(Types[type](start, end, Mathf.Clamp01(i)));
-				yield return null;
+				while (true)
+				{
+					if (delay > 0f)
+						yield return new WaitForSeconds(delay);
+					var t = 0f;
+					while (t <= 1f)
+					{
+						t += Time.deltaTime / time;
+						update(Types[type](start, end, Mathf.Clamp01(t)));
+						yield return null;
+					}
+					if (delay > 0f)
+						yield return new WaitForSeconds(delay);
+					t = 0f;
+					while (t <= 1f)
+					{
+						t += Time.deltaTime / time;
+						update(Types[type](end, start, Mathf.Clamp01(t)));
+						yield return null;
+					}
+					if (complete != null)
+						complete();
+				}
 			}
-			if (complete != null)
-				complete();
+			else if (repeat < 0)
+			{
+				while (true)
+				{
+					if (delay > 0f)
+						yield return new WaitForSeconds(delay);
+					var t = 0f;
+					while (t <= 1f)
+					{
+						t += Time.deltaTime / time;
+						update(Types[type](start, end, Mathf.Clamp01(t)));
+						yield return null;
+					}
+					if (complete != null)
+						complete();
+				}
+			}
+			else
+			{
+				for (var i = 0; i < repeat; i++)
+				{
+					if (delay > 0f)
+						yield return new WaitForSeconds(delay);
+					var t = 0f;
+					while (t <= 1f)
+					{
+						t += Time.deltaTime / time;
+						update(Types[type](start, end, Mathf.Clamp01(t)));
+						yield return null;
+					}
+				}
+				if (complete != null)
+					complete();
+			}
 		}
 		public static float SineIn(float start, float end, float time)
 		{
-			return Mathf.Lerp(start, end, 1f - Mathf.Cos(time * Constants.HalfPI));
+			return Mathf.Lerp(start, end, 1f - Mathf.Cos(time * HalfPI));
 		}
 		public static float SineOut(float start, float end, float time)
 		{
-			return Mathf.Lerp(start, end, Mathf.Sin(time * Constants.HalfPI));
+			return Mathf.Lerp(start, end, Mathf.Sin(time * HalfPI));
 		}
 		public static float SineInOut(float start, float end, float time)
 		{
@@ -174,7 +225,7 @@ namespace ca.HenrySoftware.Flop
 				return Mathf.Lerp(start, end, -.5f * (Mathf.Sqrt(1 - time * time) - 1));
 			return Mathf.Lerp(start, end, .5f * (Mathf.Sqrt(1 - (time -= 2) * time) + 1));
 		}
-        public static float BackIn(float start, float end, float time)
+		public static float BackIn(float start, float end, float time)
 		{
 			const float s = 1.70158f;
 			end -= start;
@@ -196,26 +247,26 @@ namespace ca.HenrySoftware.Flop
 		}
 		public static float ElasticIn(float start, float end, float time)
 		{
-			end -= start;
 			const float p = .3f;
 			const float s = p / 4f;
-			return end * -(Mathf.Pow(2f, 10f * (time -= 1f)) * Mathf.Sin((time - s) * (Constants.DoublePI) / p)) + start;
+			end -= start;
+			return end * -(Mathf.Pow(2f, 10f * (time -= 1f)) * Mathf.Sin((time - s) * DoublePI / p)) + start;
 		}
 		public static float ElasticOut(float start, float end, float time)
 		{
-			end -= start;
 			const float p = .3f;
 			const float s = p / 4f;
-			return end * Mathf.Pow(2f, -10f * time) * Mathf.Sin((time - s) * Constants.DoublePI / p) + end + start;
+			end -= start;
+			return end * Mathf.Pow(2f, -10f * time) * Mathf.Sin((time - s) * DoublePI / p) + end + start;
 		}
 		public static float ElasticInOut(float start, float end, float time)
 		{
+			const float p = .3f * 1.5f;
+			const float s = p / 4f;
 			end -= start;
-			var p = .3f * 1.5f;
-			var s = p / 4f;
 			if ((time /= .5f) < 1f)
-				return -.5f * (end * Mathf.Pow(2f, 10f * (time -= 1f)) * Mathf.Sin((time - s) * Constants.DoublePI / p)) + start;
-			return end * Mathf.Pow(2f, -10f * (time -= 1f)) * Mathf.Sin((time - s) * Constants.DoublePI / p) * .5f + end + start;
+				return -.5f * (end * Mathf.Pow(2f, 10f * (time -= 1f)) * Mathf.Sin((time - s) * DoublePI / p)) + start;
+			return end * Mathf.Pow(2f, -10f * (time -= 1f)) * Mathf.Sin((time - s) * DoublePI / p) * .5f + end + start;
 		}
 		public static float BounceIn(float start, float end, float time)
 		{
@@ -224,7 +275,6 @@ namespace ca.HenrySoftware.Flop
 		}
 		public static float BounceOut(float start, float end, float time)
 		{
-			time /= 1f;
 			end -= start;
 			if (time < (1f / 2.75f))
 				return end * (7.5625f * time * time) + start;
@@ -284,111 +334,391 @@ namespace ca.HenrySoftware.Flop
 			{EaseType.BounceIn, (start, end, time) => new Vector3(Ease.BounceIn(start.x, end.x, time), Ease.BounceIn(start.y, end.y, time), Ease.BounceIn(start.z, end.z, time))},
 			{EaseType.BounceOut, (start, end, time) => new Vector3(Ease.BounceOut(start.x, end.x, time), Ease.BounceOut(start.y, end.y, time), Ease.BounceOut(start.z, end.z, time))},
 			{EaseType.BounceInOut, (start, end, time) => new Vector3(Ease.BounceInOut(start.x, end.x, time), Ease.BounceInOut(start.y, end.y, time), Ease.BounceInOut(start.z, end.z, time))},
-            {EaseType.Spring, (start, end, time) => new Vector3(Ease.Spring(start.x, end.x, time), Ease.Spring(start.y, end.y, time), Ease.Spring(start.z, end.z, time))}
+			{EaseType.Spring, (start, end, time) => new Vector3(Ease.Spring(start.x, end.x, time), Ease.Spring(start.y, end.y, time), Ease.Spring(start.z, end.z, time))}
 		};
-		public static IEnumerator Go(MonoBehaviour m, Vector3 start, Vector3 end, float time, UnityAction<Vector3> update, UnityAction complete = null, EaseType type = EaseType.Linear, float delay = 0f)
+		public static IEnumerator Go(MonoBehaviour m, Vector3 start, Vector3 end, float time, UnityAction<Vector3> update, UnityAction complete = null, EaseType type = EaseType.Linear, float delay = 0f, int repeat = 1)
 		{
-			var i = GoCoroutine(start, end, time, update, complete, type, delay);
+			var i = GoCoroutine(start, end, time, update, complete, type, delay, repeat);
 			m.StartCoroutine(i);
 			return i;
 		}
-		private static IEnumerator GoCoroutine(Vector3 start, Vector3 end, float time, UnityAction<Vector3> update, UnityAction complete, EaseType type, float delay)
+		private static IEnumerator GoCoroutine(Vector3 start, Vector3 end, float time, UnityAction<Vector3> update, UnityAction complete, EaseType type, float delay, int repeat)
 		{
-			if (delay > 0f)
-				yield return new WaitForSeconds(delay);
-			var i = 0f;
-			while (i <= 1f)
+			if (repeat == 0)
 			{
-				i += Time.deltaTime / time;
-				update(Types[type](start, end, Mathf.Clamp01(i)));
-				yield return null;
+				while (true)
+				{
+					if (delay > 0f)
+						yield return new WaitForSeconds(delay);
+					var t = 0f;
+					while (t <= 1f)
+					{
+						t += Time.deltaTime / time;
+						update(Types[type](start, end, Mathf.Clamp01(t)));
+						yield return null;
+					}
+					if (delay > 0f)
+						yield return new WaitForSeconds(delay);
+					t = 0f;
+					while (t <= 1f)
+					{
+						t += Time.deltaTime / time;
+						update(Types[type](end, start, Mathf.Clamp01(t)));
+						yield return null;
+					}
+					if (complete != null)
+						complete();
+				}
 			}
-			if (complete != null)
-				complete();
+			else if (repeat < 0)
+			{
+				while (true)
+				{
+					if (delay > 0f)
+						yield return new WaitForSeconds(delay);
+					var t = 0f;
+					while (t <= 1f)
+					{
+						t += Time.deltaTime / time;
+						update(Types[type](start, end, Mathf.Clamp01(t)));
+						yield return null;
+					}
+					if (complete != null)
+						complete();
+				}
+			}
+			else
+			{
+				for (var i = 0; i < repeat; i++)
+				{
+					if (delay > 0f)
+						yield return new WaitForSeconds(delay);
+					var t = 0f;
+					while (t <= 1f)
+					{
+						t += Time.deltaTime / time;
+						update(Types[type](start, end, Mathf.Clamp01(t)));
+						yield return null;
+					}
+				}
+				if (complete != null)
+					complete();
+			}
 		}
-		public static IEnumerator GoPosition(MonoBehaviour m, Vector3 start, Vector3 end, float time, UnityAction<Vector3> update = null, UnityAction complete = null, EaseType type = EaseType.Linear, float delay = 0f)
+		public static IEnumerator GoPositionTo(MonoBehaviour m, Vector3 to, float time, UnityAction<Vector3> update = null, UnityAction complete = null, EaseType type = EaseType.Linear, float delay = 0f, int repeat = 1)
 		{
-			return GoPosition(m, m.gameObject, start, end, time, update, complete, type, delay);
+			return GoPosition(m, m.gameObject, m.transform.localPosition, to, time, update, complete, type, delay, repeat);
 		}
-		public static IEnumerator GoPosition(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, UnityAction<Vector3> update, UnityAction complete, EaseType type = EaseType.Linear, float delay = 0f)
+		public static IEnumerator GoPositionBy(MonoBehaviour m, Vector3 by, float time, UnityAction<Vector3> update = null, UnityAction complete = null, EaseType type = EaseType.Linear, float delay = 0f, int repeat = 1)
 		{
-			var i = GoPositionCoroutine(o, start, end, time, update, complete, type, delay);
+			return GoPosition(m, m.gameObject, m.transform.localPosition, m.transform.localPosition + by, time, update, complete, type, delay, repeat);
+		}
+		public static IEnumerator GoPosition(MonoBehaviour m, Vector3 start, Vector3 end, float time, UnityAction<Vector3> update = null, UnityAction complete = null, EaseType type = EaseType.Linear, float delay = 0f, int repeat = 1)
+		{
+			return GoPosition(m, m.gameObject, start, end, time, update, complete, type, delay, repeat);
+		}
+		public static IEnumerator GoPositionTo(MonoBehaviour m, GameObject o, Vector3 to, float time, UnityAction<Vector3> update, UnityAction complete, EaseType type = EaseType.Linear, float delay = 0f, int repeat = 1)
+		{
+			return GoPosition(m, o, o.transform.localPosition, to, time, update, complete, type, delay, repeat);
+		}
+		public static IEnumerator GoPositionBy(MonoBehaviour m, GameObject o, Vector3 by, float time, UnityAction<Vector3> update, UnityAction complete, EaseType type = EaseType.Linear, float delay = 0f, int repeat = 1)
+		{
+			return GoPosition(m, o, o.transform.localPosition, o.transform.localPosition + by, time, update, complete, type, delay, repeat);
+		}
+		public static IEnumerator GoPosition(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, UnityAction<Vector3> update, UnityAction complete, EaseType type = EaseType.Linear, float delay = 0f, int repeat = 1)
+		{
+			var i = GoPositionCoroutine(o, start, end, time, update, complete, type, delay, repeat);
 			m.StartCoroutine(i);
 			return i;
 		}
-		private static IEnumerator GoPositionCoroutine(GameObject o, Vector3 start, Vector3 end, float time, UnityAction<Vector3> update, UnityAction complete, EaseType type, float delay)
+		private static IEnumerator GoPositionCoroutine(GameObject o, Vector3 start, Vector3 end, float time, UnityAction<Vector3> update, UnityAction complete, EaseType type, float delay, int repeat)
 		{
-			if (delay > 0f)
-				yield return new WaitForSeconds(delay);
-			var i = 0f;
-			while (i <= 1f)
+			if (repeat == 0)
 			{
-				i += Time.deltaTime / time;
-				var p = Types[type](start, end, Mathf.Clamp01(i));
-				o.transform.localPosition = p;
-				if (update != null)
-					update(p);
-				yield return null;
+				while (true)
+				{
+					if (delay > 0f)
+						yield return new WaitForSeconds(delay);
+					var t = 0f;
+					while (t <= 1f)
+					{
+						t += Time.deltaTime / time;
+						var p = Types[type](start, end, Mathf.Clamp01(t));
+						o.transform.localPosition = p;
+						if (update != null)
+							update(p);
+						yield return null;
+					}
+					o.transform.localPosition = end;
+					if (delay > 0f)
+						yield return new WaitForSeconds(delay);
+					t = 0f;
+					while (t <= 1f)
+					{
+						t += Time.deltaTime / time;
+						var p = Types[type](end, start, Mathf.Clamp01(t));
+						o.transform.localPosition = p;
+						if (update != null)
+							update(p);
+						yield return null;
+					}
+					o.transform.localPosition = start;
+					if (complete != null)
+						complete();
+				}
 			}
-			o.transform.localPosition = end;
-			if (complete != null)
-				complete();
+			else if (repeat < 0)
+			{
+				while (true)
+				{
+					if (delay > 0f)
+						yield return new WaitForSeconds(delay);
+					var t = 0f;
+					while (t <= 1f)
+					{
+						t += Time.deltaTime / time;
+						var p = Types[type](start, end, Mathf.Clamp01(t));
+						o.transform.localPosition = p;
+						if (update != null)
+							update(p);
+						yield return null;
+					}
+					o.transform.localPosition = end;
+					if (complete != null)
+						complete();
+				}
+			}
+			else
+			{
+				for (var i = 0; i < repeat; i++)
+				{
+					if (delay > 0f)
+						yield return new WaitForSeconds(delay);
+					var t = 0f;
+					while (t <= 1f)
+					{
+						t += Time.deltaTime / time;
+						var p = Types[type](start, end, Mathf.Clamp01(t));
+						o.transform.localPosition = p;
+						if (update != null)
+							update(p);
+						yield return null;
+					}
+				}
+				o.transform.localPosition = end;
+				if (complete != null)
+					complete();
+			}
 		}
-		public static IEnumerator GoRotation(MonoBehaviour m, Vector3 angle, float time, UnityAction<Vector3> update = null, UnityAction complete = null, EaseType type = EaseType.Linear, float delay = 0f)
+		public static IEnumerator GoRotationTo(MonoBehaviour m, Vector3 to, float time, UnityAction<Vector3> update = null, UnityAction complete = null, EaseType type = EaseType.Linear, float delay = 0f, int repeat = 1)
 		{
-			return GoRotation(m, m.gameObject, angle, time, update, complete, type, delay);
+			return GoRotation(m, m.gameObject, m.transform.localEulerAngles, to, time, update, complete, type, delay, repeat);
 		}
-		public static IEnumerator GoRotation(MonoBehaviour m, GameObject o, Vector3 angle, float time, UnityAction<Vector3> update, UnityAction complete, EaseType type = EaseType.Linear, float delay = 0f)
+		public static IEnumerator GoRotationBy(MonoBehaviour m, Vector3 by, float time, UnityAction<Vector3> update = null, UnityAction complete = null, EaseType type = EaseType.Linear, float delay = 0f, int repeat = 1)
 		{
-			var i = GoRotationCoroutine(o, angle, time, update, complete, type, delay);
+			return GoRotation(m, m.gameObject, m.transform.localEulerAngles, m.transform.localEulerAngles + by, time, update, complete, type, delay, repeat);
+		}
+		public static IEnumerator GoRotation(MonoBehaviour m, Vector3 start, Vector3 end, float time, UnityAction<Vector3> update = null, UnityAction complete = null, EaseType type = EaseType.Linear, float delay = 0f, int repeat = 1)
+		{
+			return GoRotation(m, m.gameObject, start, end, time, update, complete, type, delay, repeat);
+		}
+		public static IEnumerator GoRotationTo(MonoBehaviour m, GameObject o, Vector3 to, float time, UnityAction<Vector3> update, UnityAction complete, EaseType type = EaseType.Linear, float delay = 0f, int repeat = 1)
+		{
+			return GoRotation(m, m.gameObject, m.transform.localEulerAngles, to, time, update, complete, type, delay, repeat);
+		}
+		public static IEnumerator GoRotationBy(MonoBehaviour m, GameObject o, Vector3 by, float time, UnityAction<Vector3> update, UnityAction complete, EaseType type = EaseType.Linear, float delay = 0f, int repeat = 1)
+		{
+			return GoRotation(m, m.gameObject, m.transform.localEulerAngles, m.transform.localEulerAngles + by, time, update, complete, type, delay, repeat);
+		}
+		public static IEnumerator GoRotation(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, UnityAction<Vector3> update, UnityAction complete, EaseType type = EaseType.Linear, float delay = 0f, int repeat = 1)
+		{
+			var i = GoRotationCoroutine(o, start, end, time, update, complete, type, delay, repeat);
 			m.StartCoroutine(i);
 			return i;
 		}
-		private static IEnumerator GoRotationCoroutine(GameObject o, Vector3 angle, float time, UnityAction<Vector3> update, UnityAction complete, EaseType type, float delay)
+		private static IEnumerator GoRotationCoroutine(GameObject o, Vector3 start, Vector3 end, float time, UnityAction<Vector3> update, UnityAction complete, EaseType type, float delay, int repeat)
 		{
-			if (delay > 0f)
-				yield return new WaitForSeconds(delay);
-			var i = 0f;
-			while (i <= 1f)
+			if (repeat == 0)
 			{
-				i += Time.deltaTime / time;
-				var p = Types[type](Vector3.zero, angle, Mathf.Clamp01(i));
-				o.transform.localEulerAngles = p;
-				if (update != null)
-					update(p);
-				yield return null;
+				while (true)
+				{
+					if (delay > 0f)
+						yield return new WaitForSeconds(delay);
+					var t = 0f;
+					while (t <= 1f)
+					{
+						t += Time.deltaTime / time;
+						var p = Types[type](start, end, Mathf.Clamp01(t));
+						o.transform.localEulerAngles = p;
+						if (update != null)
+							update(p);
+						yield return null;
+					}
+					o.transform.localEulerAngles = end;
+					if (delay > 0f)
+						yield return new WaitForSeconds(delay);
+					t = 0f;
+					while (t <= 1f)
+					{
+						t += Time.deltaTime / time;
+						var p = Types[type](end, start, Mathf.Clamp01(t));
+						o.transform.localEulerAngles = p;
+						if (update != null)
+							update(p);
+						yield return null;
+					}
+					o.transform.localEulerAngles = start;
+					if (complete != null)
+						complete();
+				}
 			}
-			o.transform.localEulerAngles = Types[type](Vector3.zero, angle, 1f);
-			if (complete != null)
-				complete();
+			else if (repeat < 0)
+			{
+				while (true)
+				{
+					if (delay > 0f)
+						yield return new WaitForSeconds(delay);
+					var t = 0f;
+					while (t <= 1f)
+					{
+						t += Time.deltaTime / time;
+						var p = Types[type](start, end, Mathf.Clamp01(t));
+						o.transform.localEulerAngles = p;
+						if (update != null)
+							update(p);
+						yield return null;
+					}
+					o.transform.localEulerAngles = end;
+					if (complete != null)
+						complete();
+				}
+			}
+			else
+			{
+				for (var i = 0; i < repeat; i++)
+				{
+					if (delay > 0f)
+						yield return new WaitForSeconds(delay);
+					var t = 0f;
+					while (t <= 1f)
+					{
+						t += Time.deltaTime / time;
+						var p = Types[type](start, end, Mathf.Clamp01(t));
+						o.transform.localEulerAngles = p;
+						if (update != null)
+							update(p);
+						yield return null;
+					}
+				}
+				o.transform.localEulerAngles = end;
+				if (complete != null)
+					complete();
+			}
 		}
-		public static IEnumerator GoScale(MonoBehaviour m, Vector3 start, Vector3 end, float time, UnityAction<Vector3> update = null, UnityAction complete = null, EaseType type = EaseType.Linear, float delay = 0f)
+		public static IEnumerator GoScaleTo(MonoBehaviour m, Vector3 to, float time, UnityAction<Vector3> update = null, UnityAction complete = null, EaseType type = EaseType.Linear, float delay = 0f, int repeat = 1)
 		{
-			return GoScale(m, m.gameObject, start, end, time, update, complete, type, delay);
+			return GoScale(m, m.gameObject, m.transform.localScale, to, time, update, complete, type, delay, repeat);
 		}
-		public static IEnumerator GoScale(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, UnityAction<Vector3> update, UnityAction complete, EaseType type = EaseType.Linear, float delay = 0f)
+		public static IEnumerator GoScaleBy(MonoBehaviour m, Vector3 by, float time, UnityAction<Vector3> update = null, UnityAction complete = null, EaseType type = EaseType.Linear, float delay = 0f, int repeat = 1)
 		{
-			var i = GoScaleCoroutine(o, start, end, time, update, complete, type, delay);
+			return GoScale(m, m.gameObject, m.transform.localScale, m.transform.localScale + by, time, update, complete, type, delay, repeat);
+		}
+		public static IEnumerator GoScale(MonoBehaviour m, Vector3 start, Vector3 end, float time, UnityAction<Vector3> update = null, UnityAction complete = null, EaseType type = EaseType.Linear, float delay = 0f, int repeat = 1)
+		{
+			return GoScale(m, m.gameObject, start, end, time, update, complete, type, delay, repeat);
+		}
+		public static IEnumerator GoScaleTo(MonoBehaviour m, GameObject o, Vector3 to, float time, UnityAction<Vector3> update, UnityAction complete, EaseType type = EaseType.Linear, float delay = 0f, int repeat = 1)
+		{
+			return GoScale(m, m.gameObject, m.transform.localScale, to, time, update, complete, type, delay, repeat);
+		}
+		public static IEnumerator GoScaleBy(MonoBehaviour m, GameObject o, Vector3 by, float time, UnityAction<Vector3> update, UnityAction complete, EaseType type = EaseType.Linear, float delay = 0f, int repeat = 1)
+		{
+			return GoScale(m, m.gameObject, m.transform.localScale, m.transform.localScale + by, time, update, complete, type, delay, repeat);
+		}
+		public static IEnumerator GoScale(MonoBehaviour m, GameObject o, Vector3 start, Vector3 end, float time, UnityAction<Vector3> update, UnityAction complete, EaseType type = EaseType.Linear, float delay = 0f, int repeat = 1)
+		{
+			var i = GoScaleCoroutine(o, start, end, time, update, complete, type, delay, repeat);
 			m.StartCoroutine(i);
 			return i;
 		}
-		private static IEnumerator GoScaleCoroutine(GameObject o, Vector3 start, Vector3 end, float time, UnityAction<Vector3> update, UnityAction complete, EaseType type, float delay)
+		private static IEnumerator GoScaleCoroutine(GameObject o, Vector3 start, Vector3 end, float time, UnityAction<Vector3> update, UnityAction complete, EaseType type, float delay, int repeat)
 		{
-			if (delay > 0f)
-				yield return new WaitForSeconds(delay);
-			var i = 0f;
-			while (i <= 1f)
+			if (repeat == 0)
 			{
-				i += Time.deltaTime / time;
-				var p = Types[type](start, end, Mathf.Clamp01(i));
-				o.transform.localScale = p;
-				if (update != null)
-					update(p);
-				yield return null;
+				while (true)
+				{
+					if (delay > 0f)
+						yield return new WaitForSeconds(delay);
+					var t = 0f;
+					while (t <= 1f)
+					{
+						t += Time.deltaTime / time;
+						var p = Types[type](start, end, Mathf.Clamp01(t));
+						o.transform.localScale = p;
+						if (update != null)
+							update(p);
+						yield return null;
+					}
+					o.transform.localScale = end;
+					if (delay > 0f)
+						yield return new WaitForSeconds(delay);
+					t = 0f;
+					while (t <= 1f)
+					{
+						t += Time.deltaTime / time;
+						var p = Types[type](end, start, Mathf.Clamp01(t));
+						o.transform.localScale = p;
+						if (update != null)
+							update(p);
+						yield return null;
+					}
+					o.transform.localScale = start;
+					if (complete != null)
+						complete();
+				}
 			}
-			o.transform.localScale = end;
-			if (complete != null)
-				complete();
+			else if (repeat < 0)
+			{
+				while (true)
+				{
+					if (delay > 0f)
+						yield return new WaitForSeconds(delay);
+					var t = 0f;
+					while (t <= 1f)
+					{
+						t += Time.deltaTime / time;
+						var p = Types[type](start, end, Mathf.Clamp01(t));
+						o.transform.localScale = p;
+						if (update != null)
+							update(p);
+						yield return null;
+					}
+					o.transform.localScale = end;
+					if (complete != null)
+						complete();
+				}
+			}
+			else
+			{
+				for (var i = 0; i < repeat; i++)
+				{
+					if (delay > 0f)
+						yield return new WaitForSeconds(delay);
+					var t = 0f;
+					while (t <= 1f)
+					{
+						t += Time.deltaTime / time;
+						var p = Types[type](start, end, Mathf.Clamp01(t));
+						o.transform.localScale = p;
+						if (update != null)
+							update(p);
+						yield return null;
+					}
+				}
+				o.transform.localScale = end;
+				if (complete != null)
+					complete();
+			}
 		}
 	}
 }

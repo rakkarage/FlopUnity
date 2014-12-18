@@ -10,8 +10,6 @@ namespace ca.HenrySoftware.Flop
 	{
 		public const string Error = "Error";
 		public const int Offset = 3072;
-		public const float HalfPI = Mathf.PI * .5f;
-		public const float DoublePI = Mathf.PI * 2f;
 		public static readonly int AnimatorCompute = Animator.StringToHash("Compute");
 		public static readonly int AnimatorError = Animator.StringToHash("Error");
 		public static readonly Color StatusRed = new Color(.75f, .5f, .5f);

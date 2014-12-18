@@ -25,8 +25,8 @@ namespace ca.HenrySoftware.Flop
 			_foreground = transform.FindChild("Fore").GetComponent<Image>();
 			_source = GetComponent<AudioSource>();
 			StartCoroutine(PlayDelayed(_timeDelaySound));
-			Ease3.GoScale(this, _logo.gameObject, _logo.transform.localScale, new Vector3(2f, 2f, 1f), _timeAnimation, null, null, EaseType.BounceOut, _timeDelay);
-			Ease3.GoRotation(this, _logo.gameObject, new Vector3(0f, 0f, 180f), _timeAnimation, null, null, EaseType.BounceOut, _timeDelay);
+			Ease3.GoScaleTo(this, _logo.gameObject, new Vector3(2f, 2f, 1f), _timeAnimation, null, null, EaseType.BounceOut, _timeDelay);
+			Ease3.GoRotationTo(this, _logo.gameObject, new Vector3(0f, 0f, 180f), _timeAnimation, null, null, EaseType.BounceOut, _timeDelay);
 			Ease3.Go(this, Constants.HenryBlue.GetVector(), Color.black.GetVector(), _timeAnimation, HandleColor, HandleFade, EaseType.BounceOut, _timeDelay);
 		}
 		private IEnumerator PlayDelayed(float time)

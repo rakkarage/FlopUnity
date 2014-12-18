@@ -1,33 +1,32 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 namespace ca.HenrySoftware.Flop
 {
-	public class Easer : MonoBehaviour
+	public abstract class Easer : MonoBehaviour
 	{
-		public EaseType Type;
-		private Vector3 _start;
-		private Vector3 _end;
-		private const float Time = 1f;
-		private const float Delay = .333f;
-		private const float Offset = 132f;
-		private Transform _t;
+		[SerializeField]
+		protected bool _start = true;
+		[SerializeField]
+		protected bool _by = true;
+		[SerializeField]
+		protected Vector3 _value = Vector3.zero;
+		[SerializeField]
+		protected EaseType _type = EaseType.Linear;
+		[SerializeField]
+		protected float _time = 1f;
+		[SerializeField]
+		protected float _delay = 0f;
+		[SerializeField, Range(-1, 100)]
+		protected int _repeat = 1;
+		protected Transform _t;
 		private void Awake()
 		{
 			_t = transform;
 		}
 		private void Start()
 		{
-			_start = new Vector3(-Offset, _t.localPosition.y, _t.localPosition.z);
-			_end = new Vector3(Offset, _t.localPosition.y, _t.localPosition.z);
-			_t.localPosition = _start;
-			Fore();
+			if (_start) Go();
 		}
-		private void Fore()
-		{
-			Ease3.GoPosition(this, _start, _end, Time, null, Back, Type, Delay);
-		}
-		private void Back()
-		{
-			Ease3.GoPosition(this, _end, _start, Time, null, Fore, Type, Delay);
-		}
+		public abstract void Go();
 	}
 }
