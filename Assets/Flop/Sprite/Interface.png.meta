@@ -191,12 +191,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 111
-        y: 30
+        y: 31
         width: 32
         height: 32
       alignment: 0
       pivot: {x: .5, y: .5}
-      border: {x: 7, y: 6, z: 8, w: 8}
+      border: {x: 7, y: 7, z: 8, w: 8}
     - name: Panel
       rect:
         serializedVersion: 2
