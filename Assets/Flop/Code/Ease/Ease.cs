@@ -722,9 +722,9 @@ namespace ca.HenrySoftware.Flop
 			Action<Vector3> setColor = value =>
 			{
 				if (image == null)
-					camera.backgroundColor = value.GetColor();
+					camera.backgroundColor = value.GetColor().SetAlpha(camera.backgroundColor.a);
 				else
-					image.color = value.GetColor();
+					image.color = value.GetColor().SetAlpha(image.color.a);
 			};
 			var last = Time.realtimeSinceStartup;
 			Func<float> deltaTime = () =>
