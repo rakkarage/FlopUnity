@@ -85,6 +85,7 @@ GameObject:
   - 222: {fileID: 40369637}
   - 114: {fileID: 40369636}
   - 114: {fileID: 40369635}
+  - 114: {fileID: 40369638}
   m_Layer: 5
   m_Name: Bounce
   m_TagString: Untagged
@@ -147,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -162,6 +163,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 40369633}
+--- !u!114 &40369638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 40369633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 29
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &71712111
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,6 +605,7 @@ GameObject:
   - 222: {fileID: 201955398}
   - 114: {fileID: 201955397}
   - 114: {fileID: 201955396}
+  - 114: {fileID: 201955399}
   m_Layer: 5
   m_Name: Linear
   m_TagString: Untagged
@@ -641,7 +668,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .498039216}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .498039216}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -656,6 +683,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 201955394}
+--- !u!114 &201955399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 201955394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 0
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &214926016
 GameObject:
   m_ObjectHideFlags: 0
@@ -667,6 +719,7 @@ GameObject:
   - 222: {fileID: 214926020}
   - 114: {fileID: 214926019}
   - 114: {fileID: 214926018}
+  - 114: {fileID: 214926021}
   m_Layer: 5
   m_Name: Circ
   m_TagString: Untagged
@@ -729,7 +782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -744,6 +797,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 214926016}
+--- !u!114 &214926021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 214926016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 21
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &234731962
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,6 +833,7 @@ GameObject:
   - 222: {fileID: 234731966}
   - 114: {fileID: 234731965}
   - 114: {fileID: 234731964}
+  - 114: {fileID: 234731967}
   m_Layer: 5
   m_Name: Quad
   m_TagString: Untagged
@@ -817,7 +896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -832,6 +911,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 234731962}
+--- !u!114 &234731967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 234731962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 5
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &287179513
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,6 +947,7 @@ GameObject:
   - 222: {fileID: 287179517}
   - 114: {fileID: 287179516}
   - 114: {fileID: 287179515}
+  - 114: {fileID: 287179518}
   m_Layer: 5
   m_Name: Elastic
   m_TagString: Untagged
@@ -905,7 +1010,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -920,6 +1025,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 287179513}
+--- !u!114 &287179518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 287179513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 25
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &310672283
 GameObject:
   m_ObjectHideFlags: 0
@@ -997,6 +1127,7 @@ GameObject:
   - 222: {fileID: 338985427}
   - 114: {fileID: 338985426}
   - 114: {fileID: 338985425}
+  - 114: {fileID: 338985428}
   m_Layer: 5
   m_Name: Quint
   m_TagString: Untagged
@@ -1059,7 +1190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -1074,6 +1205,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 338985423}
+--- !u!114 &338985428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 338985423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 15
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &367200547
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,6 +1241,7 @@ GameObject:
   - 222: {fileID: 367200549}
   - 114: {fileID: 367200548}
   - 114: {fileID: 367200551}
+  - 114: {fileID: 367200552}
   m_Layer: 5
   m_Name: Quad
   m_TagString: Untagged
@@ -1104,7 +1261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -1151,6 +1308,31 @@ MonoBehaviour:
   Begin: 1
   By: 1
   Value: {x: 300, y: 0, z: 0}
+  Type: 4
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &367200552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 367200547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
   Type: 4
   Time: 1
   Delay: .333000004
@@ -1234,6 +1416,7 @@ GameObject:
   - 222: {fileID: 455327255}
   - 114: {fileID: 455327254}
   - 114: {fileID: 455327253}
+  - 114: {fileID: 455327256}
   m_Layer: 5
   m_Name: Circ
   m_TagString: Untagged
@@ -1296,7 +1479,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -1311,6 +1494,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 455327251}
+--- !u!114 &455327256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 455327251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 19
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &563307959
 GameObject:
   m_ObjectHideFlags: 0
@@ -1454,6 +1662,7 @@ GameObject:
   - 222: {fileID: 672331562}
   - 114: {fileID: 672331561}
   - 114: {fileID: 672331560}
+  - 114: {fileID: 672331563}
   m_Layer: 5
   m_Name: Spring
   m_TagString: Untagged
@@ -1516,7 +1725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .498039216}
+  m_Color: {r: .501960814, g: .749019623, b: .498039216, a: .498039216}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -1531,6 +1740,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 672331558}
+--- !u!114 &672331563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 672331558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 31
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &693997082
 GameObject:
   m_ObjectHideFlags: 0
@@ -1677,6 +1911,7 @@ GameObject:
   - 222: {fileID: 722118366}
   - 114: {fileID: 722118365}
   - 114: {fileID: 722118364}
+  - 114: {fileID: 722118367}
   m_Layer: 5
   m_Name: Sine
   m_TagString: Untagged
@@ -1739,7 +1974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -1754,6 +1989,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 722118362}
+--- !u!114 &722118367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 722118362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 2
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &764822846
 GameObject:
   m_ObjectHideFlags: 0
@@ -2029,6 +2289,7 @@ GameObject:
   - 222: {fileID: 870049886}
   - 114: {fileID: 870049885}
   - 114: {fileID: 870049884}
+  - 114: {fileID: 870049887}
   m_Layer: 5
   m_Name: Quart
   m_TagString: Untagged
@@ -2091,7 +2352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -2106,6 +2367,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 870049882}
+--- !u!114 &870049887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 870049882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 12
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &871807296
 GameObject:
   m_ObjectHideFlags: 0
@@ -2135,10 +2421,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1719357002}
   - {fileID: 1477352565}
   - {fileID: 1618752816}
   - {fileID: 2011054098}
+  - {fileID: 1719357002}
   m_Father: {fileID: 1789922549}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
@@ -2251,6 +2537,7 @@ GameObject:
   - 222: {fileID: 906033223}
   - 114: {fileID: 906033222}
   - 114: {fileID: 906033221}
+  - 114: {fileID: 906033224}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -2313,7 +2600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -2328,6 +2615,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 906033219}
+--- !u!114 &906033224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 906033219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 24
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1026623947
 GameObject:
   m_ObjectHideFlags: 0
@@ -2405,6 +2717,7 @@ GameObject:
   - 222: {fileID: 1119682205}
   - 114: {fileID: 1119682204}
   - 114: {fileID: 1119682203}
+  - 114: {fileID: 1119682206}
   m_Layer: 5
   m_Name: Quint
   m_TagString: Untagged
@@ -2467,7 +2780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -2482,6 +2795,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1119682201}
+--- !u!114 &1119682206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1119682201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 14
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1143349212
 GameObject:
   m_ObjectHideFlags: 0
@@ -2559,6 +2897,7 @@ GameObject:
   - 222: {fileID: 1152060555}
   - 114: {fileID: 1152060554}
   - 114: {fileID: 1152060553}
+  - 114: {fileID: 1152060556}
   m_Layer: 5
   m_Name: Circ
   m_TagString: Untagged
@@ -2621,7 +2960,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -2636,6 +2975,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1152060551}
+--- !u!114 &1152060556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1152060551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 20
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1170832272
 GameObject:
   m_ObjectHideFlags: 0
@@ -2713,6 +3077,7 @@ GameObject:
   - 222: {fileID: 1180557933}
   - 114: {fileID: 1180557932}
   - 114: {fileID: 1180557931}
+  - 114: {fileID: 1180557934}
   m_Layer: 5
   m_Name: Bounce
   m_TagString: Untagged
@@ -2775,7 +3140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -2790,6 +3155,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1180557929}
+--- !u!114 &1180557934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1180557929}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 28
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1220717559
 GameObject:
   m_ObjectHideFlags: 0
@@ -2801,6 +3191,7 @@ GameObject:
   - 222: {fileID: 1220717563}
   - 114: {fileID: 1220717562}
   - 114: {fileID: 1220717561}
+  - 114: {fileID: 1220717564}
   m_Layer: 5
   m_Name: Expo
   m_TagString: Untagged
@@ -2863,7 +3254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -2878,6 +3269,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1220717559}
+--- !u!114 &1220717564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1220717559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 18
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1232536174
 GameObject:
   m_ObjectHideFlags: 0
@@ -2889,6 +3305,7 @@ GameObject:
   - 222: {fileID: 1232536177}
   - 114: {fileID: 1232536176}
   - 114: {fileID: 1232536178}
+  - 114: {fileID: 1232536179}
   m_Layer: 5
   m_Name: Quart
   m_TagString: Untagged
@@ -2926,7 +3343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -2955,6 +3372,31 @@ MonoBehaviour:
   Begin: 1
   By: 1
   Value: {x: 300, y: 0, z: 0}
+  Type: 10
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &1232536179
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1232536174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
   Type: 10
   Time: 1
   Delay: .333000004
@@ -3178,6 +3620,7 @@ GameObject:
   - 222: {fileID: 1260242133}
   - 114: {fileID: 1260242132}
   - 114: {fileID: 1260242131}
+  - 114: {fileID: 1260242134}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -3240,7 +3683,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -3255,6 +3698,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1260242129}
+--- !u!114 &1260242134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1260242129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 23
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1296705084
 GameObject:
   m_ObjectHideFlags: 0
@@ -3413,6 +3881,7 @@ GameObject:
   - 222: {fileID: 1304642404}
   - 114: {fileID: 1304642403}
   - 114: {fileID: 1304642402}
+  - 114: {fileID: 1304642405}
   m_Layer: 5
   m_Name: Quint
   m_TagString: Untagged
@@ -3475,7 +3944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -3490,6 +3959,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1304642400}
+--- !u!114 &1304642405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1304642400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 13
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1312434286
 GameObject:
   m_ObjectHideFlags: 0
@@ -3627,6 +4121,7 @@ GameObject:
   - 222: {fileID: 1368333761}
   - 114: {fileID: 1368333760}
   - 114: {fileID: 1368333759}
+  - 114: {fileID: 1368333762}
   m_Layer: 5
   m_Name: Cubic
   m_TagString: Untagged
@@ -3689,7 +4184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -3704,6 +4199,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1368333757}
+--- !u!114 &1368333762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1368333757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 8
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1372855745
 GameObject:
   m_ObjectHideFlags: 0
@@ -3913,6 +4433,7 @@ GameObject:
   - 222: {fileID: 1389730527}
   - 114: {fileID: 1389730526}
   - 114: {fileID: 1389730525}
+  - 114: {fileID: 1389730528}
   m_Layer: 5
   m_Name: Spring
   m_TagString: Untagged
@@ -3975,7 +4496,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .498039216}
+  m_Color: {r: .501960814, g: .749019623, b: .498039216, a: .498039216}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -3990,6 +4511,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1389730523}
+--- !u!114 &1389730528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1389730523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 31
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1413470338
 GameObject:
   m_ObjectHideFlags: 0
@@ -4001,6 +4547,7 @@ GameObject:
   - 222: {fileID: 1413470342}
   - 114: {fileID: 1413470341}
   - 114: {fileID: 1413470340}
+  - 114: {fileID: 1413470343}
   m_Layer: 5
   m_Name: Quart
   m_TagString: Untagged
@@ -4063,7 +4610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -4078,6 +4625,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1413470338}
+--- !u!114 &1413470343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1413470338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 11
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1433094733
 GameObject:
   m_ObjectHideFlags: 0
@@ -4089,6 +4661,7 @@ GameObject:
   - 222: {fileID: 1433094737}
   - 114: {fileID: 1433094736}
   - 114: {fileID: 1433094735}
+  - 114: {fileID: 1433094738}
   m_Layer: 5
   m_Name: Spring
   m_TagString: Untagged
@@ -4151,7 +4724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .498039216}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .498039216}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -4166,6 +4739,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1433094733}
+--- !u!114 &1433094738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1433094733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 31
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1441392594
 GameObject:
   m_ObjectHideFlags: 0
@@ -4339,7 +4937,7 @@ RectTransform:
   - {fileID: 1180557930}
   - {fileID: 1389730524}
   m_Father: {fileID: 871807297}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 264}
@@ -4716,6 +5314,7 @@ GameObject:
   - 222: {fileID: 1597641938}
   - 114: {fileID: 1597641937}
   - 114: {fileID: 1597641936}
+  - 114: {fileID: 1597641939}
   m_Layer: 5
   m_Name: Linear
   m_TagString: Untagged
@@ -4778,7 +5377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .498039216}
+  m_Color: {r: .501960814, g: .749019623, b: .498039216, a: .498039216}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -4793,6 +5392,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1597641934}
+--- !u!114 &1597641939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1597641934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 0
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1612303078
 GameObject:
   m_ObjectHideFlags: 0
@@ -4804,6 +5428,7 @@ GameObject:
   - 222: {fileID: 1612303081}
   - 114: {fileID: 1612303080}
   - 114: {fileID: 1612303082}
+  - 114: {fileID: 1612303083}
   m_Layer: 5
   m_Name: Cubic
   m_TagString: Untagged
@@ -4841,7 +5466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -4870,6 +5495,31 @@ MonoBehaviour:
   Begin: 1
   By: 1
   Value: {x: 300, y: 0, z: 0}
+  Type: 7
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &1612303083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1612303078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
   Type: 7
   Time: 1
   Delay: .333000004
@@ -4988,7 +5638,7 @@ RectTransform:
   - {fileID: 40369634}
   - {fileID: 672331559}
   m_Father: {fileID: 871807297}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -5032,6 +5682,7 @@ GameObject:
   - 222: {fileID: 1630892947}
   - 114: {fileID: 1630892946}
   - 114: {fileID: 1630892945}
+  - 114: {fileID: 1630892948}
   m_Layer: 5
   m_Name: Cubic
   m_TagString: Untagged
@@ -5094,7 +5745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -5109,6 +5760,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1630892943}
+--- !u!114 &1630892948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1630892943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 9
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1640823714
 GameObject:
   m_ObjectHideFlags: 0
@@ -5120,6 +5796,7 @@ GameObject:
   - 222: {fileID: 1640823718}
   - 114: {fileID: 1640823717}
   - 114: {fileID: 1640823716}
+  - 114: {fileID: 1640823719}
   m_Layer: 5
   m_Name: Expo
   m_TagString: Untagged
@@ -5182,7 +5859,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -5197,6 +5874,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1640823714}
+--- !u!114 &1640823719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1640823714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 17
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1652967916
 GameObject:
   m_ObjectHideFlags: 0
@@ -5208,6 +5910,7 @@ GameObject:
   - 222: {fileID: 1652967920}
   - 114: {fileID: 1652967919}
   - 114: {fileID: 1652967918}
+  - 114: {fileID: 1652967921}
   m_Layer: 5
   m_Name: Elastic
   m_TagString: Untagged
@@ -5270,7 +5973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -5285,6 +5988,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1652967916}
+--- !u!114 &1652967921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1652967916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 27
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1691300170
 GameObject:
   m_ObjectHideFlags: 0
@@ -5296,6 +6024,7 @@ GameObject:
   - 222: {fileID: 1691300174}
   - 114: {fileID: 1691300173}
   - 114: {fileID: 1691300172}
+  - 114: {fileID: 1691300175}
   m_Layer: 5
   m_Name: Bounce
   m_TagString: Untagged
@@ -5358,7 +6087,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -5373,6 +6102,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1691300170}
+--- !u!114 &1691300175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1691300170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 30
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1703172149
 GameObject:
   m_ObjectHideFlags: 0
@@ -5485,7 +6239,7 @@ RectTransform:
   - {fileID: 1240959503}
   - {fileID: 693997083}
   m_Father: {fileID: 871807297}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -16, y: 16}
@@ -5794,6 +6548,7 @@ GameObject:
   - 222: {fileID: 1773580777}
   - 114: {fileID: 1773580776}
   - 114: {fileID: 1773580775}
+  - 114: {fileID: 1773580778}
   m_Layer: 5
   m_Name: Sine
   m_TagString: Untagged
@@ -5856,7 +6611,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -5871,6 +6626,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1773580773}
+--- !u!114 &1773580778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1773580773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 1
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1789922548
 GameObject:
   m_ObjectHideFlags: 0
@@ -5972,6 +6752,7 @@ GameObject:
   - 222: {fileID: 1818016250}
   - 114: {fileID: 1818016249}
   - 114: {fileID: 1818016248}
+  - 114: {fileID: 1818016251}
   m_Layer: 5
   m_Name: Elastic
   m_TagString: Untagged
@@ -6034,7 +6815,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -6049,6 +6830,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1818016246}
+--- !u!114 &1818016251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1818016246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 26
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1861938450
 GameObject:
   m_ObjectHideFlags: 0
@@ -6060,6 +6866,7 @@ GameObject:
   - 222: {fileID: 1861938454}
   - 114: {fileID: 1861938453}
   - 114: {fileID: 1861938452}
+  - 114: {fileID: 1861938455}
   m_Layer: 5
   m_Name: Linear
   m_TagString: Untagged
@@ -6122,7 +6929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .498039216}
+  m_Color: {r: .501960814, g: .749019623, b: .498039216, a: .498039216}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -6137,6 +6944,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1861938450}
+--- !u!114 &1861938455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1861938450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 0
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1903630611
 GameObject:
   m_ObjectHideFlags: 0
@@ -6148,6 +6980,7 @@ GameObject:
   - 222: {fileID: 1903630614}
   - 114: {fileID: 1903630613}
   - 114: {fileID: 1903630612}
+  - 114: {fileID: 1903630616}
   m_Layer: 5
   m_Name: Back
   m_TagString: Untagged
@@ -6192,7 +7025,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -6225,6 +7058,31 @@ RectTransform:
   m_AnchoredPosition: {x: -150, y: -50}
   m_SizeDelta: {x: 64, y: 20}
   m_Pivot: {x: .5, y: .5}
+--- !u!114 &1903630616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1903630611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 22
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &1922749256
 GameObject:
   m_ObjectHideFlags: 0
@@ -6464,7 +7322,7 @@ RectTransform:
   - {fileID: 1691300171}
   - {fileID: 1433094734}
   m_Father: {fileID: 871807297}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
   m_AnchoredPosition: {x: 0, y: -264}
@@ -6508,6 +7366,7 @@ GameObject:
   - 222: {fileID: 2021266092}
   - 114: {fileID: 2021266091}
   - 114: {fileID: 2021266090}
+  - 114: {fileID: 2021266093}
   m_Layer: 5
   m_Name: Expo
   m_TagString: Untagged
@@ -6570,7 +7429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -6585,6 +7444,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2021266088}
+--- !u!114 &2021266093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2021266088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 16
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &2073497220
 GameObject:
   m_ObjectHideFlags: 0
@@ -6596,6 +7480,7 @@ GameObject:
   - 222: {fileID: 2073497224}
   - 114: {fileID: 2073497223}
   - 114: {fileID: 2073497222}
+  - 114: {fileID: 2073497225}
   m_Layer: 5
   m_Name: Quad
   m_TagString: Untagged
@@ -6658,7 +7543,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -6673,6 +7558,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2073497220}
+--- !u!114 &2073497225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2073497220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 6
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &2082525825
 GameObject:
   m_ObjectHideFlags: 0
@@ -6684,6 +7594,7 @@ GameObject:
   - 222: {fileID: 2082525829}
   - 114: {fileID: 2082525828}
   - 114: {fileID: 2082525827}
+  - 114: {fileID: 2082525830}
   m_Layer: 5
   m_Name: Sine
   m_TagString: Untagged
@@ -6746,7 +7657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: .749019623}
+  m_Color: {r: .498039216, g: .749019623, b: .498039216, a: .749019623}
   m_Sprite: {fileID: 21300026, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
@@ -6761,6 +7672,31 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2082525825}
+--- !u!114 &2082525830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2082525825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 730f3521b7960fb449ff3697dafeb151, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Begin: 1
+  By: 0
+  Value: {x: .75, y: .5, z: .5}
+  Type: 3
+  Time: 1
+  Delay: .333000004
+  Repeat: 0
+  PingPong: 1
+  RealTime: 0
+  Complete:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
 --- !u!1 &2088838000
 GameObject:
   m_ObjectHideFlags: 0
