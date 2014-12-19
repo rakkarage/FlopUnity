@@ -6,9 +6,9 @@ namespace ca.HenrySoftware.Flop
 		public override void Go()
 		{
 			if (By)
-				Ease3.GoScaleTo(this, Value, Time, null, Complete.Invoke, Type, Delay, Repeat, PingPong);
+				Ease3.GoScaleTo(this, Value, Time, null, Complete.Invoke, Type, Delay, Repeat, PingPong, RealTime);
 			else
-				Ease3.GoScaleBy(this, Value, Time, null, Complete.Invoke, Type, Delay, Repeat, PingPong);
+				Ease3.GoScaleBy(this, Value, Time, null, Complete.Invoke, Type, Delay, Repeat, PingPong, RealTime);
 		}
 	}
 }

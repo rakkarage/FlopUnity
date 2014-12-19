@@ -21,6 +21,8 @@ namespace ca.HenrySoftware.Flop
 		[SerializeField]
 		protected bool PingPong = false;
 		[SerializeField]
+		protected bool RealTime = false;
+		[SerializeField]
 		protected UnityEvent Complete;
 		private void Start()
 		{

@@ -129,6 +129,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -546,6 +547,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -633,6 +635,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -720,6 +723,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -807,6 +811,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -960,6 +965,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -1074,6 +1080,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -1134,6 +1141,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -1353,6 +1361,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -1555,6 +1564,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -1906,6 +1916,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -2072,7 +2083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _statusSlow: {fileID: 1562955094}
-  _statusStop: {fileID: 1240959505}
+  _statusPause: {fileID: 0}
   _statusFast: {fileID: 693997084}
 --- !u!1 &906033219
 GameObject:
@@ -2129,6 +2140,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -2282,6 +2294,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -2435,6 +2448,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -2588,6 +2602,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -2675,6 +2690,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -2789,6 +2805,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -2806,7 +2823,7 @@ GameObject:
   - 114: {fileID: 1240959505}
   - 114: {fileID: 1240959504}
   m_Layer: 5
-  m_Name: Stop
+  m_Name: Pause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2869,7 +2886,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 871807301}
-        m_MethodName: Stop
+        m_MethodName: Pause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3030,6 +3047,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -3249,6 +3267,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -3462,6 +3481,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -3747,6 +3767,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -3834,6 +3855,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -3921,6 +3943,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -4527,6 +4550,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -4641,6 +4665,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -4841,6 +4866,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -4928,6 +4954,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -5015,6 +5042,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -5102,6 +5130,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -5453,6 +5482,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -5630,6 +5660,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -5717,6 +5748,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -5786,6 +5818,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -6163,6 +6196,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -6250,6 +6284,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []
@@ -6337,6 +6372,7 @@ MonoBehaviour:
   Delay: .333000004
   Repeat: 0
   PingPong: 1
+  RealTime: 0
   Complete:
     m_PersistentCalls:
       m_Calls: []

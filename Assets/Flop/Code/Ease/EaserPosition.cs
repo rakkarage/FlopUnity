@@ -6,9 +6,9 @@ namespace ca.HenrySoftware.Flop
 		public override void Go()
 		{
 			if (By)
-				Ease3.GoPositionBy(this, Value, Time, null, Complete.Invoke, Type, Delay, Repeat, PingPong);
+				Ease3.GoPositionBy(this, Value, Time, null, Complete.Invoke, Type, Delay, Repeat, PingPong, RealTime);
 			else
-				Ease3.GoPositionTo(this, Value, Time, null, Complete.Invoke, Type, Delay, Repeat, PingPong);
+				Ease3.GoPositionTo(this, Value, Time, null, Complete.Invoke, Type, Delay, Repeat, PingPong, RealTime);
 		}
 	}
 }
