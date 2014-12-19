@@ -28,7 +28,7 @@ namespace ca.HenrySoftware.Flop
 			_fast = false;
 			_statusFast.color = _colorOff;
 			Time.timeScale = (_slow = !_slow) ? .1f : 1f;
-			Ease3.GoColorTo(_statusSlow, (_slow ? _colorOn : _colorOff).GetVector(), 1f, i => { _statusSlow.color = i.GetColor(); }, null, EaseType.ExpoOut);
+			Ease3.GoColorTo(_statusSlow, (_slow ? _colorOn : _colorOff).GetVector(), .333f, i => { _statusSlow.color = i.GetColor(); }, null, EaseType.Linear, 0f, 1, false, true);
 		}
 		public void Pause()
 		{
@@ -42,7 +42,7 @@ namespace ca.HenrySoftware.Flop
 			_pause = false;
 			_statusPause.color = _colorOff;
 			Time.timeScale = (_fast = !_fast) ? 2f : 1f;
-			Ease3.GoColorTo(_statusFast, (_fast ? _colorOn : _colorOff).GetVector(), 1f, i => { _statusFast.color = i.GetColor(); }, null, EaseType.ExpoOut);
+			Ease3.GoColorTo(_statusFast, (_fast ? _colorOn : _colorOff).GetVector(), .333f, i => { _statusFast.color = i.GetColor(); }, null, EaseType.Linear, 0f, 1, false, true);
 		}
 	}
 }

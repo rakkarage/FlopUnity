@@ -2083,7 +2083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _statusSlow: {fileID: 1562955094}
-  _statusPause: {fileID: 0}
+  _statusPause: {fileID: 1240959505}
   _statusFast: {fileID: 693997084}
 --- !u!1 &906033219
 GameObject:
