@@ -30,13 +30,13 @@ namespace ca.HenrySoftware.Flop
 			_fast = false;
 			_statusFast.color = _colorOff;
 			UnityEngine.Time.timeScale = (_slow = !_slow) ? .1f : 1f;
-			Ease3.GoColorTo(_statusSlow, (_slow ? _colorOn : _colorOff).GetVector(), Time, i => { _statusSlow.color = i.GetColor(); }, null, EaseType.Linear, 0f, 1, false, true);
+			Ease3.GoColorTo(_statusSlow, (_slow ? _colorOn : _colorOff).GetVector(), Time, null, null, EaseType.SineInOut, 0f, 1, false, true);
 			Ease3.GoScaleBy(_statusSlow, _scaleBy, Time, null, null, EaseType.BackInOut, 0f, 1, true, true);
 		}
 		public void Pause()
 		{
 			UnityEngine.Time.timeScale = (_pause = !_pause) ? 0f : _slow ? .1f : _fast ? 2f : 1f;
-			Ease3.GoColorTo(_statusPause, (_pause ? _colorOn : _colorOff).GetVector(), Time, i => { _statusPause.color = i.GetColor(); }, null, EaseType.Linear, 0f, 1, false, true);
+			Ease3.GoColorTo(_statusPause, (_pause ? _colorOn : _colorOff).GetVector(), Time, null, null, EaseType.SineInOut, 0f, 1, false, true);
 			Ease3.GoScaleBy(_statusPause, _scaleBy, Time, null, null, EaseType.BackInOut, 0f, 1, true, true);
 		}
 		public void Fast()
@@ -46,7 +46,7 @@ namespace ca.HenrySoftware.Flop
 			_pause = false;
 			_statusPause.color = _colorOff;
 			UnityEngine.Time.timeScale = (_fast = !_fast) ? 2f : 1f;
-			Ease3.GoColorTo(_statusFast, (_fast ? _colorOn : _colorOff).GetVector(), Time, i => { _statusFast.color = i.GetColor(); }, null, EaseType.Linear, 0f, 1, false, true);
+			Ease3.GoColorTo(_statusFast, (_fast ? _colorOn : _colorOff).GetVector(), Time, null, null, EaseType.SineInOut, 0f, 1, false, true);
 			Ease3.GoScaleBy(_statusFast, _scaleBy, Time, null, null, EaseType.BackInOut, 0f, 1, true, true);
 		}
 	}
