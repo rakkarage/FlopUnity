@@ -107,9 +107,9 @@ namespace ca.HenrySoftware.Flop
 		private static float GetAlpha(MonoBehaviour m)
 		{
 			var image = m.GetComponent<Image>();
-			var canvasGroup = m.GetComponent<CanvasGroup>();
 			if (image != null)
 				return image.color.a;
+			var canvasGroup = m.GetComponent<CanvasGroup>();
 			if (canvasGroup != null)
 				return canvasGroup.alpha;
 			return Camera.main.backgroundColor.a;
