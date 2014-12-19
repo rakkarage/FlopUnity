@@ -61,7 +61,7 @@ namespace ca.HenrySoftware.Flop
 		};
 		private const float HalfPi = Mathf.PI * .5f;
 		private const float DoublePi = Mathf.PI * 2f;
-        public static IEnumerator Go(MonoBehaviour m, float start, float end, float time,
+		public static IEnumerator Go(MonoBehaviour m, float start, float end, float time,
 			UnityAction<float> update, UnityAction complete = null, EaseType type = EaseType.Linear,
 			float delay = 0f, int repeat = 1, bool pingPong = false, bool realTime = false)
 		{
@@ -478,7 +478,7 @@ namespace ca.HenrySoftware.Flop
 			float delay = 0f, int repeat = 1, bool pingPong = false, bool realTime = false)
 		{
 			var p = m.transform.localPosition;
-            return GoPosition(m, p, p + by, time, update, complete, type, delay, repeat, pingPong, realTime);
+			return GoPosition(m, p, p + by, time, update, complete, type, delay, repeat, pingPong, realTime);
 		}
 		public static IEnumerator GoPosition(MonoBehaviour m, Vector3 start, Vector3 end, float time,
 			UnityAction<Vector3> update = null, UnityAction complete = null, EaseType type = EaseType.Linear,
@@ -551,7 +551,7 @@ namespace ca.HenrySoftware.Flop
 			float delay = 0f, int repeat = 1, bool pingPong = false, bool realTime = false)
 		{
 			var p = m.transform.localEulerAngles;
-            return GoRotation(m, p, p + by, time, update, complete, type, delay, repeat, pingPong, realTime);
+			return GoRotation(m, p, p + by, time, update, complete, type, delay, repeat, pingPong, realTime);
 		}
 		public static IEnumerator GoRotation(MonoBehaviour m, Vector3 start, Vector3 end, float time,
 			UnityAction<Vector3> update = null, UnityAction complete = null, EaseType type = EaseType.Linear,
@@ -624,7 +624,7 @@ namespace ca.HenrySoftware.Flop
 			float delay = 0f, int repeat = 1, bool pingPong = false, bool realTime = false)
 		{
 			var p = m.transform.localScale;
-            return GoScale(m, p, p + by, time, update, complete, type, delay, repeat, pingPong, realTime);
+			return GoScale(m, p, p + by, time, update, complete, type, delay, repeat, pingPong, realTime);
 		}
 		public static IEnumerator GoScale(MonoBehaviour m, Vector3 start, Vector3 end, float time,
 			UnityAction<Vector3> update = null, UnityAction complete = null, EaseType type = EaseType.Linear,
