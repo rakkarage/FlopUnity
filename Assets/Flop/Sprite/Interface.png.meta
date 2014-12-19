@@ -13,20 +13,19 @@ TextureImporter:
     21300010: Button1
     21300012: Button2
     21300014: Circle
-    21300016: IconNo
-    21300018: IconYes
-    21300020: Panel
-    21300022: PanelPaper
-    21300024: PanelStone
-    21300026: TooltipEast
-    21300028: Empty
-    21300030: Cloud0
-    21300032: Cloud1
-    21300034: Input
-    21300036: Filled
-    21300038: TooltipWest
-    21300040: TooltipNorth
-    21300042: TooltipSouth
+    21300016: Cloud0
+    21300018: Cloud1
+    21300020: IconNo
+    21300022: IconYes
+    21300024: Input
+    21300026: Panel
+    21300028: PanelPaper
+    21300030: PanelStone
+    21300032: Pause
+    21300034: Skip
+    21300036: Tooltip
+    21300038: Empty
+    21300040: Black
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -72,7 +71,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 106
-        y: 14
+        y: 13
         width: 18
         height: 16
       alignment: 0
@@ -81,7 +80,7 @@ TextureImporter:
     - name: ArrowNorth
       rect:
         serializedVersion: 2
-        x: 142
+        x: 125
         y: 11
         width: 16
         height: 18
@@ -91,8 +90,8 @@ TextureImporter:
     - name: ArrowSouth
       rect:
         serializedVersion: 2
-        x: 125
-        y: 12
+        x: 142
+        y: 11
         width: 16
         height: 18
       alignment: 0
@@ -102,7 +101,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 87
-        y: 14
+        y: 13
         width: 18
         height: 16
       alignment: 0
@@ -111,8 +110,8 @@ TextureImporter:
     - name: Button0
       rect:
         serializedVersion: 2
-        x: 163
-        y: 96
+        x: 144
+        y: 63
         width: 32
         height: 32
       alignment: 0
@@ -121,8 +120,8 @@ TextureImporter:
     - name: Button1
       rect:
         serializedVersion: 2
-        x: 130
-        y: 96
+        x: 144
+        y: 30
         width: 32
         height: 32
       alignment: 0
@@ -131,8 +130,8 @@ TextureImporter:
     - name: Button2
       rect:
         serializedVersion: 2
-        x: 144
-        y: 63
+        x: 163
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -148,17 +147,27 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: IconNo
+    - name: Cloud0
       rect:
         serializedVersion: 2
-        x: 64
-        y: 4
-        width: 22
-        height: 22
+        x: 0
+        y: 2
+        width: 40
+        height: 30
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: IconYes
+    - name: Cloud1
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 33
+        width: 40
+        height: 30
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: IconNo
       rect:
         serializedVersion: 2
         x: 41
@@ -168,10 +177,30 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Panel
+    - name: IconYes
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 4
+        width: 22
+        height: 22
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Input
       rect:
         serializedVersion: 2
         x: 111
+        y: 30
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 7, y: 6, z: 8, w: 8}
+    - name: Panel
+      rect:
+        serializedVersion: 2
+        x: 78
         y: 31
         width: 32
         height: 32
@@ -198,16 +227,36 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 32, y: 32, z: 32, w: 32}
-    - name: TooltipEast
+    - name: Pause
       rect:
         serializedVersion: 2
-        x: 196
+        x: 177
+        y: 30
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Skip
+      rect:
+        serializedVersion: 2
+        x: 130
         y: 96
         width: 32
         height: 32
       alignment: 0
       pivot: {x: .5, y: .5}
-      border: {x: 16, y: 14, z: 6, w: 14}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Tooltip
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 63
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 6, y: 14, z: 16, w: 14}
     - name: Empty
       rect:
         serializedVersion: 2
@@ -218,37 +267,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Cloud0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 2
-        width: 40
-        height: 30
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Cloud1
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 33
-        width: 40
-        height: 30
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Input
-      rect:
-        serializedVersion: 2
-        x: 78
-        y: 31
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 7, y: 6, z: 8, w: 8}
-    - name: Filled
+    - name: Black
       rect:
         serializedVersion: 2
         x: 224
@@ -258,35 +277,5 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: TooltipWest
-      rect:
-        serializedVersion: 2
-        x: 177
-        y: 63
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 6, y: 14, z: 16, w: 14}
-    - name: TooltipNorth
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 30
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 14, y: 16, z: 14, w: 6}
-    - name: TooltipSouth
-      rect:
-        serializedVersion: 2
-        x: 177
-        y: 30
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 14, y: 6, z: 14, w: 16}
   spritePackingTag: 
   userData: 

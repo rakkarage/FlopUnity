@@ -6,9 +6,9 @@ namespace ca.HenrySoftware.Flop
 		public override void Go()
 		{
 			if (By)
-				Ease3.GoRotationTo(this, Value, Time, null, Complete.Invoke, Type, Delay, Repeat);
+				Ease3.GoRotationTo(this, Value, Time, null, Complete.Invoke, Type, Delay, Repeat, PingPong);
 			else
-				Ease3.GoRotationBy(this, Value, Time, null, Complete.Invoke, Type, Delay, Repeat);
+				Ease3.GoRotationBy(this, Value, Time, null, Complete.Invoke, Type, Delay, Repeat, PingPong);
 		}
 	}
 }

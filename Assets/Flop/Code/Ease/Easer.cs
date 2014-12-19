@@ -16,8 +16,10 @@ namespace ca.HenrySoftware.Flop
 		protected float Time = 1f;
 		[SerializeField]
 		protected float Delay = 0f;
-		[SerializeField, Range(-1, 100), Tooltip("< 0 : Infinite, 0 : PingPong, > 0 : Repeat")]
+		[SerializeField]
 		protected int Repeat = 1;
+		[SerializeField]
+		protected bool PingPong = false;
 		[SerializeField]
 		protected UnityEvent Complete;
 		private void Start()

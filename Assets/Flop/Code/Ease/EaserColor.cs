@@ -6,9 +6,9 @@ namespace ca.HenrySoftware.Flop
 		public override void Go()
 		{
 			if (By)
-				Ease3.GoColorBy(this, Value, Time, null, Complete.Invoke, Type, Delay, Repeat);
+				Ease3.GoColorBy(this, Value, Time, null, Complete.Invoke, Type, Delay, Repeat, PingPong);
 			else
-				Ease3.GoColorTo(this, Value, Time, null, Complete.Invoke, Type, Delay, Repeat);
+				Ease3.GoColorTo(this, Value, Time, null, Complete.Invoke, Type, Delay, Repeat, PingPong);
 		}
 	}
 }
