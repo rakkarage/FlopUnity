@@ -53,28 +53,20 @@ namespace ca.HenrySoftware.Flop
 			UnityAction<float> update, UnityAction complete, EaseType type,
 			float delay, int repeat, bool pingPong, bool realTime)
 		{
-			var last = Time.realtimeSinceStartup;
-			Func<float> deltaTime = () =>
-			{
-				var t = Time.realtimeSinceStartup;
-				var d = t - last;
-				last = t;
-				return d;
-			};
 			var counter = repeat;
 			while (repeat == 0 || counter > 0)
 			{
 				if (delay > 0f)
 				{
 					if (realTime)
-						yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+						yield return m.StartCoroutine(RealTime.Instance.WaitForSeconds(delay));
 					else
 						yield return new WaitForSeconds(delay);
 				}
 				var t = 0f;
 				while (t <= 1f)
 				{
-					t += (realTime ? deltaTime() : Time.deltaTime) / time;
+					t += (realTime ? RealTime.Instance.DeltaTime : Time.deltaTime) / time;
 					update(Types[type](from, to, Mathf.Clamp01(t)));
 					yield return null;
 				}
@@ -83,14 +75,14 @@ namespace ca.HenrySoftware.Flop
 					if (delay > 0f)
 					{
 						if (realTime)
-							yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+							yield return m.StartCoroutine(RealTime.Instance.WaitForSeconds(delay));
 						else
 							yield return new WaitForSeconds(delay);
 					}
 					t = 0f;
 					while (t <= 1f)
 					{
-						t += (realTime ? deltaTime() : Time.deltaTime) / time;
+						t += (realTime ? RealTime.Instance.DeltaTime : Time.deltaTime) / time;
 						update(Types[type](to, from, Mathf.Clamp01(t)));
 						yield return null;
 					}
@@ -151,28 +143,20 @@ namespace ca.HenrySoftware.Flop
 				else
 					camera.backgroundColor = camera.backgroundColor.SetAlpha(value);
 			};
-			var last = Time.realtimeSinceStartup;
-			Func<float> deltaTime = () =>
-			{
-				var t = Time.realtimeSinceStartup;
-				var d = t - last;
-				last = t;
-				return d;
-			};
 			var counter = repeat;
 			while (repeat == 0 || counter > 0)
 			{
 				if (delay > 0f)
 				{
 					if (realTime)
-						yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+						yield return m.StartCoroutine(RealTime.Instance.WaitForSeconds(delay));
 					else
 						yield return new WaitForSeconds(delay);
 				}
 				var t = 0f;
 				while (t <= 1f)
 				{
-					t += (realTime ? deltaTime() : Time.deltaTime) / time;
+					t += (realTime ? RealTime.Instance.DeltaTime : Time.deltaTime) / time;
 					var p = Types[type](from, to, Mathf.Clamp01(t));
 					setAlpha(p);
 					if (update != null)
@@ -185,14 +169,14 @@ namespace ca.HenrySoftware.Flop
 					if (delay > 0f)
 					{
 						if (realTime)
-							yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+							yield return m.StartCoroutine(RealTime.Instance.WaitForSeconds(delay));
 						else
 							yield return new WaitForSeconds(delay);
 					}
 					t = 0f;
 					while (t <= 1f)
 					{
-						t += (realTime ? deltaTime() : Time.deltaTime) / time;
+						t += (realTime ? RealTime.Instance.DeltaTime : Time.deltaTime) / time;
 						var p = Types[type](to, from, Mathf.Clamp01(t));
 						setAlpha(p);
 						if (update != null)
@@ -427,28 +411,20 @@ namespace ca.HenrySoftware.Flop
 			UnityAction<Vector3> update, UnityAction complete, EaseType type,
 			float delay, int repeat, bool pingPong, bool realTime)
 		{
-			var last = Time.realtimeSinceStartup;
-			Func<float> deltaTime = () =>
-			{
-				var t = Time.realtimeSinceStartup;
-				var d = t - last;
-				last = t;
-				return d;
-			};
 			var counter = repeat;
 			while (repeat == 0 || counter > 0)
 			{
 				if (delay > 0f)
 				{
 					if (realTime)
-						yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+						yield return m.StartCoroutine(RealTime.Instance.WaitForSeconds(delay));
 					else
 						yield return new WaitForSeconds(delay);
 				}
 				var t = 0f;
 				while (t <= 1f)
 				{
-					t += (realTime ? deltaTime() : Time.deltaTime) / time;
+					t += (realTime ? RealTime.Instance.DeltaTime : Time.deltaTime) / time;
 					update(Types[type](from, to, Mathf.Clamp01(t)));
 					yield return null;
 				}
@@ -457,14 +433,14 @@ namespace ca.HenrySoftware.Flop
 					if (delay > 0f)
 					{
 						if (realTime)
-							yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+							yield return m.StartCoroutine(RealTime.Instance.WaitForSeconds(delay));
 						else
 							yield return new WaitForSeconds(delay);
 					}
 					t = 0f;
 					while (t <= 1f)
 					{
-						t += (realTime ? deltaTime() : Time.deltaTime) / time;
+						t += (realTime ? RealTime.Instance.DeltaTime : Time.deltaTime) / time;
 						update(Types[type](to, from, Mathf.Clamp01(t)));
 						yield return null;
 					}
@@ -502,28 +478,20 @@ namespace ca.HenrySoftware.Flop
 			UnityAction<Vector3> update, UnityAction complete, EaseType type,
 			float delay, int repeat, bool pingPong, bool realTime)
 		{
-			var last = Time.realtimeSinceStartup;
-			Func<float> deltaTime = () =>
-			{
-				var t = Time.realtimeSinceStartup;
-				var d = t - last;
-				last = t;
-				return d;
-			};
 			var counter = repeat;
 			while (repeat == 0 || counter > 0)
 			{
 				if (delay > 0f)
 				{
 					if (realTime)
-						yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+						yield return m.StartCoroutine(RealTime.Instance.WaitForSeconds(delay));
 					else
 						yield return new WaitForSeconds(delay);
 				}
 				var t = 0f;
 				while (t <= 1f)
 				{
-					t += (realTime ? deltaTime() : Time.deltaTime) / time;
+					t += (realTime ? RealTime.Instance.DeltaTime : Time.deltaTime) / time;
 					var p = Types[type](from, to, Mathf.Clamp01(t));
 					m.transform.localPosition = p;
 					if (update != null)
@@ -536,14 +504,14 @@ namespace ca.HenrySoftware.Flop
 					if (delay > 0f)
 					{
 						if (realTime)
-							yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+							yield return m.StartCoroutine(RealTime.Instance.WaitForSeconds(delay));
 						else
 							yield return new WaitForSeconds(delay);
 					}
 					t = 0f;
 					while (t <= 1f)
 					{
-						t += (realTime ? deltaTime() : Time.deltaTime) / time;
+						t += (realTime ? RealTime.Instance.DeltaTime : Time.deltaTime) / time;
 						var p = Types[type](to, from, Mathf.Clamp01(t));
 						m.transform.localPosition = p;
 						if (update != null)
@@ -585,28 +553,20 @@ namespace ca.HenrySoftware.Flop
 			UnityAction<Vector3> update, UnityAction complete, EaseType type,
 			float delay, int repeat, bool pingPong, bool realTime)
 		{
-			var last = Time.realtimeSinceStartup;
-			Func<float> deltaTime = () =>
-			{
-				var t = Time.realtimeSinceStartup;
-				var d = t - last;
-				last = t;
-				return d;
-			};
             var counter = repeat;
 			while (repeat == 0 || counter > 0)
 			{
 				if (delay > 0f)
 				{
 					if (realTime)
-						yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+						yield return m.StartCoroutine(RealTime.Instance.WaitForSeconds(delay));
 					else
 						yield return new WaitForSeconds(delay);
 				}
 				var t = 0f;
 				while (t <= 1f)
 				{
-					t += (realTime ? deltaTime() : Time.deltaTime) / time;
+					t += (realTime ? RealTime.Instance.DeltaTime : Time.deltaTime) / time;
 					var p = Types[type](from, to, Mathf.Clamp01(t));
 					m.transform.localEulerAngles = p;
 					if (update != null)
@@ -619,14 +579,14 @@ namespace ca.HenrySoftware.Flop
 					if (delay > 0f)
 					{
 						if (realTime)
-							yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+							yield return m.StartCoroutine(RealTime.Instance.WaitForSeconds(delay));
 						else
 							yield return new WaitForSeconds(delay);
 					}
 					t = 0f;
 					while (t <= 1f)
 					{
-						t += (realTime ? deltaTime() : Time.deltaTime) / time;
+						t += (realTime ? RealTime.Instance.DeltaTime : Time.deltaTime) / time;
 						var p = Types[type](to, from, Mathf.Clamp01(t));
 						m.transform.localEulerAngles = p;
 						if (update != null)
@@ -682,7 +642,7 @@ namespace ca.HenrySoftware.Flop
 				if (delay > 0f)
 				{
 					if (realTime)
-						yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+						yield return m.StartCoroutine(RealTime.Instance.WaitForSeconds(delay));
 					else
 						yield return new WaitForSeconds(delay);
 				}
@@ -702,7 +662,7 @@ namespace ca.HenrySoftware.Flop
 					if (delay > 0f)
 					{
 						if (realTime)
-							yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+							yield return m.StartCoroutine(RealTime.Instance.WaitForSeconds(delay));
 						else
 							yield return new WaitForSeconds(delay);
 					}
@@ -766,28 +726,20 @@ namespace ca.HenrySoftware.Flop
 				else
 					image.color = value.GetColor().SetAlpha(image.color.a);
 			};
-			var last = Time.realtimeSinceStartup;
-			Func<float> deltaTime = () =>
-			{
-				var t = Time.realtimeSinceStartup;
-				var d = t - last;
-				last = t;
-				return d;
-			};
 			var counter = repeat;
 			while (repeat == 0 || counter > 0)
 			{
 				if (delay > 0f)
 				{
 					if (realTime)
-						yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+						yield return m.StartCoroutine(RealTime.Instance.WaitForSeconds(delay));
 					else
 						yield return new WaitForSeconds(delay);
 				}
 				var t = 0f;
 				while (t <= 1f)
 				{
-					t += (realTime ? deltaTime() : Time.deltaTime) / time;
+					t += (realTime ? RealTime.Instance.DeltaTime : Time.deltaTime) / time;
 					var p = Types[type](from, to, Mathf.Clamp01(t));
 					setColor(p);
 					if (update != null)
@@ -800,14 +752,14 @@ namespace ca.HenrySoftware.Flop
 					if (delay > 0f)
 					{
 						if (realTime)
-							yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+							yield return m.StartCoroutine(RealTime.Instance.WaitForSeconds(delay));
 						else
 							yield return new WaitForSeconds(delay);
 					}
 					t = 0f;
 					while (t <= 1f)
 					{
-						t += (realTime ? deltaTime() : Time.deltaTime) / time;
+						t += (realTime ? RealTime.Instance.DeltaTime : Time.deltaTime) / time;
 						var p = Types[type](to, from, Mathf.Clamp01(t));
 						setColor(p);
 						if (update != null)
