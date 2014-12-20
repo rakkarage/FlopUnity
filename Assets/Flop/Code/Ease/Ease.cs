@@ -553,7 +553,7 @@ namespace ca.HenrySoftware.Flop
 			UnityAction<Vector3> update, UnityAction complete, EaseType type,
 			float delay, int repeat, bool pingPong, bool realTime)
 		{
-            var counter = repeat;
+			var counter = repeat;
 			while (repeat == 0 || counter > 0)
 			{
 				if (delay > 0f)

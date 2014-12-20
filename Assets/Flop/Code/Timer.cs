@@ -17,7 +17,7 @@ namespace ca.HenrySoftware.Flop
 		private readonly Color _colorOn = Constants.ButtonBlue.SetAlpha(.75f);
 		private readonly Vector3 _scaleTo = new Vector3(1.333f, 1.333f, 1f);
 		private const float Time = .333f;
-        private void Start()
+		private void Start()
 		{
 			_slowStatus.color = _colorOff;
 			_pauseStatus.color = _colorOff;
