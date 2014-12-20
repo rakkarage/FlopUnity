@@ -84,7 +84,7 @@ namespace ca.HenrySoftware.Flop
 	{
 		public static Color GetColor(this Vector3 v)
 		{
-			return new Color(v.x, v.y, v.z);
+			return new Color(Mathf.Clamp01(v.x), Mathf.Clamp01(v.y), Mathf.Clamp01(v.z));
 		}
 	}
 	public static class ColorExtensions
