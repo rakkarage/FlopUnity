@@ -4,10 +4,8 @@ namespace ca.HenrySoftware.Flop
 	[RequireComponent(typeof(CanvasGroup))]
 	public class Fade : MonoBehaviour
 	{
-		[SerializeField]
-		private bool _in = true;
-		[SerializeField]
-		private float _time = 3.33f;
+		[SerializeField] private bool _in = true;
+		[SerializeField] private float _time = 3.33f;
 		private CanvasGroup _group;
 		private void Start()
 		{

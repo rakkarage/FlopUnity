@@ -3,8 +3,7 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Tilt : MonoBehaviour
 	{
-		[SerializeField]
-		private Vector2 _range = new Vector2(1f, 1f);
+		[SerializeField] private Vector2 _range = new Vector2(1f, 1f);
 		private Vector2 _r;
 		private Transform _t;
 		private Quaternion _q;

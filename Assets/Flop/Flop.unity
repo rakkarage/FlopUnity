@@ -4203,6 +4203,7 @@ GameObject:
   - 224: {fileID: 1084796388}
   - 222: {fileID: 1084796390}
   - 114: {fileID: 1084796389}
+  - 225: {fileID: 1084796391}
   m_Layer: 5
   m_Name: Tip
   m_TagString: Untagged
@@ -4217,7 +4218,7 @@ RectTransform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1084796387}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -1, w: -4.37113883e-08}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4226,9 +4227,9 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 1, y: .5}
   m_AnchorMax: {x: 1, y: .5}
-  m_AnchoredPosition: {x: -44, y: 0}
+  m_AnchoredPosition: {x: -19.9998169, y: 0}
   m_SizeDelta: {x: 164, y: 32}
-  m_Pivot: {x: 1, y: .5}
+  m_Pivot: {x: 1.14999998, y: .5}
 --- !u!114 &1084796389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4258,6 +4259,17 @@ CanvasRenderer:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1084796387}
+--- !u!225 &1084796391
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1084796387}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1131685855
 GameObject:
   m_ObjectHideFlags: 0
@@ -7437,6 +7449,7 @@ GameObject:
   - 114: {fileID: 1894599099}
   - 114: {fileID: 1894599104}
   - 114: {fileID: 1894599103}
+  - 114: {fileID: 1894599106}
   - 114: {fileID: 1894599105}
   m_Layer: 0
   m_Name: Camera
@@ -7601,6 +7614,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5140e2ccd0360944b975bff81e78d318, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1894599106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1894599097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e672ae2a7208f95449f201e6603e6ace, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1902671540
@@ -7918,7 +7942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c8d5d9139a48d44b8cc54ad8aba6d9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tip: {fileID: 1084796387}
+  _tip: {fileID: 1084796389}
   _email: {fileID: 87831628}
 --- !u!114 &1930629589
 MonoBehaviour:
@@ -7938,7 +7962,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}

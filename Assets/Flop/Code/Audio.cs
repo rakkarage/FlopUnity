@@ -3,10 +3,8 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Audio : Singleton<Audio>
 	{
-		[SerializeField]
-		private AudioClip _click = null;
-		[SerializeField]
-		private AudioClip _error = null;
+		[SerializeField] private AudioClip _click = null;
+		[SerializeField] private AudioClip _error = null;
 		private AudioSource _source;
 		private const float VolumeMin = .5f;
 		private const float VolumeMax = 1f;

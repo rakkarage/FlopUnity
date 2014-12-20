@@ -4,16 +4,13 @@ namespace ca.HenrySoftware.Flop
 {
 	public class SignIn : MonoBehaviour
 	{
-		[SerializeField]
-		private GameObject _email = null;
+		[SerializeField] private GameObject _email = null;
 		private InputField _emailField;
 		private Animator _emailAnimator;
-		[SerializeField]
-		private GameObject _password = null;
+		[SerializeField] private GameObject _password = null;
 		private InputField _passwordField;
 		private Animator _passwordAnimator;
-		[SerializeField]
-		private Animator _signInButton = null;
+		[SerializeField] private Animator _signInButton = null;
 		private void Awake()
 		{
 			_emailField = _email.GetComponent<InputField>();

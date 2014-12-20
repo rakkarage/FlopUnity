@@ -4,12 +4,9 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Intro : MonoBehaviour
 	{
-		[SerializeField]
-		private MonoBehaviour _logo;
-		[SerializeField]
-		private MonoBehaviour _foreground;
-		[SerializeField]
-		private GameObject[] _activate = null;
+		[SerializeField] private MonoBehaviour _logo;
+		[SerializeField] private MonoBehaviour _foreground;
+		[SerializeField] private GameObject[] _activate = null;
 		private AudioSource _source;
 		private const float TimeAnimation = 1f;
 		private const float TimeDelay = .5f;

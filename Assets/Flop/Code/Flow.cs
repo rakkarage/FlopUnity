@@ -8,26 +8,16 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Flow : Singleton<Flow>, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler, IPointerUpHandler
 	{
-		[SerializeField]
-		private bool _big = false;
-		[SerializeField]
-		private Vector3 _offset = new Vector3(32f, -3f, 16f);
-		[SerializeField]
-		private bool _absoluteY = true;
-		[SerializeField]
-		private float _insetZ = .5f;
-		[SerializeField]
-		private float _time = .333f;
-		[SerializeField]
-		private int _limit = 6;
-		[SerializeField]
-		private Transform _lookAt = null;
-		[SerializeField]
-		private Button _prev = null;
-		[SerializeField]
-		private Button _next = null;
-		[SerializeField]
-		private Scrollbar _scrollbar = null;
+		[SerializeField] private bool _big = false;
+		[SerializeField] private Vector3 _offset = new Vector3(32f, -3f, 16f);
+		[SerializeField] private bool _absoluteY = true;
+		[SerializeField] private float _insetZ = .5f;
+		[SerializeField] private float _time = .333f;
+		[SerializeField] private int _limit = 6;
+		[SerializeField] private Transform _lookAt = null;
+		[SerializeField] private Button _prev = null;
+		[SerializeField] private Button _next = null;
+		[SerializeField] private Scrollbar _scrollbar = null;
 		private Text _scrollbarText;
 		private Fade _fade;
 		private CanvasScaler _scaler;

@@ -4,14 +4,11 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Timer : MonoBehaviour
 	{
-		[SerializeField]
-		private Image _slowStatus;
+		[SerializeField] private Image _slowStatus;
 		private bool _slow;
-		[SerializeField]
-		private Image _pauseStatus;
+		[SerializeField] private Image _pauseStatus;
 		private bool _pause;
-		[SerializeField]
-		private Image _fastStatus;
+		[SerializeField] private Image _fastStatus;
 		private bool _fast;
 		private readonly Color _colorOff = Color.white.SetAlpha(.75f);
 		private readonly Color _colorOn = Constants.ButtonBlue.SetAlpha(.75f);

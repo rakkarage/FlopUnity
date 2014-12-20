@@ -69,6 +69,7 @@ namespace ca.HenrySoftware.Flop
 			}
 			catch
 			{
+				// ignored
 			}
 			finally
 			{

@@ -18,7 +18,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		public IEnumerator WaitForSeconds(float time)
 		{
-			float counter = 0;
+			var counter = 0f;
 			while (counter < time)
 			{
 				yield return null;

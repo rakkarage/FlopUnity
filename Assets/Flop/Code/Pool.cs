@@ -4,10 +4,8 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Pool : MonoBehaviour
 	{
-		[SerializeField]
-		private int _count = 12;
-		[SerializeField]
-		private GameObject _prefab = null;
+		[SerializeField] private int _count = 12;
+		[SerializeField] private GameObject _prefab = null;
 		private List<GameObject> _pool;
 		private const string _name = "Pool";
 		private Transform _t;

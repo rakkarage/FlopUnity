@@ -4,20 +4,16 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Change : MonoBehaviour
 	{
-		[SerializeField]
-		private GameObject _old = null;
+		[SerializeField] private GameObject _old = null;
 		private InputField _oldField;
 		private Animator _oldAnimator;
-		[SerializeField]
-		private GameObject _new = null;
+		[SerializeField] private GameObject _new = null;
 		private InputField _newField;
 		private Animator _newAnimator;
-		[SerializeField]
-		private GameObject _confirm = null;
+		[SerializeField] private GameObject _confirm = null;
 		private InputField _confirmField;
 		private Animator _confirmAnimator;
-		[SerializeField]
-		private Animator _changeButton = null;
+		[SerializeField] private Animator _changeButton = null;
 		private void Awake()
 		{
 			_oldField = _old.GetComponent<InputField>();

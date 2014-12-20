@@ -4,12 +4,10 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Reset : MonoBehaviour
 	{
-		[SerializeField]
-		private GameObject _email = null;
+		[SerializeField] private GameObject _email = null;
 		private InputField _emailField;
 		private Animator _emailAnimator;
-		[SerializeField]
-		private Animator _resetButton = null;
+		[SerializeField] private Animator _resetButton = null;
 		private void Awake()
 		{
 			_emailField = _email.GetComponent<InputField>();

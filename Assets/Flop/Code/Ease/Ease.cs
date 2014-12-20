@@ -95,15 +95,14 @@ namespace ca.HenrySoftware.Flop
 			if (repeat != 0 && complete != null)
 				complete();
 		}
-
-		private static float GetAlpha(MonoBehaviour m)
+		private static float GetAlpha(Component m)
 		{
-			var image = m.GetComponent<Image>();
-			if (image != null)
-				return image.color.a;
 			var canvasGroup = m.GetComponent<CanvasGroup>();
 			if (canvasGroup != null)
 				return canvasGroup.alpha;
+			var image = m.GetComponent<Image>();
+			if (image != null)
+				return image.color.a;
 			return Camera.main.backgroundColor.a;
 		}
 		public static IEnumerator GoAlphaTo(MonoBehaviour m, float to, float time,
@@ -133,15 +132,14 @@ namespace ca.HenrySoftware.Flop
 		{
 			var image = m.GetComponent<Image>();
 			var canvasGroup = m.GetComponent<CanvasGroup>();
-			var camera = Camera.main;
 			Action<float> setAlpha = value =>
 			{
-				if (image != null)
-					image.color = image.color.SetAlpha(value);
-				else if (canvasGroup != null)
+				if (canvasGroup != null)
 					canvasGroup.alpha = value;
+				else if (image != null)
+					image.color = image.color.SetAlpha(value);
 				else
-					camera.backgroundColor = camera.backgroundColor.SetAlpha(value);
+					Camera.main.backgroundColor = Camera.main.backgroundColor.SetAlpha(value);
 			};
 			var counter = repeat;
 			while (repeat == 0 || counter > 0)
