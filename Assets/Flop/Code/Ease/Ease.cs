@@ -61,15 +61,15 @@ namespace ca.HenrySoftware.Flop
 		};
 		private const float HalfPi = Mathf.PI * .5f;
 		private const float DoublePi = Mathf.PI * 2f;
-		public static IEnumerator Go(MonoBehaviour m, float start, float end, float time,
+		public static IEnumerator Go(MonoBehaviour m, float from, float to, float time,
 			UnityAction<float> update, UnityAction complete = null, EaseType type = EaseType.Linear,
 			float delay = 0f, int repeat = 1, bool pingPong = false, bool realTime = false)
 		{
-			var i = GoCoroutine(start, end, time, update, complete, type, delay, repeat, pingPong, realTime);
+			var i = GoCoroutine(m, from, to, time, update, complete, type, delay, repeat, pingPong, realTime);
 			m.StartCoroutine(i);
 			return i;
 		}
-		private static IEnumerator GoCoroutine(float start, float end, float time,
+		private static IEnumerator GoCoroutine(MonoBehaviour m, float from, float to, float time,
 			UnityAction<float> update, UnityAction complete, EaseType type,
 			float delay, int repeat, bool pingPong, bool realTime)
 		{
@@ -85,23 +85,33 @@ namespace ca.HenrySoftware.Flop
 			while (repeat == 0 || counter > 0)
 			{
 				if (delay > 0f)
-					yield return new WaitForSeconds(delay);
+				{
+					if (realTime)
+						yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+					else
+						yield return new WaitForSeconds(delay);
+				}
 				var t = 0f;
 				while (t <= 1f)
 				{
 					t += (realTime ? deltaTime() : Time.deltaTime) / time;
-					update(Types[type](start, end, Mathf.Clamp01(t)));
+					update(Types[type](from, to, Mathf.Clamp01(t)));
 					yield return null;
 				}
 				if (pingPong)
 				{
 					if (delay > 0f)
-						yield return new WaitForSeconds(delay);
+					{
+						if (realTime)
+							yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+						else
+							yield return new WaitForSeconds(delay);
+					}
 					t = 0f;
 					while (t <= 1f)
 					{
 						t += (realTime ? deltaTime() : Time.deltaTime) / time;
-						update(Types[type](end, start, Mathf.Clamp01(t)));
+						update(Types[type](to, from, Mathf.Clamp01(t)));
 						yield return null;
 					}
 				}
@@ -137,20 +147,20 @@ namespace ca.HenrySoftware.Flop
 			var alpha = GetAlpha(m);
 			return GoAlpha(m, alpha, alpha + by, time, update, complete, type, delay, repeat, pingPong, realTime);
 		}
-		public static IEnumerator GoAlpha(MonoBehaviour m, float start, float end, float time,
+		public static IEnumerator GoAlpha(MonoBehaviour m, float from, float to, float time,
 			UnityAction<float> update, UnityAction complete = null, EaseType type = EaseType.Linear,
 			float delay = 0f, int repeat = 1, bool pingPong = false, bool realTime = false)
 		{
-			var i = GoAlphaCoroutine(m, start, end, time, update, complete, type, delay, repeat, pingPong, realTime);
+			var i = GoAlphaCoroutine(m, from, to, time, update, complete, type, delay, repeat, pingPong, realTime);
 			m.StartCoroutine(i);
 			return i;
 		}
-		private static IEnumerator GoAlphaCoroutine(Component o, float start, float end, float time,
+		private static IEnumerator GoAlphaCoroutine(MonoBehaviour m, float from, float to, float time,
 			UnityAction<float> update, UnityAction complete, EaseType type,
 			float delay, int repeat, bool pingPong, bool realTime)
 		{
-			var image = o.GetComponent<Image>();
-			var canvasGroup = o.GetComponent<CanvasGroup>();
+			var image = m.GetComponent<Image>();
+			var canvasGroup = m.GetComponent<CanvasGroup>();
 			var camera = Camera.main;
 			Action<float> setAlpha = value =>
 			{
@@ -173,33 +183,43 @@ namespace ca.HenrySoftware.Flop
 			while (repeat == 0 || counter > 0)
 			{
 				if (delay > 0f)
-					yield return new WaitForSeconds(delay);
+				{
+					if (realTime)
+						yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+					else
+						yield return new WaitForSeconds(delay);
+				}
 				var t = 0f;
 				while (t <= 1f)
 				{
 					t += (realTime ? deltaTime() : Time.deltaTime) / time;
-					var p = Types[type](start, end, Mathf.Clamp01(t));
+					var p = Types[type](from, to, Mathf.Clamp01(t));
 					setAlpha(p);
 					if (update != null)
 						update(p);
 					yield return null;
 				}
-				setAlpha(end);
+				setAlpha(to);
 				if (pingPong)
 				{
 					if (delay > 0f)
-						yield return new WaitForSeconds(delay);
+					{
+						if (realTime)
+							yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+						else
+							yield return new WaitForSeconds(delay);
+					}
 					t = 0f;
 					while (t <= 1f)
 					{
 						t += (realTime ? deltaTime() : Time.deltaTime) / time;
-						var p = Types[type](end, start, Mathf.Clamp01(t));
+						var p = Types[type](to, from, Mathf.Clamp01(t));
 						setAlpha(p);
 						if (update != null)
 							update(p);
 						yield return null;
 					}
-					setAlpha(start);
+					setAlpha(from);
 				}
 				if (repeat != 0)
 					counter--;
@@ -209,173 +229,173 @@ namespace ca.HenrySoftware.Flop
 			if (repeat != 0 && complete != null)
 				complete();
 		}
-		public static float SineIn(float start, float end, float time)
+		public static float SineIn(float from, float to, float time)
 		{
-			return Mathf.Lerp(start, end, 1f - Mathf.Cos(time * HalfPi));
+			return Mathf.Lerp(from, to, 1f - Mathf.Cos(time * HalfPi));
 		}
-		public static float SineOut(float start, float end, float time)
+		public static float SineOut(float from, float to, float time)
 		{
-			return Mathf.Lerp(start, end, Mathf.Sin(time * HalfPi));
+			return Mathf.Lerp(from, to, Mathf.Sin(time * HalfPi));
 		}
-		public static float SineInOut(float start, float end, float time)
+		public static float SineInOut(float from, float to, float time)
 		{
-			return Mathf.Lerp(start, end, .5f * (1f - Mathf.Cos(Mathf.PI * time)));
+			return Mathf.Lerp(from, to, .5f * (1f - Mathf.Cos(Mathf.PI * time)));
 		}
-		public static float QuadIn(float start, float end, float time)
+		public static float QuadIn(float from, float to, float time)
 		{
-			return Mathf.Lerp(start, end, time * time);
+			return Mathf.Lerp(from, to, time * time);
 		}
-		public static float QuadOut(float start, float end, float time)
+		public static float QuadOut(float from, float to, float time)
 		{
-			return Mathf.Lerp(start, end, -time * (time - 2f));
+			return Mathf.Lerp(from, to, -time * (time - 2f));
 		}
-		public static float QuadInOut(float start, float end, float time)
-		{
-			if ((time /= .5f) < 1f)
-				return Mathf.Lerp(start, end, .5f * time * time);
-			return Mathf.Lerp(start, end, -.5f * (((--time) * (time - 2f) - 1f)));
-		}
-		public static float CubicIn(float start, float end, float time)
-		{
-			return Mathf.Lerp(start, end, time * time * time);
-		}
-		public static float CubicOut(float start, float end, float time)
-		{
-			return Mathf.Lerp(start, end, (time -= 1f) * time * time + 1f);
-		}
-		public static float CubicInOut(float start, float end, float time)
+		public static float QuadInOut(float from, float to, float time)
 		{
 			if ((time /= .5f) < 1f)
-				return Mathf.Lerp(start, end, .5f * time * time * time);
-			return Mathf.Lerp(start, end, .5f * ((time -= 2) * time * time + 2f));
+				return Mathf.Lerp(from, to, .5f * time * time);
+			return Mathf.Lerp(from, to, -.5f * (((--time) * (time - 2f) - 1f)));
 		}
-		public static float QuartIn(float start, float end, float time)
+		public static float CubicIn(float from, float to, float time)
 		{
-			return Mathf.Lerp(start, end, time * time * time * time);
+			return Mathf.Lerp(from, to, time * time * time);
 		}
-		public static float QuartOut(float start, float end, float time)
+		public static float CubicOut(float from, float to, float time)
 		{
-			return Mathf.Lerp(start, end, -((time -= 1f) * time * time * time - 1f));
+			return Mathf.Lerp(from, to, (time -= 1f) * time * time + 1f);
 		}
-		public static float QuartInOut(float start, float end, float time)
-		{
-			if ((time /= .5f) < 1f)
-				return Mathf.Lerp(start, end, .5f * time * time * time * time);
-			return Mathf.Lerp(start, end, -.5f * ((time -= 2f) * time * time * time - 2f));
-		}
-		public static float QuintIn(float start, float end, float time)
-		{
-			return Mathf.Lerp(start, end, time * time * time * time * time);
-		}
-		public static float QuintOut(float start, float end, float time)
-		{
-			return Mathf.Lerp(start, end, (time -= 1f) * time * time * time * time + 1f);
-		}
-		public static float QuintInOut(float start, float end, float time)
+		public static float CubicInOut(float from, float to, float time)
 		{
 			if ((time /= .5f) < 1f)
-				return Mathf.Lerp(start, end, .5f * time * time * time * time * time);
-			return Mathf.Lerp(start, end, .5f * ((time -= 2f) * time * time * time * time + 2f));
+				return Mathf.Lerp(from, to, .5f * time * time * time);
+			return Mathf.Lerp(from, to, .5f * ((time -= 2) * time * time + 2f));
 		}
-		public static float ExpoIn(float start, float end, float time)
+		public static float QuartIn(float from, float to, float time)
 		{
-			return Mathf.Lerp(start, end, Mathf.Pow(2f, 10f * (time - 1f)));
+			return Mathf.Lerp(from, to, time * time * time * time);
 		}
-		public static float ExpoOut(float start, float end, float time)
+		public static float QuartOut(float from, float to, float time)
 		{
-			return Mathf.Lerp(start, end, -Mathf.Pow(2f, -10f * time) + 1f);
+			return Mathf.Lerp(from, to, -((time -= 1f) * time * time * time - 1f));
 		}
-		public static float ExpoInOut(float start, float end, float time)
-		{
-			if ((time /= .5f) < 1f)
-				return Mathf.Lerp(start, end, .5f * Mathf.Pow(2f, 10f * (time - 1f)));
-			return Mathf.Lerp(start, end, .5f * (-Mathf.Pow(2f, -10f * --time) + 2f));
-		}
-		public static float CircIn(float start, float end, float time)
-		{
-			return Mathf.Lerp(start, end, -(Mathf.Sqrt(1f - time * time) - 1f));
-		}
-		public static float CircOut(float start, float end, float time)
-		{
-			return Mathf.Lerp(start, end, Mathf.Sqrt(1f - (time -= 1f) * time));
-		}
-		public static float CircInOut(float start, float end, float time)
+		public static float QuartInOut(float from, float to, float time)
 		{
 			if ((time /= .5f) < 1f)
-				return Mathf.Lerp(start, end, -.5f * (Mathf.Sqrt(1f - time * time) - 1f));
-			return Mathf.Lerp(start, end, .5f * (Mathf.Sqrt(1f - (time -= 2f) * time) + 1f));
+				return Mathf.Lerp(from, to, .5f * time * time * time * time);
+			return Mathf.Lerp(from, to, -.5f * ((time -= 2f) * time * time * time - 2f));
 		}
-		public static float BackIn(float start, float end, float time)
+		public static float QuintIn(float from, float to, float time)
+		{
+			return Mathf.Lerp(from, to, time * time * time * time * time);
+		}
+		public static float QuintOut(float from, float to, float time)
+		{
+			return Mathf.Lerp(from, to, (time -= 1f) * time * time * time * time + 1f);
+		}
+		public static float QuintInOut(float from, float to, float time)
+		{
+			if ((time /= .5f) < 1f)
+				return Mathf.Lerp(from, to, .5f * time * time * time * time * time);
+			return Mathf.Lerp(from, to, .5f * ((time -= 2f) * time * time * time * time + 2f));
+		}
+		public static float ExpoIn(float from, float to, float time)
+		{
+			return Mathf.Lerp(from, to, Mathf.Pow(2f, 10f * (time - 1f)));
+		}
+		public static float ExpoOut(float from, float to, float time)
+		{
+			return Mathf.Lerp(from, to, -Mathf.Pow(2f, -10f * time) + 1f);
+		}
+		public static float ExpoInOut(float from, float to, float time)
+		{
+			if ((time /= .5f) < 1f)
+				return Mathf.Lerp(from, to, .5f * Mathf.Pow(2f, 10f * (time - 1f)));
+			return Mathf.Lerp(from, to, .5f * (-Mathf.Pow(2f, -10f * --time) + 2f));
+		}
+		public static float CircIn(float from, float to, float time)
+		{
+			return Mathf.Lerp(from, to, -(Mathf.Sqrt(1f - time * time) - 1f));
+		}
+		public static float CircOut(float from, float to, float time)
+		{
+			return Mathf.Lerp(from, to, Mathf.Sqrt(1f - (time -= 1f) * time));
+		}
+		public static float CircInOut(float from, float to, float time)
+		{
+			if ((time /= .5f) < 1f)
+				return Mathf.Lerp(from, to, -.5f * (Mathf.Sqrt(1f - time * time) - 1f));
+			return Mathf.Lerp(from, to, .5f * (Mathf.Sqrt(1f - (time -= 2f) * time) + 1f));
+		}
+		public static float BackIn(float from, float to, float time)
 		{
 			const float s = 1.70158f;
-			end -= start;
-			return end * time * time * ((s + 1f) * time - s) + start;
+			to -= from;
+			return to * time * time * ((s + 1f) * time - s) + from;
 		}
-		public static float BackOut(float start, float end, float time)
+		public static float BackOut(float from, float to, float time)
 		{
 			const float s = 1.70158f;
-			end -= start;
-			return end * (--time * time * ((s + 1f) * time + s) + 1f) + start;
+			to -= from;
+			return to * (--time * time * ((s + 1f) * time + s) + 1f) + from;
 		}
-		public static float BackInOut(float start, float end, float time)
+		public static float BackInOut(float from, float to, float time)
 		{
 			const float s = 1.70158f * 1.525f;
-			end -= start;
+			to -= from;
 			if ((time /= .5f) < 1f)
-				return end * .5f * (time * time * ((s + 1f) * time - s)) + start;
-			return end * .5f * ((time -= 2) * time * ((s + 1f) * time  + s) + 2f) + start;
+				return to * .5f * (time * time * ((s + 1f) * time - s)) + from;
+			return to * .5f * ((time -= 2) * time * ((s + 1f) * time  + s) + 2f) + from;
 		}
-		public static float ElasticIn(float start, float end, float time)
+		public static float ElasticIn(float from, float to, float time)
 		{
 			const float p = .3f;
 			const float s = p / 4f;
-			end -= start;
-			return end * -(Mathf.Pow(2f, 10f * (time -= 1f)) * Mathf.Sin((time - s) * DoublePi / p)) + start;
+			to -= from;
+			return to * -(Mathf.Pow(2f, 10f * (time -= 1f)) * Mathf.Sin((time - s) * DoublePi / p)) + from;
 		}
-		public static float ElasticOut(float start, float end, float time)
+		public static float ElasticOut(float from, float to, float time)
 		{
 			const float p = .3f;
 			const float s = p / 4f;
-			end -= start;
-			return end * Mathf.Pow(2f, -10f * time) * Mathf.Sin((time - s) * DoublePi / p) + end + start;
+			to -= from;
+			return to * Mathf.Pow(2f, -10f * time) * Mathf.Sin((time - s) * DoublePi / p) + to + from;
 		}
-		public static float ElasticInOut(float start, float end, float time)
+		public static float ElasticInOut(float from, float to, float time)
 		{
 			const float p = .3f * 1.5f;
 			const float s = p / 4f;
-			end -= start;
+			to -= from;
 			if ((time /= .5f) < 1f)
-				return -.5f * (end * Mathf.Pow(2f, 10f * (time -= 1f)) * Mathf.Sin((time - s) * DoublePi / p)) + start;
-			return end * Mathf.Pow(2f, -10f * (time -= 1f)) * Mathf.Sin((time - s) * DoublePi / p) * .5f + end + start;
+				return -.5f * (to * Mathf.Pow(2f, 10f * (time -= 1f)) * Mathf.Sin((time - s) * DoublePi / p)) + from;
+			return to * Mathf.Pow(2f, -10f * (time -= 1f)) * Mathf.Sin((time - s) * DoublePi / p) * .5f + to + from;
 		}
-		public static float BounceIn(float start, float end, float time)
+		public static float BounceIn(float from, float to, float time)
 		{
-			end -= start;
-			return end - BounceOut(0f, end, 1f - time) + start;
+			to -= from;
+			return to - BounceOut(0f, to, 1f - time) + from;
 		}
-		public static float BounceOut(float start, float end, float time)
+		public static float BounceOut(float from, float to, float time)
 		{
-			end -= start;
+			to -= from;
 			if (time < (1f / 2.75f))
-				return end * (7.5625f * time * time) + start;
+				return to * (7.5625f * time * time) + from;
 			if (time < (2f / 2.75f))
-				return end * (7.5625f * (time -= (1.5f / 2.75f)) * time + .75f) + start;
+				return to * (7.5625f * (time -= (1.5f / 2.75f)) * time + .75f) + from;
 			if (time < (2.5f / 2.75f))
-				return end * (7.5625f * (time -= (2.25f / 2.75f)) * time + .9375f) + start;
-			return end * (7.5625f * (time -= (2.625f / 2.75f)) * time + .984375f) + start;
+				return to * (7.5625f * (time -= (2.25f / 2.75f)) * time + .9375f) + from;
+			return to * (7.5625f * (time -= (2.625f / 2.75f)) * time + .984375f) + from;
 		}
-		public static float BounceInOut(float start, float end, float time)
+		public static float BounceInOut(float from, float to, float time)
 		{
-			end -= start;
+			to -= from;
 			if (time < .5f)
-				return BounceIn(0f, end, time * 2f) * .5f + start;
-			return BounceOut(0f, end, time * 2f - 1f) * .5f + end * .5f + start;
+				return BounceIn(0f, to, time * 2f) * .5f + from;
+			return BounceOut(0f, to, time * 2f - 1f) * .5f + to * .5f + from;
 		}
-		public static float Spring(float start, float end, float time)
+		public static float Spring(float from, float to, float time)
 		{
 			time = Mathf.Clamp01(time);
 			time = (Mathf.Sin(time * Mathf.PI * (.2f + 2.5f * time * time * time)) * Mathf.Pow(1f - time, 2.2f) + time) * (1f + (1.2f * (1f - time)));
-			return start + (end - start) * time;
+			return from + (to - from) * time;
 		}
 	}
 	public static class Ease3
@@ -383,47 +403,47 @@ namespace ca.HenrySoftware.Flop
 		private readonly static Dictionary<EaseType, Func<Vector3, Vector3, float, Vector3>> Types = new Dictionary<EaseType, Func<Vector3, Vector3, float, Vector3>>
 		{
 			{EaseType.Linear, Vector3.Lerp},
-			{EaseType.SineIn, (start, end, time) => new Vector3(Ease.SineIn(start.x, end.x, time), Ease.SineIn(start.y, end.y, time), Ease.SineIn(start.z, end.z, time))},
-			{EaseType.SineOut, (start, end, time) => new Vector3(Ease.SineOut(start.x, end.x, time), Ease.SineOut(start.y, end.y, time), Ease.SineOut(start.z, end.z, time))},
-			{EaseType.SineInOut, (start, end, time) => new Vector3(Ease.SineInOut(start.x, end.x, time), Ease.SineInOut(start.y, end.y, time), Ease.SineInOut(start.z, end.z, time))},
-			{EaseType.QuadIn, (start, end, time) => new Vector3(Ease.QuadIn(start.x, end.x, time), Ease.QuadIn(start.y, end.y, time), Ease.QuadIn(start.z, end.z, time))},
-			{EaseType.QuadOut, (start, end, time) => new Vector3(Ease.QuadOut(start.x, end.x, time), Ease.QuadOut(start.y, end.y, time), Ease.QuadOut(start.z, end.z, time))},
-			{EaseType.QuadInOut, (start, end, time) => new Vector3(Ease.QuadInOut(start.x, end.x, time), Ease.QuadInOut(start.y, end.y, time), Ease.QuadInOut(start.z, end.z, time))},
-			{EaseType.CubicIn, (start, end, time) => new Vector3(Ease.CubicIn(start.x, end.x, time), Ease.CubicIn(start.y, end.y, time), Ease.CubicIn(start.z, end.z, time))},
-			{EaseType.CubicOut, (start, end, time) => new Vector3(Ease.CubicOut(start.x, end.x, time), Ease.CubicOut(start.y, end.y, time), Ease.CubicOut(start.z, end.z, time))},
-			{EaseType.CubicInOut, (start, end, time) => new Vector3(Ease.CubicInOut(start.x, end.x, time), Ease.CubicInOut(start.y, end.y, time), Ease.CubicInOut(start.z, end.z, time))},
-			{EaseType.QuartIn, (start, end, time) => new Vector3(Ease.QuartIn(start.x, end.x, time), Ease.QuartIn(start.y, end.y, time), Ease.QuartIn(start.z, end.z, time))},
-			{EaseType.QuartOut, (start, end, time) => new Vector3(Ease.QuartOut(start.x, end.x, time), Ease.QuartOut(start.y, end.y, time), Ease.QuartOut(start.z, end.z, time))},
-			{EaseType.QuartInOut, (start, end, time) => new Vector3(Ease.QuartInOut(start.x, end.x, time), Ease.QuartInOut(start.y, end.y, time), Ease.QuartInOut(start.z, end.z, time))},
-			{EaseType.QuintIn, (start, end, time) => new Vector3(Ease.QuintIn(start.x, end.x, time), Ease.QuintIn(start.y, end.y, time), Ease.QuintIn(start.z, end.z, time))},
-			{EaseType.QuintOut, (start, end, time) => new Vector3(Ease.QuintOut(start.x, end.x, time), Ease.QuintOut(start.y, end.y, time), Ease.QuintOut(start.z, end.z, time))},
-			{EaseType.QuintInOut, (start, end, time) => new Vector3(Ease.QuintInOut(start.x, end.x, time), Ease.QuintInOut(start.y, end.y, time), Ease.QuintInOut(start.z, end.z, time))},
-			{EaseType.ExpoIn, (start, end, time) => new Vector3(Ease.ExpoIn(start.x, end.x, time), Ease.ExpoIn(start.y, end.y, time), Ease.ExpoIn(start.z, end.z, time))},
-			{EaseType.ExpoOut, (start, end, time) => new Vector3(Ease.ExpoOut(start.x, end.x, time), Ease.ExpoOut(start.y, end.y, time), Ease.ExpoOut(start.z, end.z, time))},
-			{EaseType.ExpoInOut, (start, end, time) => new Vector3(Ease.ExpoInOut(start.x, end.x, time), Ease.ExpoInOut(start.y, end.y, time), Ease.ExpoInOut(start.z, end.z, time))},
-			{EaseType.CircIn, (start, end, time) => new Vector3(Ease.CircIn(start.x, end.x, time), Ease.CircIn(start.y, end.y, time), Ease.CircIn(start.z, end.z, time))},
-			{EaseType.CircOut, (start, end, time) => new Vector3(Ease.CircOut(start.x, end.x, time), Ease.CircOut(start.y, end.y, time), Ease.CircOut(start.z, end.z, time))},
-			{EaseType.CircInOut, (start, end, time) => new Vector3(Ease.CircInOut(start.x, end.x, time), Ease.CircInOut(start.y, end.y, time), Ease.CircInOut(start.z, end.z, time))},
-			{EaseType.BackIn, (start, end, time) => new Vector3(Ease.BackIn(start.x, end.x, time), Ease.BackIn(start.y, end.y, time), Ease.BackIn(start.z, end.z, time))},
-			{EaseType.BackOut, (start, end, time) => new Vector3(Ease.BackOut(start.x, end.x, time), Ease.BackOut(start.y, end.y, time), Ease.BackOut(start.z, end.z, time))},
-			{EaseType.BackInOut, (start, end, time) => new Vector3(Ease.BackInOut(start.x, end.x, time), Ease.BackInOut(start.y, end.y, time), Ease.BackInOut(start.z, end.z, time))},
-			{EaseType.ElasticIn, (start, end, time) => new Vector3(Ease.ElasticIn(start.x, end.x, time), Ease.ElasticIn(start.y, end.y, time), Ease.ElasticIn(start.z, end.z, time))},
-			{EaseType.ElasticOut, (start, end, time) => new Vector3(Ease.ElasticOut(start.x, end.x, time), Ease.ElasticOut(start.y, end.y, time), Ease.ElasticOut(start.z, end.z, time))},
-			{EaseType.ElasticInOut, (start, end, time) => new Vector3(Ease.ElasticInOut(start.x, end.x, time), Ease.ElasticInOut(start.y, end.y, time), Ease.ElasticInOut(start.z, end.z, time))},
-			{EaseType.BounceIn, (start, end, time) => new Vector3(Ease.BounceIn(start.x, end.x, time), Ease.BounceIn(start.y, end.y, time), Ease.BounceIn(start.z, end.z, time))},
-			{EaseType.BounceOut, (start, end, time) => new Vector3(Ease.BounceOut(start.x, end.x, time), Ease.BounceOut(start.y, end.y, time), Ease.BounceOut(start.z, end.z, time))},
-			{EaseType.BounceInOut, (start, end, time) => new Vector3(Ease.BounceInOut(start.x, end.x, time), Ease.BounceInOut(start.y, end.y, time), Ease.BounceInOut(start.z, end.z, time))},
-			{EaseType.Spring, (start, end, time) => new Vector3(Ease.Spring(start.x, end.x, time), Ease.Spring(start.y, end.y, time), Ease.Spring(start.z, end.z, time))}
+			{EaseType.SineIn, (from, to, time) => new Vector3(Ease.SineIn(from.x, to.x, time), Ease.SineIn(from.y, to.y, time), Ease.SineIn(from.z, to.z, time))},
+			{EaseType.SineOut, (from, to, time) => new Vector3(Ease.SineOut(from.x, to.x, time), Ease.SineOut(from.y, to.y, time), Ease.SineOut(from.z, to.z, time))},
+			{EaseType.SineInOut, (from, to, time) => new Vector3(Ease.SineInOut(from.x, to.x, time), Ease.SineInOut(from.y, to.y, time), Ease.SineInOut(from.z, to.z, time))},
+			{EaseType.QuadIn, (from, to, time) => new Vector3(Ease.QuadIn(from.x, to.x, time), Ease.QuadIn(from.y, to.y, time), Ease.QuadIn(from.z, to.z, time))},
+			{EaseType.QuadOut, (from, to, time) => new Vector3(Ease.QuadOut(from.x, to.x, time), Ease.QuadOut(from.y, to.y, time), Ease.QuadOut(from.z, to.z, time))},
+			{EaseType.QuadInOut, (from, to, time) => new Vector3(Ease.QuadInOut(from.x, to.x, time), Ease.QuadInOut(from.y, to.y, time), Ease.QuadInOut(from.z, to.z, time))},
+			{EaseType.CubicIn, (from, to, time) => new Vector3(Ease.CubicIn(from.x, to.x, time), Ease.CubicIn(from.y, to.y, time), Ease.CubicIn(from.z, to.z, time))},
+			{EaseType.CubicOut, (from, to, time) => new Vector3(Ease.CubicOut(from.x, to.x, time), Ease.CubicOut(from.y, to.y, time), Ease.CubicOut(from.z, to.z, time))},
+			{EaseType.CubicInOut, (from, to, time) => new Vector3(Ease.CubicInOut(from.x, to.x, time), Ease.CubicInOut(from.y, to.y, time), Ease.CubicInOut(from.z, to.z, time))},
+			{EaseType.QuartIn, (from, to, time) => new Vector3(Ease.QuartIn(from.x, to.x, time), Ease.QuartIn(from.y, to.y, time), Ease.QuartIn(from.z, to.z, time))},
+			{EaseType.QuartOut, (from, to, time) => new Vector3(Ease.QuartOut(from.x, to.x, time), Ease.QuartOut(from.y, to.y, time), Ease.QuartOut(from.z, to.z, time))},
+			{EaseType.QuartInOut, (from, to, time) => new Vector3(Ease.QuartInOut(from.x, to.x, time), Ease.QuartInOut(from.y, to.y, time), Ease.QuartInOut(from.z, to.z, time))},
+			{EaseType.QuintIn, (from, to, time) => new Vector3(Ease.QuintIn(from.x, to.x, time), Ease.QuintIn(from.y, to.y, time), Ease.QuintIn(from.z, to.z, time))},
+			{EaseType.QuintOut, (from, to, time) => new Vector3(Ease.QuintOut(from.x, to.x, time), Ease.QuintOut(from.y, to.y, time), Ease.QuintOut(from.z, to.z, time))},
+			{EaseType.QuintInOut, (from, to, time) => new Vector3(Ease.QuintInOut(from.x, to.x, time), Ease.QuintInOut(from.y, to.y, time), Ease.QuintInOut(from.z, to.z, time))},
+			{EaseType.ExpoIn, (from, to, time) => new Vector3(Ease.ExpoIn(from.x, to.x, time), Ease.ExpoIn(from.y, to.y, time), Ease.ExpoIn(from.z, to.z, time))},
+			{EaseType.ExpoOut, (from, to, time) => new Vector3(Ease.ExpoOut(from.x, to.x, time), Ease.ExpoOut(from.y, to.y, time), Ease.ExpoOut(from.z, to.z, time))},
+			{EaseType.ExpoInOut, (from, to, time) => new Vector3(Ease.ExpoInOut(from.x, to.x, time), Ease.ExpoInOut(from.y, to.y, time), Ease.ExpoInOut(from.z, to.z, time))},
+			{EaseType.CircIn, (from, to, time) => new Vector3(Ease.CircIn(from.x, to.x, time), Ease.CircIn(from.y, to.y, time), Ease.CircIn(from.z, to.z, time))},
+			{EaseType.CircOut, (from, to, time) => new Vector3(Ease.CircOut(from.x, to.x, time), Ease.CircOut(from.y, to.y, time), Ease.CircOut(from.z, to.z, time))},
+			{EaseType.CircInOut, (from, to, time) => new Vector3(Ease.CircInOut(from.x, to.x, time), Ease.CircInOut(from.y, to.y, time), Ease.CircInOut(from.z, to.z, time))},
+			{EaseType.BackIn, (from, to, time) => new Vector3(Ease.BackIn(from.x, to.x, time), Ease.BackIn(from.y, to.y, time), Ease.BackIn(from.z, to.z, time))},
+			{EaseType.BackOut, (from, to, time) => new Vector3(Ease.BackOut(from.x, to.x, time), Ease.BackOut(from.y, to.y, time), Ease.BackOut(from.z, to.z, time))},
+			{EaseType.BackInOut, (from, to, time) => new Vector3(Ease.BackInOut(from.x, to.x, time), Ease.BackInOut(from.y, to.y, time), Ease.BackInOut(from.z, to.z, time))},
+			{EaseType.ElasticIn, (from, to, time) => new Vector3(Ease.ElasticIn(from.x, to.x, time), Ease.ElasticIn(from.y, to.y, time), Ease.ElasticIn(from.z, to.z, time))},
+			{EaseType.ElasticOut, (from, to, time) => new Vector3(Ease.ElasticOut(from.x, to.x, time), Ease.ElasticOut(from.y, to.y, time), Ease.ElasticOut(from.z, to.z, time))},
+			{EaseType.ElasticInOut, (from, to, time) => new Vector3(Ease.ElasticInOut(from.x, to.x, time), Ease.ElasticInOut(from.y, to.y, time), Ease.ElasticInOut(from.z, to.z, time))},
+			{EaseType.BounceIn, (from, to, time) => new Vector3(Ease.BounceIn(from.x, to.x, time), Ease.BounceIn(from.y, to.y, time), Ease.BounceIn(from.z, to.z, time))},
+			{EaseType.BounceOut, (from, to, time) => new Vector3(Ease.BounceOut(from.x, to.x, time), Ease.BounceOut(from.y, to.y, time), Ease.BounceOut(from.z, to.z, time))},
+			{EaseType.BounceInOut, (from, to, time) => new Vector3(Ease.BounceInOut(from.x, to.x, time), Ease.BounceInOut(from.y, to.y, time), Ease.BounceInOut(from.z, to.z, time))},
+			{EaseType.Spring, (from, to, time) => new Vector3(Ease.Spring(from.x, to.x, time), Ease.Spring(from.y, to.y, time), Ease.Spring(from.z, to.z, time))}
 		};
-		public static IEnumerator Go(MonoBehaviour m, Vector3 start, Vector3 end, float time,
+		public static IEnumerator Go(MonoBehaviour m, Vector3 from, Vector3 to, float time,
 			UnityAction<Vector3> update, UnityAction complete = null, EaseType type = EaseType.Linear,
 			float delay = 0f, int repeat = 1, bool pingPong = false, bool realTime = false)
 		{
-			var i = GoCoroutine(start, end, time, update, complete, type, delay, repeat, pingPong, realTime);
+			var i = GoCoroutine(m, from, to, time, update, complete, type, delay, repeat, pingPong, realTime);
 			m.StartCoroutine(i);
 			return i;
 		}
-		private static IEnumerator GoCoroutine(Vector3 start, Vector3 end, float time,
+		private static IEnumerator GoCoroutine(MonoBehaviour m, Vector3 from, Vector3 to, float time,
 			UnityAction<Vector3> update, UnityAction complete, EaseType type,
 			float delay, int repeat, bool pingPong, bool realTime)
 		{
@@ -439,23 +459,33 @@ namespace ca.HenrySoftware.Flop
 			while (repeat == 0 || counter > 0)
 			{
 				if (delay > 0f)
-					yield return new WaitForSeconds(delay);
+				{
+					if (realTime)
+						yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+					else
+						yield return new WaitForSeconds(delay);
+				}
 				var t = 0f;
 				while (t <= 1f)
 				{
 					t += (realTime ? deltaTime() : Time.deltaTime) / time;
-					update(Types[type](start, end, Mathf.Clamp01(t)));
+					update(Types[type](from, to, Mathf.Clamp01(t)));
 					yield return null;
 				}
 				if (pingPong)
 				{
 					if (delay > 0f)
-						yield return new WaitForSeconds(delay);
+					{
+						if (realTime)
+							yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+						else
+							yield return new WaitForSeconds(delay);
+					}
 					t = 0f;
 					while (t <= 1f)
 					{
 						t += (realTime ? deltaTime() : Time.deltaTime) / time;
-						update(Types[type](end, start, Mathf.Clamp01(t)));
+						update(Types[type](to, from, Mathf.Clamp01(t)));
 						yield return null;
 					}
 				}
@@ -480,15 +510,15 @@ namespace ca.HenrySoftware.Flop
 			var p = m.transform.localPosition;
 			return GoPosition(m, p, p + by, time, update, complete, type, delay, repeat, pingPong, realTime);
 		}
-		public static IEnumerator GoPosition(MonoBehaviour m, Vector3 start, Vector3 end, float time,
+		public static IEnumerator GoPosition(MonoBehaviour m, Vector3 from, Vector3 to, float time,
 			UnityAction<Vector3> update = null, UnityAction complete = null, EaseType type = EaseType.Linear,
 			float delay = 0f, int repeat = 1, bool pingPong = false, bool realTime = false)
 		{
-			var i = GoPositionCoroutine(m, start, end, time, update, complete, type, delay, repeat, pingPong, realTime);
+			var i = GoPositionCoroutine(m, from, to, time, update, complete, type, delay, repeat, pingPong, realTime);
 			m.StartCoroutine(i);
 			return i;
 		}
-		private static IEnumerator GoPositionCoroutine(Component o, Vector3 start, Vector3 end, float time,
+		private static IEnumerator GoPositionCoroutine(MonoBehaviour m, Vector3 from, Vector3 to, float time,
 			UnityAction<Vector3> update, UnityAction complete, EaseType type,
 			float delay, int repeat, bool pingPong, bool realTime)
 		{
@@ -504,33 +534,43 @@ namespace ca.HenrySoftware.Flop
 			while (repeat == 0 || counter > 0)
 			{
 				if (delay > 0f)
-					yield return new WaitForSeconds(delay);
+				{
+					if (realTime)
+						yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+					else
+						yield return new WaitForSeconds(delay);
+				}
 				var t = 0f;
 				while (t <= 1f)
 				{
 					t += (realTime ? deltaTime() : Time.deltaTime) / time;
-					var p = Types[type](start, end, Mathf.Clamp01(t));
-					o.transform.localPosition = p;
+					var p = Types[type](from, to, Mathf.Clamp01(t));
+					m.transform.localPosition = p;
 					if (update != null)
 						update(p);
 					yield return null;
 				}
-				o.transform.localPosition = end;
+				m.transform.localPosition = to;
 				if (pingPong)
 				{
 					if (delay > 0f)
-						yield return new WaitForSeconds(delay);
+					{
+						if (realTime)
+							yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+						else
+							yield return new WaitForSeconds(delay);
+					}
 					t = 0f;
 					while (t <= 1f)
 					{
 						t += (realTime ? deltaTime() : Time.deltaTime) / time;
-						var p = Types[type](end, start, Mathf.Clamp01(t));
-						o.transform.localPosition = p;
+						var p = Types[type](to, from, Mathf.Clamp01(t));
+						m.transform.localPosition = p;
 						if (update != null)
 							update(p);
 						yield return null;
 					}
-					o.transform.localPosition = start;
+					m.transform.localPosition = from;
 				}
 				if (repeat != 0)
 					counter--;
@@ -553,15 +593,15 @@ namespace ca.HenrySoftware.Flop
 			var p = m.transform.localEulerAngles;
 			return GoRotation(m, p, p + by, time, update, complete, type, delay, repeat, pingPong, realTime);
 		}
-		public static IEnumerator GoRotation(MonoBehaviour m, Vector3 start, Vector3 end, float time,
+		public static IEnumerator GoRotation(MonoBehaviour m, Vector3 from, Vector3 to, float time,
 			UnityAction<Vector3> update = null, UnityAction complete = null, EaseType type = EaseType.Linear,
 			float delay = 0f, int repeat = 1, bool pingPong = false, bool realTime = false)
 		{
-			var i = GoRotationCoroutine(m, start, end, time, update, complete, type, delay, repeat, pingPong, realTime);
+			var i = GoRotationCoroutine(m, from, to, time, update, complete, type, delay, repeat, pingPong, realTime);
 			m.StartCoroutine(i);
 			return i;
 		}
-		private static IEnumerator GoRotationCoroutine(Component o, Vector3 start, Vector3 end, float time,
+		private static IEnumerator GoRotationCoroutine(MonoBehaviour m, Vector3 from, Vector3 to, float time,
 			UnityAction<Vector3> update, UnityAction complete, EaseType type,
 			float delay, int repeat, bool pingPong, bool realTime)
 		{
@@ -573,37 +613,47 @@ namespace ca.HenrySoftware.Flop
 				last = t;
 				return d;
 			};
-			var counter = repeat;
+            var counter = repeat;
 			while (repeat == 0 || counter > 0)
 			{
 				if (delay > 0f)
-					yield return new WaitForSeconds(delay);
+				{
+					if (realTime)
+						yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+					else
+						yield return new WaitForSeconds(delay);
+				}
 				var t = 0f;
 				while (t <= 1f)
 				{
 					t += (realTime ? deltaTime() : Time.deltaTime) / time;
-					var p = Types[type](start, end, Mathf.Clamp01(t));
-					o.transform.localEulerAngles = p;
+					var p = Types[type](from, to, Mathf.Clamp01(t));
+					m.transform.localEulerAngles = p;
 					if (update != null)
 						update(p);
 					yield return null;
 				}
-				o.transform.localEulerAngles = end;
+				m.transform.localEulerAngles = to;
 				if (pingPong)
 				{
 					if (delay > 0f)
-						yield return new WaitForSeconds(delay);
+					{
+						if (realTime)
+							yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+						else
+							yield return new WaitForSeconds(delay);
+					}
 					t = 0f;
 					while (t <= 1f)
 					{
 						t += (realTime ? deltaTime() : Time.deltaTime) / time;
-						var p = Types[type](end, start, Mathf.Clamp01(t));
-						o.transform.localEulerAngles = p;
+						var p = Types[type](to, from, Mathf.Clamp01(t));
+						m.transform.localEulerAngles = p;
 						if (update != null)
 							update(p);
 						yield return null;
 					}
-					o.transform.localEulerAngles = start;
+					m.transform.localEulerAngles = from;
 				}
 				if (repeat != 0)
 					counter--;
@@ -626,15 +676,15 @@ namespace ca.HenrySoftware.Flop
 			var p = m.transform.localScale;
 			return GoScale(m, p, p + by, time, update, complete, type, delay, repeat, pingPong, realTime);
 		}
-		public static IEnumerator GoScale(MonoBehaviour m, Vector3 start, Vector3 end, float time,
+		public static IEnumerator GoScale(MonoBehaviour m, Vector3 from, Vector3 to, float time,
 			UnityAction<Vector3> update = null, UnityAction complete = null, EaseType type = EaseType.Linear,
 			float delay = 0f, int repeat = 1, bool pingPong = false, bool realTime = false)
 		{
-			var i = GoScaleCoroutine(m, start, end, time, update, complete, type, delay, repeat, pingPong, realTime);
+			var i = GoScaleCoroutine(m, from, to, time, update, complete, type, delay, repeat, pingPong, realTime);
 			m.StartCoroutine(i);
 			return i;
 		}
-		private static IEnumerator GoScaleCoroutine(Component o, Vector3 start, Vector3 end, float time,
+		private static IEnumerator GoScaleCoroutine(MonoBehaviour m, Vector3 from, Vector3 to, float time,
 			UnityAction<Vector3> update, UnityAction complete, EaseType type,
 			float delay, int repeat, bool pingPong, bool realTime)
 		{
@@ -650,33 +700,43 @@ namespace ca.HenrySoftware.Flop
 			while (repeat == 0 || counter > 0)
 			{
 				if (delay > 0f)
-					yield return new WaitForSeconds(delay);
+				{
+					if (realTime)
+						yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+					else
+						yield return new WaitForSeconds(delay);
+				}
 				var t = 0f;
 				while (t <= 1f)
 				{
 					t += (realTime ? deltaTime() : Time.deltaTime) / time;
-					var p = Types[type](start, end, Mathf.Clamp01(t));
-					o.transform.localScale = p;
+					var p = Types[type](from, to, Mathf.Clamp01(t));
+					m.transform.localScale = p;
 					if (update != null)
 						update(p);
 					yield return null;
 				}
-				o.transform.localScale = end;
+				m.transform.localScale = to;
 				if (pingPong)
 				{
 					if (delay > 0f)
-						yield return new WaitForSeconds(delay);
+					{
+						if (realTime)
+							yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+						else
+							yield return new WaitForSeconds(delay);
+					}
 					t = 0f;
 					while (t <= 1f)
 					{
 						t += (realTime ? deltaTime() : Time.deltaTime) / time;
-						var p = Types[type](end, start, Mathf.Clamp01(t));
-						o.transform.localScale = p;
+						var p = Types[type](to, from, Mathf.Clamp01(t));
+						m.transform.localScale = p;
 						if (update != null)
 							update(p);
 						yield return null;
 					}
-					o.transform.localScale = start;
+					m.transform.localScale = from;
 				}
 				if (repeat != 0)
 					counter--;
@@ -705,19 +765,19 @@ namespace ca.HenrySoftware.Flop
 			var color = GetColor(m).GetVector();
 			return GoColor(m, color, color + by, time, update, complete, type, delay, repeat, pingPong, realTime);
 		}
-		public static IEnumerator GoColor(MonoBehaviour m, Vector3 start, Vector3 end, float time,
+		public static IEnumerator GoColor(MonoBehaviour m, Vector3 from, Vector3 to, float time,
 			UnityAction<Vector3> update = null, UnityAction complete = null, EaseType type = EaseType.Linear,
 			float delay = 0f, int repeat = 1, bool pingPong = false, bool realTime = false)
 		{
-			var i = GoColorCoroutine(m, start, end, time, update, complete, type, delay, repeat, pingPong, realTime);
+			var i = GoColorCoroutine(m, from, to, time, update, complete, type, delay, repeat, pingPong, realTime);
 			m.StartCoroutine(i);
 			return i;
 		}
-		private static IEnumerator GoColorCoroutine(Component o, Vector3 start, Vector3 end, float time,
+		private static IEnumerator GoColorCoroutine(MonoBehaviour m, Vector3 from, Vector3 to, float time,
 			UnityAction<Vector3> update, UnityAction complete, EaseType type,
 			float delay, int repeat, bool pingPong, bool realTime)
 		{
-			var image = o.GetComponent<Image>();
+			var image = m.GetComponent<Image>();
 			var camera = Camera.main;
 			Action<Vector3> setColor = value =>
 			{
@@ -738,33 +798,43 @@ namespace ca.HenrySoftware.Flop
 			while (repeat == 0 || counter > 0)
 			{
 				if (delay > 0f)
-					yield return new WaitForSeconds(delay);
+				{
+					if (realTime)
+						yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+					else
+						yield return new WaitForSeconds(delay);
+				}
 				var t = 0f;
 				while (t <= 1f)
 				{
 					t += (realTime ? deltaTime() : Time.deltaTime) / time;
-					var p = Types[type](start, end, Mathf.Clamp01(t));
+					var p = Types[type](from, to, Mathf.Clamp01(t));
 					setColor(p);
 					if (update != null)
 						update(p);
 					yield return null;
 				}
-				setColor(end);
+				setColor(to);
 				if (pingPong)
 				{
 					if (delay > 0f)
-						yield return new WaitForSeconds(delay);
+					{
+						if (realTime)
+							yield return m.StartCoroutine(Utility.RealTimeWait(delay));
+						else
+							yield return new WaitForSeconds(delay);
+					}
 					t = 0f;
 					while (t <= 1f)
 					{
 						t += (realTime ? deltaTime() : Time.deltaTime) / time;
-						var p = Types[type](end, start, Mathf.Clamp01(t));
+						var p = Types[type](to, from, Mathf.Clamp01(t));
 						setColor(p);
 						if (update != null)
 							update(p);
 						yield return null;
 					}
-					setColor(start);
+					setColor(from);
 				}
 				if (repeat != 0)
 					counter--;

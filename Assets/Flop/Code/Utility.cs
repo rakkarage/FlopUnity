@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -21,6 +22,12 @@ namespace ca.HenrySoftware.Flop
 	}
 	public static class Utility
 	{
+		public static IEnumerator RealTimeWait(float time)
+		{
+			var start = Time.realtimeSinceStartup;
+			while (Time.realtimeSinceStartup < start + time)
+				yield return null;
+		}
 		public static void LogError(Exception e)
 		{
 			Debug.Log("<color=red>Error:</color> " + e);
