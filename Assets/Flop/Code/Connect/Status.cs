@@ -35,8 +35,8 @@ namespace ca.HenrySoftware.Flop
 		public void UpdateColor()
 		{
 			_image.StopAllCoroutines();
-			Ease3.GoColorTo(_image, (Connection.Connected ? Constants.StatusGreen : Constants.StatusRed).GetVector(), Time, null, null, EaseType.SineInOut, 0f, 1, false, true);
-			Ease.GoAlphaTo(_image, _highlight ? .75f : .25f, Time, null, null, EaseType.SineInOut, 0f, 1, false, true);
+			var color = (Connection.Connected ? Constants.StatusGreen : Constants.StatusRed).SetAlpha(_highlight ? .75f : .25f);
+            Ease4.GoColorTo(_image, color.GetVector4(), Time, null, null, EaseType.SineInOut, 0f, 1, false, true);
 		}
 		public void StatusClicked()
 		{

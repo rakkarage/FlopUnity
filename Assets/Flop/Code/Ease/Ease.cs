@@ -775,4 +775,185 @@ namespace ca.HenrySoftware.Flop
 				complete();
 		}
 	}
+	public static class Ease4
+	{
+		private readonly static Dictionary<EaseType, Func<Vector4, Vector4, float, Vector4>> Types = new Dictionary<EaseType, Func<Vector4, Vector4, float, Vector4>>
+		{
+			{EaseType.Linear, Vector4.Lerp},
+			{EaseType.SineIn, (from, to, time) => new Vector4(Ease.SineIn(from.x, to.x, time), Ease.SineIn(from.y, to.y, time), Ease.SineIn(from.z, to.z, time), Ease.SineIn(from.w, to.w, time))},
+			{EaseType.SineOut, (from, to, time) => new Vector4(Ease.SineOut(from.x, to.x, time), Ease.SineOut(from.y, to.y, time), Ease.SineOut(from.z, to.z, time), Ease.SineOut(from.w, to.w, time))},
+			{EaseType.SineInOut, (from, to, time) => new Vector4(Ease.SineInOut(from.x, to.x, time), Ease.SineInOut(from.y, to.y, time), Ease.SineInOut(from.z, to.z, time), Ease.SineInOut(from.w, to.w, time))},
+			{EaseType.QuadIn, (from, to, time) => new Vector4(Ease.QuadIn(from.x, to.x, time), Ease.QuadIn(from.y, to.y, time), Ease.QuadIn(from.z, to.z, time), Ease.QuadIn(from.w, to.w, time))},
+			{EaseType.QuadOut, (from, to, time) => new Vector4(Ease.QuadOut(from.x, to.x, time), Ease.QuadOut(from.y, to.y, time), Ease.QuadOut(from.z, to.z, time), Ease.QuadOut(from.w, to.w, time))},
+			{EaseType.QuadInOut, (from, to, time) => new Vector4(Ease.QuadInOut(from.x, to.x, time), Ease.QuadInOut(from.y, to.y, time), Ease.QuadInOut(from.z, to.z, time), Ease.QuadInOut(from.w, to.w, time))},
+			{EaseType.CubicIn, (from, to, time) => new Vector4(Ease.CubicIn(from.x, to.x, time), Ease.CubicIn(from.y, to.y, time), Ease.CubicIn(from.z, to.z, time), Ease.CubicIn(from.w, to.w, time))},
+			{EaseType.CubicOut, (from, to, time) => new Vector4(Ease.CubicOut(from.x, to.x, time), Ease.CubicOut(from.y, to.y, time), Ease.CubicOut(from.z, to.z, time), Ease.CubicOut(from.w, to.w, time))},
+			{EaseType.CubicInOut, (from, to, time) => new Vector4(Ease.CubicInOut(from.x, to.x, time), Ease.CubicInOut(from.y, to.y, time), Ease.CubicInOut(from.z, to.z, time), Ease.CubicInOut(from.w, to.w, time))},
+			{EaseType.QuartIn, (from, to, time) => new Vector4(Ease.QuartIn(from.x, to.x, time), Ease.QuartIn(from.y, to.y, time), Ease.QuartIn(from.z, to.z, time), Ease.QuartIn(from.w, to.w, time))},
+			{EaseType.QuartOut, (from, to, time) => new Vector4(Ease.QuartOut(from.x, to.x, time), Ease.QuartOut(from.y, to.y, time), Ease.QuartOut(from.z, to.z, time), Ease.QuartOut(from.w, to.w, time))},
+			{EaseType.QuartInOut, (from, to, time) => new Vector4(Ease.QuartInOut(from.x, to.x, time), Ease.QuartInOut(from.y, to.y, time), Ease.QuartInOut(from.z, to.z, time), Ease.QuartInOut(from.w, to.w, time))},
+			{EaseType.QuintIn, (from, to, time) => new Vector4(Ease.QuintIn(from.x, to.x, time), Ease.QuintIn(from.y, to.y, time), Ease.QuintIn(from.z, to.z, time), Ease.QuintIn(from.w, to.w, time))},
+			{EaseType.QuintOut, (from, to, time) => new Vector4(Ease.QuintOut(from.x, to.x, time), Ease.QuintOut(from.y, to.y, time), Ease.QuintOut(from.z, to.z, time), Ease.QuintOut(from.w, to.w, time))},
+			{EaseType.QuintInOut, (from, to, time) => new Vector4(Ease.QuintInOut(from.x, to.x, time), Ease.QuintInOut(from.y, to.y, time), Ease.QuintInOut(from.z, to.z, time), Ease.QuintInOut(from.w, to.w, time))},
+			{EaseType.ExpoIn, (from, to, time) => new Vector4(Ease.ExpoIn(from.x, to.x, time), Ease.ExpoIn(from.y, to.y, time), Ease.ExpoIn(from.z, to.z, time), Ease.ExpoIn(from.w, to.w, time))},
+			{EaseType.ExpoOut, (from, to, time) => new Vector4(Ease.ExpoOut(from.x, to.x, time), Ease.ExpoOut(from.y, to.y, time), Ease.ExpoOut(from.z, to.z, time), Ease.ExpoOut(from.w, to.w, time))},
+			{EaseType.ExpoInOut, (from, to, time) => new Vector4(Ease.ExpoInOut(from.x, to.x, time), Ease.ExpoInOut(from.y, to.y, time), Ease.ExpoInOut(from.z, to.z, time), Ease.ExpoInOut(from.w, to.w, time))},
+			{EaseType.CircIn, (from, to, time) => new Vector4(Ease.CircIn(from.x, to.x, time), Ease.CircIn(from.y, to.y, time), Ease.CircIn(from.z, to.z, time), Ease.CircIn(from.w, to.w, time))},
+			{EaseType.CircOut, (from, to, time) => new Vector4(Ease.CircOut(from.x, to.x, time), Ease.CircOut(from.y, to.y, time), Ease.CircOut(from.z, to.z, time), Ease.CircOut(from.w, to.w, time))},
+			{EaseType.CircInOut, (from, to, time) => new Vector4(Ease.CircInOut(from.x, to.x, time), Ease.CircInOut(from.y, to.y, time), Ease.CircInOut(from.z, to.z, time), Ease.CircInOut(from.w, to.w, time))},
+			{EaseType.BackIn, (from, to, time) => new Vector4(Ease.BackIn(from.x, to.x, time), Ease.BackIn(from.y, to.y, time), Ease.BackIn(from.z, to.z, time), Ease.BackIn(from.w, to.w, time))},
+			{EaseType.BackOut, (from, to, time) => new Vector4(Ease.BackOut(from.x, to.x, time), Ease.BackOut(from.y, to.y, time), Ease.BackOut(from.z, to.z, time), Ease.BackOut(from.w, to.w, time))},
+			{EaseType.BackInOut, (from, to, time) => new Vector4(Ease.BackInOut(from.x, to.x, time), Ease.BackInOut(from.y, to.y, time), Ease.BackInOut(from.z, to.z, time), Ease.BackInOut(from.w, to.w, time))},
+			{EaseType.ElasticIn, (from, to, time) => new Vector4(Ease.ElasticIn(from.x, to.x, time), Ease.ElasticIn(from.y, to.y, time), Ease.ElasticIn(from.z, to.z, time), Ease.ElasticIn(from.w, to.w, time))},
+			{EaseType.ElasticOut, (from, to, time) => new Vector4(Ease.ElasticOut(from.x, to.x, time), Ease.ElasticOut(from.y, to.y, time), Ease.ElasticOut(from.z, to.z, time), Ease.ElasticOut(from.w, to.w, time))},
+			{EaseType.ElasticInOut, (from, to, time) => new Vector4(Ease.ElasticInOut(from.x, to.x, time), Ease.ElasticInOut(from.y, to.y, time), Ease.ElasticInOut(from.z, to.z, time), Ease.ElasticInOut(from.w, to.w, time))},
+			{EaseType.BounceIn, (from, to, time) => new Vector4(Ease.BounceIn(from.x, to.x, time), Ease.BounceIn(from.y, to.y, time), Ease.BounceIn(from.z, to.z, time), Ease.BounceIn(from.w, to.w, time))},
+			{EaseType.BounceOut, (from, to, time) => new Vector4(Ease.BounceOut(from.x, to.x, time), Ease.BounceOut(from.y, to.y, time), Ease.BounceOut(from.z, to.z, time), Ease.BounceOut(from.w, to.w, time))},
+			{EaseType.BounceInOut, (from, to, time) => new Vector4(Ease.BounceInOut(from.x, to.x, time), Ease.BounceInOut(from.y, to.y, time), Ease.BounceInOut(from.z, to.z, time), Ease.BounceInOut(from.w, to.w, time))},
+			{EaseType.Spring, (from, to, time) => new Vector4(Ease.Spring(from.x, to.x, time), Ease.Spring(from.y, to.y, time), Ease.Spring(from.z, to.z, time), Ease.Spring(from.w, to.w, time))}
+		};
+		public static IEnumerator Go(MonoBehaviour m, Vector4 from, Vector4 to, float time,
+			UnityAction<Vector4> update, UnityAction complete = null, EaseType type = EaseType.Linear,
+			float delay = 0f, int repeat = 1, bool pingPong = false, bool realTime = false)
+		{
+			var i = GoCoroutine(m, from, to, time, update, complete, type, delay, repeat, pingPong, realTime);
+			m.StartCoroutine(i);
+			return i;
+		}
+		private static IEnumerator GoCoroutine(MonoBehaviour m, Vector4 from, Vector4 to, float time,
+			UnityAction<Vector4> update, UnityAction complete, EaseType type,
+			float delay, int repeat, bool pingPong, bool realTime)
+		{
+			var counter = repeat;
+			while (repeat == 0 || counter > 0)
+			{
+				if (delay > 0f)
+				{
+					if (realTime)
+						yield return m.StartCoroutine(RealTime.Instance.WaitForSeconds(delay));
+					else
+						yield return new WaitForSeconds(delay);
+				}
+				var t = 0f;
+				while (t <= 1f)
+				{
+					t += (realTime ? RealTime.Instance.DeltaTime : Time.deltaTime) / time;
+					update(Types[type](from, to, Mathf.Clamp01(t)));
+					yield return null;
+				}
+				if (pingPong)
+				{
+					if (delay > 0f)
+					{
+						if (realTime)
+							yield return m.StartCoroutine(RealTime.Instance.WaitForSeconds(delay));
+						else
+							yield return new WaitForSeconds(delay);
+					}
+					t = 0f;
+					while (t <= 1f)
+					{
+						t += (realTime ? RealTime.Instance.DeltaTime : Time.deltaTime) / time;
+						update(Types[type](to, from, Mathf.Clamp01(t)));
+						yield return null;
+					}
+				}
+				if (repeat != 0)
+					counter--;
+				if (repeat == 0 && complete != null)
+					complete();
+			}
+			if (repeat != 0 && complete != null)
+				complete();
+		}
+		private static Color GetColor(MonoBehaviour m)
+		{
+			var image = m.GetComponent<Image>();
+			return (image == null) ? Camera.main.backgroundColor : image.color;
+		}
+		public static IEnumerator GoColorTo(MonoBehaviour m, Vector4 to, float time,
+			UnityAction<Vector4> update = null, UnityAction complete = null, EaseType type = EaseType.Linear,
+			float delay = 0f, int repeat = 1, bool pingPong = false, bool realTime = false)
+		{
+			return GoColor(m, GetColor(m).GetVector4(), to, time, update, complete, type, delay, repeat, pingPong, realTime);
+		}
+		public static IEnumerator GoColorBy(MonoBehaviour m, Vector4 by, float time,
+			UnityAction<Vector4> update = null, UnityAction complete = null, EaseType type = EaseType.Linear,
+			float delay = 0f, int repeat = 1, bool pingPong = false, bool realTime = false)
+		{
+			var color = GetColor(m).GetVector4();
+			return GoColor(m, color, color + by, time, update, complete, type, delay, repeat, pingPong, realTime);
+		}
+		public static IEnumerator GoColor(MonoBehaviour m, Vector4 from, Vector4 to, float time,
+			UnityAction<Vector4> update = null, UnityAction complete = null, EaseType type = EaseType.Linear,
+			float delay = 0f, int repeat = 1, bool pingPong = false, bool realTime = false)
+		{
+			var i = GoColorCoroutine(m, from, to, time, update, complete, type, delay, repeat, pingPong, realTime);
+			m.StartCoroutine(i);
+			return i;
+		}
+		private static IEnumerator GoColorCoroutine(MonoBehaviour m, Vector4 from, Vector4 to, float time,
+			UnityAction<Vector4> update, UnityAction complete, EaseType type,
+			float delay, int repeat, bool pingPong, bool realTime)
+		{
+			var image = m.GetComponent<Image>();
+			var camera = Camera.main;
+			Action<Vector4> setColor = value =>
+			{
+				if (image == null)
+					camera.backgroundColor = value.GetColor4();
+				else
+					image.color = value.GetColor4();
+			};
+			var counter = repeat;
+			while (repeat == 0 || counter > 0)
+			{
+				if (delay > 0f)
+				{
+					if (realTime)
+						yield return m.StartCoroutine(RealTime.Instance.WaitForSeconds(delay));
+					else
+						yield return new WaitForSeconds(delay);
+				}
+				var t = 0f;
+				while (t <= 1f)
+				{
+					t += (realTime ? RealTime.Instance.DeltaTime : Time.deltaTime) / time;
+					var p = Types[type](from, to, Mathf.Clamp01(t));
+					setColor(p);
+					if (update != null)
+						update(p);
+					yield return null;
+				}
+				setColor(to);
+				if (pingPong)
+				{
+					if (delay > 0f)
+					{
+						if (realTime)
+							yield return m.StartCoroutine(RealTime.Instance.WaitForSeconds(delay));
+						else
+							yield return new WaitForSeconds(delay);
+					}
+					t = 0f;
+					while (t <= 1f)
+					{
+						t += (realTime ? RealTime.Instance.DeltaTime : Time.deltaTime) / time;
+						var p = Types[type](to, from, Mathf.Clamp01(t));
+						setColor(p);
+						if (update != null)
+							update(p);
+						yield return null;
+					}
+					setColor(from);
+				}
+				if (repeat != 0)
+					counter--;
+				if (repeat == 0 && complete != null)
+					complete();
+			}
+			if (repeat != 0 && complete != null)
+				complete();
+		}
+	}
 }
