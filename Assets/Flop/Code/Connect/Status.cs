@@ -15,9 +15,12 @@ namespace ca.HenrySoftware.Flop
 		{
 			_image = GetComponent<Image>();
 		}
-		private void OnEnable()
+		private void Start()
 		{
 			UpdateColor();
+		}
+		private void OnEnable()
+		{
 			Connect.EmailChangedEvent += HandleEmailChanged;
 		}
 		private void OnDisable()
