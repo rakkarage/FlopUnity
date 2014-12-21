@@ -901,9 +901,9 @@ namespace ca.HenrySoftware.Flop
 			Action<Vector4> setColor = value =>
 			{
 				if (image == null)
-					camera.backgroundColor = value.GetColor4();
+					camera.backgroundColor = value.GetColor();
 				else
-					image.color = value.GetColor4();
+					image.color = value.GetColor();
 			};
 			var counter = repeat;
 			while (repeat == 0 || counter > 0)
