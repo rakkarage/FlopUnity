@@ -37,6 +37,7 @@ namespace ca.HenrySoftware.Flop
 		public void Next()
 		{
 			StopAllCoroutines();
+			_foreground.StopAllCoroutines();
 			_logo.gameObject.SetActive(false);
 			Ease.GoAlphaTo(_foreground, 0f, TimeAnimation, null, Finish);
 			Camera.main.backgroundColor = Constants.HenryBlue;
