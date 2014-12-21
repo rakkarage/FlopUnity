@@ -65,6 +65,7 @@ namespace ca.HenrySoftware.Flop
 		}
 		private void HideTooltip()
 		{
+			if (!_tip.gameObject.activeInHierarchy) return;
 			_tip.StopAllCoroutines();
 			Ease.GoAlphaTo(_tip, 0f, Time, null, null, EaseType.ExpoOut, 0f, 1, false, true);
 			Ease3.GoRotationTo(_tip, new Vector3(0f, 0f, 180f), Time, null, () => { _tip.gameObject.SetActive(false); }, EaseType.BounceOut, 0f, 1, false, true);
