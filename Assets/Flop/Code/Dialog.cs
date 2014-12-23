@@ -6,10 +6,10 @@ namespace ca.HenrySoftware.Flop
 	{
 		[SerializeField] private Text _title = null;
 		[SerializeField] private Text _text = null;
-		private static readonly Vector3 Offset = new Vector3(Constants.Offset, 0f, 0f);
+		private static readonly Vector3 Offset = new Vector3(Constant.Offset, 0f, 0f);
 		public void ShowError(string text)
 		{
-			_title.text = Constants.Error;
+			_title.text = Constant.Error;
 			_text.text = text;
 			Spring();
 		}

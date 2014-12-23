@@ -6,11 +6,11 @@ namespace ca.HenrySoftware.Flop
 	public class Connect : Singleton<Connect>
 	{
 		public static UnityAction<string> EmailChangedEvent;
-		private static readonly Vector3 OffsetSignIn = new Vector3(0f, Constants.Offset, 0f);
-		private static readonly Vector3 OffsetRegister = new Vector3(Constants.Offset, Constants.Offset, 0f);
-		private static readonly Vector3 OffsetReset = new Vector3(-Constants.Offset, Constants.Offset, 0f);
-		private static readonly Vector3 OffsetAccount = new Vector3(-Constants.Offset, 0f, 0f);
-		private static readonly Vector3 OffsetChange = new Vector3(-(Constants.Offset * 2f), 0f, 0f);
+		private static readonly Vector3 OffsetSignIn = new Vector3(0f, Constant.Offset, 0f);
+		private static readonly Vector3 OffsetRegister = new Vector3(Constant.Offset, Constant.Offset, 0f);
+		private static readonly Vector3 OffsetReset = new Vector3(-Constant.Offset, Constant.Offset, 0f);
+		private static readonly Vector3 OffsetAccount = new Vector3(-Constant.Offset, 0f, 0f);
+		private static readonly Vector3 OffsetChange = new Vector3(-(Constant.Offset * 2f), 0f, 0f);
 		private void OnEnable()
 		{
 			StartCoroutine(UpdateEmail());

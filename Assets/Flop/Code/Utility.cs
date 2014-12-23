@@ -6,8 +6,9 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace ca.HenrySoftware.Flop
 {
-	public static class Constants
+	public static class Constant
 	{
+		public const float Time = .333f;
 		public const string Error = "Error";
 		public const int Offset = 3072;
 		public static readonly int AnimatorCompute = Animator.StringToHash("Compute");

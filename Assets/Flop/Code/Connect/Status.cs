@@ -10,7 +10,6 @@ namespace ca.HenrySoftware.Flop
 		private Text _email = null;
 		private Image _image;
 		private bool _highlight = false;
-		private const float Time = .333f;
 		private void Awake()
 		{
 			_image = GetComponent<Image>();
@@ -35,8 +34,8 @@ namespace ca.HenrySoftware.Flop
 		public void UpdateColor()
 		{
 			_image.StopAllCoroutines();
-			var color = (Connection.Connected ? Constants.StatusGreen : Constants.StatusRed).SetAlpha(_highlight ? .75f : .25f);
-            Ease4.GoColorTo(_image, color.GetVector4(), Time, null, null, EaseType.SineInOut, 0f, 1, false, true);
+			var color = (Connection.Connected ? Constant.StatusGreen : Constant.StatusRed).SetAlpha(_highlight ? .75f : .25f);
+            Ease4.GoColorTo(_image, color.GetVector4(), Constant.Time, null, null, EaseType.SineInOut, 0f, 1, false, true);
 		}
 		public void StatusClicked()
 		{
@@ -63,15 +62,15 @@ namespace ca.HenrySoftware.Flop
 			if (!Connection.Connected) return;
 			_tip.gameObject.SetActive(true);
 			_tip.StopAllCoroutines();
-			Ease.GoAlphaTo(_tip, 1f, Time, null, null, EaseType.BounceOut, 0f, 1, false, true);
-			Ease3.GoRotationTo(_tip, new Vector3(0f, 0f, 0f), Time, null, null, EaseType.BounceOut, 0f, 1, false, true);
+			Ease.GoAlphaTo(_tip, 1f, Constant.Time, null, null, EaseType.BounceOut, 0f, 1, false, true);
+			Ease3.GoRotationTo(_tip, new Vector3(0f, 0f, 0f), Constant.Time, null, null, EaseType.BounceOut, 0f, 1, false, true);
 		}
 		private void HideTooltip()
 		{
 			if (!_tip.gameObject.activeInHierarchy) return;
 			_tip.StopAllCoroutines();
-			Ease.GoAlphaTo(_tip, 0f, Time * .5f, null, null, EaseType.CircOut, 0f, 1, false, true);
-			Ease3.GoRotationTo(_tip, new Vector3(0f, 0f, 180f), Time, null, () => { _tip.gameObject.SetActive(false); }, EaseType.CircOut, 0f, 1, false, true);
+			Ease.GoAlphaTo(_tip, 0f, Constant.Time * .5f, null, null, EaseType.CircOut, 0f, 1, false, true);
+			Ease3.GoRotationTo(_tip, new Vector3(0f, 0f, 180f), Constant.Time, null, () => { _tip.gameObject.SetActive(false); }, EaseType.CircOut, 0f, 1, false, true);
 		}
 	}
 }

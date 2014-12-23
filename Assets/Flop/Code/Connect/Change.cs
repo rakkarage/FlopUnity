@@ -61,13 +61,13 @@ namespace ca.HenrySoftware.Flop
 		private void Error(Animator a)
 		{
 			Audio.Instance.PlayError();
-			a.SetBool(Constants.AnimatorError, true);
+			a.SetBool(Constant.AnimatorError, true);
 		}
 		private void ClearError()
 		{
-			_oldAnimator.SetBool(Constants.AnimatorError, false);
-			_newAnimator.SetBool(Constants.AnimatorError, false);
-			_confirmAnimator.SetBool(Constants.AnimatorError, false);
+			_oldAnimator.SetBool(Constant.AnimatorError, false);
+			_newAnimator.SetBool(Constant.AnimatorError, false);
+			_confirmAnimator.SetBool(Constant.AnimatorError, false);
 		}
 		private void ChangeFail(string reason)
 		{
@@ -85,12 +85,12 @@ namespace ca.HenrySoftware.Flop
 		}
 		private void DisableInput()
 		{
-			_changeButton.SetBool(Constants.AnimatorCompute, true);
+			_changeButton.SetBool(Constant.AnimatorCompute, true);
 			gameObject.SetInteractable(false);
 		}
 		private void EnableInput()
 		{
-			_changeButton.SetBool(Constants.AnimatorCompute, false);
+			_changeButton.SetBool(Constant.AnimatorCompute, false);
 			gameObject.SetInteractable(true);
 		}
 	}

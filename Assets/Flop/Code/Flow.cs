@@ -12,7 +12,7 @@ namespace ca.HenrySoftware.Flop
 		[SerializeField] private Vector3 _offset = new Vector3(32f, -3f, 16f);
 		[SerializeField] private bool _absoluteY = true;
 		[SerializeField] private float _insetZ = .5f;
-		[SerializeField] private float _time = .333f;
+		[SerializeField] private float _time = Constant.Time;
 		[SerializeField] private int _limit = 6;
 		[SerializeField] private Transform _lookAt = null;
 		[SerializeField] private Button _prev = null;

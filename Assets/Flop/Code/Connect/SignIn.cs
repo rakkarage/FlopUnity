@@ -58,12 +58,12 @@ namespace ca.HenrySoftware.Flop
 		private void Error(Animator a)
 		{
 			Audio.Instance.PlayError();
-			a.SetBool(Constants.AnimatorError, true);
+			a.SetBool(Constant.AnimatorError, true);
 		}
 		private void ClearError()
 		{
-			_emailAnimator.SetBool(Constants.AnimatorError, false);
-			_passwordAnimator.SetBool(Constants.AnimatorError, false);
+			_emailAnimator.SetBool(Constant.AnimatorError, false);
+			_passwordAnimator.SetBool(Constant.AnimatorError, false);
 		}
 		private void SignInFail(string reason)
 		{
@@ -79,12 +79,12 @@ namespace ca.HenrySoftware.Flop
 		}
 		private void DisableInput()
 		{
-			_signInButton.SetBool(Constants.AnimatorCompute, true);
+			_signInButton.SetBool(Constant.AnimatorCompute, true);
 			gameObject.SetInteractable(false);
 		}
 		private void EnableInput()
 		{
-			_signInButton.SetBool(Constants.AnimatorCompute, false);
+			_signInButton.SetBool(Constant.AnimatorCompute, false);
 			gameObject.SetInteractable(true);
 		}
 	}

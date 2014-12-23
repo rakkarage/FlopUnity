@@ -4,8 +4,8 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Intro : MonoBehaviour
 	{
-		[SerializeField] private MonoBehaviour _logo;
-		[SerializeField] private MonoBehaviour _foreground;
+		[SerializeField] private MonoBehaviour _logo = null;
+		[SerializeField] private MonoBehaviour _foreground = null;
 		[SerializeField] private GameObject[] _activate = null;
 		private AudioSource _source;
 		private const float TimeAnimation = 1f;
@@ -40,7 +40,7 @@ namespace ca.HenrySoftware.Flop
 			_foreground.StopAllCoroutines();
 			_logo.gameObject.SetActive(false);
 			Ease.GoAlphaTo(_foreground, 0f, TimeAnimation, null, Finish);
-			Camera.main.backgroundColor = Constants.HenryBlue;
+			Camera.main.backgroundColor = Constant.HenryBlue;
 			if (_activate == null) return;
 			foreach (var i in _activate)
 				i.SetActive(true);

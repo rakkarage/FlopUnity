@@ -47,11 +47,11 @@ namespace ca.HenrySoftware.Flop
 		private void Error(Animator a)
 		{
 			Audio.Instance.PlayError();
-			a.SetBool(Constants.AnimatorError, true);
+			a.SetBool(Constant.AnimatorError, true);
 		}
 		private void ClearError()
 		{
-			_emailAnimator.SetBool(Constants.AnimatorError, false);
+			_emailAnimator.SetBool(Constant.AnimatorError, false);
 		}
 		private void ResetFail(string reason)
 		{
@@ -66,12 +66,12 @@ namespace ca.HenrySoftware.Flop
 		}
 		private void DisableInput()
 		{
-			_resetButton.SetBool(Constants.AnimatorCompute, true);
+			_resetButton.SetBool(Constant.AnimatorCompute, true);
 			gameObject.SetInteractable(false);
 		}
 		private void EnableInput()
 		{
-			_resetButton.SetBool(Constants.AnimatorCompute, false);
+			_resetButton.SetBool(Constant.AnimatorCompute, false);
 			gameObject.SetInteractable(true);
 		}
 	}
