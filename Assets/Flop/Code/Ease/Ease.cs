@@ -39,8 +39,6 @@ namespace ca.HenrySoftware.Flop
 			{EaseType.BounceIn, BounceIn}, {EaseType.BounceOut, BounceOut}, {EaseType.BounceInOut, BounceInOut},
 			{EaseType.Spring, Spring}
 		};
-		private const float HalfPi = Mathf.PI * .5f;
-		private const float DoublePi = Mathf.PI * 2f;
 		public static IEnumerator Go(MonoBehaviour m, float from, float to, float time,
 			UnityAction<float> update, UnityAction complete = null, EaseType type = EaseType.Linear,
 			float delay = 0f, int repeat = 1, bool pingPong = false, bool realTime = false)
@@ -191,6 +189,8 @@ namespace ca.HenrySoftware.Flop
 			if (repeat != 0 && complete != null)
 				complete();
 		}
+		private const float HalfPi = Mathf.PI * .5f;
+		private const float DoublePi = Mathf.PI * 2f;
 		public static float SineIn(float from, float to, float time)
 		{
 			return Mathf.Lerp(from, to, 1f - Mathf.Cos(time * HalfPi));
@@ -694,13 +694,13 @@ namespace ca.HenrySoftware.Flop
 			UnityAction<Vector3> update = null, UnityAction complete = null, EaseType type = EaseType.Linear,
 			float delay = 0f, int repeat = 1, bool pingPong = false, bool realTime = false)
 		{
-			return GoColor(m, GetColor(m).GetVector(), to, time, update, complete, type, delay, repeat, pingPong, realTime);
+			return GoColor(m, GetColor(m).GetVector3(), to, time, update, complete, type, delay, repeat, pingPong, realTime);
 		}
 		public static IEnumerator GoColorBy(MonoBehaviour m, Vector3 by, float time,
 			UnityAction<Vector3> update = null, UnityAction complete = null, EaseType type = EaseType.Linear,
 			float delay = 0f, int repeat = 1, bool pingPong = false, bool realTime = false)
 		{
-			var color = GetColor(m).GetVector();
+			var color = GetColor(m).GetVector3();
 			return GoColor(m, color, color + by, time, update, complete, type, delay, repeat, pingPong, realTime);
 		}
 		public static IEnumerator GoColor(MonoBehaviour m, Vector3 from, Vector3 to, float time,

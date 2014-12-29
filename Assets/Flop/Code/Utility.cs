@@ -87,7 +87,7 @@ namespace ca.HenrySoftware.Flop
 	}
 	public static class ColorExtensions
 	{
-		public static Vector3 GetVector(this Color c)
+		public static Vector3 GetVector3(this Color c)
 		{
 			return new Vector3(c.r, c.g, c.b);
 		}

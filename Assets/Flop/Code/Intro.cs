@@ -23,7 +23,7 @@ namespace ca.HenrySoftware.Flop
 			StartCoroutine(PlayDelayed(TimeDelaySound));
 			Ease3.GoScaleTo(_logo, new Vector3(2f, 2f, 1f), TimeAnimation, null, null, EaseType.BounceOut, TimeDelay);
 			Ease3.GoRotationTo(_logo, new Vector3(0f, 0f, 180f), TimeAnimation, null, null, EaseType.BounceOut, TimeDelay);
-			Ease3.GoColorTo(this, Color.black.GetVector(), TimeAnimation, null, Fade, EaseType.BounceOut, TimeDelay);
+			Ease3.GoColorTo(this, Color.black.GetVector3(), TimeAnimation, null, Fade, EaseType.BounceOut, TimeDelay);
 		}
 		private IEnumerator PlayDelayed(float time)
 		{
