@@ -8,7 +8,7 @@ namespace ca.HenrySoftware.Flop
 	// http://answers.unity3d.com/questions/305882/how-do-i-invoke-functions-on-the-main-thread.html
 	public class Loom : MonoBehaviour
 	{
-		public static int MaxThreads = 8;
+		public const int MaxThreads = 8;
 		private static Loom _current;
 		private static bool _initialized;
 		private static int _numThreads;

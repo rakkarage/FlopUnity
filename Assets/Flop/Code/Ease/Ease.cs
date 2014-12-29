@@ -6,7 +6,6 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 namespace ca.HenrySoftware.Flop
 {
-	// http://www.robertpenner.com/easing/
 	public enum EaseType
 	{
 		Linear,
@@ -684,7 +683,6 @@ namespace ca.HenrySoftware.Flop
 			if (repeat != 0 && complete != null)
 				complete();
 		}
-
 		private static Color GetColor(MonoBehaviour m)
 		{
 			var image = m.GetComponent<Image>();
