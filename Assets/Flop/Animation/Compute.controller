@@ -45,8 +45,8 @@ AnimationClip:
     script: {fileID: 0}
   m_PPtrCurves:
   - curve:
-    - time: 0
-      value: {fileID: 21300008, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
+    - time: -0
+      value: {fileID: 21300010, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
     attribute: m_Sprite
     path: 
     classID: 114
@@ -77,7 +77,7 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300008, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
+    - {fileID: 21300010, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
@@ -143,8 +143,8 @@ AnimationClip:
   m_FloatCurves: []
   m_PPtrCurves:
   - curve:
-    - time: 0
-      value: {fileID: 21300010, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
+    - time: -0
+      value: {fileID: 21300012, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
     attribute: m_Sprite
     path: 
     classID: 114
@@ -163,7 +163,7 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300010, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
+    - {fileID: 21300012, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
@@ -229,8 +229,8 @@ AnimationClip:
     script: {fileID: 0}
   m_PPtrCurves:
   - curve:
-    - time: 0
-      value: {fileID: 21300012, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
+    - time: -0
+      value: {fileID: 21300014, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
     attribute: m_Sprite
     path: 
     classID: 114
@@ -261,7 +261,7 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300012, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
+    - {fileID: 21300014, guid: 4b189e16d442047478c329ad22fd9c43, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_StartTime: 0
@@ -1195,13 +1195,13 @@ StateMachine:
       - {fileID: 110145473}
       - {fileID: 110173782}
     data:
+      first: {fileID: 110292279}
+      second: []
+    data:
       first: {fileID: 110200000}
       second: []
     data:
       first: {fileID: 110250509}
-      second: []
-    data:
-      first: {fileID: 110292279}
       second: []
     data:
       first: {fileID: 110245473}

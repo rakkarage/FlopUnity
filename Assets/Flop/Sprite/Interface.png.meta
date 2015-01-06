@@ -9,23 +9,25 @@ TextureImporter:
     21300002: ArrowNorth
     21300004: ArrowSouth
     21300006: ArrowWest
-    21300008: Button0
-    21300010: Button1
-    21300012: Button2
-    21300014: Circle
-    21300016: Cloud0
-    21300018: Cloud1
-    21300020: IconNo
-    21300022: IconYes
-    21300024: Input
-    21300026: Panel
-    21300028: PanelPaper
-    21300030: PanelStone
-    21300032: Pause
-    21300034: Skip
-    21300036: Tooltip
-    21300038: Empty
-    21300040: Black
+    21300008: Black
+    21300010: Button0
+    21300012: Button1
+    21300014: Button2
+    21300016: Circle
+    21300018: Cloud0
+    21300020: Cloud1
+    21300022: Empty
+    21300024: FastForward
+    21300026: IconNo
+    21300028: IconYes
+    21300030: Input
+    21300032: Panel
+    21300034: PanelPaper
+    21300036: PanelStone
+    21300038: Pause
+    21300040: Skip
+    21300042: Speed
+    21300044: Tooltip
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -70,10 +72,10 @@ TextureImporter:
     - name: ArrowEast
       rect:
         serializedVersion: 2
-        x: 106
-        y: 13
+        x: 144
+        y: 11
         width: 18
-        height: 16
+        height: 18
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -81,8 +83,8 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 125
-        y: 11
-        width: 16
+        y: 12
+        width: 18
         height: 18
       alignment: 0
       pivot: {x: .5, y: .5}
@@ -90,9 +92,9 @@ TextureImporter:
     - name: ArrowSouth
       rect:
         serializedVersion: 2
-        x: 142
-        y: 11
-        width: 16
+        x: 106
+        y: 12
+        width: 18
         height: 18
       alignment: 0
       pivot: {x: .5, y: .5}
@@ -101,8 +103,18 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 87
-        y: 13
+        y: 12
         width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Black
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 16
+        width: 16
         height: 16
       alignment: 0
       pivot: {x: .5, y: .5}
@@ -110,7 +122,7 @@ TextureImporter:
     - name: Button0
       rect:
         serializedVersion: 2
-        x: 144
+        x: 177
         y: 30
         width: 32
         height: 32
@@ -120,7 +132,7 @@ TextureImporter:
     - name: Button1
       rect:
         serializedVersion: 2
-        x: 144
+        x: 210
         y: 63
         width: 32
         height: 32
@@ -130,7 +142,7 @@ TextureImporter:
     - name: Button2
       rect:
         serializedVersion: 2
-        x: 163
+        x: 196
         y: 96
         width: 32
         height: 32
@@ -167,6 +179,26 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Empty
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: FastForward
+      rect:
+        serializedVersion: 2
+        x: 177
+        y: 63
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
     - name: IconNo
       rect:
         serializedVersion: 2
@@ -190,8 +222,8 @@ TextureImporter:
     - name: Input
       rect:
         serializedVersion: 2
-        x: 111
-        y: 31
+        x: 130
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -200,8 +232,8 @@ TextureImporter:
     - name: Panel
       rect:
         serializedVersion: 2
-        x: 78
-        y: 31
+        x: 163
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -230,8 +262,8 @@ TextureImporter:
     - name: Pause
       rect:
         serializedVersion: 2
-        x: 177
-        y: 30
+        x: 78
+        y: 31
         width: 32
         height: 32
       alignment: 0
@@ -240,8 +272,18 @@ TextureImporter:
     - name: Skip
       rect:
         serializedVersion: 2
-        x: 130
-        y: 96
+        x: 144
+        y: 30
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Speed
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 31
         width: 32
         height: 32
       alignment: 0
@@ -250,32 +292,12 @@ TextureImporter:
     - name: Tooltip
       rect:
         serializedVersion: 2
-        x: 177
+        x: 144
         y: 63
         width: 32
         height: 32
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 6, y: 14, z: 16, w: 14}
-    - name: Empty
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Black
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
