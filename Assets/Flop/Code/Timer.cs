@@ -10,8 +10,8 @@ namespace ca.HenrySoftware.Flop
 		private bool _pause;
 		[SerializeField] private Image _fastStatus = null;
 		private bool _fast;
-		private readonly Color _colorOff = Color.white.SetAlpha(.75f);
-		private readonly Color _colorOn = Constant.ButtonBlue.SetAlpha(.75f);
+		private readonly Color _colorOff = new Color32(255, 255, 255, 191);
+		private readonly Color _colorOn = new Color32(159, 176, 255, 191);
 		private readonly Vector3 _scaleTo = new Vector3(1.333f, 1.333f, 1f);
 		private void Start()
 		{

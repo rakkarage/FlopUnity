@@ -304,7 +304,7 @@ namespace ca.HenrySoftware.Flop
 			to -= from;
 			if ((time /= .5f) < 1f)
 				return to * .5f * (time * time * ((s + 1f) * time - s)) + from;
-			return to * .5f * ((time -= 2) * time * ((s + 1f) * time  + s) + 2f) + from;
+			return to * .5f * ((time -= 2) * time * ((s + 1f) * time + s) + 2f) + from;
 		}
 		public static float ElasticIn(float from, float to, float time)
 		{

@@ -4,10 +4,8 @@ namespace ca.HenrySoftware.Flop
 {
 	public class Status : Singleton<Status>
 	{
-		[SerializeField]
-		private MonoBehaviour _tip = null;
-		[SerializeField]
-		private Text _email = null;
+		[SerializeField] private MonoBehaviour _tip = null;
+		[SerializeField] private Text _email = null;
 		private Image _image;
 		private bool _highlight = false;
 		private void Awake()
