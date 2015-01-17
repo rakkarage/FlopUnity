@@ -6,12 +6,13 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 namespace ca.HenrySoftware.Flop
 {
+	[RequireComponent(typeof(Pool))]
 	public class Flow : Singleton<Flow>, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler, IPointerUpHandler
 	{
 		[SerializeField] private bool _big = false;
 		[SerializeField] private Vector3 _offset = new Vector3(32f, -3f, 16f);
 		[SerializeField] private bool _absoluteY = true;
-		[SerializeField] private float _insetZ = .5f;
+		[SerializeField] private float _insetZ = 0f;
 		[SerializeField] private float _time = Constant.Time;
 		[SerializeField] private int _limit = 6;
 		[SerializeField] private Transform _lookAt = null;
@@ -38,7 +39,11 @@ namespace ca.HenrySoftware.Flop
 		{
 			_data = (_big ? Enumerable.Range(1000000, 1000000) : Enumerable.Range(32, 95)).ToList();
 			_views = new Dictionary<int, Transform>(_data.Count);
-			_scrollbarText = _scrollbar.GetComponentInChildren<Text>();
+			if (_scrollbar != null)
+			{
+				_scrollbarText = _scrollbar.GetComponentInChildren<Text>();
+				_scrollbar.numberOfSteps = _data.Count;
+			}
 			_fade = GetComponentInParent<Fade>();
 			_scaler = GetComponentInParent<CanvasScaler>();
 			_pool = GetComponent<Pool>();
@@ -46,7 +51,6 @@ namespace ca.HenrySoftware.Flop
 			_max = (_offset.x * (_limit - 2f));
 			_min = -(_dataMax * _offset.x + _max);
 			_inertiaLimit = _big ? 33f : 3.33f;
-			_scrollbar.numberOfSteps = _data.Count;
 			for (var i = 0; (i < _data.Count) && (i < _limit); i++)
 				Enter(i);
 			LoadPage();
@@ -55,25 +59,25 @@ namespace ca.HenrySoftware.Flop
 		}
 		private void OnEnable()
 		{
-			_scrollbar.onValueChanged.AddListener(OnScrollChanged);
+			if (_scrollbar != null)
+				_scrollbar.onValueChanged.AddListener(OnScrollChanged);
 			Data.LoadedEvent += LoadPage;
 		}
 		private void OnDisable()
 		{
-			_scrollbar.onValueChanged.RemoveListener(OnScrollChanged);
+			if (_scrollbar != null)
+				_scrollbar.onValueChanged.RemoveListener(OnScrollChanged);
 			Data.LoadedEvent -= LoadPage;
 		}
-		private void LoadPage()
+		private void LoadPage(int page = -1, int pageBig = -1)
 		{
-			var page = Data.Instance.Page;
-			var pageBig = Data.Instance.PageBig;
 			EaseTo(_big ? (pageBig == -1 ? 0 : pageBig) : (page == -1 ? 1 : page));
 		}
 		private void Enter(int i)
 		{
 			var o = _pool.Enter();
 			var l = o.GetComponent<LookAt>();
-			l.Target = _lookAt;
+			l.Target = _lookAt == null ? Camera.main.transform : _lookAt;
 			var button = o.GetComponent<Button>();
 			button.onClick.RemoveAllListeners();
 			button.onClick.AddListener(() => { EaseTo(o.transform); });
@@ -153,12 +157,17 @@ namespace ca.HenrySoftware.Flop
 		}
 		private void UpdateCurrent(int current)
 		{
-			_prev.interactable = (current > 0);
-			_next.interactable = (current < _dataMax);
-			_ignore = true;
-			_scrollbar.value = (float)current / _dataMax;
-			_scrollbarText.text = _big ? current.ToString() : (current + 32).ToString();
-			_ignore = false;
+			if (_prev != null)
+				_prev.interactable = (current > 0);
+			if (_next != null)
+				_next.interactable = (current < _dataMax);
+			if (_scrollbar != null)
+			{
+				_ignore = true;
+				_scrollbar.value = (float)current / _dataMax;
+				_scrollbarText.text = _big ? current.ToString() : (current + 32).ToString();
+				_ignore = false;
+			}
 		}
 		private int GetCurrent()
 		{
