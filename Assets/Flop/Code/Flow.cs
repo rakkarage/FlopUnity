@@ -26,12 +26,12 @@ namespace ca.HenrySoftware.Flop
 		private IEnumerator _inertiaEase;
 		private float _time = .333f;
 		private float _inertia;
-		private float _inertiaLimit = 3.33f;  // TODO: REPLACE WITH MATH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		private float _inertiaLimit = 3.33f;
 		private float _max;
 		private float _min;
 		private float _current;
 		private int _dataMax;
-		private Dictionary<int, Transform> _views; // TODO: CHANGE TO LIST??? WHY KEY LOOKUP???!!!!!!!!!!!!!!!!!!!!!!
+		private Dictionary<int, Transform> _views;
 		protected abstract List<T> Data { get; }
 		protected virtual int StartAt { get { return 0; } }
 		protected bool First { get { return GetCurrent() == 0; } }
