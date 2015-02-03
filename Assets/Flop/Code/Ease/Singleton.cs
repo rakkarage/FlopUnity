@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-namespace ca.HenrySoftware.Flop
+namespace ca.HenrySoftware
 {
 	public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 	{
@@ -10,7 +10,7 @@ namespace ca.HenrySoftware.Flop
 			{
 				if (_instance == null)
 				{
-					_instance = (T)FindObjectOfType(typeof(T));
+					_instance = FindObjectOfType(typeof(T)) as T;
 					if (_instance == null)
 					{
 						Debug.LogError("Missing: " + typeof(T));

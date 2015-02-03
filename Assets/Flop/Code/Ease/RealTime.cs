@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-namespace ca.HenrySoftware.Flop
+namespace ca.HenrySoftware
 {
 	public class RealTime : Singleton<RealTime>
 	{

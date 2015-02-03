@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
-namespace ca.HenrySoftware.Flop
+namespace ca.HenrySoftware
 {
 	public abstract class Easer<T> : MonoBehaviour
 	{
