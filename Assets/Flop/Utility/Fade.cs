@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-namespace ca.HenrySoftware.Flop
+namespace ca.HenrySoftware
 {
 	[RequireComponent(typeof(CanvasGroup))]
 	public class Fade : MonoBehaviour

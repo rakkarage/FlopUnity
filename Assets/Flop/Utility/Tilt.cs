@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-namespace ca.HenrySoftware.Flop
+namespace ca.HenrySoftware
 {
 	public class Tilt : MonoBehaviour
 	{
