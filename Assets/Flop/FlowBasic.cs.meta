@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: bea7335c31319a3478bef28870809292
+labels:
+- Code
 MonoImporter:
   serializedVersion: 2
   defaultReferences: []
