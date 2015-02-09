@@ -1,2 +1,3 @@
-Flop! Pooling Cover Flow
-rakkarage@gmail.com
+Flop!
+art: benmhenry@gmail.com
+code: rakkarage@gmail.com

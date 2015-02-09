@@ -6,8 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Flop/FlopOld.unity
+    path: Assets/Flop/FlopCharacter.unity
   - enabled: 0
-    path: Assets/Flop/TestEase.unity
-  - enabled: 0
-    path: Assets/Flop/TestFont.unity
+    path: Assets/Flop/FlopNumber.unity
