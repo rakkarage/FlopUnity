@@ -9,16 +9,11 @@ namespace ca.HenrySoftware.Flop
 	[RequireComponent(typeof(Pool))]
 	public abstract class Flow<T> : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler, IPointerUpHandler
 	{
-		[SerializeField, Tooltip("positions start @ index * offset")]
-		private Vector3 _offset = new Vector3(32f, -3f, 16f);
-		[SerializeField, Tooltip("keep offset.y the same on both sides?")]
-		private bool _absoluteY = true;
-		[SerializeField, Tooltip("offset to move forward")]
-		private float _insetZ = .5f;
-		[SerializeField, Tooltip("how many items to show on each side")]
-		private int _limit = 6;
-		[SerializeField, Tooltip("object for items to look at")]
-		private Transform _lookAt = null;
+		[SerializeField] private Vector3 _offset = new Vector3(32f, -3f, 16f);
+		[SerializeField] private bool _absoluteY = true;
+		[SerializeField] private float _insetZ = .5f;
+		[SerializeField] private int _limit = 6;
+		[SerializeField] private Transform _lookAt = null;
 		private Pool _pool;
 		private CanvasScaler _scaler;
 		private IEnumerator _ease;

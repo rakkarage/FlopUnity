@@ -12,7 +12,6 @@ public class FlowBasic : Flow<int>
     }
     protected override void Apply(GameObject o, int d)
     {
-        Debug.Log(o);
         var data = ((char)d).ToString();
         foreach (var text in o.GetComponentsInChildren<Text>(true))
             text.text = data;
