@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class FlowSprites : Flow<Sprite>
+public class FlowSprite : Flow<Sprite>
 {
 	[SerializeField] private Button _prev = null;
 	[SerializeField] private Button _next = null;

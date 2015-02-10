@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-public class FlowCharacters : Flow<int>
+public class FlowCharacter : Flow<int>
 {
 	[SerializeField] private Button _prev = null;
 	[SerializeField] private Button _next = null;
