@@ -33,15 +33,30 @@ namespace ca.HenrySoftware.Flop
 		protected bool Last { get { return GetCurrent() == _dataMax; } }
 		protected virtual void Start()
 		{
-			_views = new Dictionary<int, Transform>(Data.Count);
 			_pool = GetComponent<Pool>();
 			_scaler = GetComponentInParent<CanvasScaler>();
+			Make(StartAt);
+		}
+		protected void Clear()
+		{
+			for (var i = _views.Count - 1; i >= 0; i--)
+				Exit(i);
+		}
+		protected void Make()
+		{
+			Make(GetCurrent());
+		}
+		protected void Make(int at)
+		{
+			if (_views != null)
+				Clear();
+			_views = new Dictionary<int, Transform>(Data.Count);
 			_dataMax = Data.Count - 1;
 			_max = (_offset.x * (_limit - 2f));
 			_min = -(_dataMax * _offset.x + _max);
 			for (var i = 0; (i < Data.Count) && (i < _limit); i++)
 				Enter(i);
-			EaseTo(StartAt);
+			EaseTo(at);
 			UpdateCurrent(GetCurrent());
 		}
 		protected abstract void UpdateCurrent(int current);
