@@ -62,8 +62,8 @@ namespace ca.HenrySoftware.Flop
 				button.onClick.AddListener(() => { EaseTo(o.transform); });
 			}
 			o.name = i.ToString();
-            var item = o.GetComponent<Item>();
-            item.Stop = Stop;
+			var item = o.GetComponent<Item>();
+			item.Stop = Stop;
 			UpdateItem(o, i * _offset.x);
 			_views.Add(i, o.transform);
 			Apply(o, Data[i]);
@@ -82,7 +82,7 @@ namespace ca.HenrySoftware.Flop
 		protected float GetPercent(float i)
 		{
 			return i / _dataMax;
-        }
+		}
 		protected void Scroll(float percent)
 		{
 			Stop();

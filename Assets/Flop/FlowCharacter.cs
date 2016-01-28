@@ -14,7 +14,7 @@ public class FlowCharacter : Flow<int>
 	protected override List<int> Data
 	{
 		get { return _data; }
-    }
+	}
 	protected override int StartAt
 	{
 		get { return 1; }

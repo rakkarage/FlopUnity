@@ -30,8 +30,8 @@ public class FlowSprite : Flow<Sprite>
 	}
 	private void OnScroll(float scroll)
 	{
-        if (!_ignore)
-            Scroll(scroll);
+		if (!_ignore)
+			Scroll(scroll);
 	}
 	protected override void Apply(GameObject o, Sprite d)
 	{
@@ -41,9 +41,9 @@ public class FlowSprite : Flow<Sprite>
 	{
 		_prev.interactable = !First;
 		_next.interactable = !Last;
-        _ignore = true;
-        _scrollbar.value = GetPercent(current);
-        _ignore = false;
+		_ignore = true;
+		_scrollbar.value = GetPercent(current);
+		_ignore = false;
 		_scrollbarText.text = current.ToString();
 	}
 }
