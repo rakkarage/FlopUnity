@@ -4,8 +4,32 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-namespace ca.HenrySoftware.Flop
+namespace ca.HenrySoftware.Rage
 {
+	public static class GameObjectExtensions
+	{
+		public static void SortChildren(this GameObject o)
+		{
+			var children = o.GetComponentsInChildren<Transform>(true).ToList();
+			children.Remove(o.transform);
+			children.Sort(Compare);
+			for (var i = 0; i < children.Count; i++)
+				children[i].SetSiblingIndex(i);
+		}
+		private static int Compare(Transform lhs, Transform rhs)
+		{
+			if (lhs == rhs) return 0;
+			var test = rhs.gameObject.activeInHierarchy.CompareTo(lhs.gameObject.activeInHierarchy);
+			if (test != 0) return test;
+			if (lhs.localPosition.z < rhs.localPosition.z) return 1;
+			if (lhs.localPosition.z > rhs.localPosition.z) return -1;
+			if (lhs.localPosition.y < rhs.localPosition.y) return 1;
+			if (lhs.localPosition.y > rhs.localPosition.y) return -1;
+			if (lhs.localPosition.x < rhs.localPosition.x) return 1;
+			if (lhs.localPosition.x > rhs.localPosition.x) return -1;
+			return 0;
+		}
+	}
 	[RequireComponent(typeof(Pool))]
 	public abstract class Flow<T> : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerDownHandler, IPointerUpHandler
 	{
