@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-namespace ca.HenrySoftware
+namespace ca.HenrySoftware.Rage
 {
 	public class LookAt : MonoBehaviour
 	{

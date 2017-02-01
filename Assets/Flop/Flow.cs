@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 namespace ca.HenrySoftware.Rage
 {
-	public static class GameObjectExtensions
+	public static partial class GameObjectExtensions
 	{
 		public static void SortChildren(this GameObject o)
 		{
