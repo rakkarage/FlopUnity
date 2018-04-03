@@ -6,6 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Flop/IntroIntro.unity
+    path: Assets/Flop/Intro.unity
+    guid: 1b93825cddd3edd48af35c4625e01ecc
   - enabled: 1
     path: Assets/Flop/FlopNumber.unity
+    guid: 5e100f2a66fa49541b4ca633385ebb0e
